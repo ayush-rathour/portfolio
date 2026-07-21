@@ -1,0 +1,88 @@
+MIT License
+
+Copyright (c) 2024–2026 Ayush Rathour
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+─────────────────────────────────────────────────────────────────────────────
+ADDITIONAL NOTICE - PERSONAL CONTENT AND BRANDING
+─────────────────────────────────────────────────────────────────────────────
+
+The MIT License above applies solely to the source code of this project
+(HTML, CSS, and JavaScript files, and their structure and implementation).
+
+It does NOT extend to the following, which remain the exclusive property of
+Ayush Rathour and are NOT licensed for reuse, redistribution, or
+modification under the terms of this license:
+
+  - The name "Ayush Rathour" and the "AR.dev" brand name, wordmark, and logo
+  - Personal biographical information, including but not limited to the
+    author's name, location, contact details, and career history
+  - Photographs, including the profile photograph
+  - Project descriptions, case studies, and written narratives describing
+    the author's work and milestones
+  - Any custom artwork, ASCII art, and design assets created specifically
+    for this portfolio
+
+Any individual or entity reusing this source code as a template for their
+own portfolio must remove or replace all of the items listed above with
+their own original content prior to publication or distribution.
+
+
+─────────────────────────────────────────────────────────────────────────────
+THIRD-PARTY COMPONENTS
+─────────────────────────────────────────────────────────────────────────────
+
+This project incorporates the following third-party components, each of
+which is governed by its own respective license. These components are not
+covered by the MIT License granted above.
+
+  1. Page Loader Animation
+     Source:  Uiverse.io (https://uiverse.io/)
+     Author:  andrew-manzyk
+     Notice:  Used and adapted under Uiverse.io's applicable usage terms.
+              The original animation has been recoloured and restructured
+              for integration with the AR.dev visual theme.
+
+  2. Boxicons
+     Source:  https://boxicons.com/
+     License: MIT License / Creative Commons (per Boxicons licensing terms)
+
+  3. Font Awesome
+     Source:  https://fontawesome.com/
+     License: Font Awesome Free License
+              (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT)
+
+  4. Bitcount Prop Single & SUSE (Google Fonts)
+     Source:  https://fonts.google.com/
+     License: SIL Open Font License, Version 1.1
+              (https://scripts.sil.org/OFL)
+
+  5. GLightbox
+     Source:  https://biati-digital.github.io/glightbox/
+     License: MIT License
+
+  6. Web3Forms
+     Source:  https://web3forms.com/
+     Notice:  Used as a third-party form submission service under its
+              applicable terms of service.
+
+Users of this codebase are responsible for independently reviewing and
+complying with the license terms of each third-party component listed above.

@@ -1,0 +1,2541 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- ═══════════════════════════════════════════
+       BASIC META
+  ═══════════════════════════════════════════ -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a1f3d" />
+    <meta name="author" content="Ayush Rathour" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="rating" content="general" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Local SEO -->
+    <meta name="geo.region" content="IN-UP" />
+    <meta name="geo.placename" content="Saharanpur, Uttar Pradesh, IND" />
+
+    <!-- ═══════════════════════════════════════════
+       SEO META
+  ═══════════════════════════════════════════ -->
+    <meta
+      name="description"
+      content="Hi, I'm Ayush Rathour - a frontend developer from Saharanpur, IND crafting clean, modern web experiences. Explore my projects, skills, and journey in web development."
+    />
+    <meta
+      name="keywords"
+      content="Ayush Rathour, Frontend Developer, Web Developer, JavaScript, React, Portfolio Website, UI Developer, HTML, CSS, JS, Netlify Portfolio, Software Engineering, Student Developer, Open Source, Saharanpur, IND"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ayushrathour.netlify.app/" />
+
+    <!-- Title -->
+    <title>Ayush Rathour | Student</title>
+
+    <!-- ═══════════════════════════════════════════
+       OPEN GRAPH (Facebook / LinkedIn / WhatsApp)
+  ═══════════════════════════════════════════ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_IN" />
+    <meta
+      property="og:title"
+      content="Ayush Rathour | Frontend Developer & UI Designer"
+    />
+    <meta
+      property="og:description"
+      content="College student from Saharanpur, IND - crafting interfaces that feel fast, intentional, and human. Explore my projects, skills, and journey."
+    />
+    <meta property="og:url" content="https://ayushrathour.netlify.app/" />
+    <meta
+      property="og:image"
+      content="https://ayushrathour.netlify.app/Assets/Profile_Photo.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Ayush Rathour - Frontend Developer Portfolio"
+    />
+    <meta property="og:site_name" content="AR.dev - Ayush Rathour" />
+
+    <!-- ═══════════════════════════════════════════
+       TWITTER / X CARDS
+  ═══════════════════════════════════════════ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Ayush Rathour | Frontend Developer & UI Designer"
+    />
+    <meta
+      name="twitter:description"
+      content="College student from Saharanpur, IND - crafting interfaces that feel fast, intentional, and human."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ayushrathour.netlify.app/Assets/Profile_Photo.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Ayush Rathour - Frontend Developer Portfolio"
+    />
+    <meta name="twitter:creator" content="@ayushrathour" />
+    <meta name="twitter:site" content="@ayushrathour" />
+
+    <!-- ═══════════════════════════════════════════
+       APPLE / PWA META
+  ═══════════════════════════════════════════ -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="AR.dev" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="AR.dev" />
+    <meta name="msapplication-TileColor" content="#0a1f3d" />
+
+    <!-- ═══════════════════════════════════════════
+       FAVICON
+  ═══════════════════════════════════════════ -->
+    <link rel="icon" href="Assets/Favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="Assets/Favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="Assets/Favicon.png" />
+
+    <!-- ═══════════════════════════════════════════
+       DNS PREFETCH & PRECONNECT (Speed)
+  ═══════════════════════════════════════════ -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="//ayushrathour.netlify.app" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+    <!-- ═══════════════════════════════════════════
+       FONTS (moved from CSS @import - faster)
+  ═══════════════════════════════════════════ -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=SUSE:wght@100..800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=SUSE:wght@100..800&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=SUSE:wght@100..800&display=swap"
+      />
+    </noscript>
+
+    <!-- ═══════════════════════════════════════════
+       STYLESHEETS
+  ═══════════════════════════════════════════ -->
+    <!-- Critical site styles -->
+    <link rel="preload" as="style" href="styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Boxicons (moved to jsDelivr with SRI for reliability + integrity) -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome (deferred non-blocking load) -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      crossorigin="anonymous"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      />
+    </noscript>
+
+    <!-- GLightbox CSS (moved to head) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css"
+      crossorigin="anonymous"
+    />
+
+    <!-- ═══════════════════════════════════════════
+       STRUCTURED DATA / JSON-LD
+  ═══════════════════════════════════════════ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://ayushrathour.netlify.app/#person",
+        "name": "Ayush Rathour",
+        "url": "https://ayushrathour.netlify.app",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://ayushrathour.netlify.app/Assets/Profile_Photo.png",
+          "width": 800,
+          "height": 800
+        },
+        "jobTitle": "Frontend Developer & UI Designer",
+        "description": "College student from Saharanpur, IND, crafting clean, responsive, and modern web interfaces. Focused on frontend development, UI/UX, and building practical tools.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Saharanpur",
+          "addressRegion": "Uttar Pradesh",
+          "postalCode": "247232",
+          "addressCountry": "IN"
+        },
+        "knowsAbout": [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "Python",
+          "Responsive Web Design",
+          "UI/UX Design",
+          "PWA",
+          "Chart.js",
+          "Netlify",
+          "Frontend Development"
+        ],
+        "knowsLanguage": ["English", "Hindi"],
+        "sameAs": [
+          "https://github.com/ayush-rathour",
+          "https://www.instagram.com/ayushrathourrr"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance / Self-employed"
+        },
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Frontend Developer",
+          "occupationLocation": {
+            "@type": "City",
+            "name": "Saharanpur"
+          }
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://ayushrathour.netlify.app/#website",
+        "name": "Ayush Rathour | Frontend Developer Portfolio",
+        "url": "https://ayushrathour.netlify.app",
+        "description": "Portfolio website of Ayush Rathour - a frontend developer from Saharanpur, IND.",
+        "author": {
+          "@id": "https://ayushrathour.netlify.app/#person"
+        },
+        "inLanguage": "en-IN",
+        "copyrightYear": 2024
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Loading screen -->
+    <div
+      id="loading-screen"
+      role="status"
+      aria-live="polite"
+      aria-label="Loading portfolio"
+    >
+      <canvas id="ls-hex-canvas"></canvas>
+      <div class="ls-grid"></div>
+      <div class="ls-scan"></div>
+      <div class="ls-corner ls-corner--tl"></div>
+      <div class="ls-corner ls-corner--tr"></div>
+      <div class="ls-corner ls-corner--bl"></div>
+      <div class="ls-corner ls-corner--br"></div>
+
+      <div class="ls-center">
+        <div class="ls-logo">
+          <div class="ls-wordmark">AR<span>.</span>dev</div>
+          <div class="ls-subtitle">Frontend Developer &amp; UI Designer</div>
+        </div>
+
+        <div class="ls-ring-wrap">
+          <svg viewBox="0 0 100 100" fill="none">
+            <circle
+              cx="50"
+              cy="50"
+              r="46"
+              stroke="rgba(0,188,212,0.1)"
+              stroke-width="1.5"
+            />
+            <g class="ls-ring-outer">
+              <circle
+                cx="50"
+                cy="50"
+                r="46"
+                stroke="#00bcd4"
+                stroke-width="1.5"
+                stroke-dasharray="72 216"
+                stroke-linecap="round"
+                opacity=".9"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="46"
+                stroke="rgba(0,188,212,.35)"
+                stroke-width="1"
+                stroke-dasharray="18 270"
+                stroke-linecap="round"
+              />
+            </g>
+            <g class="ls-ring-inner">
+              <circle
+                cx="50"
+                cy="50"
+                r="34"
+                stroke="rgba(0,188,212,0.08)"
+                stroke-width="1"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="34"
+                stroke="rgba(0,188,212,.5)"
+                stroke-width="1"
+                stroke-dasharray="40 174"
+                stroke-linecap="round"
+              />
+            </g>
+            <circle
+              cx="50"
+              cy="50"
+              r="22"
+              stroke="rgba(0,188,212,.06)"
+              stroke-width="1"
+            />
+          </svg>
+          <div class="ls-ring-label">AR</div>
+        </div>
+
+        <div class="ls-log" id="ls-log-block">
+          <div class="ls-log-line" id="ls-log0">
+            <span class="ls-tag tag-sys">SYS</span
+            ><span
+              ><span class="ls-log-addr">0x0001</span> &nbsp;Boot Sequence
+              Initiated · AR.dev</span
+            >
+          </div>
+          <div class="ls-log-line" id="ls-log1">
+            <span class="ls-tag tag-ld">ENV</span
+            ><span
+              ><span class="ls-log-addr">0x0012</span> &nbsp;Initializing
+              runtime environment
+            </span>
+          </div>
+          <div class="ls-log-line" id="ls-log2">
+            <span class="ls-tag tag-run">CSS</span
+            ><span
+              ><span class="ls-log-addr">0x0034</span> &nbsp;Resolving fonts ·
+              Stylesheet · Icon bundles</span
+            >
+          </div>
+          <div class="ls-log-line" id="ls-log3">
+            <span class="ls-tag tag-run">JS</span
+            ><span
+              ><span class="ls-log-addr">0x0058</span> &nbsp;Registering
+              components library</span
+            >
+          </div>
+          <div class="ls-log-line" id="ls-log4">
+            <span class="ls-tag tag-net">NET</span
+            ><span
+              ><span class="ls-log-addr">0x0079</span> &nbsp;Syncing assets ·
+              Verifying integrity</span
+            >
+          </div>
+          <div class="ls-log-line" id="ls-log5">
+            <span class="ls-tag tag-ready">READY</span
+            ><span
+              ><span class="ls-log-addr">0x00FF</span> &nbsp;Portfolio ready to
+              launch</span
+            >
+          </div>
+        </div>
+
+        <div class="ls-progress-block">
+          <div class="ls-pct-row">
+            <div>
+              <span class="ls-pct-num" id="ls-pct-num">0</span
+              ><span class="ls-pct-sym">%</span>
+            </div>
+            <div class="ls-status-text" id="ls-status-txt"></div>
+          </div>
+          <div class="ls-bar-track">
+            <div class="ls-bar-fill" id="ls-bar-fill"></div>
+          </div>
+          <div class="ls-seg-row" id="ls-seg-row"></div>
+        </div>
+
+        <div class="ls-dots-row">
+          <div class="ls-dot"></div>
+          <div class="ls-dot"></div>
+          <div class="ls-dot"></div>
+        </div>
+      </div>
+
+      <div class="ls-footer-l">Built with Curiosity</div>
+      <div class="ls-footer-r">SEPT2024 · AR.dev</div>
+    </div>
+
+    <!-- ── PREMIUM HEADER ── -->
+    <header id="mainHeader">
+      <!-- Logo -->
+      <a href="#home" class="logo" aria-label="AR.dev Home">
+        <span class="logo-text">AR<span class="logo-dot">.</span>dev</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="nav-desktop" aria-label="Main navigation">
+        <li>
+          <a href="#home"><i class="bx bx-home"></i> Home</a>
+        </li>
+        <li>
+          <a href="#about"><i class="bx bx-user"></i> About</a>
+        </li>
+        <li>
+          <a href="#skills"><i class="bx bx-briefcase"></i> Skills</a>
+        </li>
+        <li>
+          <a href="#milestones"><i class="bx bx-award"></i> Milestones</a>
+        </li>
+        <li>
+          <a href="#projects"><i class="bx bx-layer"></i> Projects</a>
+        </li>
+        <li>
+          <a href="#gallery"><i class="bx bx-images"></i> Gallery</a>
+        </li>
+        <li>
+          <a href="#contact"><i class="bx bx-message-dots"></i> Contact</a>
+        </li>
+      </ul>
+
+      <!-- Right side: CTA + Hamburger -->
+      <div class="nav-right">
+        <button
+          class="nav-cta nav-support-btn"
+          id="navSupportBtn"
+          aria-label="Support AR.dev"
+        >
+          <i class="bx bx-coffee-togo"></i>
+          <span>Support</span>
+        </button>
+        <!-- Mobile hamburger -->
+        <button
+          class="menu-toggle"
+          id="mobile-menu"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── SIDEBAR OVERLAY ── -->
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <!-- ── SIDEBAR PANEL ── -->
+    <aside
+      class="sidebar"
+      id="sidebar"
+      aria-label="Mobile navigation"
+      aria-hidden="true"
+    >
+      <!-- Sidebar Header -->
+      <div class="sidebar-header">
+        <a href="#home" class="sidebar-logo" aria-label="AR.dev Home">
+          <span class="sidebar-logo-text"
+            >AR<span class="logo-dot">.</span>dev</span
+          >
+        </a>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+          <i class="bx bx-x"></i>
+        </button>
+      </div>
+
+      <!-- Sidebar Nav Links -->
+      <ul class="sidebar-nav" aria-label="Sidebar navigation">
+        <li>
+          <a href="#home">
+            <span class="nav-icon"><i class="bx bx-home"></i></span>
+            <span class="nav-label">Home</span>
+            <i class="bx bx-chevron-right nav-arrow"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#about">
+            <span class="nav-icon"><i class="bx bx-user"></i></span>
+            <span class="nav-label">About</span>
+            <i class="bx bx-chevron-right nav-arrow"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#skills">
+            <span class="nav-icon"><i class="bx bx-briefcase"></i></span>
+            <span class="nav-label">Skills</span>
+            <i class="bx bx-chevron-right nav-arrow"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#milestones">
+            <span class="nav-icon"><i class="bx bx-award"></i></span>
+            <span class="nav-label">Milestones</span>
+            <i class="bx bx-chevron-right nav-arrow"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#projects">
+            <span class="nav-icon"><i class="bx bx-layer"></i></span>
+            <span class="nav-label">Projects</span>
+            <i class="bx bx-chevron-right nav-arrow"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#gallery">
+            <span class="nav-icon"><i class="bx bx-images"></i></span>
+            <span class="nav-label">Gallery</span>
+            <i class="bx bx-chevron-right nav-arrow"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#contact">
+            <span class="nav-icon"><i class="bx bx-message-dots"></i></span>
+            <span class="nav-label">Contact</span>
+            <i class="bx bx-chevron-right nav-arrow"></i>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <button
+          class="sidebar-cta sidebar-support-btn"
+          id="sidebarSupportBtn"
+          aria-label="Support AR.dev"
+        >
+          <i class="bx bx-coffee-togo"></i>
+          <span>Support AR.dev</span>
+        </button>
+        <div class="sidebar-status">
+          <span class="status-dot"></span>
+          <span>Available for projects</span>
+        </div>
+      </div>
+    </aside>
+
+    <main id="main-content">
+      <!-- =============================================
+        HOME SECTION - AR.dev
+     ============================================= -->
+      <section id="home">
+        <!-- Subtle background grid texture -->
+        <div class="hero-grid-bg" aria-hidden="true"></div>
+
+        <!-- Floating glow orb -->
+        <div class="hero-orb" aria-hidden="true"></div>
+
+        <div class="hero-inner">
+          <!-- LEFT: Text content -->
+          <div class="hero-text">
+            <h1 class="hero-name">
+              <span class="hero-name-first">Ayush</span>
+              <span class="hero-name-last">Rathour</span>
+            </h1>
+
+            <p class="hero-bio">
+              Student from <strong>Saharanpur, India</strong>, driven by
+              curiosity and a love for building. I enjoy
+              <strong>transforming ideas into real-world projects</strong> and
+              continuously exploring new technologies along the way.
+            </p>
+
+            <!-- Stat row -->
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <span class="hs-num">4.0+</span>
+                <span class="hs-label">Learning Exp.</span>
+              </div>
+              <div class="hero-stat-sep"></div>
+              <div class="hero-stat">
+                <span class="hs-num">15+</span>
+                <span class="hs-label">Projects</span>
+              </div>
+              <div class="hero-stat-sep"></div>
+              <div class="hero-stat">
+                <span class="hs-num">YES</span>
+                <span class="hs-label">Paid Work</span>
+              </div>
+            </div>
+
+            <!-- CTA buttons -->
+            <div class="hero-actions">
+              <a href="#projects" class="hero-btn primary">
+                <i class="fa-solid fa-folder-open"></i> View My Work
+              </a>
+              <a href="#contact" class="hero-btn ghost">
+                <i class="fa-solid fa-paper-plane"></i> Let's Connect
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT: Avatar -->
+          <div class="hero-avatar-wrap">
+            <div class="hero-avatar-ring"></div>
+            <div class="hero-avatar-card">
+              <img
+                src="Assets/Profile_Photo.png"
+                alt="Ayush Rathour - Frontend Developer"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="280"
+                height="320"
+              />
+            </div>
+            <!-- Floating label chips -->
+            <div class="hero-chip chip-html">
+              <i class="fab fa-html5"></i> HTML &amp; CSS
+            </div>
+            <div class="hero-chip chip-js">
+              <i class="fab fa-js"></i> JavaScript
+            </div>
+            <div class="hero-chip chip-py">
+              <i class="fab fa-python"></i> Python
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================
+        ABOUT SECTION - AR.dev
+     ============================================= -->
+      <section id="about" class="about">
+        <h2 class="section-title"><i class="bx bx-user"></i> About Me</h2>
+
+        <div class="about-bento">
+          <!-- ══ HERO IDENTITY CARD - full left column ══ -->
+          <div class="about-panel ab-identity">
+            <span class="ab-panel-kicker">WHO I AM</span>
+            <h3 class="ab-panel-title">
+              Curious mind.<br />
+              <span class="ab-accent">Builder by habit.</span>
+            </h3>
+
+            <p class="ab-lead">
+              I'm <strong>Ayush Rathour</strong> - a student developer from
+              <strong>Saharanpur, India</strong>, passionate about building
+              modern, user-focused web experiences that combine clean design,
+              performance, and functionality.
+            </p>
+            <p class="ab-body">
+              My journey into web development began at <strong>14</strong> with
+              a simple HTML page built out of curiosity. What started as small
+              experiments quickly grew into building complete websites, solving
+              real-world problems, and turning ideas into functional digital
+              experiences.<br /><br />
+
+              Today, I work primarily with
+              <strong>HTML, CSS, JavaScript, and Python</strong>, focusing on
+              frontend development and creating responsive, user-friendly
+              interfaces. I also enjoy building Python CLI tools that simplify
+              tasks and improve productivity.<br /><br />
+
+              Through personal
+              <strong>projects, freelance work, and continuous learning</strong
+              >, I've developed a passion for crafting clean, purposeful, and
+              engaging web experiences.
+            </p>
+
+            <div class="ab-mantra">
+              <span>Design</span><span class="ab-msep">·</span> <span>Code</span
+              ><span class="ab-msep">·</span>
+              <span>Iterate</span>
+            </div>
+          </div>
+
+          <!-- ══ TERMINAL - right column top ══ -->
+          <div class="about-panel ab-terminal-panel">
+            <span class="ab-panel-kicker">DEVELOPER IDENTITY</span>
+            <div class="ab-wordmark">AR<span class="ab-accent">.</span>dev</div>
+            <div class="ab-terminal">
+              <div class="ab-t-bar">
+                <span class="ab-td ab-td--r"></span>
+                <span class="ab-td ab-td--y"></span>
+                <span class="ab-td ab-td--g"></span>
+                <span class="ab-t-fname">~/ar-dev/identity.json</span>
+              </div>
+              <div class="ab-t-body" id="ab-terminal-body">
+                <!-- Typed out by JS -->
+              </div>
+            </div>
+            <!-- Role cycling badge -->
+            <div class="ab-role-badge">
+              <span class="ab-role-dot"></span>
+              <span class="ab-role-txt" id="abRoleText"
+                >Frontend Developer</span
+              >
+            </div>
+          </div>
+
+          <!-- ══ CURRENTLY BUILDING - left bottom ══ -->
+          <div class="about-panel ab-currently">
+            <span class="ab-panel-kicker">CURRENTLY BUILDING</span>
+            <h3
+              class="ab-panel-title"
+              style="font-size: 1rem; margin-bottom: 1.1rem"
+            >
+              What I'm Working On
+            </h3>
+
+            <div class="ab-build-list">
+              <div class="ab-build-item">
+                <div class="ab-build-icon">
+                  <i class="bx bx-bar-chart-alt-2"></i>
+                </div>
+                <div class="ab-build-info">
+                  <span class="ab-build-name">FinTrack v17.4</span>
+                  <span class="ab-build-sub"
+                    >AI Insights · Smarter Exports</span
+                  >
+                </div>
+                <div class="ab-build-pct-wrap">
+                  <span class="ab-build-pct">85%</span>
+                  <div class="ab-build-bar">
+                    <div class="ab-build-bar-fill" style="--w: 85%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ab-build-item">
+                <div class="ab-build-icon"><i class="bx bxl-python"></i></div>
+                <div class="ab-build-info">
+                  <span class="ab-build-name">Python Journey</span>
+                  <span class="ab-build-sub">
+                    OOP · File Handling · Real-world Projects</span
+                  >
+                </div>
+                <div class="ab-build-pct-wrap">
+                  <span class="ab-build-pct">70%</span>
+                  <div class="ab-build-bar">
+                    <div class="ab-build-bar-fill" style="--w: 70%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ab-build-item">
+                <div class="ab-build-icon">
+                  <i class="fa-brands fa-git-alt"></i>
+                </div>
+                <div class="ab-build-info">
+                  <span class="ab-build-name">Git & GitHub</span>
+                  <span class="ab-build-sub"
+                    >Repositories · Branches · Commits</span
+                  >
+                </div>
+                <div class="ab-build-pct-wrap">
+                  <span class="ab-build-pct">55%</span>
+                  <div class="ab-build-bar">
+                    <div class="ab-build-bar-fill" style="--w: 55%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══ INTERESTS GRID - right bottom ══ -->
+          <div class="about-panel ab-interests">
+            <span class="ab-panel-kicker">BEYOND CODE</span>
+            <h3
+              class="ab-panel-title"
+              style="font-size: 1rem; margin-bottom: 1rem"
+            >
+              What keeps me going
+            </h3>
+            <div class="ab-icon-grid">
+              <div class="ab-iitem">
+                <div class="ab-iitem-front">
+                  <i class="bx bxl-python"></i>
+                  <span>Python Journey</span>
+                </div>
+                <div class="ab-iitem-back">
+                  <span>Learning by building real projects every week</span>
+                </div>
+              </div>
+
+              <div class="ab-iitem">
+                <div class="ab-iitem-front">
+                  <i class="bx bx-code-alt"></i>
+                  <span>Problem Solving</span>
+                </div>
+                <div class="ab-iitem-back">
+                  <span>Breaking big challenges into small wins</span>
+                </div>
+              </div>
+
+              <div class="ab-iitem">
+                <div class="ab-iitem-front">
+                  <i class="bx bx-layout"></i>
+                  <span>Modern UI</span>
+                </div>
+                <div class="ab-iitem-back">
+                  <span>Clean interfaces with smooth interactions</span>
+                </div>
+              </div>
+
+              <div class="ab-iitem">
+                <div class="ab-iitem-front">
+                  <i class="bx bx-mobile-alt"></i>
+                  <span>Responsive Design</span>
+                </div>
+                <div class="ab-iitem-back">
+                  <span>Experiences that work everywhere</span>
+                </div>
+              </div>
+
+              <div class="ab-iitem">
+                <div class="ab-iitem-front">
+                  <i class="bx bx-brain"></i>
+                  <span>Continuous Learning</span>
+                </div>
+                <div class="ab-iitem-back">
+                  <span>Exploring new technologies every day</span>
+                </div>
+              </div>
+
+              <div class="ab-iitem">
+                <div class="ab-iitem-front">
+                  <i class="bx bx-video"></i>
+                  <span>Content Creation</span>
+                </div>
+                <div class="ab-iitem-back">
+                  <span>Learning video editing and storytelling</span>
+                </div>
+              </div>
+
+              <div class="ab-iitem">
+                <div class="ab-iitem-front">
+                  <i class="bx bx-book-open"></i>
+                  <span>Reading & Research</span>
+                </div>
+                <div class="ab-iitem-back">
+                  <span>Documentation today, expertise tomorrow</span>
+                </div>
+              </div>
+
+              <div class="ab-iitem">
+                <div class="ab-iitem-front">
+                  <i class="bx bx-rocket"></i>
+                  <span>Building Projects</span>
+                </div>
+                <div class="ab-iitem-back">
+                  <span>Turning ideas into useful digital products</span>
+                </div>
+              </div>
+
+              <div class="ab-iitem">
+                <div class="ab-iitem-front">
+                  <i class="bx bx-target-lock"></i>
+                  <span>Growth Mindset</span>
+                </div>
+                <div class="ab-iitem-back">
+                  <span>1% better every single day</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /about-bento -->
+      </section>
+
+      <!-- =============================================
+        SKILLS SECTION - AR.dev
+     ============================================= -->
+      <section id="skills" class="skills">
+        <h2 class="section-title">
+          <i class="bx bx-briefcase"></i> Skills I Own
+        </h2>
+
+        <div class="skills-grid">
+          <!-- HTML & CSS -->
+          <div class="skill-block primary" data-pct="90">
+            <div class="sk-icon-wrap"><i class="fab fa-html5"></i></div>
+            <div class="sk-head">
+              <h3>HTML &amp; CSS</h3>
+              <span class="sk-meta meta-core">Core Focus</span>
+            </div>
+            <p class="sk-desc">
+              Semantic structure, scalable CSS, layout systems, and clean UI
+              foundations.
+            </p>
+            <div class="sk-bar-wrap">
+              <div class="sk-bar-label">
+                <span class="sk-bar-name">Proficiency</span>
+                <span class="sk-bar-pct" data-target="90">0%</span>
+              </div>
+              <div class="sk-bar-track">
+                <div class="sk-bar-fill"></div>
+              </div>
+              <div class="sk-seg-row"></div>
+            </div>
+          </div>
+
+          <!-- Responsive Design -->
+          <div class="skill-block primary" data-pct="90">
+            <div class="sk-icon-wrap"><i class="fas fa-mobile-alt"></i></div>
+            <div class="sk-head">
+              <h3>Responsive Design</h3>
+              <span class="sk-meta meta-strong">Strong</span>
+            </div>
+            <p class="sk-desc">
+              Mobile-first layouts that adapt smoothly across devices and
+              breakpoints.
+            </p>
+            <div class="sk-bar-wrap">
+              <div class="sk-bar-label">
+                <span class="sk-bar-name">Proficiency</span>
+                <span class="sk-bar-pct" data-target="90">0%</span>
+              </div>
+              <div class="sk-bar-track">
+                <div class="sk-bar-fill"></div>
+              </div>
+              <div class="sk-seg-row"></div>
+            </div>
+          </div>
+
+          <!-- UI/UX -->
+          <div class="skill-block primary" data-pct="80">
+            <div class="sk-icon-wrap"><i class="fas fa-paint-brush"></i></div>
+            <div class="sk-head">
+              <h3>UI / UX Design</h3>
+              <span class="sk-meta meta-strong">Strong</span>
+            </div>
+            <p class="sk-desc">
+              Visual hierarchy, spacing, usability, and thoughtful interface
+              decisions.
+            </p>
+            <div class="sk-bar-wrap">
+              <div class="sk-bar-label">
+                <span class="sk-bar-name">Proficiency</span>
+                <span class="sk-bar-pct" data-target="80">0%</span>
+              </div>
+              <div class="sk-bar-track">
+                <div class="sk-bar-fill"></div>
+              </div>
+              <div class="sk-seg-row"></div>
+            </div>
+          </div>
+
+          <!-- Frontend Development -->
+          <div class="skill-block" data-pct="80">
+            <div class="sk-icon-wrap"><i class="fas fa-code"></i></div>
+            <div class="sk-head">
+              <h3>Frontend Development</h3>
+              <span class="sk-meta meta-grow">Growing</span>
+            </div>
+            <p class="sk-desc">
+              Building interactive, performant frontends with clean,
+              maintainable code.
+            </p>
+            <div class="sk-bar-wrap">
+              <div class="sk-bar-label">
+                <span class="sk-bar-name">Proficiency</span>
+                <span class="sk-bar-pct" data-target="80">0%</span>
+              </div>
+              <div class="sk-bar-track">
+                <div class="sk-bar-fill"></div>
+              </div>
+              <div class="sk-seg-row"></div>
+            </div>
+          </div>
+
+          <!-- Deployment & Hosting -->
+          <div class="skill-block" data-pct="75">
+            <div class="sk-icon-wrap">
+              <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="sk-head">
+              <h3>Deployment &amp; Hosting</h3>
+              <span class="sk-meta meta-comfy">Comfortable</span>
+            </div>
+            <p class="sk-desc">
+              Deploying projects using Netlify, Vercel, and modern hosting
+              platforms.
+            </p>
+            <div class="sk-bar-wrap">
+              <div class="sk-bar-label">
+                <span class="sk-bar-name">Proficiency</span>
+                <span class="sk-bar-pct" data-target="75">0%</span>
+              </div>
+              <div class="sk-bar-track">
+                <div class="sk-bar-fill"></div>
+              </div>
+              <div class="sk-seg-row"></div>
+            </div>
+          </div>
+
+          <!-- Python -->
+          <div class="skill-block" data-pct="70">
+            <div class="sk-icon-wrap"><i class="fab fa-python"></i></div>
+            <div class="sk-head">
+              <h3>Python</h3>
+              <span class="sk-meta meta-learn">Learning</span>
+            </div>
+            <p class="sk-desc">
+              Scripting, automation, and basic data-driven workflows.
+            </p>
+            <div class="sk-bar-wrap">
+              <div class="sk-bar-label">
+                <span class="sk-bar-name">Proficiency</span>
+                <span class="sk-bar-pct" data-target="70">0%</span>
+              </div>
+              <div class="sk-bar-track">
+                <div class="sk-bar-fill"></div>
+              </div>
+              <div class="sk-seg-row"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================
+        MILESTONES SECTION - AR.dev
+     ============================================= -->
+      <section id="milestones">
+        <h2><i class="bx bx-award"></i> My Milestones</h2>
+
+        <div class="milestones-timeline">
+          <!-- Vertical spine line -->
+          <div class="timeline-spine" aria-hidden="true"></div>
+
+          <!-- ── 01 ── -->
+          <div class="tl-item">
+            <div class="tl-node">
+              <span class="tl-index">01</span>
+              <div class="tl-dot"><i class="bx bx-code-alt"></i></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-header">
+                <div class="tl-title-row">
+                  <h3>Started My Coding Journey</h3>
+                  <span class="tl-tag tag-start">First Step</span>
+                </div>
+                <span class="tl-date"
+                  ><i class="bx bx-calendar"></i> May 2022</span
+                >
+              </div>
+              <p>
+                Began learning to code driven by curiosity about how technology
+                works. Started entirely on mobile - watching tutorials and
+                experimenting with HTML &amp; CSS - which lit the spark that's
+                been burning ever since.
+              </p>
+              <div class="tl-highlights">
+                <span><i class="bx bxl-html5"></i> HTML</span>
+                <span><i class="bx bxl-css3"></i> CSS</span>
+                <span><i class="bx bx-mobile-alt"></i> Mobile learning</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 02 ── -->
+          <div class="tl-item">
+            <div class="tl-node">
+              <span class="tl-index">02</span>
+              <div class="tl-dot"><i class="bx bx-globe"></i></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-header">
+                <div class="tl-title-row">
+                  <h3>Developed My First Full Website</h3>
+                  <span class="tl-tag tag-build">First Build</span>
+                </div>
+                <span class="tl-date"
+                  ><i class="bx bx-calendar"></i> Feb 2023</span
+                >
+              </div>
+              <p>
+                Shipped my first personal portfolio website using HTML &amp;
+                CSS, then layered in JavaScript to make it interactive. Crossing
+                from "learning" to "shipping" was the milestone that changed
+                everything.
+              </p>
+              <div class="tl-highlights">
+                <span><i class="bx bxl-javascript"></i> JavaScript</span>
+                <span><i class="bx bx-layout"></i> Portfolio site</span>
+                <span><i class="bx bx-rocket"></i> First deployment</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 03 ── -->
+          <div class="tl-item">
+            <div class="tl-node">
+              <span class="tl-index">03</span>
+              <div class="tl-dot"><i class="bx bxl-python"></i></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-header">
+                <div class="tl-title-row">
+                  <h3>Started Learning Python</h3>
+                  <span class="tl-tag tag-learn">New Language</span>
+                </div>
+                <span class="tl-date"
+                  ><i class="bx bx-calendar"></i> June 2024</span
+                >
+              </div>
+              <p>
+                Expanded beyond the browser by picking up Python - drawn in by
+                its readability and versatility. Focused on building a solid
+                foundation through scripting, logic, and problem-solving
+                exercises.
+              </p>
+              <div class="tl-highlights">
+                <span><i class="bx bxl-python"></i> Python</span>
+                <span><i class="bx bx-terminal"></i> CLI scripting</span>
+                <span><i class="bx bx-brain"></i> Problem solving</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 04 ── -->
+          <div class="tl-item">
+            <div class="tl-node">
+              <span class="tl-index">04</span>
+              <div class="tl-dot"><i class="bx bx-bar-chart-alt-2"></i></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-header">
+                <div class="tl-title-row">
+                  <h3>Launched FinTrack</h3>
+                  <span class="tl-tag tag-launch">First App</span>
+                </div>
+                <span class="tl-date"
+                  ><i class="bx bx-calendar"></i> Oct 2024</span
+                >
+              </div>
+              <p>
+                Built and launched FinTrack - a personal finance web app for
+                tracking income, expenses, and savings. My first project with
+                genuine real-world utility: responsive dashboard, Chart.js
+                visualisations, export formats, PWA support, and smart insights.
+              </p>
+              <div class="tl-highlights">
+                <span><i class="bx bx-line-chart"></i> Chart.js</span>
+                <span><i class="bx bx-wifi"></i> PWA</span>
+                <span><i class="bx bx-export"></i> Data export</span>
+                <span><i class="bx bx-mobile-alt"></i> Responsive</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 05 ── -->
+          <div class="tl-item">
+            <div class="tl-node">
+              <span class="tl-index">05</span>
+              <div class="tl-dot"><i class="bx bx-wrench"></i></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-header">
+                <div class="tl-title-row">
+                  <h3>Built a Series of Python Tools</h3>
+                  <span class="tl-tag tag-build">Tool Suite</span>
+                </div>
+                <span class="tl-date"
+                  ><i class="bx bx-calendar"></i> May 2025</span
+                >
+              </div>
+              <p>
+                Developed a growing suite of practical Python CLI tools -
+                calculator, currency converter, temperature converter, tip
+                calculator, and more. Each tool sharpened my focus on clean
+                logic, user-oriented output, and solving everyday problems with
+                code.
+              </p>
+              <div class="tl-highlights">
+                <span><i class="bx bxl-python"></i> Python</span>
+                <span><i class="bx bx-terminal"></i> CLI tools</span>
+                <span><i class="bx bx-package"></i> 5+ utilities</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 06 ── -->
+          <div class="tl-item">
+            <div class="tl-node">
+              <span class="tl-index">06</span>
+              <div class="tl-dot tl-dot--gold">
+                <i class="bx bx-briefcase-alt-2"></i>
+              </div>
+            </div>
+            <div class="tl-card tl-card--highlight">
+              <div class="tl-card-header">
+                <div class="tl-title-row">
+                  <h3>Completed My First Paid Project</h3>
+                  <span class="tl-tag tag-paid">Paid Work ✦</span>
+                </div>
+                <span class="tl-date"
+                  ><i class="bx bx-calendar"></i> July 2025</span
+                >
+              </div>
+              <p>
+                Successfully delivered a real client project - co-creating
+                Varun's artist portfolio with @Shaurya. Led the UI/UX direction,
+                responsive layout, and subtle animations. A milestone that
+                brought real-world client experience: requirements, deadlines,
+                and professional workflow.
+              </p>
+              <div class="tl-highlights">
+                <span><i class="bx bx-palette"></i> UI/UX lead</span>
+                <span><i class="bx bx-group"></i> Collaborative</span>
+                <span><i class="bx bx-check-shield"></i> Client delivery</span>
+                <span><i class="bx bx-dollar-circle"></i> First income</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 07 ── -->
+          <div class="tl-item">
+            <div class="tl-node">
+              <span class="tl-index">07</span>
+              <div class="tl-dot"><i class="bx bx-code-alt"></i></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-header">
+                <div class="tl-title-row">
+                  <h3>Upgraded Portfolio</h3>
+                  <span class="tl-tag tag-launch">Revamp</span>
+                </div>
+                <span class="tl-date"
+                  ><i class="bx bx-calendar"></i> Mar 2026</span
+                >
+              </div>
+              <p>
+                Redesigned and enhanced my developer portfolio with a modern
+                visual identity and smoother user experience. Focused on
+                performance, accessibility, and storytelling - making the work
+                feel more alive and intentional.
+              </p>
+              <div class="tl-highlights">
+                <span><i class="bx bx-palette"></i> New UI/UX</span>
+                <span><i class="bx bx-mouse"></i> Micro animations</span>
+                <span><i class="bx bx-search-alt"></i> SEO optimized</span>
+                <span><i class="bx bx-devices"></i> Fully responsive</span>
+                <span><i class="bx bx-shape-circle"></i> Polished design</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── 08 ── -->
+          <div class="tl-item tl-item--last">
+            <div class="tl-node">
+              <span class="tl-index">08</span>
+              <div class="tl-dot"><i class="bx bx-bar-chart-alt-2"></i></div>
+            </div>
+            <div class="tl-card">
+              <div class="tl-card-header">
+                <div class="tl-title-row">
+                  <h3>FinTrack - Major Upgrade</h3>
+                  <span class="tl-tag tag-launch">Upgrade</span>
+                </div>
+                <span class="tl-date"
+                  ><i class="bx bx-calendar"></i> Apr 2026</span
+                >
+              </div>
+              <p>
+                Shipped the most significant update to FinTrack yet - v17+
+                brings a fully revamped feature set including PIN-based security
+                with auto-lock, smart spending insights, a weekly comparison
+                chart, CSV &amp; JSON import support, and a polished PWA
+                experience. A privacy-first, 100% device-local finance tracker -
+                no accounts, no cloud, no ads.
+              </p>
+              <div class="tl-highlights">
+                <span><i class="bx bx-lock-alt"></i> PIN Security</span>
+                <span><i class="bx bx-brain"></i> Smart Insights</span>
+                <span><i class="bx bx-line-chart"></i> Chart Upgrades</span>
+                <span><i class="bx bx-import"></i> CSV / JSON Import</span>
+                <span><i class="bx bx-wifi"></i> PWA Offline</span>
+                <span><i class="bx bx-shield"></i> 100% Private</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================
+        PROJECTS SECTION - AR.dev
+     ============================================= -->
+      <section id="projects">
+        <h2><i class="bx bx-layer"></i>Things I've Built</h2>
+
+        <!-- ── Filter Bar ── -->
+        <div class="proj-filter-bar" role="group" aria-label="Filter projects">
+          <button class="proj-filter-btn active" data-filter="all">
+            All Projects
+          </button>
+          <button class="proj-filter-btn" data-filter="live">
+            <span class="pfb-dot"></span> Live
+          </button>
+          <button class="proj-filter-btn" data-filter="paid">
+            <i class="bx bx-diamond"></i> Paid Work
+          </button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <!-- ══ FEATURED: FinTrack ══ -->
+          <article
+            class="proj-card proj-card--featured"
+            data-index="01"
+            data-status="live"
+          >
+            <div class="proj-img-wrap">
+              <img
+                src="Assets/Project_Images/FinTrack_Img.png"
+                alt="FinTrack"
+                loading="lazy"
+              />
+              <div class="proj-num">01</div>
+              <div
+                class="proj-img-overlay proj-preview-trigger"
+                data-img="Assets/Project_Images/FinTrack_Img.png"
+                data-title="FinTrack"
+                role="button"
+                tabindex="0"
+                aria-label="Preview FinTrack image fullscreen"
+              >
+                <span class="proj-overlay-label"
+                  ><i class="bx bx-show"></i> Preview</span
+                >
+              </div>
+            </div>
+
+            <div class="proj-body">
+              <div class="proj-meta-row">
+                <span class="proj-index">01</span>
+                <span class="proj-status status-live">
+                  <span class="status-pulse-dot"></span> Live
+                </span>
+                <span class="proj-type">Web App · PWA</span>
+              </div>
+
+              <h3 class="proj-title">FinTrack</h3>
+              <p class="proj-desc">
+                A lightweight personal finance assistant that makes tracking
+                expenses simple and intuitive. Featuring a responsive dashboard,
+                interactive charts, offline-first PWA support, and seamless data
+                export - all designed for speed, clarity, and everyday use.
+              </p>
+
+              <div class="proj-tags">
+                <span><i class="bx bx-line-chart"></i> Chart.js</span>
+                <span><i class="bx bx-wifi"></i> PWA</span>
+                <span><i class="bx bx-export"></i> Data Export</span>
+                <span><i class="bx bx-mobile-alt"></i> Responsive UI</span>
+                <span><i class="bx bx-bulb"></i> Smart Insights</span>
+              </div>
+
+              <div class="proj-actions">
+                <a
+                  href="https://fintrack-ar.netlify.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="proj-btn proj-btn--primary"
+                >
+                  Visit Project
+                  <i class="bx bx-link-external proj-btn-arrow"></i>
+                </a>
+                <a
+                  href="files/FinTrack_v17.3.apk"
+                  download
+                  class="proj-btn proj-btn--ghost"
+                >
+                  <i class="bx bx-download"></i> Download APK
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══ Varun Portfolio (paid) ══ -->
+          <article
+            class="proj-card proj-card--paid"
+            data-index="02"
+            data-status="paid"
+          >
+            <div class="proj-img-wrap">
+              <img
+                src="Assets/Project_Images/Varun_Ptf.png"
+                alt="Varun Artist Portfolio"
+                loading="lazy"
+              />
+              <div class="proj-num">02</div>
+              <div
+                class="proj-img-overlay proj-preview-trigger"
+                data-img="Assets/Project_Images/Varun_Ptf.png"
+                data-title="Varun | Artist Portfolio"
+                role="button"
+                tabindex="0"
+                aria-label="Preview Varun Artist Portfolio image fullscreen"
+              >
+                <span class="proj-overlay-label"
+                  ><i class="bx bx-show"></i> Preview</span
+                >
+              </div>
+              <span class="proj-paid-badge"
+                ><i class="bx bx-diamond"></i> Paid</span
+              >
+            </div>
+
+            <div class="proj-body">
+              <div class="proj-meta-row">
+                <span class="proj-index">02</span>
+                <span class="proj-status status-archived">
+                  <i class="bx bx-archive"></i> Archived
+                </span>
+                <span class="proj-type">Artist Portfolio</span>
+              </div>
+
+              <h3 class="proj-title">Varun | Artist Portfolio</h3>
+              <p class="proj-desc">
+                Led UI/UX direction and responsive layout for Varun's
+                emotionally driven artist portfolio - crafting subtle animations
+                that mirror the mood of his artwork. My first paid freelance
+                project, built in collaboration with @Shaurya.
+              </p>
+
+              <div class="proj-tags">
+                <span><i class="bx bx-palette"></i> UI/UX Lead</span>
+                <span><i class="bx bx-play-circle"></i> Animation</span>
+                <span><i class="bx bx-group"></i> Collaborative</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══ Shaurya Portfolio ══ -->
+          <article class="proj-card" data-index="03" data-status="archived">
+            <div class="proj-img-wrap">
+              <img
+                src="Assets/Project_Images/Shaurya_Ptf.png"
+                alt="Shaurya Dev Portfolio"
+                loading="lazy"
+              />
+              <div class="proj-num">03</div>
+              <div
+                class="proj-img-overlay proj-preview-trigger"
+                data-img="Assets/Project_Images/Shaurya_Ptf.png"
+                data-title="Shaurya | Dev Portfolio"
+                role="button"
+                tabindex="0"
+                aria-label="Preview Shaurya Dev Portfolio image fullscreen"
+              >
+                <span class="proj-overlay-label"
+                  ><i class="bx bx-show"></i> Preview</span
+                >
+              </div>
+            </div>
+
+            <div class="proj-body">
+              <div class="proj-meta-row">
+                <span class="proj-index">03</span>
+                <span class="proj-status status-archived">
+                  <i class="bx bx-archive"></i> Archived
+                </span>
+                <span class="proj-type">Dev. Portfolio</span>
+              </div>
+
+              <h3 class="proj-title">Shaurya | Dev. Portfolio</h3>
+              <p class="proj-desc">
+                Collaborated with @Shaurya to elevate his developer portfolio -
+                refining the UI, implementing mobile-first responsiveness, and
+                layering in scroll-triggered animations for a clean, modern
+                feel.
+              </p>
+
+              <div class="proj-tags">
+                <span><i class="bx bx-brush-alt"></i> UI Polish</span>
+                <span><i class="bx bx-mobile-alt"></i> Mobile-first</span>
+                <span><i class="bx bx-transfer"></i> Transitions</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ══ Python Utilities ══ -->
+          <article class="proj-card" data-index="04" data-status="live">
+            <div class="proj-img-wrap">
+              <img
+                src="Assets/Project_Images/Python_Img.png"
+                alt="Python Utilities"
+                loading="lazy"
+              />
+              <div class="proj-num">04</div>
+              <div
+                class="proj-img-overlay proj-preview-trigger"
+                data-img="Assets/Project_Images/Python_Img.png"
+                data-title="Python Utilities"
+                role="button"
+                tabindex="0"
+                aria-label="Preview Python Utilities image fullscreen"
+              >
+                <span class="proj-overlay-label"
+                  ><i class="bx bx-code-curly"></i> CLI Tools</span
+                >
+              </div>
+            </div>
+
+            <div class="proj-body">
+              <div class="proj-meta-row">
+                <span class="proj-index">04</span>
+                <span class="proj-status status-stable"
+                  ><i class="bx bx-check-circle"></i> Stable</span
+                >
+                <span class="proj-type">Python · CLI</span>
+              </div>
+
+              <h3 class="proj-title">Python Utilities</h3>
+              <p class="proj-desc">
+                A growing suite of practical CLI tools - calculator, currency
+                converter, temperature converter, tip calculator, and more. Each
+                tool sharpens my focus on clean logic and user-oriented output.
+              </p>
+
+              <div class="proj-tags">
+                <span><i class="bx bxl-python"></i> Python</span>
+                <span><i class="bx bx-terminal"></i> CLI</span>
+                <span><i class="bx bx-cog"></i> Automation</span>
+              </div>
+
+              <div class="proj-actions">
+                <a
+                  href="files/Python_Projects.zip"
+                  download
+                  class="proj-btn proj-btn--primary"
+                >
+                  <i class="bx bx-download proj-btn-arrow-down"></i> Download
+                  ZIP
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =============================================
+        GALLERY SECTION - AR.dev
+     ============================================= -->
+      <section id="gallery">
+        <h2><i class="bx bx-images"></i> Visual Notes</h2>
+
+        <!-- Header row: kicker + filter tabs -->
+        <div class="gl2-header">
+          <div class="gl2-intro">
+            <span class="gl-kicker">WORK IN FRAMES</span>
+            <p class="gl-desc">
+              A curated visual log of interfaces, mockups, and builds - each
+              frame tells a part of the story.
+            </p>
+          </div>
+          <!-- Filter tabs -->
+          <div class="gl2-filters" role="group" aria-label="Filter gallery">
+            <button class="gl2-filter active" data-gl-filter="all">
+              All <span class="gl2-filter-count">9</span>
+            </button>
+            <button class="gl2-filter" data-gl-filter="upgrade">Upgrade</button>
+            <button class="gl2-filter" data-gl-filter="design">Design</button>
+            <button class="gl2-filter" data-gl-filter="video">
+              <i class="bx bx-play-circle"></i> Video
+            </button>
+          </div>
+        </div>
+
+        <!-- ── GRID ── -->
+        <div class="gl2-grid" id="gl2Grid" role="list">
+          <!-- Card 01 -->
+          <div class="gl2-item" data-gl-tag="mockup" role="listitem">
+            <a
+              href="Assets/Gallery_Images/fintrack_mockup.png"
+              class="gallery-lightbox gl2-img-wrap"
+              aria-label="View FinTrack desktop mockup fullscreen"
+            >
+              <img
+                src="Assets/Gallery_Images/fintrack_mockup.png"
+                alt="FinTrack desktop mockup"
+                loading="lazy"
+              />
+              <div class="gl2-overlay" aria-hidden="true">
+                <div class="gl2-overlay-icon">
+                  <i class="bx bx-expand-alt"></i>
+                </div>
+              </div>
+            </a>
+            <div class="gl2-caption">
+              <div class="gl2-caption-row">
+                <span class="gl2-tag" data-color="cyan">Mockup</span>
+                <span class="gl2-num">01</span>
+              </div>
+              <p class="gl2-title">FinTrack - Desktop View</p>
+              <p class="gl2-body">
+                Full dashboard with income/expense charts and responsive
+                navigation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 02 -->
+          <div class="gl2-item" data-gl-tag="mockup" role="listitem">
+            <a
+              href="Assets/Gallery_Images/fintrack_md_mockup.png"
+              class="gallery-lightbox gl2-img-wrap"
+              aria-label="View FinTrack multi-device mockup fullscreen"
+            >
+              <img
+                src="Assets/Gallery_Images/fintrack_md_mockup.png"
+                alt="FinTrack across desktop, tablet and mobile"
+                loading="lazy"
+              />
+              <div class="gl2-overlay" aria-hidden="true">
+                <div class="gl2-overlay-icon">
+                  <i class="bx bx-expand-alt"></i>
+                </div>
+              </div>
+            </a>
+            <div class="gl2-caption">
+              <div class="gl2-caption-row">
+                <span class="gl2-tag" data-color="green">Responsive</span>
+                <span class="gl2-num">02</span>
+              </div>
+              <p class="gl2-title">FinTrack - Multi-Device</p>
+              <p class="gl2-body">
+                Mobile-first, tested everywhere - desktop, tablet, and mobile.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 03 -->
+          <div class="gl2-item" data-gl-tag="mockup" role="listitem">
+            <a
+              href="Assets/Gallery_Images/fintrack_ui_mockup.png"
+              class="gallery-lightbox gl2-img-wrap"
+              aria-label="View FinTrack upgraded UI mockup fullscreen"
+            >
+              <img
+                src="Assets/Gallery_Images/fintrack_ui_mockup.png"
+                alt="FinTrack upgraded UI redesign mockup"
+                loading="lazy"
+              />
+              <div class="gl2-overlay" aria-hidden="true">
+                <div class="gl2-overlay-icon">
+                  <i class="bx bx-expand-alt"></i>
+                </div>
+              </div>
+            </a>
+            <div class="gl2-caption">
+              <div class="gl2-caption-row">
+                <span class="gl2-tag" data-color="blue">UI Refresh</span>
+                <span class="gl2-num">03</span>
+              </div>
+              <p class="gl2-title">FinTrack - Upgraded UI</p>
+              <p class="gl2-body">
+                v16 overhaul - refined card hierarchy and tighter spacing
+                system.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 04 -->
+          <div class="gl2-item" data-gl-tag="design" role="listitem">
+            <a
+              href="Assets/Gallery_Images/blogs_mockup.png"
+              class="gallery-lightbox gl2-img-wrap"
+              aria-label="View Blogs page mockup fullscreen"
+            >
+              <img
+                src="Assets/Gallery_Images/blogs_mockup.png"
+                alt="Blogs page layout mockup design"
+                loading="lazy"
+              />
+              <div class="gl2-overlay" aria-hidden="true">
+                <div class="gl2-overlay-icon">
+                  <i class="bx bx-expand-alt"></i>
+                </div>
+              </div>
+            </a>
+            <div class="gl2-caption">
+              <div class="gl2-caption-row">
+                <span class="gl2-tag" data-color="purple">Design</span>
+                <span class="gl2-num">04</span>
+              </div>
+              <p class="gl2-title">Blogs - Layout Concept</p>
+              <p class="gl2-body">
+                Clean readability, dynamic filtering, and SEO-first structure.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 05 -->
+          <div class="gl2-item" data-gl-tag="design" role="listitem">
+            <a
+              href="Assets/Gallery_Images/blogs_by_ar.png"
+              class="gallery-lightbox gl2-img-wrap"
+              aria-label="View Blogs by AR mockup fullscreen"
+            >
+              <img
+                src="Assets/Gallery_Images/blogs_by_ar.png"
+                alt="Blogs by AR final design mockup"
+                loading="lazy"
+              />
+              <div class="gl2-overlay" aria-hidden="true">
+                <div class="gl2-overlay-icon">
+                  <i class="bx bx-expand-alt"></i>
+                </div>
+              </div>
+            </a>
+            <div class="gl2-caption">
+              <div class="gl2-caption-row">
+                <span class="gl2-tag" data-color="purple">Design</span>
+                <span class="gl2-num">05</span>
+              </div>
+              <p class="gl2-title">Blogs by AR</p>
+              <p class="gl2-body">
+                Distraction-free reading with an editorial type system and
+                dark-first language.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 06 -->
+          <div class="gl2-item" data-gl-tag="upgrade" role="listitem">
+            <a
+              href="Assets/Gallery_Images/portfolio_upgrade.png"
+              class="gallery-lightbox gl2-img-wrap"
+              aria-label="View Rewamped Portfolio fullscreen"
+            >
+              <img
+                src="Assets/Gallery_Images/portfolio_upgrade.png"
+                alt="Rewamped Portfolio design mockup"
+                loading="lazy"
+              />
+              <div class="gl2-overlay" aria-hidden="true">
+                <div class="gl2-overlay-icon">
+                  <i class="bx bx-expand-alt"></i>
+                </div>
+              </div>
+            </a>
+            <div class="gl2-caption">
+              <div class="gl2-caption-row">
+                <span class="gl2-tag" data-color="blue">Upgrade</span>
+                <span class="gl2-num">06</span>
+              </div>
+              <p class="gl2-title">Upgraded Portfolio</p>
+              <p class="gl2-body">
+                Cleaner structure, smoother transitions, and a more engaging
+                visual flow.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 07 -->
+          <div class="gl2-item" data-gl-tag="upgrade" role="listitem">
+            <a
+              href="Assets/Gallery_Images/fintrack_upgrade.png"
+              class="gallery-lightbox gl2-img-wrap"
+              aria-label="View Enhanced FinTrack fullscreen"
+            >
+              <img
+                src="Assets/Gallery_Images/fintrack_upgrade.png"
+                alt="Enhanced FinTrack design mockup"
+                loading="lazy"
+              />
+              <div class="gl2-overlay" aria-hidden="true">
+                <div class="gl2-overlay-icon">
+                  <i class="bx bx-expand-alt"></i>
+                </div>
+              </div>
+            </a>
+            <div class="gl2-caption">
+              <div class="gl2-caption-row">
+                <span class="gl2-tag" data-color="cyan">Rewamped</span>
+                <span class="gl2-num">07</span>
+              </div>
+              <p class="gl2-title">Enhanced FinTrack</p>
+              <p class="gl2-body">
+                Faster interactions, smarter layout logic, and a dynamic
+                carousel at its core.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 08 · Video -->
+          <div
+            class="gl2-item gl2-item--video"
+            data-gl-tag="video"
+            role="listitem"
+          >
+            <a
+              href="Assets/Gallery_Videos/ardev_explained.mp4"
+              class="gallery-lightbox gl2-img-wrap"
+              data-type="video"
+              aria-label="Watch AR.dev explained video"
+            >
+              <img
+                src="Assets/Gallery_Thumb/ardev_thumb.png"
+                alt="AR.dev Behind the Build thumbnail"
+                loading="lazy"
+              />
+              <div class="gl2-overlay gl2-overlay--video" aria-hidden="true">
+                <div class="gl2-play-btn">
+                  <i class="bx bx-play"></i>
+                </div>
+              </div>
+            </a>
+            <div class="gl2-caption">
+              <div class="gl2-caption-row">
+                <span class="gl2-tag" data-color="gold"
+                  ><i class="bx bx-play-circle"></i> Video</span
+                >
+                <span class="gl2-num">08</span>
+              </div>
+              <p class="gl2-title">AR.dev - Behind the Build</p>
+              <p class="gl2-body">
+                A narrated deep dive into AR.dev - covering the concept,
+                creative direction, and how the project evolved from idea to
+                execution.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 09 · Video -->
+          <div
+            class="gl2-item gl2-item--video"
+            data-gl-tag="video"
+            role="listitem"
+          >
+            <a
+              href="Assets/Gallery_Videos/fintrack_explained.mp4"
+              class="gallery-lightbox gl2-img-wrap"
+              data-type="video"
+              aria-label="Watch FinTrack explained video"
+            >
+              <img
+                src="Assets/Gallery_Thumb/fintrack_thumb.png"
+                alt="FinTrack Product Walkthrough thumbnail"
+                loading="lazy"
+              />
+              <div class="gl2-overlay gl2-overlay--video" aria-hidden="true">
+                <div class="gl2-play-btn">
+                  <i class="bx bx-play"></i>
+                </div>
+              </div>
+            </a>
+            <div class="gl2-caption">
+              <div class="gl2-caption-row">
+                <span class="gl2-tag" data-color="gold"
+                  ><i class="bx bx-play-circle"></i> Video</span
+                >
+                <span class="gl2-num">09</span>
+              </div>
+              <p class="gl2-title">FinTrack - Product Walkthrough</p>
+              <p class="gl2-body">
+                A complete walkthrough of FinTrack - exploring core features,
+                user experience, and the logic behind its financial tracking
+                system.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- /gl2-grid -->
+      </section>
+
+      <!-- =============================================
+        CONTACT SECTION - AR.dev
+     ============================================= -->
+      <section id="contact">
+        <h2><i class="bx bx-message-dots"></i>Get in Touch</h2>
+
+        <div class="contact-wrapper">
+          <!-- ════════════════════════
+             LEFT - Info panel
+        ════════════════════════ -->
+          <div class="contact-left">
+            <!-- Intro -->
+            <div class="contact-intro">
+              <span class="contact-kicker">LET'S TALK</span>
+              <h3 class="contact-heading">
+                Got a project<br />or just want to say hi?
+              </h3>
+              <p class="contact-subtext">
+                Whether it's a collaboration, a question, or just a hello - I'm
+                always open to connecting with curious people.
+              </p>
+            </div>
+
+            <!-- Info cards -->
+            <div class="contact-info-cards">
+              <div class="contact-info-card">
+                <div class="ci-icon-wrap">
+                  <div class="ci-icon"><i class="bx bx-map"></i></div>
+                </div>
+                <div class="ci-body">
+                  <span class="ci-label">Based in</span>
+                  <span class="ci-value">Saharanpur, IND</span>
+                </div>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="ci-icon-wrap">
+                  <div class="ci-icon"><i class="bx bx-phone"></i></div>
+                </div>
+                <div class="ci-body">
+                  <span class="ci-label">Phone</span>
+                  <a href="tel:+919548069160" class="ci-value ci-link"
+                    >+91 95480 69160</a
+                  >
+                </div>
+                <i class="bx bx-chevron-right ci-arrow"></i>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="ci-icon-wrap">
+                  <div class="ci-icon"><i class="bx bxl-gmail"></i></div>
+                </div>
+                <div class="ci-body">
+                  <span class="ci-label">Email</span>
+                  <a
+                    href="mailto:ayushrathour.dev@gmail.com"
+                    class="ci-value ci-link"
+                    >ayushrathour.dev@gmail.com</a
+                  >
+                </div>
+                <i class="bx bx-chevron-right ci-arrow"></i>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="ci-icon-wrap">
+                  <div class="ci-icon"><i class="bx bx-globe"></i></div>
+                </div>
+                <div class="ci-body">
+                  <span class="ci-label">Languages</span>
+                  <span class="ci-value">English &amp; Hindi</span>
+                </div>
+              </div>
+            </div>
+            <!-- /contact-info-cards -->
+
+            <!-- Social row -->
+            <div class="contact-socials">
+              <span class="cs-label">Connect with</span>
+              <div class="cs-icons">
+                <a
+                  href="mailto:ayushrathour.dev@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Gmail"
+                  class="cs-icon"
+                >
+                  <i class="bx bxl-gmail"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/ayushrathourrr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  class="cs-icon"
+                >
+                  <i class="bx bxl-instagram"></i>
+                </a>
+                <a
+                  href="https://github.com/ayush-rathour"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  class="cs-icon"
+                >
+                  <i class="bx bxl-github"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- /contact-left -->
+
+          <!-- ════════════════════════
+             RIGHT - Form panel
+        ════════════════════════ -->
+          <div class="contact-right">
+            <div class="contact-form-wrap">
+              <!-- Form header -->
+              <div class="cf-header">
+                <span class="contact-kicker">SEND A MESSAGE</span>
+                <p class="form-tagline">
+                  Have a project or question? Drop a message - I read every one.
+                </p>
+              </div>
+
+              <form
+                id="contactForm"
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                aria-label="Contact form"
+                novalidate
+              >
+                <input
+                  type="hidden"
+                  name="access_key"
+                  value="8395aab8-aade-4a90-b78f-f7988ec23adf"
+                />
+
+                <!-- Row: Name + Email side by side on desktop -->
+                <div class="cf-row">
+                  <div class="cf-field">
+                    <label for="cf-name">
+                      <i class="bx bx-user"></i> Name
+                    </label>
+                    <input
+                      id="cf-name"
+                      type="text"
+                      name="name"
+                      placeholder="What's your name?"
+                      required
+                      autocomplete="name"
+                      aria-required="true"
+                    />
+                    <span class="cf-field-icon icon-valid"
+                      ><i class="bx bx-check-circle"></i
+                    ></span>
+                    <span class="cf-field-icon icon-error"
+                      ><i class="bx bx-error-circle"></i
+                    ></span>
+                    <span class="cf-error-msg"
+                      ><i class="bx bx-info-circle"></i> Please enter your
+                      name</span
+                    >
+                  </div>
+                  <div class="cf-field">
+                    <label for="cf-email">
+                      <i class="bx bx-envelope"></i> Email
+                    </label>
+                    <input
+                      id="cf-email"
+                      type="email"
+                      name="email"
+                      placeholder="Your email address"
+                      required
+                      autocomplete="email"
+                      aria-required="true"
+                    />
+                    <span class="cf-field-icon icon-valid"
+                      ><i class="bx bx-check-circle"></i
+                    ></span>
+                    <span class="cf-field-icon icon-error"
+                      ><i class="bx bx-error-circle"></i
+                    ></span>
+                    <span class="cf-error-msg"
+                      ><i class="bx bx-info-circle"></i> Enter a valid email
+                      address</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Row: Subject + Like side by side on desktop -->
+                <div class="cf-row">
+                  <div class="cf-field">
+                    <label for="cf-subject">
+                      <i class="bx bx-purchase-tag"></i> Subject
+                    </label>
+                    <input
+                      id="cf-subject"
+                      type="text"
+                      name="subject"
+                      placeholder="What's this message about?"
+                      required
+                    />
+                    <span class="cf-field-icon icon-valid"
+                      ><i class="bx bx-check-circle"></i
+                    ></span>
+                    <span class="cf-field-icon icon-error"
+                      ><i class="bx bx-error-circle"></i
+                    ></span>
+                    <span class="cf-error-msg"
+                      ><i class="bx bx-info-circle"></i> Please add a
+                      subject</span
+                    >
+                  </div>
+                  <div class="cf-field">
+                    <label for="cf-like">
+                      <i class="bx bx-heart"></i> What did you like?
+                      <span class="cf-label-optional">(optional)</span>
+                    </label>
+                    <input
+                      id="cf-like"
+                      type="text"
+                      name="liked"
+                      placeholder="e.g. Animations, Smooth experience"
+                    />
+                  </div>
+                </div>
+
+                <div class="cf-field cf-has-textarea">
+                  <label for="cf-message">
+                    <i class="bx bx-message-detail"></i> Message
+                  </label>
+                  <textarea
+                    id="cf-message"
+                    name="message"
+                    placeholder="What would you like to say?"
+                    required
+                    aria-required="true"
+                  ></textarea>
+                  <span class="cf-field-icon icon-valid"
+                    ><i class="bx bx-check-circle"></i
+                  ></span>
+                  <span class="cf-field-icon icon-error"
+                    ><i class="bx bx-error-circle"></i
+                  ></span>
+                  <span class="cf-error-msg"
+                    ><i class="bx bx-info-circle"></i> Please write a
+                    message</span
+                  >
+                </div>
+
+                <!-- Submit -->
+                <div class="cf-submit-row">
+                  <button type="submit" class="cf-submit">
+                    <i class="bx bx-send cf-submit-icon"></i>
+                    <span>Send Message</span>
+                    <i class="bx bx-right-arrow-alt cf-submit-arrow"></i>
+                  </button>
+                  <span class="cf-note">
+                    <i class="bx bx-lock-alt"></i> Private &amp; secure
+                  </span>
+                </div>
+              </form>
+
+              <!-- Success state (shown after submit) -->
+              <div class="cf-success-msg" id="cfSuccessMsg" aria-live="polite">
+                <div class="cf-success-icon"><i class="bx bx-check"></i></div>
+                <p class="cf-success-title">Message sent!</p>
+                <p class="cf-success-sub">
+                  Thanks for reaching out. I'll get back to you soon.
+                </p>
+              </div>
+            </div>
+            <!-- /contact-form-wrap -->
+          </div>
+          <!-- /contact-right -->
+        </div>
+        <!-- /contact-wrapper -->
+      </section>
+    </main>
+
+    <!-- SUPPORT PANEL - AR.dev -->
+    <div
+      class="support-popup"
+      id="supportPopup"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Support the developer"
+    >
+      <!-- Close -->
+      <button
+        class="sp-close"
+        id="closeSupport"
+        aria-label="Close support panel"
+      >
+        <i class="bx bx-x" aria-hidden="true"></i>
+      </button>
+
+      <!-- Ambient grid texture -->
+      <div class="sp-grid" aria-hidden="true"></div>
+      <!-- Top glow line -->
+      <div class="sp-glow-line" aria-hidden="true"></div>
+
+      <!-- Brand row -->
+      <div class="sp-brand">
+        <span class="sp-logo">AR<span class="sp-logo-dot">.</span>dev</span>
+        <span class="sp-badge">
+          <span class="sp-badge-dot" aria-hidden="true"></span>
+          Open to support
+        </span>
+      </div>
+
+      <!-- Heading -->
+      <div class="sp-heading">
+        <i class="bx bx-coffee-togo sp-coffee-icon" aria-hidden="true"></i>
+        <div>
+          <p class="sp-title">Fuel the build</p>
+          <p class="sp-sub">
+            If my work helped you,<br />a coffee goes a long way ☕
+          </p>
+        </div>
+      </div>
+
+      <!-- UPI CTA -->
+      <a
+        href="upi://pay?pa=9548069160@sbi&pn=Ayush%20Rathour&tn=Supporting%20AR.dev&cu=INR"
+        class="sp-upi-btn"
+        aria-label="Pay via UPI to support Ayush Rathour"
+      >
+        <span class="sp-upi-icon" aria-hidden="true">
+          <i class="bx bx-bolt-circle"></i>
+        </span>
+        <span class="sp-upi-label">Pay via UPI</span>
+        <span class="sp-upi-arrow" aria-hidden="true">
+          <i class="bx bx-chevron-right"></i>
+        </span>
+        <span class="sp-upi-shine" aria-hidden="true"></span>
+      </a>
+
+      <!-- Divider -->
+      <div class="sp-divider" role="separator">
+        <span class="sp-divider-dot" aria-hidden="true"></span>
+        <span>or scan</span>
+        <span class="sp-divider-dot" aria-hidden="true"></span>
+      </div>
+
+      <!-- QR frame -->
+      <div class="sp-qr-wrap">
+        <div class="sp-qr-frame">
+          <img
+            src="Assets/upi_qr.png"
+            alt="UPI QR code - scan to pay Ayush Rathour"
+            width="108"
+            height="108"
+            loading="lazy"
+          />
+          <div class="sp-qr-corner sp-qr-corner--tl" aria-hidden="true"></div>
+          <div class="sp-qr-corner sp-qr-corner--tr" aria-hidden="true"></div>
+          <div class="sp-qr-corner sp-qr-corner--bl" aria-hidden="true"></div>
+          <div class="sp-qr-corner sp-qr-corner--br" aria-hidden="true"></div>
+        </div>
+        <p class="sp-qr-label">UPI · Any app</p>
+      </div>
+    </div>
+
+    <!-- =============================================
+    FOOTER - AR.dev
+  ============================================= -->
+    <footer class="footer">
+      <!-- Ambient background details -->
+      <div class="footer-bg-grid" aria-hidden="true"></div>
+      <div class="footer-orb footer-orb--left" aria-hidden="true"></div>
+      <div class="footer-orb footer-orb--right" aria-hidden="true"></div>
+
+      <div class="footer-inner">
+        <!-- ══ TOP STRIP ══ -->
+        <div class="footer-top">
+          <div class="footer-brand-block">
+            <a href="#home" class="footer-logo-link" aria-label="AR.dev Home">
+              <span class="footer-logo-wordmark"
+                >AR<span class="footer-logo-dot">.</span>dev</span
+              >
+            </a>
+            <p class="footer-tagline">
+              Designing clean, purposeful web experiences - driven by clarity,
+              shaped with care, and powered by code. Every project is a harmony
+              of creativity and logic, brought to life through seamless
+              execution.
+            </p>
+            <!-- Availability badge -->
+            <div class="footer-availability">
+              <span class="footer-avail-dot"></span>
+              <span>Available for projects</span>
+            </div>
+          </div>
+
+          <!-- ══ NAV COLUMNS ══ -->
+          <nav class="footer-nav-block" aria-label="Footer navigation">
+            <p class="footer-col-label">Explore</p>
+            <ul class="footer-nav-list">
+              <li>
+                <a href="#home"
+                  ><i class="bx bx-home-alt"></i><span>Home</span></a
+                >
+              </li>
+              <li>
+                <a href="#about"
+                  ><i class="bx bx-user"></i><span>About</span></a
+                >
+              </li>
+              <li>
+                <a href="#skills"
+                  ><i class="bx bx-briefcase"></i><span>Skills</span></a
+                >
+              </li>
+              <li>
+                <a href="#milestones"
+                  ><i class="bx bx-award"></i><span>Milestones</span></a
+                >
+              </li>
+              <li>
+                <a href="#projects"
+                  ><i class="bx bx-layer"></i><span>Projects</span></a
+                >
+              </li>
+              <li>
+                <a href="#gallery"
+                  ><i class="bx bx-images"></i><span>Gallery</span></a
+                >
+              </li>
+            </ul>
+          </nav>
+
+          <!-- ══ CONNECT COLUMN ══ -->
+          <div class="footer-connect-block">
+            <p class="footer-col-label">Connect</p>
+            <div class="footer-social-stack">
+              <a
+                href="tel:+919548069160"
+                class="footer-social-row"
+                aria-label="Call"
+              >
+                <span class="fsr-icon"><i class="bx bx-phone"></i></span>
+                <span class="fsr-label">+91 95480 69160</span>
+                <i class="bx bx-chevron-right fsr-arrow"></i>
+              </a>
+              <a
+                href="mailto:ayushrathour.dev@gmail.com"
+                class="footer-social-row"
+                aria-label="Email"
+              >
+                <span class="fsr-icon"><i class="bx bxl-gmail"></i></span>
+                <span class="fsr-label">ayushrathour.dev@gmail.com</span>
+                <i class="bx bx-chevron-right fsr-arrow"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/ayushrathourrr"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-social-row"
+                aria-label="Instagram"
+              >
+                <span class="fsr-icon"><i class="bx bxl-instagram"></i></span>
+                <span class="fsr-label">@ayushrathourrr</span>
+                <i class="bx bx-chevron-right fsr-arrow"></i>
+              </a>
+              <a
+                href="https://github.com/ayush-rathour"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-social-row"
+                aria-label="GitHub"
+              >
+                <span class="fsr-icon"><i class="bx bxl-github"></i></span>
+                <span class="fsr-label">github.com/ayush-rathour</span>
+                <i class="bx bx-chevron-right fsr-arrow"></i>
+              </a>
+
+              <a
+                href="https://wa.me/+919548069160"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-social-row"
+                aria-label="WhatsApp"
+              >
+                <span class="fsr-icon"><i class="bx bxl-whatsapp"></i></span>
+                <span class="fsr-label">wa.me/+91 95480 69160</span>
+                <i class="bx bx-chevron-right fsr-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ DIVIDER ══ -->
+        <div class="footer-divider" aria-hidden="true">
+          <span class="footer-divider-dot"></span>
+        </div>
+
+        <!-- ══ BOTTOM STRIP ══ -->
+        <div class="footer-bottom">
+          <div class="footer-bottom-left">
+            <i class="bx bx-map-pin"></i>
+            <span>Saharanpur, Uttar Pradesh, 247232</span>
+          </div>
+          <div class="footer-bottom-center">
+            <span>© Sept 2024</span>
+            <span class="footer-sep-dot">·</span>
+            <span class="footer-bottom-brand">AR.dev</span>
+            <span class="footer-sep-dot">·</span>
+            <span>All Rights Reserved</span>
+          </div>
+          <div class="footer-bottom-right">
+            <span>Built with</span>
+            <i class="bx bxs-heart footer-heart"></i>
+            <span>& curiosity</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to top -->
+    <button id="scrollTop" aria-label="Scroll to top" title="Back to top">
+      <i class="bx bx-chevron-up"></i>
+    </button>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      defer
+      src="https://www.googletagmanager.com/gtag/js?id=G-14JH9PNNWP"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-14JH9PNNWP");
+    </script>
+
+    <!-- GLightbox JS (deferred) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"
+      defer
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof GLightbox !== "undefined") {
+          GLightbox({
+            selector: ".gallery-lightbox",
+            touchNavigation: true,
+            loop: false,
+          });
+        } else {
+          window.addEventListener("load", function () {
+            GLightbox({
+              selector: ".gallery-lightbox",
+              touchNavigation: true,
+              loop: false,
+            });
+          });
+        }
+      });
+    </script>
+
+    <!-- ══ PROJECT IMAGE LIGHTBOX ══ -->
+    <div
+      id="projLightbox"
+      class="proj-lb"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Project image preview"
+      aria-hidden="true"
+    >
+      <div class="proj-lb-backdrop"></div>
+      <div class="proj-lb-frame">
+        <button
+          class="proj-lb-close"
+          id="projLbClose"
+          aria-label="Close preview"
+        >
+          <i class="bx bx-x"></i>
+        </button>
+        <div class="proj-lb-img-wrap">
+          <img id="projLbImg" src="" alt="" />
+          <div class="proj-lb-loader"><span></span></div>
+        </div>
+        <div class="proj-lb-caption" id="projLbCaption"></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const lb = document.getElementById("projLightbox");
+        const lbImg = document.getElementById("projLbImg");
+        const lbClose = document.getElementById("projLbClose");
+        const lbCap = document.getElementById("projLbCaption");
+        if (!lb || !lbImg) return;
+
+        function openLb(src, title) {
+          lbImg.src = "";
+          lbImg.alt = title || "";
+          lbCap.textContent = title || "";
+          lb.classList.add("proj-lb--open");
+          lb.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+          lbImg.classList.remove("proj-lb-img--loaded");
+
+          const tmp = new Image();
+          tmp.onload = () => {
+            lbImg.src = src;
+            lbImg.classList.add("proj-lb-img--loaded");
+          };
+          tmp.src = src;
+        }
+
+        function closeLb() {
+          lb.classList.remove("proj-lb--open");
+          lb.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          setTimeout(() => {
+            lbImg.src = "";
+          }, 300);
+        }
+
+        // Open on overlay click
+        document
+          .querySelectorAll(".proj-preview-trigger")
+          .forEach(function (trigger) {
+            trigger.addEventListener("click", function (e) {
+              e.stopPropagation();
+              openLb(trigger.dataset.img, trigger.dataset.title);
+            });
+            // Keyboard: Enter or Space
+            trigger.addEventListener("keydown", function (e) {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openLb(trigger.dataset.img, trigger.dataset.title);
+              }
+            });
+          });
+
+        // Close on button, backdrop click, Escape
+        lbClose.addEventListener("click", closeLb);
+        lb.querySelector(".proj-lb-backdrop").addEventListener(
+          "click",
+          closeLb,
+        );
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && lb.classList.contains("proj-lb--open"))
+            closeLb();
+        });
+      })();
+    </script>
+  </body>
+</html>
