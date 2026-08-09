@@ -73,18 +73,18 @@ The design follows a **dark, glassmorphism-driven aesthetic** with a cyan (`#00b
 
 ## Tech Stack
 
-| Category         | Technology |
-|------------------|------------|
-| Markup           | HTML5 (Semantic HTML, Accessibility, ARIA attributes) |
-| Styling          | CSS3 (Custom Properties, Flexbox, CSS Grid, Animations, Media Queries) |
-| Scripting        | Vanilla JavaScript (ES6+) |
-| Fonts            | Bitcount Prop Single, SUSE (Google Fonts) |
-| Icons            | Boxicons, Font Awesome 7 |
-| Image & Video Gallery | GLightbox |
-| Contact Form     | Web3Forms |
-| Analytics        | Google Analytics (gtag.js) |
-| Hosting          | Netlify |
-| Version Control  | Git & GitHub |
+| Category              | Technology                                                             |
+| --------------------- | ---------------------------------------------------------------------- |
+| Markup                | HTML5 (Semantic HTML, Accessibility, ARIA attributes)                  |
+| Styling               | CSS3 (Custom Properties, Flexbox, CSS Grid, Animations, Media Queries) |
+| Scripting             | Vanilla JavaScript (ES6+)                                              |
+| Fonts                 | Bitcount Prop Single, SUSE (Google Fonts)                              |
+| Icons                 | Boxicons, Font Awesome 7                                               |
+| Image & Video Gallery | GLightbox                                                              |
+| Contact Form          | Web3Forms                                                              |
+| Analytics             | Google Analytics (gtag.js)                                             |
+| Hosting               | Netlify                                                                |
+| Version Control       | Git & GitHub                                                           |
 
 **Build Process:** None (No package manager, bundler, or build tools required).
 
@@ -130,7 +130,7 @@ The design follows a **dark, glassmorphism-driven aesthetic** with a cyan (`#00b
 │       └── varun_ptf.png
 │
 ├── files/
-│   ├── fintrack_v17.3.apk
+│   ├── fintrack_v17.6.apk
 │   └── python_projects.zip
 │
 ├── styles.css                      # Complete stylesheet
@@ -292,7 +292,6 @@ Frontend Developer · Saharanpur, Uttar Pradesh, India
 - **Email:** [ayushrathour.dev@gmail.com](mailto:ayushrathour.dev@gmail.com)
 - **Instagram:** [@ayushrathourrr](https://www.instagram.com/ayushrathourrr)
 - **GitHub:** [github.com/ayush-rathour](https://github.com/ayush-rathour)
-- **Whatsapp:** [+91 95480 69160](https://wa.me/+919548069160)
 
 For project inquiries, collaborations, or general questions, please use the [contact form](https://ayushrathour.netlify.app/#contact) on the live site or reach out directly via email.
 
