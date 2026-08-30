@@ -500,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       type: "kv",
       key: '"Stack"',
-      val: '["HTML", "CSS", "JavaScript", "Python"]',
+      val: '["HTML", "CSS", "JavaScript", "Python", "C"]',
       comma: true,
     },
 
