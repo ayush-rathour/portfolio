@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- ═══════════════════════════════════════════
-       BASIC META
-  ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       BASIC & RESPONSIVE META
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a1f3d" />
@@ -16,13 +16,14 @@
     <meta name="rating" content="general" />
     <meta name="revisit-after" content="7 days" />
 
-    <!-- Local SEO -->
+    <!-- Local SEO Geo-Tags -->
     <meta name="geo.region" content="IN-UP" />
     <meta name="geo.placename" content="Saharanpur, Uttar Pradesh, IND" />
 
-    <!-- ═══════════════════════════════════════════
-       SEO META
-  ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       PRIMARY SEO & CANONICAL
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <title>Ayush Rathour | Student</title>
     <meta
       name="description"
       content="Hi, I'm Ayush Rathour - a frontend developer from Saharanpur, IND crafting clean, modern web experiences. Explore my projects, skills, and journey in web development."
@@ -31,18 +32,15 @@
       name="keywords"
       content="Ayush Rathour, Frontend Developer, Web Developer, JavaScript, React, Portfolio Website, UI Developer, HTML, CSS, JS, Netlify Portfolio, Software Engineering, Student Developer, Open Source, Saharanpur, IND"
     />
-
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://ayushrathour.netlify.app/" />
 
-    <!-- Title -->
-    <title>Ayush Rathour | Student</title>
-
-    <!-- ═══════════════════════════════════════════
-       OPEN GRAPH (Facebook / LinkedIn / WhatsApp)
-  ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       SOCIAL SHARING (Open Graph & Twitter Cards)
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="AR.dev - Ayush Rathour" />
     <meta
       property="og:title"
       content="Ayush Rathour | Frontend Developer & UI Designer"
@@ -62,11 +60,8 @@
       property="og:image:alt"
       content="Ayush Rathour - Frontend Developer Portfolio"
     />
-    <meta property="og:site_name" content="AR.dev - Ayush Rathour" />
 
-    <!-- ═══════════════════════════════════════════
-       TWITTER / X CARDS
-  ═══════════════════════════════════════════ -->
+    <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -87,9 +82,7 @@
     <meta name="twitter:creator" content="@ayushrathour" />
     <meta name="twitter:site" content="@ayushrathour" />
 
-    <!-- ═══════════════════════════════════════════
-       APPLE / PWA META
-  ═══════════════════════════════════════════ -->
+    <!-- Apple & PWA Meta -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
@@ -100,19 +93,20 @@
     <meta name="application-name" content="AR.dev" />
     <meta name="msapplication-TileColor" content="#0a1f3d" />
 
-    <!-- ═══════════════════════════════════════════
-       FAVICON
-  ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       FAVICONS & TOUCH ICONS
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <link rel="icon" href="Assets/Favicon.png" type="image/png" />
     <link rel="shortcut icon" href="Assets/Favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="Assets/Favicon.png" />
 
-    <!-- ═══════════════════════════════════════════
-       DNS PREFETCH & PRECONNECT (Speed)
-  ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       PREFETCH & RESOURCE HINTS
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="dns-prefetch" href="//ayushrathour.netlify.app" />
 
@@ -120,9 +114,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 
-    <!-- ═══════════════════════════════════════════
-       FONTS (moved from CSS @import - faster)
-  ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       FONTS & STYLESHEETS
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <!-- Google Fonts (Bitcount Prop Single & SUSE) -->
     <link
       rel="preload"
       as="style"
@@ -141,33 +136,18 @@
       />
     </noscript>
 
-    <!-- ═══════════════════════════════════════════
-       STYLESHEETS
-  ═══════════════════════════════════════════ -->
-    <!-- Critical site styles -->
+    <!-- Critical Main Styles -->
     <link rel="preload" as="style" href="styles.css" />
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Boxicons (moved to jsDelivr with SRI for reliability + integrity) -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
-      crossorigin="anonymous"
-    />
+    <!-- Boxicons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
       crossorigin="anonymous"
     />
 
-    <!-- Font Awesome (deferred non-blocking load) -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      crossorigin="anonymous"
-    />
+    <!-- Font Awesome 7 -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -182,16 +162,16 @@
       />
     </noscript>
 
-    <!-- GLightbox CSS (moved to head) -->
+    <!-- GLightbox CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css"
       crossorigin="anonymous"
     />
 
-    <!-- ═══════════════════════════════════════════
-       STRUCTURED DATA / JSON-LD
-  ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       STRUCTURED DATA / JSON-LD (Schema.org)
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -264,7 +244,9 @@
   </head>
 
   <body>
-    <!-- Loading screen -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       PAGE BOOT PRELOADER (#loading-screen)
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <div
       id="loading-screen"
       role="status"
@@ -346,43 +328,43 @@
 
         <div class="ls-log" id="ls-log-block">
           <div class="ls-log-line" id="ls-log0">
-            <span class="ls-tag tag-sys">SYS</span
-            ><span
+            <span class="ls-tag tag-sys">SYS</span>
+            <span
               ><span class="ls-log-addr">0x0001</span> &nbsp;Boot Sequence
               Initiated · AR.dev</span
             >
           </div>
           <div class="ls-log-line" id="ls-log1">
-            <span class="ls-tag tag-ld">ENV</span
-            ><span
+            <span class="ls-tag tag-ld">ENV</span>
+            <span
               ><span class="ls-log-addr">0x0012</span> &nbsp;Initializing
-              runtime environment
-            </span>
+              runtime environment</span
+            >
           </div>
           <div class="ls-log-line" id="ls-log2">
-            <span class="ls-tag tag-run">CSS</span
-            ><span
+            <span class="ls-tag tag-run">CSS</span>
+            <span
               ><span class="ls-log-addr">0x0034</span> &nbsp;Resolving fonts ·
               Stylesheet · Icon bundles</span
             >
           </div>
           <div class="ls-log-line" id="ls-log3">
-            <span class="ls-tag tag-run">JS</span
-            ><span
+            <span class="ls-tag tag-run">JS</span>
+            <span
               ><span class="ls-log-addr">0x0058</span> &nbsp;Registering
               components library</span
             >
           </div>
           <div class="ls-log-line" id="ls-log4">
-            <span class="ls-tag tag-net">NET</span
-            ><span
+            <span class="ls-tag tag-net">NET</span>
+            <span
               ><span class="ls-log-addr">0x0079</span> &nbsp;Syncing assets ·
               Verifying integrity</span
             >
           </div>
           <div class="ls-log-line" id="ls-log5">
-            <span class="ls-tag tag-ready">READY</span
-            ><span
+            <span class="ls-tag tag-ready">READY</span>
+            <span
               ><span class="ls-log-addr">0x00FF</span> &nbsp;Portfolio ready to
               launch</span
             >
@@ -392,8 +374,8 @@
         <div class="ls-progress-block">
           <div class="ls-pct-row">
             <div>
-              <span class="ls-pct-num" id="ls-pct-num">0</span
-              ><span class="ls-pct-sym">%</span>
+              <span class="ls-pct-num" id="ls-pct-num">0</span>
+              <span class="ls-pct-sym">%</span>
             </div>
             <div class="ls-status-text" id="ls-status-txt"></div>
           </div>
@@ -414,7 +396,9 @@
       <div class="ls-footer-r">SEPT2024 · AR.dev</div>
     </div>
 
-    <!-- ── PREMIUM HEADER ── -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       STICKY HEADER & NAVIGATION (#mainHeader)
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <header id="mainHeader">
       <!-- Logo -->
       <a href="#home" class="logo" aria-label="AR.dev Home">
@@ -446,7 +430,7 @@
         </li>
       </ul>
 
-      <!-- Right side: CTA + Hamburger -->
+      <!-- CTA & Mobile Menu Toggle -->
       <div class="nav-right">
         <button
           class="nav-cta nav-support-btn"
@@ -456,11 +440,10 @@
           <i class="bx bx-coffee-togo"></i>
           <span>Support</span>
         </button>
-        <!-- Mobile hamburger -->
         <button
           class="menu-toggle"
           id="mobile-menu"
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation drawer"
           aria-expanded="false"
         >
           <span></span><span></span><span></span>
@@ -468,17 +451,17 @@
       </div>
     </header>
 
-    <!-- ── SIDEBAR OVERLAY ── -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       MOBILE SIDEBAR DRAWER (#sidebar)
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
 
-    <!-- ── SIDEBAR PANEL ── -->
     <aside
       class="sidebar"
       id="sidebar"
       aria-label="Mobile navigation"
       aria-hidden="true"
     >
-      <!-- Sidebar Header -->
       <div class="sidebar-header">
         <a href="#home" class="sidebar-logo" aria-label="AR.dev Home">
           <span class="sidebar-logo-text"
@@ -490,8 +473,7 @@
         </button>
       </div>
 
-      <!-- Sidebar Nav Links -->
-      <ul class="sidebar-nav" aria-label="Sidebar navigation">
+      <ul class="sidebar-nav" aria-label="Sidebar navigation links">
         <li>
           <a href="#home">
             <span class="nav-icon"><i class="bx bx-home"></i></span>
@@ -543,7 +525,6 @@
         </li>
       </ul>
 
-      <!-- Sidebar Footer -->
       <div class="sidebar-footer">
         <button
           class="sidebar-cta sidebar-support-btn"
@@ -560,19 +541,19 @@
       </div>
     </aside>
 
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       MAIN CONTENT CONTAINER
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <main id="main-content">
-      <!-- =============================================
-        HOME SECTION - AR.dev
-     ============================================= -->
+      <!-- =======================================================================
+        1. HOME / HERO SECTION (#home)
+      ======================================================================== -->
       <section id="home">
-        <!-- Subtle background grid texture -->
         <div class="hero-grid-bg" aria-hidden="true"></div>
-
-        <!-- Floating glow orb -->
         <div class="hero-orb" aria-hidden="true"></div>
 
         <div class="hero-inner">
-          <!-- LEFT: Text content -->
+          <!-- Left: Hero Text & CTAs -->
           <div class="hero-text">
             <h1 class="hero-name">
               <span class="hero-name-first">Ayush</span>
@@ -586,7 +567,7 @@
               continuously exploring new technologies along the way.
             </p>
 
-            <!-- Stat row -->
+            <!-- Metrics -->
             <div class="hero-stats">
               <div class="hero-stat">
                 <span class="hs-num">4.0+</span>
@@ -604,7 +585,7 @@
               </div>
             </div>
 
-            <!-- CTA buttons -->
+            <!-- CTAs -->
             <div class="hero-actions">
               <a href="#projects" class="hero-btn primary">
                 <i class="fa-solid fa-folder-open"></i> View My Work
@@ -615,7 +596,7 @@
             </div>
           </div>
 
-          <!-- RIGHT: Avatar -->
+          <!-- Right: Profile Card & Tech Chips -->
           <div class="hero-avatar-wrap">
             <div class="hero-avatar-ring"></div>
             <div class="hero-avatar-card">
@@ -629,7 +610,6 @@
                 height="320"
               />
             </div>
-            <!-- Floating label chips -->
             <div class="hero-chip chip-html">
               <i class="fab fa-html5"></i> HTML &amp; CSS
             </div>
@@ -643,14 +623,14 @@
         </div>
       </section>
 
-      <!-- =============================================
-        ABOUT SECTION - AR.dev
-     ============================================= -->
+      <!-- =======================================================================
+        2. ABOUT ME SECTION (#about)
+      ======================================================================== -->
       <section id="about" class="about">
         <h2 class="section-title"><i class="bx bx-user"></i> About Me</h2>
 
         <div class="about-bento">
-          <!-- ══ HERO IDENTITY CARD - full left column ══ -->
+          <!-- Panel 1: Identity & Narrative -->
           <div class="about-panel ab-identity">
             <span class="ab-panel-kicker">WHO I AM</span>
             <h3 class="ab-panel-title">
@@ -664,28 +644,22 @@
               modern, user-focused web experiences that combine clean design,
               performance, and functionality.
             </p>
-            
+
             <p class="ab-body">
               My journey into web development began at <strong>14</strong> with
               a simple HTML page built out of curiosity. What started as small
               experiments quickly grew into building complete websites, solving
               real-world problems, and turning ideas into functional digital
-              experiences.<br /><br />
+              experiences.
+            </p>
 
+            <p class="ab-body">
               Today, I work primarily with
               <strong>HTML, CSS, JavaScript, and Python</strong>, focusing on
-              frontend development and creating responsive, user-friendly
-              interfaces, with <strong>Git &amp; GitHub</strong> woven into my
-              everyday workflow. I also enjoy building Python CLI tools that
-              simplify tasks and improve productivity.<br /><br />
-
-              More recently, I've been going back to the fundamentals with
-              <strong>C programming</strong> - strengthening my grasp of memory,
-              pointers, and core logic beneath the frameworks I use daily.
-              Through personal
-              <strong>projects, freelance work, and continuous learning</strong
-              >, I've developed a passion for crafting clean, purposeful, and
-              engaging web experiences.
+              responsive interfaces and workflow tools with
+              <strong>Git &amp; GitHub</strong>. Recently, I have also been
+              exploring <strong>C programming</strong> to strengthen my
+              low-level fundamentals beneath high-level frameworks.
             </p>
 
             <div class="ab-mantra">
@@ -695,10 +669,15 @@
             </div>
           </div>
 
-          <!-- ══ TERMINAL - right column top ══ -->
+          <!-- Panel 2: Interactive Terminal -->
           <div class="about-panel ab-terminal-panel">
-            <span class="ab-panel-kicker">DEVELOPER IDENTITY</span>
-            <div class="ab-wordmark">AR<span class="ab-accent">.</span>dev</div>
+            <div class="ab-terminal-head-row">
+              <span class="ab-panel-kicker">DEVELOPER IDENTITY</span>
+              <div class="ab-wordmark">
+                AR<span class="ab-accent">.</span>dev
+              </div>
+            </div>
+
             <div class="ab-terminal">
               <div class="ab-t-bar">
                 <span class="ab-td ab-td--r"></span>
@@ -707,10 +686,10 @@
                 <span class="ab-t-fname">~/ar-dev/identity.json</span>
               </div>
               <div class="ab-t-body" id="ab-terminal-body">
-                <!-- Typed out by JS -->
+                <!-- Injected via script.js typewriter -->
               </div>
             </div>
-            <!-- Role cycling badge -->
+
             <div class="ab-role-badge">
               <span class="ab-role-dot"></span>
               <span class="ab-role-txt" id="abRoleText"
@@ -719,13 +698,10 @@
             </div>
           </div>
 
-          <!-- ══ CURRENTLY BUILDING - left bottom ══ -->
+          <!-- Panel 3: Currently Building -->
           <div class="about-panel ab-currently">
             <span class="ab-panel-kicker">CURRENTLY BUILDING</span>
-            <h3
-              class="ab-panel-title"
-              style="font-size: 1rem; margin-bottom: 1.1rem"
-            >
+            <h3 class="ab-panel-title ab-panel-title--sm">
               What I'm Working On
             </h3>
 
@@ -734,8 +710,8 @@
                 <div class="ab-build-icon"><i class="bx bxl-python"></i></div>
                 <div class="ab-build-info">
                   <span class="ab-build-name">Python Journey</span>
-                  <span class="ab-build-sub">
-                    OOP · File Handling · Real-world Projects</span
+                  <span class="ab-build-sub"
+                    >OOP · File Handling · CLI Projects</span
                   >
                 </div>
                 <div class="ab-build-pct-wrap">
@@ -751,9 +727,9 @@
                   <i class="fa-brands fa-git-alt"></i>
                 </div>
                 <div class="ab-build-info">
-                  <span class="ab-build-name">Git & GitHub</span>
+                  <span class="ab-build-name">Git &amp; GitHub</span>
                   <span class="ab-build-sub"
-                    >Repositories · Branches · Commits</span
+                    >Repositories · Branches · Workflows</span
                   >
                 </div>
                 <div class="ab-build-pct-wrap">
@@ -765,13 +741,11 @@
               </div>
 
               <div class="ab-build-item">
-                <div class="ab-build-icon">
-                  <i class="fa-solid fa-c"></i>
-                </div>
+                <div class="ab-build-icon"><i class="fa-solid fa-c"></i></div>
                 <div class="ab-build-info">
                   <span class="ab-build-name">C Programming</span>
                   <span class="ab-build-sub"
-                    >Pointers · Data Structures · Fundamentals</span
+                    >Pointers · Memory · Data Structures</span
                   >
                 </div>
                 <div class="ab-build-pct-wrap">
@@ -784,43 +758,41 @@
             </div>
           </div>
 
-          <!-- ══ INTERESTS GRID - right bottom ══ -->
+          <!-- Panel 4: Interactive Flip Cards -->
           <div class="about-panel ab-interests">
             <span class="ab-panel-kicker">BEYOND CODE</span>
-            <h3
-              class="ab-panel-title"
-              style="font-size: 1rem; margin-bottom: 1rem"
-            >
-              What keeps me going
+            <h3 class="ab-panel-title ab-panel-title--sm">
+              What Keeps Me Going
             </h3>
+
             <div class="ab-icon-grid">
               <div class="ab-iitem">
                 <div class="ab-iitem-front">
                   <i class="bx bxl-python"></i>
-                  <span>Python Journey</span>
+                  <span>Python</span>
                 </div>
                 <div class="ab-iitem-back">
-                  <span>Learning by building real projects every week</span>
+                  <span>Learning by building utilities</span>
                 </div>
               </div>
 
               <div class="ab-iitem">
                 <div class="ab-iitem-front">
                   <i class="fa-brands fa-git-alt"></i>
-                  <span>Git & GitHub</span>
+                  <span>Git &amp; GitHub</span>
                 </div>
                 <div class="ab-iitem-back">
-                  <span>Version control habits, one commit at a time</span>
+                  <span>Version control habits</span>
                 </div>
               </div>
 
               <div class="ab-iitem">
                 <div class="ab-iitem-front">
                   <i class="fa-solid fa-c"></i>
-                  <span>C Programming</span>
+                  <span>C Language</span>
                 </div>
                 <div class="ab-iitem-back">
-                  <span>Going back to basics with memory and logic</span>
+                  <span>Deep logic &amp; memory</span>
                 </div>
               </div>
 
@@ -830,7 +802,7 @@
                   <span>Problem Solving</span>
                 </div>
                 <div class="ab-iitem-back">
-                  <span>Breaking big challenges into small wins</span>
+                  <span>Breaking big challenges down</span>
                 </div>
               </div>
 
@@ -840,65 +812,64 @@
                   <span>Modern UI</span>
                 </div>
                 <div class="ab-iitem-back">
-                  <span>Clean interfaces with smooth interactions</span>
+                  <span>Clean, fast user interfaces</span>
                 </div>
               </div>
 
               <div class="ab-iitem">
                 <div class="ab-iitem-front">
                   <i class="bx bx-mobile-alt"></i>
-                  <span>Responsive Design</span>
+                  <span>Responsive</span>
                 </div>
                 <div class="ab-iitem-back">
-                  <span>Experiences that work everywhere</span>
+                  <span>Pixel perfect everywhere</span>
                 </div>
               </div>
 
               <div class="ab-iitem">
                 <div class="ab-iitem-front">
                   <i class="bx bx-brain"></i>
-                  <span>Continuous Learning</span>
+                  <span>Learning</span>
                 </div>
                 <div class="ab-iitem-back">
-                  <span>Exploring new technologies every day</span>
+                  <span>Exploring tech daily</span>
                 </div>
               </div>
 
               <div class="ab-iitem">
                 <div class="ab-iitem-front">
                   <i class="bx bx-book-open"></i>
-                  <span>Reading & Research</span>
+                  <span>Research</span>
                 </div>
                 <div class="ab-iitem-back">
-                  <span>Documentation today, expertise tomorrow</span>
+                  <span>Reading docs thoroughly</span>
                 </div>
               </div>
 
               <div class="ab-iitem">
                 <div class="ab-iitem-front">
                   <i class="bx bx-rocket"></i>
-                  <span>Building Projects</span>
+                  <span>Shipping</span>
                 </div>
                 <div class="ab-iitem-back">
-                  <span>Turning ideas into useful digital products</span>
+                  <span>Turning ideas into reality</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- /about-bento -->
       </section>
 
-      <!-- =============================================
-        SKILLS SECTION - AR.dev
-     ============================================= -->
+      <!-- =======================================================================
+        3. SKILLS SECTION (#skills)
+      ======================================================================== -->
       <section id="skills" class="skills">
         <h2 class="section-title">
           <i class="bx bx-briefcase"></i> Skills I Own
         </h2>
 
-        <div class="skills-grid">
-          <!-- HTML & CSS -->
+        <!-- Featured Core Stack Cards -->
+        <div class="skills-grid skills-grid--core">
           <div class="skill-block primary" data-pct="90">
             <div class="sk-icon-wrap"><i class="fab fa-html5"></i></div>
             <div class="sk-head">
@@ -914,14 +885,11 @@
                 <span class="sk-bar-name">Proficiency</span>
                 <span class="sk-bar-pct" data-target="90">0%</span>
               </div>
-              <div class="sk-bar-track">
-                <div class="sk-bar-fill"></div>
-              </div>
+              <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
             </div>
           </div>
 
-          <!-- Responsive Design -->
           <div class="skill-block primary" data-pct="90">
             <div class="sk-icon-wrap"><i class="fas fa-mobile-alt"></i></div>
             <div class="sk-head">
@@ -937,14 +905,11 @@
                 <span class="sk-bar-name">Proficiency</span>
                 <span class="sk-bar-pct" data-target="90">0%</span>
               </div>
-              <div class="sk-bar-track">
-                <div class="sk-bar-fill"></div>
-              </div>
+              <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
             </div>
           </div>
 
-          <!-- UI/UX -->
           <div class="skill-block primary" data-pct="80">
             <div class="sk-icon-wrap"><i class="fas fa-paint-brush"></i></div>
             <div class="sk-head">
@@ -960,142 +925,114 @@
                 <span class="sk-bar-name">Proficiency</span>
                 <span class="sk-bar-pct" data-target="80">0%</span>
               </div>
-              <div class="sk-bar-track">
-                <div class="sk-bar-fill"></div>
-              </div>
+              <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
             </div>
           </div>
+        </div>
 
-          <!-- Frontend Development -->
-          <div class="skill-block" data-pct="80">
+        <!-- Subheading Divider -->
+        <div class="skills-subhead">
+          <span class="skills-subhead-label">Also Working With</span>
+          <span class="skills-subhead-line"></span>
+        </div>
+
+        <!-- Compact Extended Stack Cards -->
+        <div class="skills-grid skills-grid--compact">
+          <div class="skill-block compact" data-pct="80">
             <div class="sk-icon-wrap"><i class="fas fa-code"></i></div>
             <div class="sk-head">
-              <h3>Frontend Development</h3>
-              <span class="sk-meta meta-grow">Growing</span>
+              <h3>Frontend Dev</h3>
+              <span class="sk-meta meta-strong">Strong</span>
             </div>
-            <p class="sk-desc">
-              Building interactive, performant frontends with clean,
-              maintainable code.
-            </p>
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
                 <span class="sk-bar-pct" data-target="80">0%</span>
               </div>
-              <div class="sk-bar-track">
-                <div class="sk-bar-fill"></div>
-              </div>
+              <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
             </div>
           </div>
 
-          <!-- Deployment & Hosting -->
-          <div class="skill-block" data-pct="75">
+          <div class="skill-block compact" data-pct="75">
             <div class="sk-icon-wrap">
               <i class="fas fa-cloud-upload-alt"></i>
             </div>
             <div class="sk-head">
-              <h3>Deployment &amp; Hosting</h3>
-              <span class="sk-meta meta-comfy">Comfortable</span>
+              <h3>Deployment</h3>
+              <span class="sk-meta meta-strong">Strong</span>
             </div>
-            <p class="sk-desc">
-              Deploying projects using Netlify, Vercel, and modern hosting
-              platforms.
-            </p>
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
                 <span class="sk-bar-pct" data-target="75">0%</span>
               </div>
-              <div class="sk-bar-track">
-                <div class="sk-bar-fill"></div>
-              </div>
+              <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
             </div>
           </div>
 
-          <!-- Python -->
-          <div class="skill-block" data-pct="70">
+          <div class="skill-block compact" data-pct="70">
             <div class="sk-icon-wrap"><i class="fab fa-python"></i></div>
             <div class="sk-head">
               <h3>Python</h3>
-              <span class="sk-meta meta-learn">Learning</span>
+              <span class="sk-meta meta-familiar">Familiar</span>
             </div>
-            <p class="sk-desc">
-              Scripting, automation, and basic data-driven workflows.
-            </p>
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
                 <span class="sk-bar-pct" data-target="70">0%</span>
               </div>
-              <div class="sk-bar-track">
-                <div class="sk-bar-fill"></div>
-              </div>
+              <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
             </div>
           </div>
 
-          <!-- Git & GitHub -->
-          <div class="skill-block" data-pct="60">
+          <div class="skill-block compact" data-pct="60">
             <div class="sk-icon-wrap"><i class="fab fa-git-alt"></i></div>
             <div class="sk-head">
               <h3>Git &amp; GitHub</h3>
-              <span class="sk-meta meta-comfy">Comfortable</span>
+              <span class="sk-meta meta-familiar">Familiar</span>
             </div>
-            <p class="sk-desc">
-              Version control, branching workflows, and collaborative commit
-              history.
-            </p>
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
                 <span class="sk-bar-pct" data-target="60">0%</span>
               </div>
-              <div class="sk-bar-track">
-                <div class="sk-bar-fill"></div>
-              </div>
+              <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
             </div>
           </div>
 
-          <!-- C Programming -->
-          <div class="skill-block" data-pct="40">
+          <div class="skill-block compact" data-pct="40">
             <div class="sk-icon-wrap"><i class="fa-solid fa-c"></i></div>
             <div class="sk-head">
-              <h3>C Programming</h3>
-              <span class="sk-meta meta-learn">Learning</span>
+              <h3>C Language</h3>
+              <span class="sk-meta meta-learning">Learning</span>
             </div>
-            <p class="sk-desc">
-              Building a foundation in memory management, pointers, and core
-              logic.
-            </p>
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
                 <span class="sk-bar-pct" data-target="40">0%</span>
               </div>
-              <div class="sk-bar-track">
-                <div class="sk-bar-fill"></div>
-              </div>
+              <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- =============================================
-        MILESTONES SECTION - AR.dev
-     ============================================= -->
+      <!-- =======================================================================
+        4. MILESTONES SECTION (#milestones)
+      ======================================================================== -->
       <section id="milestones">
         <h2><i class="bx bx-award"></i> My Milestones</h2>
 
         <div class="milestones-timeline">
-          <!-- Vertical spine line -->
           <div class="timeline-spine" aria-hidden="true"></div>
 
-          <!-- ── 01 ── -->
+          <!-- Item 01 -->
           <div class="tl-item">
             <div class="tl-node">
               <span class="tl-index">01</span>
@@ -1125,7 +1062,7 @@
             </div>
           </div>
 
-          <!-- ── 02 ── -->
+          <!-- Item 02 -->
           <div class="tl-item">
             <div class="tl-node">
               <span class="tl-index">02</span>
@@ -1155,7 +1092,7 @@
             </div>
           </div>
 
-          <!-- ── 03 ── -->
+          <!-- Item 03 -->
           <div class="tl-item">
             <div class="tl-node">
               <span class="tl-index">03</span>
@@ -1185,7 +1122,7 @@
             </div>
           </div>
 
-          <!-- ── 04 ── -->
+          <!-- Item 04 -->
           <div class="tl-item">
             <div class="tl-node">
               <span class="tl-index">04</span>
@@ -1216,7 +1153,7 @@
             </div>
           </div>
 
-          <!-- ── 05 ── -->
+          <!-- Item 05 -->
           <div class="tl-item">
             <div class="tl-node">
               <span class="tl-index">05</span>
@@ -1247,7 +1184,7 @@
             </div>
           </div>
 
-          <!-- ── 06 ── -->
+          <!-- Item 06 -->
           <div class="tl-item">
             <div class="tl-node">
               <span class="tl-index">06</span>
@@ -1281,7 +1218,7 @@
             </div>
           </div>
 
-          <!-- ── 07 ── -->
+          <!-- Item 07 -->
           <div class="tl-item">
             <div class="tl-node">
               <span class="tl-index">07</span>
@@ -1313,7 +1250,7 @@
             </div>
           </div>
 
-          <!-- ── 08 ── -->
+          <!-- Item 08 -->
           <div class="tl-item">
             <div class="tl-node">
               <span class="tl-index">08</span>
@@ -1348,7 +1285,7 @@
             </div>
           </div>
 
-          <!-- ── 09 ── -->
+          <!-- Item 09 -->
           <div class="tl-item">
             <div class="tl-node">
               <span class="tl-index">09</span>
@@ -1357,7 +1294,7 @@
             <div class="tl-card">
               <div class="tl-card-header">
                 <div class="tl-title-row">
-                  <h3>Started Learning Git & GitHub</h3>
+                  <h3>Started Learning Git &amp; GitHub</h3>
                   <span class="tl-tag tag-learn">New Skill</span>
                 </div>
                 <span class="tl-date"
@@ -1380,7 +1317,7 @@
             </div>
           </div>
 
-          <!-- ── 10 ── -->
+          <!-- Item 10 -->
           <div class="tl-item tl-item--last">
             <div class="tl-node">
               <span class="tl-index">10</span>
@@ -1413,27 +1350,28 @@
         </div>
       </section>
 
-      <!-- =============================================
-        PROJECTS SECTION - AR.dev
-     ============================================= -->
+      <!-- =======================================================================
+        5. PROJECTS SECTION (#projects)
+      ======================================================================== -->
       <section id="projects">
         <h2><i class="bx bx-layer"></i>Things I've Built</h2>
 
-        <!-- ── Filter Bar ── -->
+        <!-- Project Filter Buttons -->
         <div class="proj-filter-bar" role="group" aria-label="Filter projects">
-          <button class="proj-filter-btn active" data-filter="all">
-            All Projects
-          </button>
+          <button class="proj-filter-btn active" data-filter="all">All</button>
           <button class="proj-filter-btn" data-filter="live">
             <span class="pfb-dot"></span> Live
           </button>
           <button class="proj-filter-btn" data-filter="paid">
-            <i class="bx bx-diamond"></i> Paid Work
+            <i class="bx bx-diamond"></i> Paid
+          </button>
+          <button class="proj-filter-btn" data-filter="soon">
+            <i class="bx bx-time-five"></i> Upcoming
           </button>
         </div>
 
         <div class="projects-grid" id="projectsGrid">
-          <!-- ══ FEATURED: FinTrack ══ -->
+          <!-- Featured: FinTrack -->
           <article
             class="proj-card proj-card--featured"
             data-index="01"
@@ -1441,14 +1379,14 @@
           >
             <div class="proj-img-wrap">
               <img
-                src="Assets/Project_Images/FinTrack_Img.png"
+                src="Assets/Project_Images/fintrack_img.png"
                 alt="FinTrack"
                 loading="lazy"
               />
               <div class="proj-num">01</div>
               <div
                 class="proj-img-overlay proj-preview-trigger"
-                data-img="Assets/Project_Images/FinTrack_Img.png"
+                data-img="Assets/Project_Images/fintrack_img.png"
                 data-title="FinTrack"
                 role="button"
                 tabindex="0"
@@ -1506,7 +1444,7 @@
             </div>
           </article>
 
-          <!-- ══ Varun Portfolio (paid) ══ -->
+          <!-- Paid: Varun Artist Portfolio -->
           <article
             class="proj-card proj-card--paid"
             data-index="02"
@@ -1514,14 +1452,14 @@
           >
             <div class="proj-img-wrap">
               <img
-                src="Assets/Project_Images/Varun_Ptf.png"
+                src="Assets/Project_Images/varun_ptf.png"
                 alt="Varun Artist Portfolio"
                 loading="lazy"
               />
               <div class="proj-num">02</div>
               <div
                 class="proj-img-overlay proj-preview-trigger"
-                data-img="Assets/Project_Images/Varun_Ptf.png"
+                data-img="Assets/Project_Images/varun_ptf.png"
                 data-title="Varun | Artist Portfolio"
                 role="button"
                 tabindex="0"
@@ -1561,18 +1499,18 @@
             </div>
           </article>
 
-          <!-- ══ Shaurya Portfolio ══ -->
+          <!-- Shaurya Developer Portfolio -->
           <article class="proj-card" data-index="03" data-status="archived">
             <div class="proj-img-wrap">
               <img
-                src="Assets/Project_Images/Shaurya_Ptf.png"
+                src="Assets/Project_Images/shaurya_ptf.png"
                 alt="Shaurya Dev Portfolio"
                 loading="lazy"
               />
               <div class="proj-num">03</div>
               <div
                 class="proj-img-overlay proj-preview-trigger"
-                data-img="Assets/Project_Images/Shaurya_Ptf.png"
+                data-img="Assets/Project_Images/shaurya_ptf.png"
                 data-title="Shaurya | Dev Portfolio"
                 role="button"
                 tabindex="0"
@@ -1609,18 +1547,18 @@
             </div>
           </article>
 
-          <!-- ══ Python Utilities ══ -->
+          <!-- Python Utilities -->
           <article class="proj-card" data-index="04" data-status="live">
             <div class="proj-img-wrap">
               <img
-                src="Assets/Project_Images/Python_Img.png"
+                src="Assets/Project_Images/python_img.png"
                 alt="Python Utilities"
                 loading="lazy"
               />
               <div class="proj-num">04</div>
               <div
                 class="proj-img-overlay proj-preview-trigger"
-                data-img="Assets/Project_Images/Python_Img.png"
+                data-img="Assets/Project_Images/python_img.png"
                 data-title="Python Utilities"
                 role="button"
                 tabindex="0"
@@ -1635,9 +1573,9 @@
             <div class="proj-body">
               <div class="proj-meta-row">
                 <span class="proj-index">04</span>
-                <span class="proj-status status-stable"
-                  ><i class="bx bx-check-circle"></i> Stable</span
-                >
+                <span class="proj-status status-stable">
+                  <i class="bx bx-check-circle"></i> Stable
+                </span>
                 <span class="proj-type">Python · CLI</span>
               </div>
 
@@ -1666,16 +1604,74 @@
               </div>
             </div>
           </article>
+
+          <!-- C Projects -->
+          <article class="proj-card" data-index="05" data-status="live">
+            <div class="proj-img-wrap">
+              <img
+                src="Assets/Project_Images/c_programming_img.png"
+                alt="C Projects"
+                loading="lazy"
+              />
+              <div class="proj-num">05</div>
+              <div
+                class="proj-img-overlay proj-preview-trigger"
+                data-img="Assets/Project_Images/c_programming_img.png"
+                data-title="C Projects"
+                role="button"
+                tabindex="0"
+                aria-label="Preview C Projects image fullscreen"
+              >
+                <span class="proj-overlay-label"
+                  ><i class="bx bx-code-curly"></i> View Projects</span
+                >
+              </div>
+            </div>
+
+            <div class="proj-body">
+              <div class="proj-meta-row">
+                <span class="proj-index">05</span>
+                <span class="proj-status status-stable">
+                  <i class="bx bx-check-circle"></i> Stable
+                </span>
+                <span class="proj-type">C · Systems</span>
+              </div>
+
+              <h3 class="proj-title">C Projects</h3>
+              <p class="proj-desc">
+                A growing set of foundational C programs - covering memory
+                management, pointers, and core data structures. Each program
+                strengthens my grip on low-level logic beneath the frameworks I
+                use daily.
+              </p>
+
+              <div class="proj-tags">
+                <span><i class="bx bx-code-alt"></i> C Programming</span>
+                <span><i class="bx bx-memory-card"></i> Pointers</span>
+                <span><i class="bx bx-chip"></i> Memory Mgmt</span>
+              </div>
+
+              <div class="proj-actions">
+                <a
+                  href="files/C_Projects.zip"
+                  download
+                  class="proj-btn proj-btn--primary"
+                >
+                  <i class="bx bx-download proj-btn-arrow-down"></i> Download
+                  ZIP
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 
-      <!-- =============================================
-        GALLERY SECTION - AR.dev
-     ============================================= -->
+      <!-- =======================================================================
+        6. GALLERY SECTION (#gallery)
+      ======================================================================== -->
       <section id="gallery">
         <h2><i class="bx bx-images"></i> Visual Notes</h2>
 
-        <!-- Header row: kicker + filter tabs -->
         <div class="gl2-header">
           <div class="gl2-intro">
             <span class="gl-kicker">WORK IN FRAMES</span>
@@ -1684,7 +1680,7 @@
               frame tells a part of the story.
             </p>
           </div>
-          <!-- Filter tabs -->
+
           <div class="gl2-filters" role="group" aria-label="Filter gallery">
             <button class="gl2-filter active" data-gl-filter="all">
               All <span class="gl2-filter-count">9</span>
@@ -1697,9 +1693,8 @@
           </div>
         </div>
 
-        <!-- ── GRID ── -->
         <div class="gl2-grid" id="gl2Grid" role="list">
-          <!-- Card 01 -->
+          <!-- Item 01: FinTrack Desktop -->
           <div class="gl2-item" data-gl-tag="mockup" role="listitem">
             <a
               href="Assets/Gallery_Images/fintrack_mockup.png"
@@ -1730,7 +1725,7 @@
             </div>
           </div>
 
-          <!-- Card 02 -->
+          <!-- Item 02: FinTrack Multi-Device -->
           <div class="gl2-item" data-gl-tag="mockup" role="listitem">
             <a
               href="Assets/Gallery_Images/fintrack_md_mockup.png"
@@ -1760,7 +1755,7 @@
             </div>
           </div>
 
-          <!-- Card 03 -->
+          <!-- Item 03: FinTrack UI Redesign -->
           <div class="gl2-item" data-gl-tag="mockup" role="listitem">
             <a
               href="Assets/Gallery_Images/fintrack_ui_mockup.png"
@@ -1791,7 +1786,7 @@
             </div>
           </div>
 
-          <!-- Card 04 -->
+          <!-- Item 04: Blogs Layout Concept -->
           <div class="gl2-item" data-gl-tag="design" role="listitem">
             <a
               href="Assets/Gallery_Images/blogs_mockup.png"
@@ -1821,7 +1816,7 @@
             </div>
           </div>
 
-          <!-- Card 05 -->
+          <!-- Item 05: Blogs by AR -->
           <div class="gl2-item" data-gl-tag="design" role="listitem">
             <a
               href="Assets/Gallery_Images/blogs_by_ar.png"
@@ -1852,7 +1847,7 @@
             </div>
           </div>
 
-          <!-- Card 06 -->
+          <!-- Item 06: Upgraded Portfolio -->
           <div class="gl2-item" data-gl-tag="upgrade" role="listitem">
             <a
               href="Assets/Gallery_Images/portfolio_upgrade.png"
@@ -1883,7 +1878,7 @@
             </div>
           </div>
 
-          <!-- Card 07 -->
+          <!-- Item 07: Enhanced FinTrack -->
           <div class="gl2-item" data-gl-tag="upgrade" role="listitem">
             <a
               href="Assets/Gallery_Images/fintrack_upgrade.png"
@@ -1914,7 +1909,7 @@
             </div>
           </div>
 
-          <!-- Card 08 · Video -->
+          <!-- Item 08: AR.dev Behind the Build Video -->
           <div
             class="gl2-item gl2-item--video"
             data-gl-tag="video"
@@ -1932,9 +1927,7 @@
                 loading="lazy"
               />
               <div class="gl2-overlay gl2-overlay--video" aria-hidden="true">
-                <div class="gl2-play-btn">
-                  <i class="bx bx-play"></i>
-                </div>
+                <div class="gl2-play-btn"><i class="bx bx-play"></i></div>
               </div>
             </a>
             <div class="gl2-caption">
@@ -1946,14 +1939,13 @@
               </div>
               <p class="gl2-title">AR.dev - Behind the Build</p>
               <p class="gl2-body">
-                A narrated deep dive into AR.dev - covering the concept,
-                creative direction, and how the project evolved from idea to
-                execution.
+                A narrated deep dive into AR.dev - covering concept, creative
+                direction, and evolution.
               </p>
             </div>
           </div>
 
-          <!-- Card 09 · Video -->
+          <!-- Item 09: FinTrack Product Walkthrough Video -->
           <div
             class="gl2-item gl2-item--video"
             data-gl-tag="video"
@@ -1971,9 +1963,7 @@
                 loading="lazy"
               />
               <div class="gl2-overlay gl2-overlay--video" aria-hidden="true">
-                <div class="gl2-play-btn">
-                  <i class="bx bx-play"></i>
-                </div>
+                <div class="gl2-play-btn"><i class="bx bx-play"></i></div>
               </div>
             </a>
             <div class="gl2-caption">
@@ -1986,27 +1976,22 @@
               <p class="gl2-title">FinTrack - Product Walkthrough</p>
               <p class="gl2-body">
                 A complete walkthrough of FinTrack - exploring core features,
-                user experience, and the logic behind its financial tracking
-                system.
+                user experience, and logic.
               </p>
             </div>
           </div>
         </div>
-        <!-- /gl2-grid -->
       </section>
 
-      <!-- =============================================
-        CONTACT SECTION - AR.dev
-     ============================================= -->
+      <!-- =======================================================================
+        7. CONTACT SECTION (#contact)
+      ======================================================================== -->
       <section id="contact">
         <h2><i class="bx bx-message-dots"></i>Get in Touch</h2>
 
         <div class="contact-wrapper">
-          <!-- ════════════════════════
-             LEFT - Info panel
-        ════════════════════════ -->
+          <!-- Left: Contact Details & Social Links -->
           <div class="contact-left">
-            <!-- Intro -->
             <div class="contact-intro">
               <span class="contact-kicker">LET'S TALK</span>
               <h3 class="contact-heading">
@@ -2018,7 +2003,6 @@
               </p>
             </div>
 
-            <!-- Info cards -->
             <div class="contact-info-cards">
               <div class="contact-info-card">
                 <div class="ci-icon-wrap">
@@ -2068,9 +2052,7 @@
                 </div>
               </div>
             </div>
-            <!-- /contact-info-cards -->
 
-            <!-- Social row -->
             <div class="contact-socials">
               <span class="cs-label">Connect with</span>
               <div class="cs-icons">
@@ -2104,14 +2086,10 @@
               </div>
             </div>
           </div>
-          <!-- /contact-left -->
 
-          <!-- ════════════════════════
-             RIGHT - Form panel
-        ════════════════════════ -->
+          <!-- Right: Asynchronous Contact Form -->
           <div class="contact-right">
             <div class="contact-form-wrap">
-              <!-- Form header -->
               <div class="cf-header">
                 <span class="contact-kicker">SEND A MESSAGE</span>
                 <p class="form-tagline">
@@ -2132,12 +2110,9 @@
                   value="8395aab8-aade-4a90-b78f-f7988ec23adf"
                 />
 
-                <!-- Row: Name + Email side by side on desktop -->
                 <div class="cf-row">
                   <div class="cf-field">
-                    <label for="cf-name">
-                      <i class="bx bx-user"></i> Name
-                    </label>
+                    <label for="cf-name"><i class="bx bx-user"></i> Name</label>
                     <input
                       id="cf-name"
                       type="text"
@@ -2158,10 +2133,11 @@
                       name</span
                     >
                   </div>
+
                   <div class="cf-field">
-                    <label for="cf-email">
-                      <i class="bx bx-envelope"></i> Email
-                    </label>
+                    <label for="cf-email"
+                      ><i class="bx bx-envelope"></i> Email</label
+                    >
                     <input
                       id="cf-email"
                       type="email"
@@ -2184,12 +2160,11 @@
                   </div>
                 </div>
 
-                <!-- Row: Subject + Like side by side on desktop -->
                 <div class="cf-row">
                   <div class="cf-field">
-                    <label for="cf-subject">
-                      <i class="bx bx-purchase-tag"></i> Subject
-                    </label>
+                    <label for="cf-subject"
+                      ><i class="bx bx-purchase-tag"></i> Subject</label
+                    >
                     <input
                       id="cf-subject"
                       type="text"
@@ -2208,6 +2183,7 @@
                       subject</span
                     >
                   </div>
+
                   <div class="cf-field">
                     <label for="cf-like">
                       <i class="bx bx-heart"></i> What did you like?
@@ -2223,9 +2199,9 @@
                 </div>
 
                 <div class="cf-field cf-has-textarea">
-                  <label for="cf-message">
-                    <i class="bx bx-message-detail"></i> Message
-                  </label>
+                  <label for="cf-message"
+                    ><i class="bx bx-message-detail"></i> Message</label
+                  >
                   <textarea
                     id="cf-message"
                     name="message"
@@ -2245,20 +2221,18 @@
                   >
                 </div>
 
-                <!-- Submit -->
                 <div class="cf-submit-row">
                   <button type="submit" class="cf-submit">
                     <i class="bx bx-send cf-submit-icon"></i>
                     <span>Send Message</span>
                     <i class="bx bx-right-arrow-alt cf-submit-arrow"></i>
                   </button>
-                  <span class="cf-note">
-                    <i class="bx bx-lock-alt"></i> Private &amp; secure
-                  </span>
+                  <span class="cf-note"
+                    ><i class="bx bx-lock-alt"></i> Private &amp; secure</span
+                  >
                 </div>
               </form>
 
-              <!-- Success state (shown after submit) -->
               <div class="cf-success-msg" id="cfSuccessMsg" aria-live="polite">
                 <div class="cf-success-icon"><i class="bx bx-check"></i></div>
                 <p class="cf-success-title">Message sent!</p>
@@ -2267,15 +2241,14 @@
                 </p>
               </div>
             </div>
-            <!-- /contact-form-wrap -->
           </div>
-          <!-- /contact-right -->
         </div>
-        <!-- /contact-wrapper -->
       </section>
     </main>
 
-    <!-- SUPPORT PANEL - AR.dev -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       SUPPORT POPUP DIALOG (#supportPopup)
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <div
       class="support-popup"
       id="supportPopup"
@@ -2283,7 +2256,6 @@
       aria-modal="true"
       aria-label="Support the developer"
     >
-      <!-- Close -->
       <button
         class="sp-close"
         id="closeSupport"
@@ -2292,12 +2264,9 @@
         <i class="bx bx-x" aria-hidden="true"></i>
       </button>
 
-      <!-- Ambient grid texture -->
       <div class="sp-grid" aria-hidden="true"></div>
-      <!-- Top glow line -->
       <div class="sp-glow-line" aria-hidden="true"></div>
 
-      <!-- Brand row -->
       <div class="sp-brand">
         <span class="sp-logo">AR<span class="sp-logo-dot">.</span>dev</span>
         <span class="sp-badge">
@@ -2306,7 +2275,6 @@
         </span>
       </div>
 
-      <!-- Heading -->
       <div class="sp-heading">
         <i class="bx bx-coffee-togo sp-coffee-icon" aria-hidden="true"></i>
         <div>
@@ -2317,30 +2285,27 @@
         </div>
       </div>
 
-      <!-- UPI CTA -->
       <a
         href="upi://pay?pa=9548069160@sbi&pn=Ayush%20Rathour&tn=Supporting%20AR.dev&cu=INR"
         class="sp-upi-btn"
         aria-label="Pay via UPI to support Ayush Rathour"
       >
-        <span class="sp-upi-icon" aria-hidden="true">
-          <i class="bx bx-bolt-circle"></i>
-        </span>
+        <span class="sp-upi-icon" aria-hidden="true"
+          ><i class="bx bx-bolt-circle"></i
+        ></span>
         <span class="sp-upi-label">Pay via UPI</span>
-        <span class="sp-upi-arrow" aria-hidden="true">
-          <i class="bx bx-chevron-right"></i>
-        </span>
+        <span class="sp-upi-arrow" aria-hidden="true"
+          ><i class="bx bx-chevron-right"></i
+        ></span>
         <span class="sp-upi-shine" aria-hidden="true"></span>
       </a>
 
-      <!-- Divider -->
       <div class="sp-divider" role="separator">
         <span class="sp-divider-dot" aria-hidden="true"></span>
         <span>or scan</span>
         <span class="sp-divider-dot" aria-hidden="true"></span>
       </div>
 
-      <!-- QR frame -->
       <div class="sp-qr-wrap">
         <div class="sp-qr-frame">
           <img
@@ -2359,17 +2324,16 @@
       </div>
     </div>
 
-    <!-- =============================================
-    FOOTER - AR.dev
-  ============================================= -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <footer class="footer">
-      <!-- Ambient background details -->
       <div class="footer-bg-grid" aria-hidden="true"></div>
       <div class="footer-orb footer-orb--left" aria-hidden="true"></div>
       <div class="footer-orb footer-orb--right" aria-hidden="true"></div>
 
       <div class="footer-inner">
-        <!-- ══ TOP STRIP ══ -->
+        <!-- Top Columns -->
         <div class="footer-top">
           <div class="footer-brand-block">
             <a href="#home" class="footer-logo-link" aria-label="AR.dev Home">
@@ -2383,14 +2347,12 @@
               of creativity and logic, brought to life through seamless
               execution.
             </p>
-            <!-- Availability badge -->
             <div class="footer-availability">
               <span class="footer-avail-dot"></span>
               <span>Available for projects</span>
             </div>
           </div>
 
-          <!-- ══ NAV COLUMNS ══ -->
           <nav class="footer-nav-block" aria-label="Footer navigation">
             <p class="footer-col-label">Explore</p>
             <ul class="footer-nav-list">
@@ -2427,7 +2389,6 @@
             </ul>
           </nav>
 
-          <!-- ══ CONNECT COLUMN ══ -->
           <div class="footer-connect-block">
             <p class="footer-col-label">Connect</p>
             <div class="footer-social-stack">
@@ -2471,7 +2432,6 @@
                 <span class="fsr-label">github.com/ayush-rathour</span>
                 <i class="bx bx-chevron-right fsr-arrow"></i>
               </a>
-
               <a
                 href="https://wa.me/+919548069160"
                 target="_blank"
@@ -2483,7 +2443,6 @@
                 <span class="fsr-label">wa.me/+91 95480 69160</span>
                 <i class="bx bx-chevron-right fsr-arrow"></i>
               </a>
-
               <a
                 href="https://www.linkedin.com/in/ayushrathourrr/"
                 target="_blank"
@@ -2499,12 +2458,11 @@
           </div>
         </div>
 
-        <!-- ══ DIVIDER ══ -->
         <div class="footer-divider" aria-hidden="true">
           <span class="footer-divider-dot"></span>
         </div>
 
-        <!-- ══ BOTTOM STRIP ══ -->
+        <!-- Bottom Copyright -->
         <div class="footer-bottom">
           <div class="footer-bottom-left">
             <i class="bx bx-map-pin"></i>
@@ -2526,55 +2484,14 @@
       </div>
     </footer>
 
-    <!-- Scroll to top -->
+    <!-- Scroll to Top Button -->
     <button id="scrollTop" aria-label="Scroll to top" title="Back to top">
       <i class="bx bx-chevron-up"></i>
     </button>
 
-    <!-- Link to external JavaScript file -->
-    <script src="script.js"></script>
-
-    <!-- Google tag (gtag.js) -->
-    <script
-      defer
-      src="https://www.googletagmanager.com/gtag/js?id=G-14JH9PNNWP"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-14JH9PNNWP");
-    </script>
-
-    <!-- GLightbox JS (deferred) -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"
-      defer
-    ></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        if (typeof GLightbox !== "undefined") {
-          GLightbox({
-            selector: ".gallery-lightbox",
-            touchNavigation: true,
-            loop: false,
-          });
-        } else {
-          window.addEventListener("load", function () {
-            GLightbox({
-              selector: ".gallery-lightbox",
-              touchNavigation: true,
-              loop: false,
-            });
-          });
-        }
-      });
-    </script>
-
-    <!-- ══ PROJECT IMAGE LIGHTBOX ══ -->
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       PROJECT IMAGE PREVIEW MODAL (#projLightbox)
+    ═══════════════════════════════════════════════════════════════════════════ -->
     <div
       id="projLightbox"
       class="proj-lb"
@@ -2600,68 +2517,48 @@
       </div>
     </div>
 
+    <!-- ═══════════════════════════════════════════════════════════════════════════
+       SCRIPTS (Libraries & Core Application Logic)
+    ═══════════════════════════════════════════════════════════════════════════ -->
+    <!-- Google Tag Manager (gtag.js) -->
+    <script
+      defer
+      src="https://www.googletagmanager.com/gtag/js?id=G-14JH9PNNWP"
+    ></script>
     <script>
-      (function () {
-        const lb = document.getElementById("projLightbox");
-        const lbImg = document.getElementById("projLbImg");
-        const lbClose = document.getElementById("projLbClose");
-        const lbCap = document.getElementById("projLbCaption");
-        if (!lb || !lbImg) return;
-
-        function openLb(src, title) {
-          lbImg.src = "";
-          lbImg.alt = title || "";
-          lbCap.textContent = title || "";
-          lb.classList.add("proj-lb--open");
-          lb.setAttribute("aria-hidden", "false");
-          document.body.style.overflow = "hidden";
-          lbImg.classList.remove("proj-lb-img--loaded");
-
-          const tmp = new Image();
-          tmp.onload = () => {
-            lbImg.src = src;
-            lbImg.classList.add("proj-lb-img--loaded");
-          };
-          tmp.src = src;
-        }
-
-        function closeLb() {
-          lb.classList.remove("proj-lb--open");
-          lb.setAttribute("aria-hidden", "true");
-          document.body.style.overflow = "";
-          setTimeout(() => {
-            lbImg.src = "";
-          }, 300);
-        }
-
-        // Open on overlay click
-        document
-          .querySelectorAll(".proj-preview-trigger")
-          .forEach(function (trigger) {
-            trigger.addEventListener("click", function (e) {
-              e.stopPropagation();
-              openLb(trigger.dataset.img, trigger.dataset.title);
-            });
-            // Keyboard: Enter or Space
-            trigger.addEventListener("keydown", function (e) {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                openLb(trigger.dataset.img, trigger.dataset.title);
-              }
-            });
-          });
-
-        // Close on button, backdrop click, Escape
-        lbClose.addEventListener("click", closeLb);
-        lb.querySelector(".proj-lb-backdrop").addEventListener(
-          "click",
-          closeLb,
-        );
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && lb.classList.contains("proj-lb--open"))
-            closeLb();
-        });
-      })();
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-14JH9PNNWP");
     </script>
+
+    <!-- GLightbox Library -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"
+      defer
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function initGLightbox() {
+          if (typeof GLightbox !== "undefined") {
+            GLightbox({
+              selector: ".gallery-lightbox",
+              touchNavigation: true,
+              loop: false,
+            });
+          }
+        }
+        if (typeof GLightbox !== "undefined") {
+          initGLightbox();
+        } else {
+          window.addEventListener("load", initGLightbox);
+        }
+      });
+    </script>
+
+    <!-- Main AR.dev Application Logic -->
+    <script src="script.js"></script>
   </body>
 </html>

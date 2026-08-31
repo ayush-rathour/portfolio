@@ -1,113 +1,16 @@
-// ─────────────────────────────────────────────────────────────
-// PREMIUM SIDEBAR + NAVBAR LOGIC
-// ─────────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-  const menuToggle = document.getElementById("mobile-menu");
-  const sidebar = document.getElementById("sidebar");
-  const overlay = document.getElementById("sidebarOverlay");
-  const closeBtn = document.getElementById("sidebarClose");
-  const header = document.getElementById("mainHeader");
+/* =============================================================================
+   AR.dev - Main Script
+   Author: Ayush Rathour
+   ============================================================================= */
 
-  function openSidebar() {
-    sidebar.classList.add("open");
-    overlay.classList.add("visible");
-    menuToggle.classList.add("open");
-    menuToggle.setAttribute("aria-expanded", "true");
-    sidebar.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeSidebar() {
-    sidebar.classList.remove("open");
-    overlay.classList.remove("visible");
-    menuToggle.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    sidebar.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  }
-
-  menuToggle.addEventListener("click", () => {
-    sidebar.classList.contains("open") ? closeSidebar() : openSidebar();
-  });
-
-  overlay.addEventListener("click", closeSidebar);
-  closeBtn.addEventListener("click", closeSidebar);
-
-  // Close on any sidebar nav link click
-  document.querySelectorAll(".sidebar-nav a").forEach((link) => {
-    link.addEventListener("click", closeSidebar);
-  });
-
-  // Header scroll state
-  const onScroll = () => {
-    header.classList.toggle("scrolled", window.scrollY > 20);
-    updateActiveLinks();
-  };
-
-  // Active link highlight on scroll
-  const sections = [
-    "home",
-    "about",
-    "skills",
-    "milestones",
-    "projects",
-    "gallery",
-    "contact",
-  ];
-
-  function updateActiveLinks() {
-    let current = "";
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el && window.scrollY >= el.offsetTop - 90) current = id;
-    });
-    document.querySelectorAll(".nav-desktop a, .sidebar-nav a").forEach((a) => {
-      a.classList.toggle("active", a.getAttribute("href") === "#" + current);
-    });
-  }
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  updateActiveLinks();
-
-  // Close sidebar on Escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && sidebar.classList.contains("open"))
-      closeSidebar();
-  });
-});
-
-// ─────────────────────────────────────────────────────────────
-// SMOOTH SCROLL TO SECTIONS (Anchor Click)
-// ─────────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-  const header = document.getElementById("mainHeader");
-
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", (e) => {
-      const targetId = anchor.getAttribute("href").substring(1);
-      const target = document.getElementById(targetId);
-
-      if (target) {
-        e.preventDefault();
-        const headerHeight = header ? header.offsetHeight : 0;
-        const targetTop =
-          target.getBoundingClientRect().top +
-          window.scrollY -
-          (headerHeight + 15);
-        window.scrollTo({ top: targetTop, behavior: "smooth" });
-      }
-    });
-  });
-});
-
-// ─────────────────────────────────────────────────────────────
-// LOADING SCREEN - real event-driven boot sequence
-// ─────────────────────────────────────────────────────────────
-(function () {
+/* =============================================================================
+   GLOBAL PRELOADER / BOOT SEQUENCE (#loading-screen)
+   ============================================================================= */
+(function initBootSequence() {
   const SEG_COUNT = 20;
-  const GRACEFUL_MIN_MS = 3000; // minimum *visual* time so it doesn't flash away instantly
+  const GRACEFUL_MIN_MS = 3000; // Minimum display time to ensure smooth visual boot
 
-  // Real milestone tracking - each resolves when the browser actually fires it
+  // Lifecycle weights for computing real progress
   const milestones = {
     dom: { weight: 15, done: false },
     fonts: { weight: 20, done: false },
@@ -118,21 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let displayProgress = 0;
   let dismissed = false;
   let startTime = Date.now();
-  let loadComplete = false; // window.load fired?
+  let loadComplete = false;
+  let stallUntil = 0;
 
-  // ── Compute real progress from milestones ──
+  // Calculates percentage achieved from completed milestones
   function getRealProgress() {
     let total = 0;
-    for (const k in milestones) {
-      if (milestones[k].done) total += milestones[k].weight;
+    for (const key in milestones) {
+      if (milestones[key].done) total += milestones[key].weight;
     }
-    return total; // 0–100
+    return total;
   }
 
-  // ── Micro-stall engine: adds tiny random pauses so progress feels earned ──
-  let stallUntil = 0;
+  // Checkpoints to hold progress until real events confirm readiness
   function getStallCeiling() {
-    // Progress stalls at realistic checkpoints until the real event fires
     if (!milestones.dom.done) return 12;
     if (!milestones.fonts.done) return 34;
     if (!milestones.images.done) return 72;
@@ -140,26 +42,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return 100;
   }
 
-  // ── Log line messages tied to real events ──
-  const logMessages = [
-    { id: "ls-log0", text: null }, // already in HTML, shown at 0%
-    { id: "ls-log1", event: "dom" },
-    { id: "ls-log2", event: "fonts" },
-    { id: "ls-log3", event: "fonts" },
-    { id: "ls-log4", event: "images" },
-    { id: "ls-log5", event: "load" },
-  ];
-
   function revealLog(id) {
     const el = document.getElementById(id);
-    if (el && !el.classList.contains("visible")) el.classList.add("visible");
+    if (el && !el.classList.contains("visible")) {
+      el.classList.add("visible");
+    }
   }
 
   function markMilestone(key) {
     if (milestones[key].done) return;
     milestones[key].done = true;
 
-    // Reveal corresponding log lines
     if (key === "dom") {
       revealLog("ls-log0");
       revealLog("ls-log1");
@@ -176,55 +69,56 @@ document.addEventListener("DOMContentLoaded", () => {
       loadComplete = true;
     }
 
-    // Add a small stall after each milestone for realism
+    // Micro-stall to simulate real-time processing
     stallUntil = Date.now() + 120 + Math.random() * 180;
   }
 
-  // ── Hook real browser events ──
-
-  // 1. DOM ready
+  // --- Attach Real Browser Event Listeners ---
+  // 1. DOM Ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => markMilestone("dom"), {
       once: true,
     });
   } else {
-    markMilestone("dom"); // already fired
+    markMilestone("dom");
   }
 
-  // 2. Fonts (real async signal)
+  // 2. WebFonts Ready
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => markMilestone("fonts"));
   } else {
-    // Fallback: assume fonts after DOM + 300ms
     setTimeout(() => markMilestone("fonts"), 300);
   }
 
-  // 3. Images - track only above-the-fold critical images (loading="eager")
-  function trackImages() {
-    const imgs = Array.from(
+  // 3. Above-the-fold Critical Images Ready
+  function trackCriticalImages() {
+    const criticalImages = Array.from(
       document.querySelectorAll('img[loading="eager"], img:not([loading])'),
     );
-    if (!imgs.length) {
+    if (!criticalImages.length) {
       markMilestone("images");
       return;
     }
 
-    let loaded = 0;
-    const total = imgs.length;
-    function onImgLoad() {
-      loaded++;
-      if (loaded >= total) markMilestone("images");
+    let loadedCount = 0;
+    const total = criticalImages.length;
+
+    function onImageLoaded() {
+      loadedCount++;
+      if (loadedCount >= total) markMilestone("images");
     }
-    imgs.forEach((img) => {
-      if (img.complete) onImgLoad();
-      else {
-        img.addEventListener("load", onImgLoad, { once: true });
-        img.addEventListener("error", onImgLoad, { once: true });
+
+    criticalImages.forEach((img) => {
+      if (img.complete) {
+        onImageLoaded();
+      } else {
+        img.addEventListener("load", onImageLoaded, { once: true });
+        img.addEventListener("error", onImageLoaded, { once: true });
       }
     });
   }
 
-  // 4. Full window load
+  // 4. Window Full Load
   if (document.readyState === "complete") {
     markMilestone("load");
   } else {
@@ -233,11 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function easeOut(t) {
-    return 1 - Math.pow(1 - t, 3);
-  }
-
-  // ── Status text phrases ──
+  // Preloader status phrases mapped to progress
   const statusPhrases = [
     { at: 0, text: "Initializing systems…" },
     { at: 14, text: "DOM ready · Parsing markup…" },
@@ -247,34 +137,33 @@ document.addEventListener("DOMContentLoaded", () => {
     { at: 92, text: "Almost there…" },
   ];
 
-  // ── DOM Ready: build segments + canvas ──
+  // --- Canvas Particle Background & Preloader Segments Setup ---
   document.addEventListener("DOMContentLoaded", () => {
-    // Build segments
     const segRow = document.getElementById("ls-seg-row");
     if (segRow) {
       for (let i = 0; i < SEG_COUNT; i++) {
-        const s = document.createElement("div");
-        s.className = "ls-seg";
-        s.id = "ls-seg-" + i;
-        segRow.appendChild(s);
+        const seg = document.createElement("div");
+        seg.className = "ls-seg";
+        seg.id = "ls-seg-" + i;
+        segRow.appendChild(seg);
       }
     }
 
-    trackImages();
+    trackCriticalImages();
 
-    // Hex particle canvas
+    // Floating Hexagon Particle Canvas
     const canvas = document.getElementById("ls-hex-canvas");
     if (canvas) {
       const ctx = canvas.getContext("2d");
       let W, H;
       const particles = [];
 
-      function resize() {
+      function resizeCanvas() {
         W = canvas.width = canvas.offsetWidth;
         H = canvas.height = canvas.offsetHeight;
       }
-      resize();
-      window.addEventListener("resize", resize);
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
 
       for (let i = 0; i < 18; i++) {
         particles.push({
@@ -289,28 +178,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      function hexPath(x, y, r) {
+      function drawHex(x, y, r) {
         ctx.beginPath();
         for (let i = 0; i < 6; i++) {
-          const a = (Math.PI / 3) * i - Math.PI / 6;
-          const px = x + r * Math.cos(a);
-          const py = y + r * Math.sin(a);
+          const angle = (Math.PI / 3) * i - Math.PI / 6;
+          const px = x + r * Math.cos(angle);
+          const py = y + r * Math.sin(angle);
           i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
         }
         ctx.closePath();
       }
 
-      function animHex() {
+      function renderHexCanvas() {
         if (dismissed) return;
         ctx.clearRect(0, 0, W, H);
         const t = Date.now() / 1000;
-        const pctFrac = displayProgress / 100;
-        const speedMult = 0.4 + pctFrac * 1.0; // accelerates as load progresses
-        const loadAlpha = 0.25 + pctFrac * 0.75;
+        const pctFraction = displayProgress / 100;
+        const speedMultiplier = 0.4 + pctFraction * 1.0;
+        const loadAlpha = 0.25 + pctFraction * 0.75;
 
         particles.forEach((p) => {
-          p.x += p.vx * speedMult;
-          p.y += p.vy * speedMult;
+          p.x += p.vx * speedMultiplier;
+          p.y += p.vy * speedMultiplier;
           if (p.x < -20) p.x = W + 20;
           if (p.x > W + 20) p.x = -20;
           if (p.y < -20) p.y = H + 20;
@@ -320,32 +209,31 @@ document.addEventListener("DOMContentLoaded", () => {
             p.a * loadAlpha * (0.5 + 0.5 * Math.sin(t * p.speed + p.phase));
           ctx.strokeStyle = `rgba(0,188,212,${alpha})`;
           ctx.lineWidth = 0.8;
-          hexPath(p.x, p.y, p.r);
+          drawHex(p.x, p.y, p.r);
           ctx.stroke();
         });
-        requestAnimationFrame(animHex);
+
+        requestAnimationFrame(renderHexCanvas);
       }
-      animHex();
+      renderHexCanvas();
     }
 
     requestAnimationFrame(tickDisplay);
   });
 
-  // ── Progress ticker ──
+  // Smooth UI progress interpolation
   function tickDisplay() {
     if (dismissed) return;
 
     const realPct = getRealProgress();
     const ceiling = getStallCeiling();
     const now = Date.now();
-
-    // During a stall window: slow crawl only
     const inStall = now < stallUntil;
+
     const target = inStall
-      ? Math.min(displayProgress + 0.08, ceiling - 1) // barely moves during stall
+      ? Math.min(displayProgress + 0.08, ceiling - 1)
       : Math.min(realPct, ceiling);
 
-    // Lerp toward target - faster when nearly done
     const lerpSpeed = loadComplete ? 0.12 : 0.045;
     if (displayProgress < target) {
       displayProgress = Math.min(
@@ -357,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const pct = Math.round(displayProgress);
 
-    // Update UI
+    // Update DOM indicators
     const pctEl = document.getElementById("ls-pct-num");
     const barEl = document.getElementById("ls-bar-fill");
     const txtEl = document.getElementById("ls-status-txt");
@@ -365,15 +253,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pctEl) pctEl.textContent = pct;
     if (barEl) barEl.style.width = pct + "%";
 
-    // Segments
+    // Light up progress segments
     for (let i = 0; i < SEG_COUNT; i++) {
-      const s = document.getElementById("ls-seg-" + i);
-      if (!s) continue;
+      const seg = document.getElementById("ls-seg-" + i);
+      if (!seg) continue;
       const lit = Math.floor((pct / 100) * SEG_COUNT);
-      s.className = "ls-seg" + (i < lit ? " full" : i === lit ? " lit" : "");
+      seg.className = "ls-seg" + (i < lit ? " full" : i === lit ? " lit" : "");
     }
 
-    // Status phrase
+    // Update text log
     if (txtEl) {
       let phrase = statusPhrases[0].text;
       for (const p of statusPhrases) {
@@ -382,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (txtEl.textContent !== phrase) txtEl.textContent = phrase;
     }
 
-    // Try dismiss: all milestones done + graceful min time elapsed + display caught up
+    // Dismiss when all conditions are fulfilled
     const elapsed = Date.now() - startTime;
     if (loadComplete && elapsed >= GRACEFUL_MIN_MS && displayProgress >= 99) {
       dismissLoader();
@@ -392,12 +280,11 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(tickDisplay);
   }
 
-  // ── Dismiss loader ──
+  // Gracefully transition the preloader out of view
   function dismissLoader() {
     if (dismissed) return;
     dismissed = true;
 
-    // Snap to 100
     displayProgress = 100;
     const pctEl = document.getElementById("ls-pct-num");
     const barEl = document.getElementById("ls-bar-fill");
@@ -405,22 +292,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (barEl) barEl.style.width = "100%";
 
     for (let i = 0; i < SEG_COUNT; i++) {
-      const s = document.getElementById("ls-seg-" + i);
-      if (s) s.className = "ls-seg full";
+      const seg = document.getElementById("ls-seg-" + i);
+      if (seg) seg.className = "ls-seg full";
     }
     for (let i = 0; i < 6; i++) revealLog("ls-log" + i);
 
     const loadingScreen = document.getElementById("loading-screen");
     if (!loadingScreen) return;
 
-    // Flash → slide up exit (more character than plain fade)
     loadingScreen.style.transition = "none";
     loadingScreen.style.background = "rgba(0,188,212,0.06)";
+
     setTimeout(() => {
       loadingScreen.style.transition =
         "opacity 0.45s ease, transform 0.55s cubic-bezier(0.4,0,0.2,1)";
       loadingScreen.style.opacity = "0";
       loadingScreen.style.transform = "translateY(-8px)";
+
       setTimeout(() => {
         loadingScreen.style.display = "none";
       }, 560);
@@ -428,96 +316,191 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })();
 
-// ==============================
-// SUPPORT POPUP
-// ==============================
-window.addEventListener("load", () => {
-  const popup = document.getElementById("supportPopup");
-  const closeBtn = document.getElementById("closeSupport");
+/* =============================================================================
+   HEADER & MOBILE NAVIGATION SIDEBAR (#mainHeader, #sidebar)
+   ============================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.getElementById("mainHeader");
+  const menuToggle = document.getElementById("mobile-menu");
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("sidebarOverlay");
+  const closeBtn = document.getElementById("sidebarClose");
 
-  function openSupport() {
-    popup.classList.add("show");
+  const sections = [
+    "home",
+    "about",
+    "skills",
+    "milestones",
+    "projects",
+    "gallery",
+    "contact",
+  ];
+
+  // --- Sidebar Drawer Controls ---
+  function openSidebar() {
+    sidebar.classList.add("open");
+    overlay.classList.add("visible");
+    menuToggle.classList.add("open");
+    menuToggle.setAttribute("aria-expanded", "true");
+    sidebar.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden"; // Prevent background scroll
   }
 
-  function closeSupport() {
-    popup.classList.remove("show");
+  function closeSidebar() {
+    sidebar.classList.remove("open");
+    overlay.classList.remove("visible");
+    menuToggle.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    sidebar.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
   }
 
-  // Trigger buttons (navbar + sidebar)
-  document
-    .getElementById("navSupportBtn")
-    ?.addEventListener("click", openSupport);
-  document
-    .getElementById("sidebarSupportBtn")
-    ?.addEventListener("click", () => {
-      // Close sidebar first, then open popup
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("sidebarOverlay");
-      const menuToggle = document.getElementById("mobile-menu");
-      if (sidebar) {
-        sidebar.classList.remove("open");
-        overlay?.classList.remove("visible");
-        menuToggle?.classList.remove("open");
-        menuToggle?.setAttribute("aria-expanded", "false");
-        sidebar.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      }
-      setTimeout(openSupport, 280);
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.contains("open") ? closeSidebar() : openSidebar();
     });
+  }
 
-  // Close button
-  closeBtn?.addEventListener("click", closeSupport);
+  if (overlay) overlay.addEventListener("click", closeSidebar);
+  if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
 
-  // Escape key closes popup
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && popup.classList.contains("show")) closeSupport();
+  // Close sidebar on clicking any internal navigation item
+  document.querySelectorAll(".sidebar-nav a").forEach((link) => {
+    link.addEventListener("click", closeSidebar);
   });
 
-  // Auto-show after 90 seconds (keep original behaviour)
-  setTimeout(openSupport, 90000);
+  // Close drawer on Escape keypress
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && sidebar && sidebar.classList.contains("open")) {
+      closeSidebar();
+    }
+  });
+
+  // --- Active Nav Highlighting & Header Scrolled State ---
+  function updateActiveNavLinks() {
+    let activeSectionId = "";
+    sections.forEach((id) => {
+      const sectionEl = document.getElementById(id);
+      if (sectionEl && window.scrollY >= sectionEl.offsetTop - 90) {
+        activeSectionId = id;
+      }
+    });
+
+    document
+      .querySelectorAll(".nav-desktop a, .sidebar-nav a")
+      .forEach((anchor) => {
+        anchor.classList.toggle(
+          "active",
+          anchor.getAttribute("href") === "#" + activeSectionId,
+        );
+      });
+  }
+
+  function handleHeaderScroll() {
+    if (header) {
+      header.classList.toggle("scrolled", window.scrollY > 20);
+    }
+    updateActiveNavLinks();
+  }
+
+  window.addEventListener("scroll", handleHeaderScroll, { passive: true });
+  updateActiveNavLinks(); // Initialize on page load
 });
 
-// ─────────────────────────────────────────────────────────────
-// ABOUT SECTION
-// ─────────────────────────────────────────────────────────────
+/* =============================================================================
+   SMOOTH SCROLL ENGINE
+   ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  // ── 1. Terminal typewriter ──────────────────────────────────
-  const terminalLines = [
-    { type: "comment", text: "// Developer profile · v2026" },
-    { type: "arr", text: "{" },
+  const header = document.getElementById("mainHeader");
 
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      const targetId = anchor.getAttribute("href").substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        e.preventDefault();
+        const headerOffset = header ? header.offsetHeight : 0;
+        const targetPosition =
+          targetElement.getBoundingClientRect().top +
+          window.scrollY -
+          (headerOffset + 15);
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+});
+
+/* =============================================================================
+   HERO SECTION (#home)
+   ============================================================================= */
+(function initHeroEntrance() {
+  const homeSection = document.getElementById("home");
+  const loadingScreen = document.getElementById("loading-screen");
+  if (!homeSection) return;
+
+  function triggerHeroSequence() {
+    setTimeout(() => {
+      homeSection.classList.add("hero-ready");
+    }, 80);
+  }
+
+  if (loadingScreen) {
+    loadingScreen.addEventListener("transitionend", function onFadeOut(e) {
+      if (e.target === loadingScreen && e.propertyName === "opacity") {
+        loadingScreen.removeEventListener("transitionend", onFadeOut);
+        triggerHeroSequence();
+      }
+    });
+
+    // Fallback safety timeout if transition does not fire
+    setTimeout(() => {
+      if (!homeSection.classList.contains("hero-ready")) {
+        triggerHeroSequence();
+      }
+    }, 1000);
+  } else {
+    triggerHeroSequence();
+  }
+})();
+
+/* =============================================================================
+   ABOUT SECTION (#about)
+   ============================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const aboutSection = document.getElementById("about");
+  if (!aboutSection) return;
+
+  // --- Terminal JSON Output Config ---
+  const terminalData = [
+    { type: "comment", text: "// Developer profile · v2026" },
+    { type: "bracket", text: "{" },
     { type: "kv", key: '"Name"', val: '"Ayush Rathour"', comma: true },
     { type: "kv", key: '"Alias"', val: '"AR.dev"', comma: true },
     { type: "kv", key: '"Based"', val: '"Saharanpur, IN"', comma: true },
-
     {
       type: "kv",
       key: '"Role"',
       val: '"Frontend Dev & UI Designer"',
       comma: true,
     },
-
     {
       type: "kv",
       key: '"Stack"',
       val: '["HTML", "CSS", "JavaScript", "Python", "C"]',
       comma: true,
     },
-
-    {
-      type: "kv",
-      key: '"Projects"',
-      val: '"15+ Completed"',
-      comma: true,
-    },
-
+    { type: "kv", key: '"Projects"', val: '"15+ Completed"', comma: true },
     {
       type: "kv",
       key: '"Experience"',
       val: '"4+ Years Self-Taught"',
       comma: true,
     },
-
     {
       type: "kv",
       key: '"Status"',
@@ -525,288 +508,596 @@ document.addEventListener("DOMContentLoaded", () => {
       comma: false,
       cursor: true,
     },
-
-    { type: "arr", text: "}" },
+    { type: "bracket", text: "}" },
   ];
 
-  function buildLineHTML(l) {
-    if (l.type === "comment")
-      return `<span class="ab-tl"><span class="t-comment">${l.text}</span></span>`;
-    if (l.type === "arr")
-      return `<span class="ab-tl"><span class="t-arr">${l.text}</span></span>`;
-    if (l.type === "kv") {
-      const valClass = l.isBool ? "t-bool" : "t-str";
-      const cursor = l.cursor ? `<span class="t-cursor"></span>` : "";
-      const comma = l.comma ? `<span class="t-sym">,</span>` : "";
-      return `<span class="ab-tl">&nbsp;&nbsp;<span class="t-key">${l.key}</span><span class="t-sym">:</span> <span class="${valClass}">${l.val}</span>${comma}${cursor}</span>`;
+  function formatTerminalLine(line) {
+    if (line.type === "comment") {
+      return `<span class="ab-tl"><span class="t-comment">${line.text}</span></span>`;
+    }
+    if (line.type === "bracket") {
+      return `<span class="ab-tl"><span class="t-arr">${line.text}</span></span>`;
+    }
+    if (line.type === "kv") {
+      const cursorHtml = line.cursor ? `<span class="t-cursor"></span>` : "";
+      const commaHtml = line.comma ? `<span class="t-sym">,</span>` : "";
+      return `<span class="ab-tl">&nbsp;&nbsp;<span class="t-key">${line.key}</span><span class="t-sym">:</span> <span class="t-str">${line.val}</span>${commaHtml}${cursorHtml}</span>`;
     }
     return "";
   }
 
   let terminalTriggered = false;
-
-  function runTerminal() {
+  function startTerminalTypewriter() {
     if (terminalTriggered) return;
     terminalTriggered = true;
 
-    const body = document.getElementById("ab-terminal-body");
-    if (!body) return;
-    body.innerHTML = "";
+    const terminalBody = document.getElementById("ab-terminal-body");
+    if (!terminalBody) return;
+    terminalBody.innerHTML = "";
 
-    terminalLines.forEach((line, i) => {
+    terminalData.forEach((line, index) => {
       setTimeout(() => {
-        body.insertAdjacentHTML("beforeend", buildLineHTML(line));
-      }, i * 90);
+        terminalBody.insertAdjacentHTML("beforeend", formatTerminalLine(line));
+      }, index * 90);
     });
   }
 
-  // ── 2. Role cycling text ────────────────────────────────────
+  // --- Dynamic Rotating Role Text ---
   const roles = [
     "Frontend Developer",
     "UI Designer",
     "Student",
     "Problem Solver",
   ];
-  let roleIdx = 0;
-  const roleEl = document.getElementById("abRoleText");
+  let currentRoleIndex = 0;
+  const roleTextEl = document.getElementById("abRoleText");
 
-  if (roleEl) {
+  if (roleTextEl) {
     setInterval(() => {
-      roleIdx = (roleIdx + 1) % roles.length;
-      roleEl.style.opacity = "0";
+      currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+      roleTextEl.style.opacity = "0";
       setTimeout(() => {
-        roleEl.textContent = roles[roleIdx];
-        roleEl.style.opacity = "1";
+        roleTextEl.textContent = roles[currentRoleIndex];
+        roleTextEl.style.opacity = "1";
       }, 320);
     }, 2800);
   }
 
-  // ── 3. Stats counters + bar animations ─────────────────────
+  // --- Numeric Stat Counters & Progress Bar Animation ---
   let statsTriggered = false;
-
-  function runStats() {
+  function triggerStatsAndBars() {
     if (statsTriggered) return;
     statsTriggered = true;
 
-    // Animate number counters
-    document.querySelectorAll(".ab-stat-num[data-target]").forEach((el) => {
-      const target = parseFloat(el.dataset.target);
-      const suffix = el.dataset.suffix || "";
-      const steps = 50;
-      let i = 0;
-      const iv = setInterval(() => {
-        i++;
-        const val = target * (i / steps);
-        el.textContent = Math.round(val) + suffix;
-        if (i >= steps) {
-          el.textContent = target + suffix;
-          clearInterval(iv);
-        }
-      }, 22);
-    });
+    // Increment numeric counters
+    document
+      .querySelectorAll(".ab-stat-num[data-target]")
+      .forEach((counterEl) => {
+        const target = parseFloat(counterEl.dataset.target);
+        const suffix = counterEl.dataset.suffix || "";
+        const totalSteps = 50;
+        let step = 0;
 
-    // Animate stat underbar fills + build bar fills
+        const timer = setInterval(() => {
+          step++;
+          const currentVal = target * (step / totalSteps);
+          counterEl.textContent = Math.round(currentVal) + suffix;
+
+          if (step >= totalSteps) {
+            counterEl.textContent = target + suffix;
+            clearInterval(timer);
+          }
+        }, 22);
+      });
+
+    // Expand bar fills
     setTimeout(() => {
       document
         .querySelectorAll(".ab-stat-bar-fill, .ab-build-bar-fill")
-        .forEach((el) => el.classList.add("ab-bar-animated"));
+        .forEach((bar) => bar.classList.add("ab-bar-animated"));
     }, 150);
   }
 
-  // ── 4. Intersection observer - triggers all animations ──────
-  const aboutSection = document.getElementById("about");
-  if (!aboutSection) return;
-
-  const aboutObs = new IntersectionObserver(
+  // --- Scroll Observer for About Animations ---
+  const aboutObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          runTerminal();
-          runStats();
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          startTerminalTypewriter();
+          triggerStatsAndBars();
+          aboutObserver.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.12 },
   );
 
-  aboutObs.observe(aboutSection);
+  aboutObserver.observe(aboutSection);
 });
 
-// ─────────────────────────────────────────────────────────────
-// SKILLS - scroll-triggered bar animation
-// ─────────────────────────────────────────────────────────────
+/* =============================================================================
+   SKILLS SECTION (#skills)
+   ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const SEG_COUNT = 16;
+  const SEGMENT_COUNT = 16;
 
+  // --- Core & Compact Skill Cards (Linear Progress) ---
   document.querySelectorAll(".skill-block").forEach((card) => {
-    const pct = parseInt(card.dataset.pct) || 0;
-    const fill = card.querySelector(".sk-bar-fill");
-    const pctEl = card.querySelector(".sk-bar-pct");
+    const targetPct = parseInt(card.dataset.pct, 10) || 0;
+    const barFill = card.querySelector(".sk-bar-fill");
+    const pctLabel = card.querySelector(".sk-bar-pct");
     const segRow = card.querySelector(".sk-seg-row");
-    if (!fill || !pctEl || !segRow) return;
 
-    // Build segments
-    for (let i = 0; i < SEG_COUNT; i++) {
-      const s = document.createElement("div");
-      s.className = "sk-seg";
-      segRow.appendChild(s);
+    if (!barFill || !pctLabel || !segRow) return;
+
+    // Generate segmented blocks
+    for (let i = 0; i < SEGMENT_COUNT; i++) {
+      const seg = document.createElement("div");
+      seg.className = "sk-seg";
+      segRow.appendChild(seg);
     }
 
-    let animated = false;
+    let isAnimated = false;
+    function runBarAnimation() {
+      if (isAnimated) return;
+      isAnimated = true;
 
-    function animateBar() {
-      if (animated) return;
-      animated = true;
+      barFill.style.width = targetPct + "%";
+      barFill.classList.add("sk-animated");
 
-      fill.style.width = pct + "%";
-      fill.classList.add("sk-animated");
+      let currentVal = 0;
+      const stepIncrement = targetPct / 40;
 
-      let current = 0;
-      const step = pct / 40;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, pct);
-        pctEl.textContent = Math.round(current) + "%";
-        const lit = Math.floor((current / 100) * SEG_COUNT);
-        segRow.querySelectorAll(".sk-seg").forEach((s, i) => {
-          s.className = "sk-seg" + (i < lit ? " full" : i === lit ? " on" : "");
+      const animTimer = setInterval(() => {
+        currentVal = Math.min(currentVal + stepIncrement, targetPct);
+        pctLabel.textContent = Math.round(currentVal) + "%";
+
+        const activeSegments = Math.floor((currentVal / 100) * SEGMENT_COUNT);
+        segRow.querySelectorAll(".sk-seg").forEach((seg, idx) => {
+          seg.className =
+            "sk-seg" +
+            (idx < activeSegments
+              ? " full"
+              : idx === activeSegments
+                ? " on"
+                : "");
         });
-        if (current >= pct) clearInterval(timer);
+
+        if (currentVal >= targetPct) clearInterval(animTimer);
       }, 22);
     }
 
-    // Wait for the card's reveal transition to finish, then fire the bar
-    const obs = new IntersectionObserver(
+    const skillObserver = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            // Small delay so bar starts after the card slides into view
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
             const delay =
               parseFloat(
                 getComputedStyle(card).getPropertyValue("--reveal-delay"),
               ) || 0;
-            setTimeout(animateBar, delay + 180);
-            obs.unobserve(card);
+            setTimeout(runBarAnimation, delay + 180);
+            skillObserver.unobserve(card);
           }
         });
       },
       { threshold: 0.25 },
     );
 
-    obs.observe(card);
+    skillObserver.observe(card);
+  });
+
+  // --- Mini Skill Indicators (Circular SVG Rings) ---
+  const SVG_CIRCUMFERENCE = 2 * Math.PI * 26; // r="26"
+
+  document.querySelectorAll(".sk-mini").forEach((card) => {
+    const targetPct = parseInt(card.dataset.pct, 10) || 0;
+    const ringFill = card.querySelector(".skm-ring-fill");
+    const pctLabel = card.querySelector(".skm-pct");
+
+    if (!ringFill || !pctLabel) return;
+
+    let isAnimated = false;
+    function runRingAnimation() {
+      if (isAnimated) return;
+      isAnimated = true;
+
+      ringFill.style.strokeDashoffset =
+        SVG_CIRCUMFERENCE - (targetPct / 100) * SVG_CIRCUMFERENCE;
+
+      let currentVal = 0;
+      const stepIncrement = targetPct / 30;
+
+      const animTimer = setInterval(() => {
+        currentVal = Math.min(currentVal + stepIncrement, targetPct);
+        pctLabel.textContent = Math.round(currentVal) + "%";
+        if (currentVal >= targetPct) clearInterval(animTimer);
+      }, 25);
+    }
+
+    const ringObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            runRingAnimation();
+            ringObserver.unobserve(card);
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
+
+    ringObserver.observe(card);
   });
 });
 
-// ─────────────────────────────────────────────────────────────
-// GALLERY v2 - Filter tabs + scroll-entrance
-// ─────────────────────────────────────────────────────────────
+/* =============================================================================
+   PROJECTS SECTION (#projects)
+   ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const grid = document.getElementById("gl2Grid");
-  if (!grid) return;
+  // --- Category Filtering ---
+  const filterBtns = document.querySelectorAll(".proj-filter-btn");
+  const projectCards = document.querySelectorAll(".proj-card");
 
-  const items = Array.from(grid.querySelectorAll(".gl2-item"));
-  const filterBtns = document.querySelectorAll(".gl2-filter");
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-  // ── Scroll-entrance animation ──
-  const entranceObs = new IntersectionObserver(
+      const selectedFilter = btn.dataset.filter;
+
+      projectCards.forEach((card) => {
+        if (selectedFilter === "all") {
+          card.classList.remove("proj-hidden");
+          return;
+        }
+        const cardStatus = card.dataset.status || "";
+        const matches = cardStatus.split(" ").includes(selectedFilter);
+        card.classList.toggle("proj-hidden", !matches);
+      });
+    });
+  });
+});
+
+// --- Custom Image Lightbox (#projLightbox) ---
+(function initProjectLightbox() {
+  const lightbox = document.getElementById("projLightbox");
+  const lightboxImg = document.getElementById("projLbImg");
+  const closeBtn = document.getElementById("projLbClose");
+  const captionEl = document.getElementById("projLbCaption");
+  if (!lightbox || !lightboxImg) return;
+
+  function openLightbox(src, title) {
+    lightboxImg.src = "";
+    lightboxImg.alt = title || "";
+    if (captionEl) captionEl.textContent = title || "";
+
+    lightbox.classList.add("proj-lb--open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    lightboxImg.classList.remove("proj-lb-img--loaded");
+
+    const tempImg = new Image();
+    tempImg.onload = () => {
+      lightboxImg.src = src;
+      lightboxImg.classList.add("proj-lb-img--loaded");
+    };
+    tempImg.src = src;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("proj-lb--open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      lightboxImg.src = "";
+    }, 300);
+  }
+
+  // Trigger preview on card overlay click or Enter/Space keys
+  document.querySelectorAll(".proj-preview-trigger").forEach((trigger) => {
+    trigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openLightbox(trigger.dataset.img, trigger.dataset.title);
+    });
+
+    trigger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openLightbox(trigger.dataset.img, trigger.dataset.title);
+      }
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+
+  const backdrop = lightbox.querySelector(".proj-lb-backdrop");
+  if (backdrop) backdrop.addEventListener("click", closeLightbox);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox.classList.contains("proj-lb--open")) {
+      closeLightbox();
+    }
+  });
+})();
+
+/* =============================================================================
+   GALLERY SECTION (#gallery)
+   ============================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryGrid = document.getElementById("gl2Grid");
+  if (!galleryGrid) return;
+
+  const galleryItems = Array.from(galleryGrid.querySelectorAll(".gl2-item"));
+  const filterTabs = document.querySelectorAll(".gl2-filter");
+
+  // Entrance animations for gallery items
+  const galleryObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("gl2-visible");
-          entranceObs.unobserve(e.target);
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("gl2-visible");
+          galleryObserver.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.1 },
   );
-  items.forEach((item) => entranceObs.observe(item));
 
-  // ── Filter logic ──
-  function applyFilter(tag) {
-    items.forEach((item) => {
-      const match = tag === "all" || item.dataset.glTag === tag;
+  galleryItems.forEach((item) => galleryObserver.observe(item));
+
+  // Category tab filtering
+  function applyGalleryFilter(filterTag) {
+    galleryItems.forEach((item) => {
+      const match = filterTag === "all" || item.dataset.glTag === filterTag;
       item.classList.toggle("gl2-hidden", !match);
-      if (match) {
-        // Re-trigger entrance if it was hidden before
-        if (!item.classList.contains("gl2-visible")) {
-          entranceObs.observe(item);
-        }
+      if (match && !item.classList.contains("gl2-visible")) {
+        galleryObserver.observe(item);
       }
     });
   }
 
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      applyFilter(btn.dataset.glFilter || "all");
+  filterTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      filterTabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+      applyGalleryFilter(tab.dataset.glFilter || "all");
     });
   });
 
-  // Init
-  applyFilter("all");
+  applyGalleryFilter("all");
 });
 
-// ─────────────────────────────────────────────────────────────
-// PROJECTS FILTER BAR
-// ─────────────────────────────────────────────────────────────
+/* =============================================================================
+   CONTACT FORM (#contactForm)
+   ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const filterBtns = document.querySelectorAll(".proj-filter-btn");
-  const cards = document.querySelectorAll(".proj-card");
+  const form = document.getElementById("contactForm");
+  const successMsg = document.getElementById("cfSuccessMsg");
+  if (!form) return;
 
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // Update active state
-      filterBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
+  const validationFields = [
+    {
+      id: "cf-name",
+      validate: (val) => val.trim().length >= 2,
+      errorText: "Please enter your name",
+    },
+    {
+      id: "cf-email",
+      validate: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()),
+      errorText: "Enter a valid email address",
+    },
+    {
+      id: "cf-subject",
+      validate: (val) => val.trim().length >= 2,
+      errorText: "Please add a subject",
+    },
+    {
+      id: "cf-message",
+      validate: (val) => val.trim().length >= 10,
+      errorText: "Please write a message",
+    },
+  ];
 
-      const filter = btn.dataset.filter;
+  function updateFieldState(fieldEl, state) {
+    const wrapper = fieldEl.closest(".cf-field");
+    if (!wrapper) return;
 
-      cards.forEach((card) => {
-        if (filter === "all") {
-          card.classList.remove("proj-hidden");
-          return;
-        }
+    wrapper.classList.remove("cf-valid", "cf-error");
+    wrapper
+      .querySelectorAll(".cf-field-icon")
+      .forEach((icon) => (icon.style.display = "none"));
 
-        // data-status can be "live", "paid", "soon", or "live paid"
-        const status = card.dataset.status || "";
-        const match = status.split(" ").includes(filter);
+    if (state === "valid") {
+      wrapper.classList.add("cf-valid");
+      const iconValid = wrapper.querySelector(".cf-field-icon.icon-valid");
+      if (iconValid) iconValid.style.display = "flex";
+    } else if (state === "error") {
+      wrapper.classList.add("cf-error");
+      const iconError = wrapper.querySelector(".cf-field-icon.icon-error");
+      if (iconError) iconError.style.display = "flex";
+    }
+  }
 
-        card.classList.toggle("proj-hidden", !match);
+  function validateFieldById(fieldId) {
+    const config = validationFields.find((f) => f.id === fieldId);
+    if (!config) return true;
+
+    const inputEl = document.getElementById(fieldId);
+    if (!inputEl) return true;
+
+    const isValid = config.validate(inputEl.value);
+
+    if (inputEl.value.trim() === "" && !inputEl.dataset.touched) {
+      updateFieldState(inputEl, "reset");
+      return false;
+    }
+
+    updateFieldState(inputEl, isValid ? "valid" : "error");
+    return isValid;
+  }
+
+  // Attach real-time validation events
+  validationFields.forEach(({ id }) => {
+    const inputEl = document.getElementById(id);
+    if (!inputEl) return;
+
+    inputEl.addEventListener("blur", () => {
+      inputEl.dataset.touched = "true";
+      validateFieldById(id);
+    });
+
+    inputEl.addEventListener("input", () => {
+      if (inputEl.dataset.touched) validateFieldById(id);
+    });
+  });
+
+  // Handle Form Submission
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    let isFormValid = true;
+    validationFields.forEach(({ id }) => {
+      const inputEl = document.getElementById(id);
+      if (inputEl) inputEl.dataset.touched = "true";
+      if (!validateFieldById(id)) isFormValid = false;
+    });
+
+    if (!isFormValid) {
+      const firstInvalidField = form.querySelector(
+        ".cf-field.cf-error input, .cf-field.cf-error textarea",
+      );
+      if (firstInvalidField) firstInvalidField.focus();
+      return;
+    }
+
+    const submitBtn = form.querySelector(".cf-submit");
+    const submitLabel = submitBtn ? submitBtn.querySelector("span") : null;
+
+    if (submitBtn) {
+      submitBtn.classList.add("cf-sending");
+      if (submitLabel) submitLabel.textContent = "Sending…";
+    }
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
       });
-    });
+      const data = await response.json();
+
+      if (data.success) {
+        form.style.transition = "opacity 0.3s ease";
+        form.style.opacity = "0";
+
+        setTimeout(() => {
+          form.style.display = "none";
+          if (successMsg) successMsg.classList.add("show");
+        }, 300);
+      } else {
+        throw new Error("Form submission rejected by endpoint");
+      }
+    } catch (err) {
+      if (submitBtn) {
+        submitBtn.classList.remove("cf-sending");
+        if (submitLabel) submitLabel.textContent = "Send Message";
+      }
+
+      const msgField = document.getElementById("cf-message");
+      if (msgField) {
+        const wrapper = msgField.closest(".cf-field");
+        if (wrapper) {
+          wrapper.classList.add("cf-error");
+          const errorDisplay = wrapper.querySelector(".cf-error-msg");
+          if (errorDisplay) {
+            errorDisplay.innerHTML =
+              '<i class="bx bx-info-circle"></i> Something went wrong - please try again';
+          }
+        }
+      }
+    }
   });
 });
 
-// ─────────────────────────────────────────────────────────────
-// SCROLL REVEAL - single shared IntersectionObserver
-// Targets: section h2s, about panels, skill cards,
-//          milestone items, project cards, contact panels
-// ─────────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-  // ── 1. Register elements with their variant + stagger ──
-  function register(selector, variant = "reveal", baseDelay = 0, step = 80) {
-    document.querySelectorAll(selector).forEach((el, i) => {
-      el.classList.add(variant);
-      el.style.setProperty("--reveal-delay", baseDelay + i * step + "ms");
+/* =============================================================================
+   SUPPORT MODAL POPUP (#supportPopup)
+   ============================================================================= */
+window.addEventListener("load", () => {
+  const supportPopup = document.getElementById("supportPopup");
+  const closeBtn = document.getElementById("closeSupport");
+  const navSupportBtn = document.getElementById("navSupportBtn");
+  const sidebarSupportBtn = document.getElementById("sidebarSupportBtn");
+
+  function openSupportModal() {
+    if (supportPopup) supportPopup.classList.add("show");
+  }
+
+  function closeSupportModal() {
+    if (supportPopup) supportPopup.classList.remove("show");
+  }
+
+  if (navSupportBtn) navSupportBtn.addEventListener("click", openSupportModal);
+
+  if (sidebarSupportBtn) {
+    sidebarSupportBtn.addEventListener("click", () => {
+      // Close mobile sidebar before displaying support popup
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("sidebarOverlay");
+      const menuToggle = document.getElementById("mobile-menu");
+
+      if (sidebar) {
+        sidebar.classList.remove("open");
+        if (overlay) overlay.classList.remove("visible");
+        if (menuToggle) {
+          menuToggle.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+        sidebar.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+      setTimeout(openSupportModal, 280);
     });
   }
 
-  // Section headings - fire first, no stagger
-  register("section:not(#home) h2", "reveal", 0, 0);
+  if (closeBtn) closeBtn.addEventListener("click", closeSupportModal);
 
-  // About panels - staggered left→right
-  register(".about-panel", "reveal", 80, 90);
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Escape" &&
+      supportPopup &&
+      supportPopup.classList.contains("show")
+    ) {
+      closeSupportModal();
+    }
+  });
 
-  // Skill cards - staggered
-  register(".skill-block", "reveal", 60, 70);
+  // Automatically prompt after 90 seconds of engagement
+  setTimeout(openSupportModal, 90000);
+});
 
-  // Milestone items - slide from left (matches the left spine)
-  register(".tl-item", "reveal-left", 80, 100);
+/* =============================================================================
+   GLOBAL SCROLL REVEAL & BACK-TO-TOP BUTTON
+   ============================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  // Helper to register reveal directions & staggered transition delays
+  function registerRevealElements(
+    selector,
+    variant = "reveal",
+    baseDelay = 0,
+    step = 80,
+  ) {
+    document.querySelectorAll(selector).forEach((el, index) => {
+      el.classList.add(variant);
+      el.style.setProperty("--reveal-delay", `${baseDelay + index * step}ms`);
+    });
+  }
 
-  // Project cards - staggered up
-  register(".proj-card", "reveal", 60, 80);
+  // --- Tag Elements with Respective Reveal Directions ---
+  registerRevealElements("section:not(#home) h2", "reveal", 0, 0); // Headings
+  registerRevealElements(".about-panel", "reveal", 80, 90); // About bento panels
+  registerRevealElements(".skill-block", "reveal", 60, 70); // Skills grid cards
+  registerRevealElements(".tl-item", "reveal-left", 80, 100); // Milestones timeline
+  registerRevealElements(".proj-card", "reveal", 60, 80); // Project articles
 
-  // Contact panels - left info slides from left, form slides from right
   const contactLeft = document.querySelector(".contact-left");
   const contactRight = document.querySelector(".contact-right");
   if (contactLeft) {
@@ -818,245 +1109,39 @@ document.addEventListener("DOMContentLoaded", () => {
     contactRight.style.setProperty("--reveal-delay", "120ms");
   }
 
-  // ── 2. Single shared observer ──
-  const revealObs = new IntersectionObserver(
+  // --- Shared IntersectionObserver ---
+  const globalRevealObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("revealed");
-          revealObs.unobserve(e.target); // fire once only
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          globalRevealObserver.unobserve(entry.target); // Trigger once only
         }
       });
     },
     {
-      threshold: 0.12, // trigger when 12% visible
-      rootMargin: "0px 0px -40px 0px", // small bottom offset so it feels natural
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px",
     },
   );
 
-  // ── 3. Observe everything tagged ──
   document
     .querySelectorAll(".reveal, .reveal-left, .reveal-right")
-    .forEach((el) => revealObs.observe(el));
-});
+    .forEach((el) => globalRevealObserver.observe(el));
 
-// Scroll to top button
-const scrollTopBtn = document.getElementById("scrollTop");
-if (scrollTopBtn) {
-  window.addEventListener(
-    "scroll",
-    () => {
-      scrollTopBtn.classList.toggle("visible", window.scrollY > 400);
-    },
-    { passive: true },
-  );
-  scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-}
-
-// ─────────────────────────────────────────────────────────────
-// HERO ENTRY ANIMATION
-// Waits for loading screen to fully hide, then adds .hero-ready
-// to #home which triggers the staggered CSS transitions.
-// ─────────────────────────────────────────────────────────────
-(function () {
-  const homeSection = document.getElementById("home");
-  if (!homeSection) return;
-
-  // Loading screen hides via opacity → display:none after ~640ms total.
-  // We hook the transitionend on #loading-screen for the cleanest trigger.
-  const loadingScreen = document.getElementById("loading-screen");
-
-  function triggerHero() {
-    // Small extra delay so the hero reveal feels intentional, not rushed
-    setTimeout(() => {
-      homeSection.classList.add("hero-ready");
-    }, 80);
-  }
-
-  if (loadingScreen) {
-    loadingScreen.addEventListener(
-      "transitionend",
-      function onTransitionEnd(e) {
-        // Only fire on the opacity transition of the loading screen itself
-        if (e.target === loadingScreen && e.propertyName === "opacity") {
-          loadingScreen.removeEventListener("transitionend", onTransitionEnd);
-          triggerHero();
-        }
+  // --- Back-to-Top Button (#scrollTop) ---
+  const scrollTopBtn = document.getElementById("scrollTop");
+  if (scrollTopBtn) {
+    window.addEventListener(
+      "scroll",
+      () => {
+        scrollTopBtn.classList.toggle("visible", window.scrollY > 400);
       },
+      { passive: true },
     );
 
-    // Safety fallback: if loading screen is already hidden (e.g. cached page)
-    // or transition never fires, trigger after 1 second
-    setTimeout(() => {
-      if (!homeSection.classList.contains("hero-ready")) {
-        triggerHero();
-      }
-    }, 1000);
-  } else {
-    // No loading screen present - trigger immediately
-    triggerHero();
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   }
-})();
-
-// ─────────────────────────────────────────────────────────────
-// CONTACT FORM INLINE VALIDATION
-// ─────────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("cfSuccessMsg");
-  if (!form) return;
-
-  // ── Field config: id, validator fn, error text ──
-  const fields = [
-    {
-      id: "cf-name",
-      validate: (v) => v.trim().length >= 2,
-      error: "Please enter your name",
-    },
-    {
-      id: "cf-email",
-      validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
-      error: "Enter a valid email address",
-    },
-    {
-      id: "cf-subject",
-      validate: (v) => v.trim().length >= 2,
-      error: "Please add a subject",
-    },
-    {
-      id: "cf-message",
-      validate: (v) => v.trim().length >= 10,
-      error: "Please write a message",
-    },
-  ];
-
-  // ── Set field state: valid / error / reset ──
-  function setFieldState(field, state) {
-    const wrapper = field.closest(".cf-field");
-    if (!wrapper) return;
-
-    wrapper.classList.remove("cf-valid", "cf-error");
-
-    // Hide both icons first
-    wrapper.querySelectorAll(".cf-field-icon").forEach((icon) => {
-      icon.style.display = "none";
-    });
-
-    if (state === "valid") {
-      wrapper.classList.add("cf-valid");
-      const icon = wrapper.querySelector(".cf-field-icon.icon-valid");
-      if (icon) icon.style.display = "flex";
-    } else if (state === "error") {
-      wrapper.classList.add("cf-error");
-      const icon = wrapper.querySelector(".cf-field-icon.icon-error");
-      if (icon) icon.style.display = "flex";
-    }
-  }
-
-  // ── Validate a single field ──
-  function validateField(id) {
-    const fieldCfg = fields.find((f) => f.id === id);
-    if (!fieldCfg) return true;
-
-    const el = document.getElementById(id);
-    if (!el) return true;
-
-    // Only validate if the field has been touched (has value or was blurred)
-    const isValid = fieldCfg.validate(el.value);
-    if (el.value.trim() === "" && !el.dataset.touched) {
-      setFieldState(el, "reset");
-      return false;
-    }
-
-    setFieldState(el, isValid ? "valid" : "error");
-    return isValid;
-  }
-
-  // ── Attach blur + input listeners to each required field ──
-  fields.forEach(({ id }) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    // On blur: mark as touched and validate
-    el.addEventListener("blur", () => {
-      el.dataset.touched = "true";
-      validateField(id);
-    });
-
-    // On input: if already touched, re-validate live
-    el.addEventListener("input", () => {
-      if (el.dataset.touched) validateField(id);
-    });
-  });
-
-  // ── Form submit ──
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    // Mark all fields as touched and validate
-    let allValid = true;
-    fields.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) el.dataset.touched = "true";
-      if (!validateField(id)) allValid = false;
-    });
-
-    if (!allValid) {
-      // Scroll to first error field
-      const firstError = form.querySelector(
-        ".cf-field.cf-error input, .cf-field.cf-error textarea",
-      );
-      if (firstError) firstError.focus();
-      return;
-    }
-
-    // Show sending state
-    const submitBtn = form.querySelector(".cf-submit");
-    const submitSpan = submitBtn ? submitBtn.querySelector("span") : null;
-    if (submitBtn) {
-      submitBtn.classList.add("cf-sending");
-      if (submitSpan) submitSpan.textContent = "Sending…";
-    }
-
-    try {
-      const formData = new FormData(form);
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-
-      if (data.success) {
-        // Hide form, show success
-        form.style.transition = "opacity 0.3s ease";
-        form.style.opacity = "0";
-        setTimeout(() => {
-          form.style.display = "none";
-          if (successMsg) successMsg.classList.add("show");
-        }, 300);
-      } else {
-        throw new Error("Submit failed");
-      }
-    } catch {
-      // Reset button on failure
-      if (submitBtn) {
-        submitBtn.classList.remove("cf-sending");
-        if (submitSpan) submitSpan.textContent = "Send Message";
-      }
-      // Show a generic error on the message field
-      const msgEl = document.getElementById("cf-message");
-      if (msgEl) {
-        const wrapper = msgEl.closest(".cf-field");
-        if (wrapper) {
-          wrapper.classList.add("cf-error");
-          const errMsg = wrapper.querySelector(".cf-error-msg");
-          if (errMsg)
-            errMsg.innerHTML =
-              '<i class="bx bx-info-circle"></i> Something went wrong - please try again';
-        }
-      }
-    }
-  });
 });
