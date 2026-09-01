@@ -70,7 +70,7 @@
 
 ### 4. Interactive Projects Showcase (`#projects`)
 
-- **Category Filtering**: Real-time filtering by status (`All`, `Live`, `Paid Work`, `Upcoming`).
+- **Category Filtering**: Real-time filtering by status (`All`, `Live`, `Paid Work`).
 - **Embedded Modal Lightbox (`#projLightbox`)**: Custom fullscreen image inspection modal with keyboard navigation (`Escape`, `Enter`, `Space`) and loader spinners.
 - **Direct Asset Downloads**: Direct access to downloadable assets, including the **FinTrack APK** and **Python/C Project archives**.
 

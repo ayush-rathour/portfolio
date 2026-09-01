@@ -731,6 +731,42 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =============================================================================
+   MILESTONES SECTION (#milestones)
+   ============================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const msFilterBtns = document.querySelectorAll(".ms-filter-btn");
+  const msItems = document.querySelectorAll("#milestonesTimeline .tl-item");
+
+  // Keeps the "no bottom padding on final card" rule correct after filtering
+  function updateLastVisible() {
+    msItems.forEach((item) => item.classList.remove("tl-item--last"));
+    const visibleItems = Array.from(msItems).filter(
+      (item) => !item.classList.contains("ms-hidden"),
+    );
+    if (visibleItems.length) {
+      visibleItems[visibleItems.length - 1].classList.add("tl-item--last");
+    }
+  }
+
+  msFilterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      msFilterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const selectedYear = btn.dataset.year;
+
+      msItems.forEach((item) => {
+        const matches =
+          selectedYear === "all" || item.dataset.year === selectedYear;
+        item.classList.toggle("ms-hidden", !matches);
+      });
+
+      updateLastVisible();
+    });
+  });
+});
+
+/* =============================================================================
    PROJECTS SECTION (#projects)
    ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {

@@ -2871,6 +2871,120 @@ section:not(#home) h2 i {
   color: #e0c060;
 }
 
+/* --- Milestones Toolbar (Stats + Year Filter) --- */
+.ms-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.ms-stats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ms-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ms-stat-num {
+  font-family: "Bitcount Prop Single", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+.ms-stat-label {
+  font-size: 0.62rem;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #6a9aa8;
+}
+
+.ms-stat-sep {
+  width: 1px;
+  height: 26px;
+  background: rgba(0, 188, 212, 0.22);
+  border-radius: 1px;
+}
+
+.ms-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ms-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 188, 212, 0.22);
+  background: rgba(0, 188, 212, 0.05);
+  color: #7ab8c8;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+  font-family: "SUSE", sans-serif;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ms-filter-btn:hover {
+  background: rgba(0, 188, 212, 0.12);
+  border-color: rgba(0, 188, 212, 0.42);
+  color: #c8eef5;
+}
+
+.ms-filter-btn.active {
+  background: rgba(0, 188, 212, 0.15);
+  border-color: rgba(0, 188, 212, 0.58);
+  color: #00bcd4;
+  box-shadow:
+    0 0 16px rgba(0, 188, 212, 0.18),
+    inset 0 0 8px rgba(0, 188, 212, 0.07);
+}
+
+/* Filtering visibility (fades + collapses out of the timeline flow) */
+.tl-item.ms-hidden {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  .ms-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+  }
+  .ms-filter-bar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .ms-filter-btn {
+    font-size: 0.68rem;
+    padding: 6px 12px;
+  }
+  .ms-stat-sep {
+    height: 22px;
+  }
+}
+
 @media (max-width: 768px) {
   .milestones-timeline {
     padding-left: 60px;

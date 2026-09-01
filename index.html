@@ -1024,16 +1024,49 @@
       </section>
 
       <!-- =======================================================================
-        4. MILESTONES SECTION (#milestones)
-      ======================================================================== -->
+  4. MILESTONES SECTION (#milestones)
+======================================================================== -->
       <section id="milestones">
         <h2><i class="bx bx-award"></i> My Milestones</h2>
 
-        <div class="milestones-timeline">
+        <!-- Stats + Year Filter Toolbar -->
+        <div class="ms-toolbar">
+          <div class="ms-stats">
+            <div class="ms-stat">
+              <span class="ms-stat-num">10</span>
+              <span class="ms-stat-label">Milestones</span>
+            </div>
+            <div class="ms-stat-sep"></div>
+            <div class="ms-stat">
+              <span class="ms-stat-num">2022</span>
+              <span class="ms-stat-label">Started</span>
+            </div>
+            <div class="ms-stat-sep"></div>
+            <div class="ms-stat">
+              <span class="ms-stat-num">2026</span>
+              <span class="ms-stat-label">Latest</span>
+            </div>
+          </div>
+
+          <div
+            class="ms-filter-bar"
+            role="group"
+            aria-label="Filter milestones by year"
+          >
+            <button class="ms-filter-btn active" data-year="all">All</button>
+            <button class="ms-filter-btn" data-year="2022">2022</button>
+            <button class="ms-filter-btn" data-year="2023">2023</button>
+            <button class="ms-filter-btn" data-year="2024">2024</button>
+            <button class="ms-filter-btn" data-year="2025">2025</button>
+            <button class="ms-filter-btn" data-year="2026">2026</button>
+          </div>
+        </div>
+
+        <div class="milestones-timeline" id="milestonesTimeline">
           <div class="timeline-spine" aria-hidden="true"></div>
 
           <!-- Item 01 -->
-          <div class="tl-item">
+          <div class="tl-item" data-year="2022">
             <div class="tl-node">
               <span class="tl-index">01</span>
               <div class="tl-dot"><i class="bx bx-code-alt"></i></div>
@@ -1063,7 +1096,7 @@
           </div>
 
           <!-- Item 02 -->
-          <div class="tl-item">
+          <div class="tl-item" data-year="2023">
             <div class="tl-node">
               <span class="tl-index">02</span>
               <div class="tl-dot"><i class="bx bx-globe"></i></div>
@@ -1093,7 +1126,7 @@
           </div>
 
           <!-- Item 03 -->
-          <div class="tl-item">
+          <div class="tl-item" data-year="2024">
             <div class="tl-node">
               <span class="tl-index">03</span>
               <div class="tl-dot"><i class="bx bxl-python"></i></div>
@@ -1123,7 +1156,7 @@
           </div>
 
           <!-- Item 04 -->
-          <div class="tl-item">
+          <div class="tl-item" data-year="2024">
             <div class="tl-node">
               <span class="tl-index">04</span>
               <div class="tl-dot"><i class="bx bx-bar-chart-alt-2"></i></div>
@@ -1154,7 +1187,7 @@
           </div>
 
           <!-- Item 05 -->
-          <div class="tl-item">
+          <div class="tl-item" data-year="2025">
             <div class="tl-node">
               <span class="tl-index">05</span>
               <div class="tl-dot"><i class="bx bx-wrench"></i></div>
@@ -1185,7 +1218,7 @@
           </div>
 
           <!-- Item 06 -->
-          <div class="tl-item">
+          <div class="tl-item" data-year="2025">
             <div class="tl-node">
               <span class="tl-index">06</span>
               <div class="tl-dot tl-dot--gold">
@@ -1219,7 +1252,7 @@
           </div>
 
           <!-- Item 07 -->
-          <div class="tl-item">
+          <div class="tl-item" data-year="2026">
             <div class="tl-node">
               <span class="tl-index">07</span>
               <div class="tl-dot"><i class="bx bx-code-alt"></i></div>
@@ -1251,7 +1284,7 @@
           </div>
 
           <!-- Item 08 -->
-          <div class="tl-item">
+          <div class="tl-item" data-year="2026">
             <div class="tl-node">
               <span class="tl-index">08</span>
               <div class="tl-dot"><i class="bx bx-bar-chart-alt-2"></i></div>
@@ -1286,7 +1319,7 @@
           </div>
 
           <!-- Item 09 -->
-          <div class="tl-item">
+          <div class="tl-item" data-year="2026">
             <div class="tl-node">
               <span class="tl-index">09</span>
               <div class="tl-dot"><i class="fa-brands fa-git-alt"></i></div>
@@ -1318,7 +1351,7 @@
           </div>
 
           <!-- Item 10 -->
-          <div class="tl-item tl-item--last">
+          <div class="tl-item tl-item--last" data-year="2026">
             <div class="tl-node">
               <span class="tl-index">10</span>
               <div class="tl-dot"><i class="fa-solid fa-c"></i></div>
@@ -1364,9 +1397,6 @@
           </button>
           <button class="proj-filter-btn" data-filter="paid">
             <i class="bx bx-diamond"></i> Paid
-          </button>
-          <button class="proj-filter-btn" data-filter="soon">
-            <i class="bx bx-time-five"></i> Upcoming
           </button>
         </div>
 
@@ -1623,7 +1653,7 @@
                 aria-label="Preview C Projects image fullscreen"
               >
                 <span class="proj-overlay-label"
-                  ><i class="bx bx-code-curly"></i> View Projects</span
+                  ><i class="bx bx-code-curly"></i> C Program</span
                 >
               </div>
             </div>
