@@ -148,7 +148,7 @@ AR.dev/
 │
 └── files/                          # Downloadable distribution files
     ├── C_Projects.zip              # Packaged foundational C source code
-    ├── FinTrack_v17.6.apk          # Native Android build for FinTrack PWA
+    ├── FinTrack_v17.apk          # Native Android build for FinTrack PWA
     └── Python_Projects.zip         # Packaged Python CLI utility suite
 ```
 
