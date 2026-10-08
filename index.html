@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+  <!-- AR.dev · Personal portfolio of Ayush Rathour · index.html (single-page layout) -->
   <head>
     <!-- ═══════════════════════════════════════════════════════════════════════════
        BASIC & RESPONSIVE META
@@ -13,8 +14,6 @@
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
     <meta name="color-scheme" content="dark" />
-    <meta name="rating" content="general" />
-    <meta name="revisit-after" content="7 days" />
 
     <!-- Local SEO Geo-Tags -->
     <meta name="geo.region" content="IN-UP" />
@@ -97,18 +96,14 @@
        FAVICONS & TOUCH ICONS
     ═══════════════════════════════════════════════════════════════════════════ -->
     <link rel="icon" href="assets/favicon.png" type="image/png" />
-    <link rel="shortcut icon" href="assets/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="assets/favicon.png" />
 
     <!-- ═══════════════════════════════════════════════════════════════════════════
        PREFETCH & RESOURCE HINTS
     ═══════════════════════════════════════════════════════════════════════════ -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <!-- DNS-only hints (jsdelivr & Google Fonts are covered by preconnect below) -->
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="//ayushrathour.netlify.app" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -117,7 +112,7 @@
     <!-- ═══════════════════════════════════════════════════════════════════════════
        FONTS & STYLESHEETS
     ═══════════════════════════════════════════════════════════════════════════ -->
-    <!-- Google Fonts (Bitcount Prop Single & SUSE) -->
+    <!-- Google Fonts (Bitcount Prop Single & SUSE): preload, then swap to non-blocking stylesheet -->
     <link
       rel="preload"
       as="style"
@@ -136,18 +131,17 @@
       />
     </noscript>
 
-    <!-- Critical Main Styles -->
-    <link rel="preload" as="style" href="styles.css" />
+    <!-- Critical main stylesheet (render-blocking by design) -->
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Boxicons -->
+    <!-- Boxicons (UI icons) -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
       crossorigin="anonymous"
     />
 
-    <!-- Font Awesome 7 -->
+    <!-- Font Awesome 7 (brand & tech glyphs), loaded non-blocking -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -253,6 +247,7 @@
       aria-live="polite"
       aria-label="Loading portfolio"
     >
+      <!-- Background layers: particle canvas, grid, scan line, corner brackets -->
       <canvas id="ls-hex-canvas"></canvas>
       <div class="ls-grid"></div>
       <div class="ls-scan"></div>
@@ -261,12 +256,14 @@
       <div class="ls-corner ls-corner--bl"></div>
       <div class="ls-corner ls-corner--br"></div>
 
+      <!-- Centered boot UI: wordmark, spinner ring, boot log, progress, dots -->
       <div class="ls-center">
         <div class="ls-logo">
           <div class="ls-wordmark">AR<span>.</span>dev</div>
           <div class="ls-subtitle">Frontend Developer &amp; UI Designer</div>
         </div>
 
+        <!-- Animated spinner ring (SVG) -->
         <div class="ls-ring-wrap">
           <svg viewBox="0 0 100 100" fill="none">
             <circle
@@ -326,7 +323,8 @@
           <div class="ls-ring-label">AR</div>
         </div>
 
-        <div class="ls-log" id="ls-log-block">
+        <!-- Faux boot console - each line is revealed by script.js milestones -->
+        <div class="ls-log">
           <div class="ls-log-line" id="ls-log0">
             <span class="ls-tag tag-sys">SYS</span>
             <span
@@ -371,6 +369,7 @@
           </div>
         </div>
 
+        <!-- Progress readout: percent, status text, bar and segments (filled by script.js) -->
         <div class="ls-progress-block">
           <div class="ls-pct-row">
             <div>
@@ -385,6 +384,7 @@
           <div class="ls-seg-row" id="ls-seg-row"></div>
         </div>
 
+        <!-- Pulsing activity dots -->
         <div class="ls-dots-row">
           <div class="ls-dot"></div>
           <div class="ls-dot"></div>
@@ -392,6 +392,7 @@
         </div>
       </div>
 
+      <!-- Corner footer labels -->
       <div class="ls-footer-l">Built with Curiosity</div>
       <div class="ls-footer-r">SEPT2024 · AR.dev</div>
     </div>
@@ -549,9 +550,11 @@
         1. HOME / HERO SECTION (#home)
       ======================================================================== -->
       <section id="home">
+        <!-- Decorative background layers -->
         <div class="hero-grid-bg" aria-hidden="true"></div>
         <div class="hero-orb" aria-hidden="true"></div>
 
+        <!-- Two-column layout: text (left) / avatar (right) -->
         <div class="hero-inner">
           <!-- Left: Hero Text & CTAs -->
           <div class="hero-text">
@@ -575,7 +578,7 @@
               </div>
               <div class="hero-stat-sep"></div>
               <div class="hero-stat">
-                <span class="hs-num">15+</span>
+                <span class="hs-num">20+</span>
                 <span class="hs-label">Projects</span>
               </div>
               <div class="hero-stat-sep"></div>
@@ -749,9 +752,9 @@
                   >
                 </div>
                 <div class="ab-build-pct-wrap">
-                  <span class="ab-build-pct">40%</span>
+                  <span class="ab-build-pct">60%</span>
                   <div class="ab-build-bar">
-                    <div class="ab-build-bar-fill" style="--w: 40%"></div>
+                    <div class="ab-build-bar-fill" style="--w: 60%"></div>
                   </div>
                 </div>
               </div>
@@ -883,7 +886,7 @@
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
-                <span class="sk-bar-pct" data-target="90">0%</span>
+                <span class="sk-bar-pct">0%</span>
               </div>
               <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
@@ -903,7 +906,7 @@
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
-                <span class="sk-bar-pct" data-target="90">0%</span>
+                <span class="sk-bar-pct">0%</span>
               </div>
               <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
@@ -923,7 +926,7 @@
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
-                <span class="sk-bar-pct" data-target="80">0%</span>
+                <span class="sk-bar-pct">0%</span>
               </div>
               <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
@@ -948,7 +951,7 @@
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
-                <span class="sk-bar-pct" data-target="80">0%</span>
+                <span class="sk-bar-pct">0%</span>
               </div>
               <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
@@ -966,7 +969,7 @@
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
-                <span class="sk-bar-pct" data-target="75">0%</span>
+                <span class="sk-bar-pct">0%</span>
               </div>
               <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
@@ -982,7 +985,7 @@
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
-                <span class="sk-bar-pct" data-target="70">0%</span>
+                <span class="sk-bar-pct">0%</span>
               </div>
               <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
@@ -998,23 +1001,23 @@
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
-                <span class="sk-bar-pct" data-target="60">0%</span>
+                <span class="sk-bar-pct">0%</span>
               </div>
               <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
             </div>
           </div>
 
-          <div class="skill-block compact" data-pct="40">
+          <div class="skill-block compact" data-pct="60">
             <div class="sk-icon-wrap"><i class="fa-solid fa-c"></i></div>
             <div class="sk-head">
               <h3>C Language</h3>
-              <span class="sk-meta meta-learning">Learning</span>
+              <span class="sk-meta meta-familiar">Familiar</span>
             </div>
             <div class="sk-bar-wrap">
               <div class="sk-bar-label">
                 <span class="sk-bar-name">Proficiency</span>
-                <span class="sk-bar-pct" data-target="40">0%</span>
+                <span class="sk-bar-pct">0%</span>
               </div>
               <div class="sk-bar-track"><div class="sk-bar-fill"></div></div>
               <div class="sk-seg-row"></div>
@@ -1024,8 +1027,8 @@
       </section>
 
       <!-- =======================================================================
-  4. MILESTONES SECTION (#milestones)
-======================================================================== -->
+        4. MILESTONES SECTION (#milestones)
+      ======================================================================== -->
       <section id="milestones">
         <h2><i class="bx bx-award"></i> My Milestones</h2>
 
@@ -1400,13 +1403,9 @@
           </button>
         </div>
 
-        <div class="projects-grid" id="projectsGrid">
+        <div class="projects-grid">
           <!-- Featured: FinTrack -->
-          <article
-            class="proj-card proj-card--featured"
-            data-index="01"
-            data-status="live"
-          >
+          <article class="proj-card proj-card--featured" data-status="live">
             <div class="proj-img-wrap">
               <img
                 src="assets/Project_Images/fintrack_img.png"
@@ -1475,11 +1474,7 @@
           </article>
 
           <!-- Paid: Varun Artist Portfolio -->
-          <article
-            class="proj-card proj-card--paid"
-            data-index="02"
-            data-status="paid"
-          >
+          <article class="proj-card proj-card--paid" data-status="paid">
             <div class="proj-img-wrap">
               <img
                 src="assets/Project_Images/varun_ptf.png"
@@ -1530,7 +1525,7 @@
           </article>
 
           <!-- Shaurya Developer Portfolio -->
-          <article class="proj-card" data-index="03" data-status="archived">
+          <article class="proj-card" data-status="archived">
             <div class="proj-img-wrap">
               <img
                 src="assets/Project_Images/shaurya_ptf.png"
@@ -1578,7 +1573,7 @@
           </article>
 
           <!-- Python Utilities -->
-          <article class="proj-card" data-index="04" data-status="live">
+          <article class="proj-card" data-status="live">
             <div class="proj-img-wrap">
               <img
                 src="assets/Project_Images/python_img.png"
@@ -1636,7 +1631,7 @@
           </article>
 
           <!-- C Projects -->
-          <article class="proj-card" data-index="05" data-status="live">
+          <article class="proj-card" data-status="live">
             <div class="proj-img-wrap">
               <img
                 src="assets/Project_Images/c_programming_img.png"
@@ -2022,6 +2017,7 @@
         <div class="contact-wrapper">
           <!-- Left: Contact Details & Social Links -->
           <div class="contact-left">
+            <!-- Intro copy -->
             <div class="contact-intro">
               <span class="contact-kicker">LET'S TALK</span>
               <h3 class="contact-heading">
@@ -2033,6 +2029,7 @@
               </p>
             </div>
 
+            <!-- Info cards: location, phone, email, languages -->
             <div class="contact-info-cards">
               <div class="contact-info-card">
                 <div class="ci-icon-wrap">
@@ -2083,6 +2080,7 @@
               </div>
             </div>
 
+            <!-- Social icon links -->
             <div class="contact-socials">
               <span class="cs-label">Connect with</span>
               <div class="cs-icons">
@@ -2134,12 +2132,14 @@
                 aria-label="Contact form"
                 novalidate
               >
+                <!-- Web3Forms public access key (restrict by domain in the Web3Forms dashboard) -->
                 <input
                   type="hidden"
                   name="access_key"
                   value="8395aab8-aade-4a90-b78f-f7988ec23adf"
                 />
 
+                <!-- Row 1: name + email -->
                 <div class="cf-row">
                   <div class="cf-field">
                     <label for="cf-name"><i class="bx bx-user"></i> Name</label>
@@ -2190,6 +2190,7 @@
                   </div>
                 </div>
 
+                <!-- Row 2: subject + optional feedback -->
                 <div class="cf-row">
                   <div class="cf-field">
                     <label for="cf-subject"
@@ -2228,6 +2229,7 @@
                   </div>
                 </div>
 
+                <!-- Message textarea -->
                 <div class="cf-field cf-has-textarea">
                   <label for="cf-message"
                     ><i class="bx bx-message-detail"></i> Message</label
@@ -2251,6 +2253,7 @@
                   >
                 </div>
 
+                <!-- Submit button row -->
                 <div class="cf-submit-row">
                   <button type="submit" class="cf-submit">
                     <i class="bx bx-send cf-submit-icon"></i>
@@ -2263,6 +2266,7 @@
                 </div>
               </form>
 
+              <!-- Success state (shown by script.js after a successful submit) -->
               <div class="cf-success-msg" id="cfSuccessMsg" aria-live="polite">
                 <div class="cf-success-icon"><i class="bx bx-check"></i></div>
                 <p class="cf-success-title">Message sent!</p>
@@ -2286,6 +2290,7 @@
       aria-modal="true"
       aria-label="Support the developer"
     >
+      <!-- Close button -->
       <button
         class="sp-close"
         id="closeSupport"
@@ -2294,9 +2299,11 @@
         <i class="bx bx-x" aria-hidden="true"></i>
       </button>
 
+      <!-- Decorative grid + glow line -->
       <div class="sp-grid" aria-hidden="true"></div>
       <div class="sp-glow-line" aria-hidden="true"></div>
 
+      <!-- Brand row: wordmark + availability badge -->
       <div class="sp-brand">
         <span class="sp-logo">AR<span class="sp-logo-dot">.</span>dev</span>
         <span class="sp-badge">
@@ -2305,6 +2312,7 @@
         </span>
       </div>
 
+      <!-- Heading: icon, title and subtitle -->
       <div class="sp-heading">
         <i class="bx bx-coffee-togo sp-coffee-icon" aria-hidden="true"></i>
         <div>
@@ -2315,6 +2323,7 @@
         </div>
       </div>
 
+      <!-- UPI deep link (opens a payment app on mobile) -->
       <a
         href="upi://pay?pa=9548069160@sbi&pn=Ayush%20Rathour&tn=Supporting%20AR.dev&cu=INR"
         class="sp-upi-btn"
@@ -2330,12 +2339,14 @@
         <span class="sp-upi-shine" aria-hidden="true"></span>
       </a>
 
+      <!-- Divider: "or scan" -->
       <div class="sp-divider" role="separator">
         <span class="sp-divider-dot" aria-hidden="true"></span>
         <span>or scan</span>
         <span class="sp-divider-dot" aria-hidden="true"></span>
       </div>
 
+      <!-- Scannable UPI QR code -->
       <div class="sp-qr-wrap">
         <div class="sp-qr-frame">
           <img
@@ -2365,6 +2376,7 @@
       <div class="footer-inner">
         <!-- Top Columns -->
         <div class="footer-top">
+          <!-- Column 1: brand, tagline and availability -->
           <div class="footer-brand-block">
             <a href="#home" class="footer-logo-link" aria-label="AR.dev Home">
               <span class="footer-logo-wordmark"
@@ -2383,6 +2395,7 @@
             </div>
           </div>
 
+          <!-- Column 2: section links -->
           <nav class="footer-nav-block" aria-label="Footer navigation">
             <p class="footer-col-label">Explore</p>
             <ul class="footer-nav-list">
@@ -2419,6 +2432,7 @@
             </ul>
           </nav>
 
+          <!-- Column 3: contact and social links -->
           <div class="footer-connect-block">
             <p class="footer-col-label">Connect</p>
             <div class="footer-social-stack">
@@ -2488,6 +2502,7 @@
           </div>
         </div>
 
+        <!-- Divider -->
         <div class="footer-divider" aria-hidden="true">
           <span class="footer-divider-dot"></span>
         </div>
@@ -2508,7 +2523,7 @@
           <div class="footer-bottom-right">
             <span>Built with</span>
             <i class="bx bxs-heart footer-heart"></i>
-            <span>& curiosity</span>
+            <span>&amp; curiosity</span>
           </div>
         </div>
       </div>
@@ -2530,7 +2545,9 @@
       aria-label="Project image preview"
       aria-hidden="true"
     >
+      <!-- Click-to-close backdrop -->
       <div class="proj-lb-backdrop"></div>
+      <!-- Image frame: close button, image + loader, caption -->
       <div class="proj-lb-frame">
         <button
           class="proj-lb-close"
@@ -2555,6 +2572,7 @@
       defer
       src="https://www.googletagmanager.com/gtag/js?id=G-14JH9PNNWP"
     ></script>
+    <!-- Google Analytics bootstrap -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -2569,6 +2587,7 @@
       src="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/js/glightbox.min.js"
       defer
     ></script>
+    <!-- Gallery lightbox init: runs on DOM ready, falls back to window load if the CDN script is late -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         function initGLightbox() {

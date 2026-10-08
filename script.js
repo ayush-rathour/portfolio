@@ -1,9 +1,4 @@
 /* =============================================================================
-   AR.dev - Main Script
-   Author: Ayush Rathour
-   ============================================================================= */
-
-/* =============================================================================
    GLOBAL PRELOADER / BOOT SEQUENCE (#loading-screen)
    ============================================================================= */
 (function initBootSequence() {
@@ -409,6 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =============================================================================
    SMOOTH SCROLL ENGINE
+   (kept: applies the sticky-header offset to in-page anchor jumps)
    ============================================================================= */
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.getElementById("mainHeader");
@@ -494,7 +490,7 @@ document.addEventListener("DOMContentLoaded", () => {
       val: '["HTML", "CSS", "JavaScript", "Python", "C"]',
       comma: true,
     },
-    { type: "kv", key: '"Projects"', val: '"15+ Completed"', comma: true },
+    { type: "kv", key: '"Projects"', val: '"20+ Completed"', comma: true },
     {
       type: "kv",
       key: '"Experience"',
@@ -516,7 +512,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return `<span class="ab-tl"><span class="t-comment">${line.text}</span></span>`;
     }
     if (line.type === "bracket") {
-      return `<span class="ab-tl"><span class="t-arr">${line.text}</span></span>`;
+      return `<span class="ab-tl">${line.text}</span>`;
     }
     if (line.type === "kv") {
       const cursorHtml = line.cursor ? `<span class="t-cursor"></span>` : "";
@@ -563,37 +559,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2800);
   }
 
-  // --- Numeric Stat Counters & Progress Bar Animation ---
-  let statsTriggered = false;
-  function triggerStatsAndBars() {
-    if (statsTriggered) return;
-    statsTriggered = true;
+  // --- "Currently Building" Progress Bars ---
+  let barsTriggered = false;
+  function triggerBuildBars() {
+    if (barsTriggered) return;
+    barsTriggered = true;
 
-    // Increment numeric counters
-    document
-      .querySelectorAll(".ab-stat-num[data-target]")
-      .forEach((counterEl) => {
-        const target = parseFloat(counterEl.dataset.target);
-        const suffix = counterEl.dataset.suffix || "";
-        const totalSteps = 50;
-        let step = 0;
-
-        const timer = setInterval(() => {
-          step++;
-          const currentVal = target * (step / totalSteps);
-          counterEl.textContent = Math.round(currentVal) + suffix;
-
-          if (step >= totalSteps) {
-            counterEl.textContent = target + suffix;
-            clearInterval(timer);
-          }
-        }, 22);
-      });
-
-    // Expand bar fills
     setTimeout(() => {
       document
-        .querySelectorAll(".ab-stat-bar-fill, .ab-build-bar-fill")
+        .querySelectorAll(".ab-build-bar-fill")
         .forEach((bar) => bar.classList.add("ab-bar-animated"));
     }, 150);
   }
@@ -604,7 +578,7 @@ document.addEventListener("DOMContentLoaded", () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           startTerminalTypewriter();
-          triggerStatsAndBars();
+          triggerBuildBars();
           aboutObserver.unobserve(entry.target);
         }
       });
@@ -684,49 +658,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     skillObserver.observe(card);
-  });
-
-  // --- Mini Skill Indicators (Circular SVG Rings) ---
-  const SVG_CIRCUMFERENCE = 2 * Math.PI * 26; // r="26"
-
-  document.querySelectorAll(".sk-mini").forEach((card) => {
-    const targetPct = parseInt(card.dataset.pct, 10) || 0;
-    const ringFill = card.querySelector(".skm-ring-fill");
-    const pctLabel = card.querySelector(".skm-pct");
-
-    if (!ringFill || !pctLabel) return;
-
-    let isAnimated = false;
-    function runRingAnimation() {
-      if (isAnimated) return;
-      isAnimated = true;
-
-      ringFill.style.strokeDashoffset =
-        SVG_CIRCUMFERENCE - (targetPct / 100) * SVG_CIRCUMFERENCE;
-
-      let currentVal = 0;
-      const stepIncrement = targetPct / 30;
-
-      const animTimer = setInterval(() => {
-        currentVal = Math.min(currentVal + stepIncrement, targetPct);
-        pctLabel.textContent = Math.round(currentVal) + "%";
-        if (currentVal >= targetPct) clearInterval(animTimer);
-      }, 25);
-    }
-
-    const ringObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            runRingAnimation();
-            ringObserver.unobserve(card);
-          }
-        });
-      },
-      { threshold: 0.3 },
-    );
-
-    ringObserver.observe(card);
   });
 });
 
@@ -915,24 +846,33 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       id: "cf-name",
       validate: (val) => val.trim().length >= 2,
-      errorText: "Please enter your name",
     },
     {
       id: "cf-email",
       validate: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()),
-      errorText: "Enter a valid email address",
     },
     {
       id: "cf-subject",
       validate: (val) => val.trim().length >= 2,
-      errorText: "Please add a subject",
     },
     {
       id: "cf-message",
       validate: (val) => val.trim().length >= 10,
-      errorText: "Please write a message",
     },
   ];
+
+  // Remember each field's original error text so a failed submit
+  // ("Something went wrong") doesn't permanently overwrite it.
+  form.querySelectorAll(".cf-error-msg").forEach((msgEl) => {
+    msgEl.dataset.defaultHtml = msgEl.innerHTML;
+  });
+
+  function restoreErrorText(wrapper) {
+    const msgEl = wrapper.querySelector(".cf-error-msg");
+    if (msgEl && msgEl.dataset.defaultHtml) {
+      msgEl.innerHTML = msgEl.dataset.defaultHtml;
+    }
+  }
 
   function updateFieldState(fieldEl, state) {
     const wrapper = fieldEl.closest(".cf-field");
@@ -960,6 +900,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const inputEl = document.getElementById(fieldId);
     if (!inputEl) return true;
+
+    const wrapper = inputEl.closest(".cf-field");
+    if (wrapper) restoreErrorText(wrapper);
 
     const isValid = config.validate(inputEl.value);
 
