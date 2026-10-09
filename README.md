@@ -1,309 +1,289 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-   AR.dev - Personal Portfolio Documentation & Overview
-   Author: Ayush Rathour
-   ═══════════════════════════════════════════════════════════════════════════ -->
+<div align="center">
 
-# AR.dev - Personal Portfolio of Ayush Rathour
+# AR.dev
 
+**Personal portfolio of Ayush Rathour: frontend developer & UI designer**
+
+A single-page, framework-free portfolio built with semantic HTML5, custom-property-driven CSS3 and vanilla ES6+ JavaScript.
+
+[![Live](https://img.shields.io/badge/Live-ayushrathour.netlify.app-00C7B7?logo=netlify&logoColor=white)](https://ayushrathour.netlify.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla%20ES6+-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![C](https://img.shields.io/badge/C-00599C?logo=c&logoColor=white)](https://en.cppreference.com/w/c)
-[![Deployed on Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify&logoColor=white)](https://ayushrathour.netlify.app)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
 
-> A modern, high-performance personal portfolio website engineered with semantic **HTML5**, modern custom-property-driven **CSS3**, and framework-free **Vanilla JavaScript**. Designed and built by **Ayush Rathour**, a frontend developer and student based in Saharanpur, Uttar Pradesh, India.
+[Live Site](https://ayushrathour.netlify.app) · [Report an Issue](https://github.com/ayush-rathour/portfolio/issues) · [Contact](#contact)
 
-**Live Deployment:** [ayushrathour.netlify.app](https://ayushrathour.netlify.app)
+</div>
 
 ---
 
-## 📑 Table of Contents
+## Contents
 
-1. [Project Overview](#-project-overview)
-2. [Key Architecture & Features](#-key-architecture--features)
-3. [Technology Stack & CDNs](#-technology-stack--cdns)
-4. [Project Structure](#-project-structure)
-5. [Sections Breakdown](#-sections-breakdown)
-6. [Interactive Components Breakdown](#-interactive-components-breakdown)
-7. [Getting Started Locally](#-getting-started-locally)
-8. [Customisation Guide](#-customisation-guide)
-9. [Deployment](#-deployment)
-10. [Performance, SEO & Accessibility](#-performance-seo--accessibility)
-11. [Third-Party Credits & Attributions](#-third-party-credits--attributions)
-12. [Contact & Connect](#-contact--connect)
-13. [License & Usage Terms](#-license--usage-terms)
-
----
-
-## 🌐 Project Overview
-
-**AR.dev** is a single-page portfolio engineered without heavyweight frameworks, package managers, or bundlers. The entire application runs natively in the browser via clean, modular files (`index.html`, `styles.css`, and `script.js`).
-
-### Design System
-
-- **Palette**: Deep navy background (`#0a1f3d`, `#060f1f`) contrasted with bright cyan accents (`#00bcd4`), emerald green status indicators (`#22d97a`), and gold highlights (`#ffc432`).
-- **Aesthetic**: Modern glassmorphism with frosted card containers, radial glow effects, ambient particle grids, and micro-interactions.
-- **Typography**: `Bitcount Prop Single` (display/numbers/wordmarks) and `SUSE` (body/technical monospace).
+1. [At a Glance](#at-a-glance)
+2. [Features](#features)
+3. [Tech Stack](#tech-stack)
+4. [Project Structure](#project-structure)
+5. [How It Works](#how-it-works)
+6. [Getting Started](#getting-started)
+7. [Customisation](#customisation)
+8. [Deployment](#deployment)
+9. [Performance, SEO & Accessibility](#performance-seo--accessibility)
+10. [Roadmap](#roadmap)
+11. [Credits](#credits)
+12. [Contact](#contact)
+13. [License & Usage](#license--usage)
 
 ---
 
-## ⚡ Key Architecture & Features
+## At a Glance
 
-### 1. Multi-Stage Canvas Preloader (`#loading-screen`)
+|              |                                                                  |
+| :----------- | :--------------------------------------------------------------- |
+| **Type**     | Single-page static portfolio (no build step, no package manager) |
+| **Files**    | `index.html`, `styles.css`, `script.js`                          |
+| **Sections** | Home, About, Skills, Milestones, Projects, Gallery, Contact      |
+| **Hosting**  | Netlify (static, edge CDN)                                       |
+| **Design**   | Dark navy glassmorphism, cyan accent, gold highlights            |
+| **Fonts**    | `Bitcount Prop Single` (display), `SUSE` (body)                  |
 
-- **Dynamic Hexagonal Particles**: Lightweight HTML5 Canvas particle system tracking system milestones.
-- **Milestone-Driven Loading**: Computes real load progress across DOM parsing, WebFonts readiness, critical image decode, and `window.onload`.
-- **Diagnostics Log**: Real-time faux boot console (`SYS`, `ENV`, `CSS`, `JS`, `NET`, `READY`) with fallback safety timeouts.
+**Palette**
 
-### 2. Adaptive Navigation System
-
-- **Sticky Desktop Navigation**: Scroll-aware header with dynamic backdrop blur (`backdrop-filter: blur(20px)`), automatic section spy, and underline animations.
-- **Accessible Mobile Drawer**: Slide-in sidebar with staggered entrance transitions, overlay backdrop, focus management, and `Escape` key capture.
-
-### 3. Interactive Terminal & Bento Grid (`#about`)
-
-- **JSON Typewriter Terminal**: Scroll-triggered typewriter effect rendering structured developer identity metadata.
-- **Rotating Role Switcher**: Dynamic text transition through frontend and UI roles.
-- **Interactive Tech Flip-Cards**: 3D hover cards detailing tools across Web, Python, and C.
-
-### 4. Interactive Projects Showcase (`#projects`)
-
-- **Category Filtering**: Real-time filtering by status (`All`, `Live`, `Paid Work`).
-- **Embedded Modal Lightbox (`#projLightbox`)**: Custom fullscreen image inspection modal with keyboard navigation (`Escape`, `Enter`, `Space`) and loader spinners.
-- **Direct Asset Downloads**: Direct access to downloadable assets, including the **FinTrack APK** and **Python/C Project archives**.
-
-### 5. Filterable Media Gallery (`#gallery`)
-
-- **GLightbox Integration**: Fullscreen media viewer supporting responsive multi-device mockups, UI concepts, and embedded MP4 video walkthroughs.
-
-### 6. Serverless Contact System (`#contact`)
-
-- **Real-Time Client Validation**: Field-level validation for format, regex, and character limits with live status icons.
-- **Web3Forms Integration**: Asynchronous API submission (`fetch`) without page reloads, transitioning seamlessly to a confirmation view.
-
-### 7. Direct Support Modal (`#supportPopup`)
-
-- **UPI Deep Linking & QR Code**: Native payment button integration (`upi://pay`) and scannable QR overlay.
-- **Smart Engagement Trigger**: Automatically displays after 90 seconds or on manual button clicks.
+| Role                           | Colour               |
+| :----------------------------- | :------------------- |
+| Background                     | `#0a1f3d`, `#060f1f` |
+| Primary accent                 | `#00bcd4`            |
+| Success / status               | `#22d97a`            |
+| Highlight (paid work, support) | `#ffc432`            |
 
 ---
 
-## 🛠️ Technology Stack & CDNs
+## Features
 
-| Domain            | Technology / Resource        | Usage                                                          |
-| :---------------- | :--------------------------- | :------------------------------------------------------------- |
-| **Markup**        | HTML5                        | Semantic structure, Microdata, ARIA tags, JSON-LD schemas      |
-| **Styling**       | CSS3                         | CSS Custom Properties, Flexbox, Grid, Glassmorphism, Keyframes |
-| **Scripting**     | JavaScript (ES6+)            | IntersectionObserver, Canvas API, Async Form Submission        |
-| **Typography**    | Google Fonts                 | `Bitcount Prop Single`, `SUSE`                                 |
-| **Iconography**   | Boxicons & Font Awesome 7    | UI icons, tech logos, and social glyphs                        |
-| **Lightbox**      | GLightbox v3.3.0             | Gallery modal viewer and video player                          |
-| **Form Endpoint** | Web3Forms API                | Serverless message transport                                   |
-| **Analytics**     | Google Analytics (`gtag.js`) | Site telemetry (Property ID: `G-14JH9PNNWP`)                   |
-| **Hosting**       | Netlify                      | Edge CDN static site hosting                                   |
+### Experience
+
+- **Boot-sequence preloader.** A canvas of floating hexagons and a faux boot console (`SYS`, `ENV`, `CSS`, `JS`, `NET`, `READY`). Progress is driven by real milestones: DOM ready, fonts ready, critical images decoded and `window.onload`.
+- **Scroll-reveal engine.** One shared `IntersectionObserver` handles staggered, directional reveals across all sections.
+- **Reduced-motion support.** A full `prefers-reduced-motion` ruleset disables animation on request.
+
+### Navigation
+
+- **Sticky header** with blur, scrolled state and active-section highlighting.
+- **Mobile drawer** with staggered entrance, overlay, `Escape` to close and `aria-expanded` state.
+- **Offset-aware smooth scrolling** that accounts for the sticky header height.
+
+### Content Sections
+
+| Section        | Highlights                                                                                                                    |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| **Home**       | Animated wordmark, bio, stats, floating skill chips, staggered entrance after the preloader                                   |
+| **About**      | Bento grid: bio panel, JSON typewriter terminal, rotating role badge, "currently building" progress bars, flip-card interests |
+| **Skills**     | Core and compact skill cards with animated linear and segmented progress bars (`data-pct`)                                    |
+| **Milestones** | Vertical timeline (2022 to 2026) with year filter and highlighted paid-work card                                              |
+| **Projects**   | Filterable cards (`All`, `Live`, `Paid`), fullscreen image lightbox, APK and ZIP downloads                                    |
+| **Gallery**    | Filterable media grid powered by GLightbox, with image mockups and MP4 walkthroughs                                           |
+| **Contact**    | Validated form with live status icons, Web3Forms submission and an animated success state                                     |
+
+### Support Modal
+
+- UPI deep link (`upi://pay`) plus a scannable QR code.
+- Opens from the header or sidebar button, or automatically after 90 seconds.
 
 ---
 
-## 📂 Project Structure
+## Tech Stack
+
+| Domain    | Technology                     | Used for                                                       |
+| :-------- | :----------------------------- | :------------------------------------------------------------- |
+| Markup    | HTML5                          | Semantic structure, ARIA, JSON-LD                              |
+| Styling   | CSS3                           | Custom properties, Grid, Flexbox, keyframes, `backdrop-filter` |
+| Scripting | JavaScript (ES6+)              | IntersectionObserver, Canvas API, `fetch`                      |
+| Fonts     | Google Fonts                   | Bitcount Prop Single, SUSE                                     |
+| Icons     | Boxicons 2.1.4, Font Awesome 7 | UI icons, brand and tech glyphs                                |
+| Lightbox  | GLightbox 3.3.0                | Gallery images and video                                       |
+| Forms     | Web3Forms                      | Serverless contact submission                                  |
+| Analytics | Google Analytics (gtag.js)     | Traffic telemetry                                              |
+| Hosting   | Netlify                        | Static hosting and CDN                                         |
+
+---
+
+## Project Structure
 
 ```text
-AR.dev/
-├── index.html                      # Core semantic HTML5 document
-├── styles.css                      # Design tokens, layouts, animations & media queries
-├── script.js                       # Preloader, observers, lightbox & form logic
-├── google333456a1430d0ff....html   # Google Search Console domain verification
-├── LICENSE                         # MIT License and personal property conditions
-├── README.md                       # Repository documentation
+portfolio/
+├── index.html                # Page markup, meta tags, JSON-LD
+├── styles.css                # Design tokens, layout, animations, media queries
+├── script.js                 # All interactive behaviour (see "How It Works")
+├── README.md
+├── LICENSE
+├── google*.html              # Search Console verification file
 │
-├── Assets/                         # Static visual assets
-│   ├── Favicon.png                 # Browser tab favicon
-│   ├── Profile_Photo.png           # Profile photo
-│   ├── upi_qr.png                  # Support UPI QR payment code
-│   │
-│   ├── Gallery_Images/             # Visual Notes gallery items
-│   │   ├── blogs_by_ar.png
-│   │   ├── blogs_mockup.png
-│   │   ├── fintrack_md_mockup.png
-│   │   ├── fintrack_mockup.png
-│   │   ├── fintrack_ui_mockup.png
-│   │   ├── fintrack_upgrade.png
-│   │   └── portfolio_upgrade.png
-│   │
-│   ├── Gallery_Thumb/              # Video poster thumbnails
-│   │   ├── ardev_thumb.png
-│   │   └── fintrack_thumb.png
-│   │
-│   ├── Gallery_Videos/             # Visual showcase video demos
-│   │   ├── ardev_explained.mp4
-│   │   └── fintrack_explained.mp4
-│   │
-│   └── Project_Images/             # Project showcase card screenshots
-│       ├── c_programming_img.png
-│       ├── fintrack_img.png
-│       ├── python_img.png
-│       ├── shaurya_ptf.png
-│       └── varun_ptf.png
+├── assets/
+│   ├── favicon.png
+│   ├── profile_photo.png
+│   ├── upi_qr.png
+│   ├── Project_Images/       # Project card screenshots
+│   ├── Gallery_Images/       # Gallery mockups and design shots
+│   ├── Gallery_Thumb/        # Video poster thumbnails
+│   └── Gallery_Videos/       # MP4 walkthroughs
 │
-└── files/                          # Downloadable distribution files
-    ├── C_Projects.zip              # Packaged foundational C source code
-    ├── FinTrack_v17.apk          # Native Android build for FinTrack PWA
-    └── Python_Projects.zip         # Packaged Python CLI utility suite
+└── files/                    # Downloadable files
+    ├── fintrack_v17.apk
+    ├── python_projects.zip
+    └── c_projects.zip
+```
+
+> **Heads-up:** Netlify serves from a case-sensitive file system. Folder and file names in `index.html` must match the repository exactly (for example `assets/` vs `Assets/`).
+
+---
+
+## How It Works
+
+`script.js` is organised as independent blocks, one per section. Each block guards for missing elements, so removing a section from the HTML will not break the rest.
+
+| Block                | Responsibility                                                                                                         |
+| :------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| **Boot sequence**    | Tracks load milestones, interpolates the progress display, draws hexagon particles, dismisses the loader (minimum 3 s) |
+| **Header & sidebar** | Drawer open/close, section spy, scrolled header state                                                                  |
+| **Smooth scroll**    | Header-offset scrolling for in-page anchors                                                                            |
+| **Hero entrance**    | Adds `hero-ready` once the preloader fades out (with a 1 s fallback)                                                   |
+| **About**            | Terminal typewriter (`terminalData`), role rotation, build bars                                                        |
+| **Skills**           | Builds segment rows and animates bars when cards enter view                                                            |
+| **Milestones**       | Year filter and last-visible-item spacing fix                                                                          |
+| **Projects**         | Status filter and the custom fullscreen lightbox                                                                       |
+| **Gallery**          | Reveal observer and tag filter (GLightbox is initialised in `index.html`)                                              |
+| **Contact form**     | Per-field validation, `fetch` submission, success and error states                                                     |
+| **Support modal**    | Open/close logic and the 90-second auto-prompt                                                                         |
+| **Global reveal**    | `registerRevealElements()` tagging, shared observer, back-to-top button                                                |
+
+**Boot flow**
+
+```text
+Canvas starts  →  listeners attach (DOM, fonts, images, load)
+      →  boot log reveals line by line  →  progress eases toward real milestones
+      →  all milestones done + minimum time passed  →  loader fades, hero animates in
 ```
 
 ---
 
-## 🧭 Sections Breakdown
+## Getting Started
 
-```
-[#home]        Hero section with animated wordmark, bio, metrics, and floating skill chips
-  │
-[#about]       Bento grid featuring the JSON terminal, active learning meters, and flip-cards
-  │
-[#skills]      Core stack indicators and segmented progress bars (Web, Python, C, UI/UX)
-  │
-[#milestones]  Chronological timeline covering learning milestones and project releases (2022-2026)
-  │
-[#projects]    Filterable project cards with direct links, modal lightboxes, and source downloads
-  │
-[#gallery]     Curated visual grid of UI mockups, conceptual drafts, and walkthrough videos
-  │
-[#contact]     Direct contact avenues, social cards, and validated Web3Forms message form
-```
-
----
-
-## 🧩 Interactive Components Breakdown
-
-```
- ┌────────────────────────────────────────────────────────────────────────┐
- │                      Page Boot Preloader Flow                          │
- └────────────────────────────────────────────────────────────────────────┘
-        │
-        ├── 1. Canvas initializes floating hexagonal particles
-        ├── 2. Events attach to DOMContentLoaded, Fonts Ready & Image Decodes
-        ├── 3. Terminal log updates in real time (SYS -> ENV -> CSS -> JS -> NET)
-        └── 4. Smooth interpolation triggers dismiss animation when fully loaded
-
- ┌────────────────────────────────────────────────────────────────────────┐
- │                     Global Scroll Reveal Engine                        │
- └────────────────────────────────────────────────────────────────────────┘
-        │
-        ├── 1. `registerRevealElements()` calculates staggered delays
-        ├── 2. Unified IntersectionObserver triggers hardware-accelerated transforms
-        └── 3. Animates progress bars and timeline paths into viewport view
-```
-
----
-
-## 🚀 Getting Started Locally
-
-Because **AR.dev** requires no compilation or package installation, local setup is quick and straightforward.
-
-### 1. Clone the Repository
+No installation or build is required.
 
 ```bash
 git clone https://github.com/ayush-rathour/portfolio.git
 cd portfolio
-```
 
-### 2. Launch Local Server
-
-Serving through a local server ensures asset requests, fonts, videos, and downloads load consistently across all browsers:
-
-```bash
-# Using Python 3
+# Serve locally (pick one)
 python -m http.server 8000
-
-# Using Node.js (via npx)
 npx http-server -p 8000
 ```
 
-### 3. Open in Browser
-
-Navigate to `http://localhost:8000` in any modern web browser.
+Open `http://localhost:8000`. Use a local server rather than opening the file directly, so fonts, videos and downloads behave like production.
 
 ---
 
-## 🎨 Customisation Guide
+## Customisation
 
-| Component                | Target Location               | Description                                                             |
-| :----------------------- | :---------------------------- | :---------------------------------------------------------------------- |
-| **Theme Colors**         | `styles.css` (`:root`)        | Adjust `--primary-color`, `--background-color`, and `--hover-bg-color`. |
-| **Bio & Headings**       | `index.html` (`#home`)        | Update text nodes, call-to-actions, and hero statistics.                |
-| **Identity Terminal**    | `script.js` (`terminalData`)  | Update the key-value JSON objects rendered inside the terminal window.  |
-| **Skills & Percentages** | `index.html` (`#skills`)      | Modify skill titles, badges, and `data-pct` integer values (0–100).     |
-| **Milestones**           | `index.html` (`#milestones`)  | Add or update timeline cards (`.tl-item`) with dates and badges.        |
-| **Projects & Links**     | `index.html` (`#projects`)    | Update `.proj-card` entries, download links, and category tags.         |
-| **Form Endpoint**        | `index.html` (`#contactForm`) | Replace the `access_key` value with your own Web3Forms key.             |
-| **Google Analytics**     | `index.html` (`<head>`)       | Update the `G-XXXXXXXXXX` tag with your Google Analytics ID.            |
-
----
-
-## 📦 Deployment
-
-The static structure of AR.dev allows deployment to any modern static hosting provider.
-
-### Netlify Deployment
-
-1. Connect your GitHub repository to [Netlify](https://app.netlify.com/).
-2. Set the **Build Command** to empty (no build step needed).
-3. Set the **Publish Directory** to `.` (root directory).
-4. Click **Deploy**.
-
-_Compatible with GitHub Pages, Cloudflare Pages, and Vercel._
+| What                | Where                                               | How                                                                         |
+| :------------------ | :-------------------------------------------------- | :-------------------------------------------------------------------------- |
+| Theme colours       | `styles.css` → `:root`                              | Edit `--primary-color`, `--background-color`, `--hover-bg-color`            |
+| Hero text and stats | `index.html` → `#home`                              | Edit the text nodes and `.hs-num` / `.hs-label` values                      |
+| Terminal identity   | `script.js` → `terminalData`                        | Edit the key/value entries                                                  |
+| Rotating roles      | `script.js` → `roles`                               | Edit the array                                                              |
+| Skill levels        | `index.html` → `#skills`                            | Set `data-pct` (0 to 100) on each `.skill-block`                            |
+| Milestones          | `index.html` → `#milestones`                        | Add or edit `.tl-item` blocks and keep `data-year` correct                  |
+| Projects            | `index.html` → `#projects`                          | Add `.proj-card` entries and set `data-status` (`live`, `paid`, `archived`) |
+| Gallery items       | `index.html` → `#gallery`                           | Add `.gl2-item` entries with a `data-gl-tag` that matches a filter button   |
+| Contact form        | `index.html` → `#contactForm`                       | Replace the `access_key` with your own Web3Forms key                        |
+| Analytics           | `index.html` → bottom scripts                       | Replace the `G-` measurement ID with your own, or remove it                 |
+| Support modal       | `index.html` → `#supportPopup`                      | Update the UPI link and QR image, or remove the block                       |
+| Auto popup delay    | `script.js` → `setTimeout(openSupportModal, 90000)` | Change or delete the timer                                                  |
 
 ---
 
-## 🔍 Performance, SEO & Accessibility
+## Deployment
 
-- **Preconnect & Prefetch**: Accelerates DNS lookup and stylesheet parsing for Google Fonts, CDNs, and Google Tag Manager.
-- **Structured Data (JSON-LD)**: Includes Schema.org schemas (`@type: Person` and `@type: WebSite`) for rich snippet indexing.
-- **Full ARIA Compliance**: Equipped with `role="status"`, `role="dialog"`, `aria-modal="true"`, `aria-live`, and clear label descriptors.
-- **Accessibility & Reduced Motion**: Features `:focus-visible` ring outlines and a full `@media (prefers-reduced-motion: reduce)` ruleset to minimize animations when requested.
-- **Image Optimization**: Utilizes eager decoding for above-the-fold assets alongside lazy loading for project galleries.
+Any static host works (Netlify, GitHub Pages, Cloudflare Pages, Vercel).
 
----
+**Netlify**
 
-## 📜 Third-Party Credits & Attributions
+1. Connect the GitHub repository at [app.netlify.com](https://app.netlify.com/).
+2. Leave the build command empty.
+3. Set the publish directory to `.`
+4. Deploy.
 
-- **Loading Animation Concept**: Adapted from [Uiverse.io](https://uiverse.io/) (by _andrew-manzyk_), customized for the AR.dev dark theme.
-- **GLightbox**: Lightbox and video gallery library by [Biati Digital](https://biati-digital.github.io/glightbox/) (MIT License).
-- **Icons**: [Boxicons](https://boxicons.com/) & [Font Awesome 7](https://fontawesome.com/) (Free Licenses).
-- **Typography**: [Google Fonts](https://fonts.google.com/) — _Bitcount Prop Single_ and _SUSE_ (SIL Open Font License).
-- **Form Infrastructure**: [Web3Forms](https://web3forms.com/) serverless form API.
+After deploying, restrict your Web3Forms key to your domain in its dashboard.
 
 ---
 
-## 📬 Contact & Connect
+## Performance, SEO & Accessibility
 
-**Ayush Rathour**  
-_Frontend Developer & UI Designer_  
-Saharanpur, Uttar Pradesh, India (PIN: 247232)
+**Performance**
 
-- **Email**: [ayushrathour.dev@gmail.com](mailto:ayushrathour.dev@gmail.com)
-- **Phone / WhatsApp**: [+91 95480 69160](tel:+919548069160) / [Chat on WhatsApp](https://wa.me/+919548069160)
-- **LinkedIn**: [linkedin.com/in/ayushrathourrr](https://www.linkedin.com/in/ayushrathourrr/)
-- **GitHub**: [github.com/ayush-rathour](https://github.com/ayush-rathour)
-- **Instagram**: [@ayushrathourrr](https://www.instagram.com/ayushrathourrr)
+- Preconnect and DNS-prefetch hints for fonts and CDNs.
+- Non-blocking font and icon stylesheet loading.
+- `loading="lazy"` on below-the-fold images, `fetchpriority="high"` on the hero image.
+- Passive scroll listeners and a single shared reveal observer.
+
+**SEO**
+
+- Canonical URL, Open Graph and Twitter Card tags.
+- Schema.org JSON-LD (`Person` and `WebSite`).
+- Geo meta tags for local search.
+
+**Accessibility**
+
+- Semantic landmarks, ARIA roles (`dialog`, `status`) and labelled controls.
+- `:focus-visible` outlines and keyboard support (`Escape`, `Enter`, `Space`) in the drawer and lightbox.
+- `prefers-reduced-motion` and `color-scheme` handling.
+
+---
+
+## Roadmap
+
+Planned improvements, roughly in priority order:
+
+- [ ] Verify asset path casing between `index.html` and the repository
+- [ ] Add a "Mockup" gallery filter and fix the "Rewamped" typo
+- [ ] Shorten the preloader and show it once per session
+- [ ] Add a dedicated 1200×630 Open Graph image
+- [ ] Add resume download and project case studies
+- [ ] Replace the 90-second support popup with a less intrusive prompt
+- [ ] Merge to a single icon set and convert images to WebP/AVIF
+- [ ] Add `sitemap.xml`, `robots.txt`, a web manifest and a service worker
+- [ ] Add a Netlify `_headers` file with a Content Security Policy
+- [ ] Improve dialog and drawer focus management (`inert`, focus trap)
 
 ---
 
-## 📄 License & Usage Terms
+## Credits
 
-The source code of this portfolio is licensed under the [MIT License](LICENSE) © 2024–2026 **Ayush Rathour**.
-
-```
-MIT License - Summary Condition:
-Permission is granted to use, copy, modify, and distribute the software code,
-provided that the copyright notice and this permission notice appear in all copies.
-```
-
-> **Personal Content Notice:** The personal brand assets, including the name **"Ayush Rathour"**, the **"AR.dev"** wordmark/branding, personal biographies, narrative milestone logs, project descriptions, and personal portrait photos, are excluded from the open MIT License. If you use this codebase as a template, please replace all personal information and assets with your own before publishing.
+- **Loading animation concept:** adapted from [Uiverse.io](https://uiverse.io/) (by _andrew-manzyk_).
+- **GLightbox:** [Biati Digital](https://biati-digital.github.io/glightbox/) (MIT).
+- **Icons:** [Boxicons](https://boxicons.com/) and [Font Awesome](https://fontawesome.com/) (free licences).
+- **Typography:** [Google Fonts](https://fonts.google.com/) (SIL Open Font License).
+- **Forms:** [Web3Forms](https://web3forms.com/).
 
 ---
+
+## Contact
+
+**Ayush Rathour** · Frontend Developer & UI Designer · Saharanpur, Uttar Pradesh, India
+
+- Email: [ayushrathour.dev@gmail.com](mailto:ayushrathour.dev@gmail.com)
+- LinkedIn: [linkedin.com/in/ayushrathourrr](https://www.linkedin.com/in/ayushrathourrr/)
+- GitHub: [github.com/ayush-rathour](https://github.com/ayush-rathour)
+- Instagram: [@ayushrathourrr](https://www.instagram.com/ayushrathourrr)
+
+---
+
+## License & Usage
+
+Source code is released under the [MIT License](LICENSE), © 2024–2026 Ayush Rathour.
+
+**Personal content is excluded from the MIT License:** the name "Ayush Rathour", the "AR.dev" wordmark and branding, biographies, milestone text, project descriptions and personal photos. If you use this code as a template, replace all personal information, assets, analytics IDs, form keys and payment details with your own before publishing.
 
 <div align="center">
-  <sub>Crafted with curiosity and clean code • Built by <strong>Ayush Rathour</strong></sub>
+  <sub>Crafted with curiosity and clean code · Built by <strong>Ayush Rathour</strong></sub>
 </div>
