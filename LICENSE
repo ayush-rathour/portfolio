@@ -1,0 +1,99 @@
+MIT License
+
+Copyright (c) 2024–2026 Ayush Rathour
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to
+deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+─────────────────────────────────────────────────────────────────────────────
+ADDITIONAL NOTICE - PERSONAL CONTENT AND BRANDING
+─────────────────────────────────────────────────────────────────────────────
+
+The MIT License above applies solely to the source code of this project
+(HTML, CSS, and JavaScript files, and their structure and implementation).
+
+It does NOT extend to the following, which remain the exclusive property of
+Ayush Rathour and are NOT licensed for reuse, redistribution, or
+modification under the terms of this license:
+
+  - The name "Ayush Rathour" and the "AR.dev" brand name, wordmark, and logo
+  - Personal biographical information, including but not limited to the
+    author's name, location, contact details, and career history
+  - Photographs, including the profile photograph
+  - Project descriptions, case studies, milestone entries, and written
+    narratives describing the author's work, journey, and approach
+  - Any custom artwork, mockups, screenshots of the author's own work,
+    gallery images and videos, and design assets created specifically for
+    this portfolio
+  - The downloadable files in the assets/files folder (including the
+    FinTrack APK and the Python and C project archives), unless the
+    repository for that project states a different license
+
+Any individual or entity reusing this source code as a template for their
+own portfolio must remove or replace all of the items listed above, along
+with all analytics IDs, form access keys, and payment details, with their
+own original content prior to publication or distribution.
+
+
+─────────────────────────────────────────────────────────────────────────────
+CLIENT AND COLLABORATION WORK
+─────────────────────────────────────────────────────────────────────────────
+
+This portfolio shows work created for or together with other people,
+including "Varun's Artist Portfolio" and "Shaurya's Developer Portfolio".
+The names, designs, artwork, and screenshots of those projects remain the
+property of their respective owners. They appear here only to describe the
+author's contribution and are NOT licensed for reuse under this license.
+
+
+─────────────────────────────────────────────────────────────────────────────
+THIRD-PARTY COMPONENTS
+─────────────────────────────────────────────────────────────────────────────
+
+This project incorporates the following third-party components and
+services, each of which is governed by its own respective license or terms.
+These components are not covered by the MIT License granted above.
+
+  1. DM Sans, Manrope, and DM Mono (Google Fonts)
+     Source:  https://fonts.google.com/
+     License: SIL Open Font License, Version 1.1
+              (https://scripts.sil.org/OFL)
+
+  2. Lucide Icons (inline SVG)
+     Source:  https://lucide.dev/
+     License: ISC License
+              (portions derived from Feather are under the MIT License)
+
+  3. Web3Forms
+     Source:  https://web3forms.com/
+     Notice:  Used as a third-party form submission service under its
+              applicable terms of service.
+
+  4. Google Analytics (gtag.js)
+     Source:  https://marketingplatform.google.com/about/analytics/
+     Notice:  Used as a third-party analytics service under Google's
+              applicable terms of service.
+
+  5. GitHub REST API
+     Source:  https://docs.github.com/en/rest
+     Notice:  Used to display the author's latest public commit, under
+              GitHub's applicable terms of service.
+
+Users of this codebase are responsible for independently reviewing and
+complying with the license terms of each third-party component listed above.

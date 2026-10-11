@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | AR.dev</title>
+    <meta
+      name="description"
+      content="A visual log of AR.dev interfaces, mockups, redesigns, and product walkthrough videos by Ayush Rathour."
+    />
+    <meta name="author" content="Ayush Rathour" />
+    <meta name="theme-color" content="#f4f2ed" />
+    <link
+      rel="canonical"
+      href="https://ayushrathour.netlify.app/page/gallery.html"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Gallery | AR.dev" />
+    <meta
+      property="og:description"
+      content="Interfaces, mockups, redesigns, and walkthrough videos from the AR.dev journey."
+    />
+    <meta
+      property="og:image"
+      content="https://ayushrathour.netlify.app/assets/Gallery_Images/fintrack_mockup.png"
+    />
+
+    <link rel="icon" href="../assets/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/gallery.css" />
+
+    <script src="../js/main.js" defer></script>
+    <script src="../js/pages.js" defer></script>
+  </head>
+
+  <body class="gallery-page">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="../index.html" aria-label="AR.dev home">
+          <span class="logo-mark">AR</span>
+          <span class="logo-text">AR<span>.dev</span></span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-controls="main-nav"
+          aria-expanded="false"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16" /> <path d="M4 12h16" /> <path d="M4 19h16" /></svg>
+        </button>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+          <a href="../index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="skills.html" class="nav-link">Skills</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="milestones.html" class="nav-link">Milestones</a>
+          <a href="gallery.html" class="nav-link">Gallery</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <a class="header-cta" href="contact.html">
+          Let's talk
+          <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-up-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>
+        </a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- ==================== HERO ==================== -->
+      <section class="gallery-hero section">
+        <div class="gallery-hero-copy">
+          <p class="eyebrow">VISUAL NOTES / GALLERY</p>
+          <h1>The Work <span>in frames.</span></h1>
+          <p class="gallery-intro">
+            A visual log of interfaces, mockups, redesigns, and walkthroughs.
+            Each frame shows a stage of how FinTrack, the blog concepts, and
+            this portfolio took shape.
+          </p>
+        </div>
+
+        <aside class="gallery-summary" aria-label="Gallery summary">
+          <span class="mono-label">THE FRAME COUNT</span>
+          <div class="gallery-summary-number">09</div>
+          <p>frames in the archive</p>
+          <dl class="gallery-summary-list">
+            <div>
+              <dt>Design &amp; mockups</dt>
+              <dd>04</dd>
+            </div>
+            <div>
+              <dt>Upgrades</dt>
+              <dd>03</dd>
+            </div>
+            <div>
+              <dt>Videos</dt>
+              <dd>02</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <!-- ==================== GALLERY ==================== -->
+      <section
+        class="gallery-section section"
+        id="gallery"
+        aria-labelledby="gallery-title"
+      >
+        <div class="gallery-toolbar">
+          <div class="gallery-toolbar-copy">
+            <p class="eyebrow">THE ARCHIVE</p>
+            <h2 id="gallery-title">
+              Interfaces, mockups <span>and builds.</span>
+            </h2>
+          </div>
+
+          <div
+            class="gallery-filters"
+            role="group"
+            aria-label="Filter gallery by type"
+          >
+            <button
+              class="gallery-chip is-active"
+              type="button"
+              data-gallery-filter="all"
+              aria-pressed="true"
+            >
+              All <span>09</span>
+            </button>
+            <button
+              class="gallery-chip"
+              type="button"
+              data-gallery-filter="design"
+              aria-pressed="false"
+            >
+              Design <span>04</span>
+            </button>
+            <button
+              class="gallery-chip"
+              type="button"
+              data-gallery-filter="upgrade"
+              aria-pressed="false"
+            >
+              Upgrade <span>03</span>
+            </button>
+            <button
+              class="gallery-chip"
+              type="button"
+              data-gallery-filter="video"
+              aria-pressed="false"
+            >
+              Video <span>02</span>
+            </button>
+          </div>
+        </div>
+
+        <p
+          class="gallery-status"
+          id="gallery-status"
+          role="status"
+          aria-live="polite"
+        >
+          Showing all 9 frames
+        </p>
+
+        <ul class="gallery-grid" id="gallery-grid">
+          <!-- 01 -->
+          <li
+            class="gallery-item"
+            data-gallery-item
+            data-category="design"
+            data-type="image"
+            data-src="../assets/Gallery_Images/fintrack_mockup.png"
+            data-title="FinTrack - Desktop View"
+            data-caption="Full dashboard with income and expense charts and responsive navigation."
+            data-alt="FinTrack desktop mockup"
+          >
+            <article class="gallery-card">
+              <div class="gallery-media">
+                <img
+                  src="../assets/Gallery_Images/fintrack_mockup.png"
+                  alt="FinTrack desktop mockup"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+                <span class="gallery-tag">Mockup</span>
+              </div>
+              <div class="gallery-body">
+                <p class="gallery-meta"><span>Mockup</span><span>01</span></p>
+                <h3>FinTrack - Desktop View</h3>
+                <p class="gallery-caption">
+                  Full dashboard with income and expense charts and responsive
+                  navigation.
+                </p>
+                <button class="gallery-open" type="button">
+                  View frame
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-up-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 02 -->
+          <li
+            class="gallery-item"
+            data-gallery-item
+            data-category="design"
+            data-type="image"
+            data-src="../assets/Gallery_Images/fintrack_md_mockup.png"
+            data-title="FinTrack - Multi-Device"
+            data-caption="Mobile-first and tested everywhere: desktop, tablet, and mobile."
+            data-alt="FinTrack across desktop, tablet and mobile"
+          >
+            <article class="gallery-card">
+              <div class="gallery-media">
+                <img
+                  src="../assets/Gallery_Images/fintrack_md_mockup.png"
+                  alt="FinTrack across desktop, tablet and mobile"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+                <span class="gallery-tag">Responsive</span>
+              </div>
+              <div class="gallery-body">
+                <p class="gallery-meta">
+                  <span>Responsive</span><span>02</span>
+                </p>
+                <h3>FinTrack - Multi-Device</h3>
+                <p class="gallery-caption">
+                  Mobile-first and tested everywhere: desktop, tablet, and
+                  mobile.
+                </p>
+                <button class="gallery-open" type="button">
+                  View frame
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-up-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 03 -->
+          <li
+            class="gallery-item"
+            data-gallery-item
+            data-category="upgrade"
+            data-type="image"
+            data-src="../assets/Gallery_Images/fintrack_ui_mockup.png"
+            data-title="FinTrack - Upgraded UI"
+            data-caption="The v16 overhaul: refined card hierarchy and a tighter spacing system."
+            data-alt="FinTrack upgraded UI redesign mockup"
+          >
+            <article class="gallery-card">
+              <div class="gallery-media">
+                <img
+                  src="../assets/Gallery_Images/fintrack_ui_mockup.png"
+                  alt="FinTrack upgraded UI redesign mockup"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+                <span class="gallery-tag">UI refresh</span>
+              </div>
+              <div class="gallery-body">
+                <p class="gallery-meta">
+                  <span>UI refresh</span><span>03</span>
+                </p>
+                <h3>FinTrack - Upgraded UI</h3>
+                <p class="gallery-caption">
+                  The v16 overhaul: refined card hierarchy and a tighter spacing
+                  system.
+                </p>
+                <button class="gallery-open" type="button">
+                  View frame
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-up-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 04 -->
+          <li
+            class="gallery-item"
+            data-gallery-item
+            data-category="design"
+            data-type="image"
+            data-src="../assets/Gallery_Images/blogs_mockup.png"
+            data-title="Blogs - Layout Concept"
+            data-caption="Clean readability, dynamic filtering, and an SEO-first structure."
+            data-alt="Blogs page layout mockup design"
+          >
+            <article class="gallery-card">
+              <div class="gallery-media">
+                <img
+                  src="../assets/Gallery_Images/blogs_mockup.png"
+                  alt="Blogs page layout mockup design"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+                <span class="gallery-tag">Design</span>
+              </div>
+              <div class="gallery-body">
+                <p class="gallery-meta"><span>Design</span><span>04</span></p>
+                <h3>Blogs - Layout Concept</h3>
+                <p class="gallery-caption">
+                  Clean readability, dynamic filtering, and an SEO-first
+                  structure.
+                </p>
+                <button class="gallery-open" type="button">
+                  View frame
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-up-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 05 -->
+          <li
+            class="gallery-item"
+            data-gallery-item
+            data-category="design"
+            data-type="image"
+            data-src="../assets/Gallery_Images/blogs_by_ar.png"
+            data-title="Blogs by AR"
+            data-caption="Distraction-free reading with an editorial type system and a dark-first language."
+            data-alt="Blogs by AR final design mockup"
+          >
+            <article class="gallery-card">
+              <div class="gallery-media">
+                <img
+                  src="../assets/Gallery_Images/blogs_by_ar.png"
+                  alt="Blogs by AR final design mockup"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+                <span class="gallery-tag">Design</span>
+              </div>
+              <div class="gallery-body">
+                <p class="gallery-meta"><span>Design</span><span>05</span></p>
+                <h3>Blogs by AR</h3>
+                <p class="gallery-caption">
+                  Distraction-free reading with an editorial type system and a
+                  dark-first language.
+                </p>
+                <button class="gallery-open" type="button">
+                  View frame
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-up-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 06 -->
+          <li
+            class="gallery-item"
+            data-gallery-item
+            data-category="upgrade"
+            data-type="image"
+            data-src="../assets/Gallery_Images/portfolio_upgrade.png"
+            data-title="Upgraded Portfolio"
+            data-caption="Cleaner structure, smoother transitions, and a more engaging visual flow."
+            data-alt="Upgraded portfolio design mockup"
+          >
+            <article class="gallery-card">
+              <div class="gallery-media">
+                <img
+                  src="../assets/Gallery_Images/portfolio_upgrade.png"
+                  alt="Upgraded portfolio design mockup"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+                <span class="gallery-tag">Upgrade</span>
+              </div>
+              <div class="gallery-body">
+                <p class="gallery-meta"><span>Upgrade</span><span>06</span></p>
+                <h3>Upgraded Portfolio</h3>
+                <p class="gallery-caption">
+                  Cleaner structure, smoother transitions, and a more engaging
+                  visual flow.
+                </p>
+                <button class="gallery-open" type="button">
+                  View frame
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-up-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 07 -->
+          <li
+            class="gallery-item"
+            data-gallery-item
+            data-category="upgrade"
+            data-type="image"
+            data-src="../assets/Gallery_Images/fintrack_upgrade.png"
+            data-title="Enhanced FinTrack"
+            data-caption="Faster interactions, smarter layout logic, and a dynamic carousel at its core."
+            data-alt="Enhanced FinTrack design mockup"
+          >
+            <article class="gallery-card">
+              <div class="gallery-media">
+                <img
+                  src="../assets/Gallery_Images/fintrack_upgrade.png"
+                  alt="Enhanced FinTrack design mockup"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+                <span class="gallery-tag">Upgrade</span>
+              </div>
+              <div class="gallery-body">
+                <p class="gallery-meta"><span>Upgrade</span><span>07</span></p>
+                <h3>Enhanced FinTrack</h3>
+                <p class="gallery-caption">
+                  Faster interactions, smarter layout logic, and a dynamic
+                  carousel at its core.
+                </p>
+                <button class="gallery-open" type="button">
+                  View frame
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-up-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 08 · video -->
+          <li
+            class="gallery-item"
+            data-gallery-item
+            data-category="video"
+            data-type="video"
+            data-src="../assets/Gallery_Videos/ardev_exp.mp4"
+            data-poster="../assets/Gallery_Thumb/ardev_thumb.png"
+            data-title="AR.dev - Behind the Build"
+            data-caption="A narrated deep dive into AR.dev, covering concept, creative direction, and evolution."
+            data-alt="AR.dev Behind the Build video thumbnail"
+          >
+            <article class="gallery-card">
+              <div class="gallery-media">
+                <img
+                  src="../assets/Gallery_Thumb/ardev_thumb.png"
+                  alt="AR.dev Behind the Build video thumbnail"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+                <span class="gallery-tag">Video</span>
+                <span class="gallery-play" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" /></svg>
+                </span>
+              </div>
+              <div class="gallery-body">
+                <p class="gallery-meta"><span>Video</span><span>08</span></p>
+                <h3>AR.dev - Behind the Build</h3>
+                <p class="gallery-caption">
+                  A narrated deep dive into AR.dev, covering concept, creative
+                  direction, and evolution.
+                </p>
+                <button class="gallery-open" type="button">
+                  Play video
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" /></svg>
+                </button>
+              </div>
+            </article>
+          </li>
+
+          <!-- 09 · video -->
+          <li
+            class="gallery-item"
+            data-gallery-item
+            data-category="video"
+            data-type="video"
+            data-src="../assets/Gallery_Videos/fintrack_exp.mp4"
+            data-poster="../assets/Gallery_Thumb/fintrack_thumb.png"
+            data-title="FinTrack - Product Walkthrough"
+            data-caption="A complete walkthrough of FinTrack, exploring core features, user experience, and logic."
+            data-alt="FinTrack product walkthrough video thumbnail"
+          >
+            <article class="gallery-card">
+              <div class="gallery-media">
+                <img
+                  src="../assets/Gallery_Thumb/fintrack_thumb.png"
+                  alt="FinTrack product walkthrough video thumbnail"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+                <span class="gallery-tag">Video</span>
+                <span class="gallery-play" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" /></svg>
+                </span>
+              </div>
+              <div class="gallery-body">
+                <p class="gallery-meta"><span>Video</span><span>09</span></p>
+                <h3>FinTrack - Product Walkthrough</h3>
+                <p class="gallery-caption">
+                  A complete walkthrough of FinTrack, exploring core features,
+                  user experience, and logic.
+                </p>
+                <button class="gallery-open" type="button">
+                  Play video
+                  <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-play" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" /></svg>
+                </button>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ==================== CTA ==================== -->
+      <section class="gallery-cta section" aria-labelledby="gallery-cta-title">
+        <div class="gallery-cta-inner">
+          <p class="eyebrow">WANT THE FULL STORY?</p>
+          <h2 id="gallery-cta-title">
+            Frames show the result. <span>Projects show the work.</span>
+          </h2>
+          <p>
+            Every image here connects to a project or a milestone. See what was
+            built and what it took to get there.
+          </p>
+          <a class="gallery-cta-link" href="projects.html">
+            Explore my projects
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-up-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================== LIGHTBOX ==================== -->
+    <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-title">
+      <div class="lightbox-shell">
+        <div class="lightbox-bar">
+          <span class="lightbox-count" id="lightbox-count">01 / 09</span>
+          <button
+            class="lightbox-btn"
+            id="lightbox-close"
+            type="button"
+            aria-label="Close viewer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg>
+          </button>
+        </div>
+
+        <div class="lightbox-stage" id="lightbox-stage"></div>
+
+        <div class="lightbox-info">
+          <div class="lightbox-text">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-caption"></p>
+          </div>
+          <div class="lightbox-nav">
+            <button
+              class="lightbox-btn"
+              id="lightbox-prev"
+              type="button"
+              aria-label="Previous frame"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-left" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7" /> <path d="M19 12H5" /></svg>
+            </button>
+            <button
+              class="lightbox-btn"
+              id="lightbox-next"
+              type="button"
+              aria-label="Next frame"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-right" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="logo" href="../index.html" aria-label="AR.dev home">
+            <span class="logo-mark">AR</span>
+            <span class="logo-text">AR<span>.dev</span></span>
+          </a>
+          <p>
+            Built with curiosity. Refined with care. Always exploring what comes
+            next.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h2>Explore</h2>
+          <a href="../index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="skills.html">Skills</a>
+          <a href="projects.html">Projects</a>
+          <a href="milestones.html">Milestones</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="current-year"></span> AR.dev</p>
+        <a href="../index.html"
+          >Back to home <span aria-hidden="true">↑</span></a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="theme-color" content="#f4f2ed" />
+    <meta name="robots" content="noindex, follow" />
+
+    <title>Page Not Found | AR.dev</title>
+    <meta
+      name="description"
+      content="Looks like this page has gone off the grid. Return to AR.dev and explore the portfolio."
+    />
+
+    <link rel="icon" href="/assets/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ========================================
+       AR.dev - Standalone 404 Page
+       Hybrid Glass Editorial + interactive terminal
+       This file is intentionally self-contained: it does not load
+       the shared CSS or JS, so it still works when the server shows
+       it for a URL deep inside the site.
+    ======================================== */
+
+      :root {
+        color-scheme: light;
+
+        --paper: #f4f2ed;
+        --paper-dark: #eae7df;
+        --ink: #20221f;
+        --muted: #686b63;
+        --lime: #b8f36b;
+        --line: rgba(32, 34, 31, 0.12);
+        --glass: rgba(255, 255, 255, 0.48);
+
+        /* Terminal palette */
+        --term-bg: #1d201c;
+        --term-bar: #262a24;
+        --term-text: #e6e8dd;
+        --term-muted: #9aa093;
+        --term-error: #ff9d8c;
+
+        --font-body: "DM Sans", sans-serif;
+        --font-display: "Manrope", sans-serif;
+        --font-mono:
+          "DM Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+        --radius-lg: 28px;
+        --radius-md: 16px;
+
+        --shadow:
+          0 24px 70px rgba(32, 34, 31, 0.07), 0 3px 12px rgba(32, 34, 31, 0.03);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-height: 100%;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+
+        background:
+          radial-gradient(
+            ellipse at 78% 18%,
+            rgba(184, 243, 107, 0.12),
+            transparent 34%
+          ),
+          var(--paper);
+
+        color: var(--ink);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid var(--ink);
+        outline-offset: 5px;
+        border-radius: 5px;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      ::selection {
+        background: var(--lime);
+        color: var(--ink);
+      }
+
+      /* Header */
+
+      .site-header {
+        width: 100%;
+        padding: 25px 6.5%;
+      }
+
+      .header-inner {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: -1.2px;
+      }
+
+      .logo-mark {
+        width: 12px;
+        height: 12px;
+        border-radius: 4px;
+        background: var(--lime);
+        border: 1px solid rgba(32, 34, 31, 0.14);
+        transform: rotate(-12deg);
+      }
+
+      .header-note {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: #7ba84d;
+        box-shadow: 0 0 0 4px rgba(123, 168, 77, 0.12);
+      }
+
+      /* Main layout */
+
+      .error-main {
+        width: 100%;
+        max-width: 1440px;
+        flex: 1;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 0 auto;
+        padding: 48px 6.5% 82px;
+      }
+
+      .error-layout {
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        align-items: center;
+        gap: clamp(36px, 6vw, 96px);
+      }
+
+      /* Text content */
+
+      .error-copy {
+        position: relative;
+        z-index: 1;
+        max-width: 620px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 25px;
+
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow-line {
+        width: 27px;
+        height: 1px;
+        background: var(--ink);
+      }
+
+      .error-title {
+        margin: 0;
+
+        font-family: var(--font-display);
+        font-size: clamp(3.3rem, 6.4vw, 6rem);
+        font-weight: 800;
+        line-height: 0.99;
+        letter-spacing: -0.085em;
+      }
+
+      .error-title span {
+        display: block;
+      }
+
+      .error-title .title-accent {
+        color: var(--muted);
+      }
+
+      .error-description {
+        max-width: 440px;
+        margin: 27px 0 0;
+
+        color: var(--muted);
+        font-size: clamp(0.96rem, 1.3vw, 1.08rem);
+        line-height: 1.8;
+      }
+
+      .error-description strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .error-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .button {
+        min-height: 51px;
+        padding: 0 21px;
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+        font-weight: 700;
+
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          color 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .button-primary {
+        background: var(--ink);
+        color: #fff;
+      }
+
+      .button-primary:hover {
+        background: #383b34;
+        box-shadow: 0 8px 22px rgba(32, 34, 31, 0.12);
+        transform: translateY(-2px);
+      }
+
+      .button-secondary {
+        background: transparent;
+        border-color: var(--line);
+        color: var(--ink);
+      }
+
+      .button-secondary:hover {
+        background: rgba(255, 255, 255, 0.55);
+        transform: translateY(-2px);
+      }
+
+      .button-arrow {
+        font-size: 1.1rem;
+        line-height: 1;
+      }
+
+      .terminal-hint {
+        margin: 28px 0 0;
+
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.02em;
+        line-height: 1.7;
+      }
+
+      .terminal-hint kbd {
+        padding: 2px 7px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.6);
+        color: var(--ink);
+        font: inherit;
+      }
+
+      /* Visual panel: the terminal */
+
+      .error-visual {
+        position: relative;
+        min-width: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        isolation: isolate;
+      }
+
+      .visual-orbit {
+        position: absolute;
+        z-index: -1;
+        width: 104%;
+        aspect-ratio: 1;
+        border: 1px solid rgba(32, 34, 31, 0.09);
+        border-radius: 50%;
+        transform: rotate(-22deg);
+        pointer-events: none;
+      }
+
+      .visual-orbit::before,
+      .visual-orbit::after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(32, 34, 31, 0.08);
+        border-radius: 50%;
+      }
+
+      .visual-orbit::before {
+        inset: 10%;
+      }
+
+      .visual-orbit::after {
+        inset: 22%;
+      }
+
+      .terminal {
+        position: relative;
+        width: 100%;
+        max-width: 580px;
+        overflow: hidden;
+
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: var(--radius-lg);
+        background:
+          radial-gradient(
+            circle at 100% 0%,
+            rgba(184, 243, 107, 0.12),
+            transparent 42%
+          ),
+          var(--term-bg);
+        color: var(--term-text);
+        box-shadow:
+          0 30px 70px rgba(32, 34, 31, 0.2),
+          0 3px 12px rgba(32, 34, 31, 0.08);
+      }
+
+      .terminal-bar {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 13px 18px;
+        background: var(--term-bar);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .term-dots {
+        display: inline-flex;
+        gap: 7px;
+      }
+
+      .term-dots i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #5a5f55;
+      }
+
+      .term-dots i:first-child {
+        background: var(--lime);
+      }
+
+      .terminal-title {
+        color: var(--term-muted);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+      }
+
+      .terminal-body {
+        padding: 18px 20px 6px;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        line-height: 1.75;
+        cursor: text;
+      }
+
+      .terminal-output {
+        height: clamp(250px, 36vh, 340px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+      }
+
+      .terminal-output:focus-visible {
+        outline: 2px solid var(--lime);
+        outline-offset: 4px;
+      }
+
+      .term-line {
+        min-height: 1.75em;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        animation: term-in 260ms ease both;
+        animation-delay: calc(var(--i, 0) * 110ms);
+      }
+
+      .term-line.is-error {
+        color: var(--term-error);
+      }
+
+      .term-line.is-muted {
+        color: var(--term-muted);
+      }
+
+      .term-line a {
+        color: var(--lime);
+        text-decoration: underline;
+        text-decoration-color: rgba(184, 243, 107, 0.4);
+        text-underline-offset: 3px;
+      }
+
+      .term-line a:hover {
+        text-decoration-color: var(--lime);
+      }
+
+      .term-line a:focus-visible {
+        outline-color: var(--lime);
+      }
+
+      .term-ps1 {
+        color: var(--lime);
+      }
+
+      .terminal-form {
+        display: flex;
+        align-items: baseline;
+        gap: 9px;
+        padding-block: 8px 14px;
+      }
+
+      .term-prompt {
+        flex-shrink: 0;
+        color: var(--lime);
+      }
+
+      .terminal-form input {
+        min-width: 0;
+        flex: 1;
+        padding: 0;
+        border: 0;
+        outline: none;
+        background: transparent;
+        caret-color: var(--lime);
+        color: var(--term-text);
+        font: inherit;
+      }
+
+      .terminal-form input::placeholder {
+        color: #666b60;
+      }
+
+      .terminal-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px 20px 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+      }
+
+      .terminal-chips button {
+        padding: 7px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--term-text);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        cursor: pointer;
+        transition:
+          background 180ms ease,
+          border-color 180ms ease,
+          color 180ms ease;
+      }
+
+      .terminal-chips button:hover {
+        border-color: var(--lime);
+        background: var(--lime);
+        color: var(--ink);
+      }
+
+      .terminal-chips button:focus-visible {
+        outline-color: var(--lime);
+      }
+
+      @keyframes term-in {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+      }
+
+      /* Helpful navigation */
+
+      .explore-section {
+        padding: 0 6.5% 46px;
+      }
+
+      .explore-inner {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+
+      .explore-heading {
+        margin: 0 0 17px;
+
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .explore-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .explore-link {
+        padding: 10px 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+
+        color: var(--ink);
+        font-size: 0.8rem;
+        font-weight: 600;
+
+        transition:
+          background 180ms ease,
+          border-color 180ms ease,
+          transform 180ms ease;
+      }
+
+      .explore-link:hover {
+        background: rgba(255, 255, 255, 0.65);
+        border-color: rgba(32, 34, 31, 0.25);
+        transform: translateY(-2px);
+      }
+
+      /* Footer */
+
+      .site-footer {
+        padding: 20px 6.5% 25px;
+      }
+
+      .footer-inner {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding-top: 19px;
+        border-top: 1px solid var(--line);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .footer-copy,
+      .footer-code {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.73rem;
+      }
+
+      .footer-code {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+      }
+
+      /* Responsive */
+
+      @media (min-width: 1500px) {
+        .error-title {
+          font-size: 6.4rem;
+        }
+      }
+
+      @media (max-width: 1000px) {
+        .error-layout {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 40px;
+        }
+
+        .error-copy {
+          max-width: 640px;
+        }
+
+        .error-title {
+          font-size: clamp(3.2rem, 9vw, 5.2rem);
+        }
+
+        .error-visual {
+          width: min(100%, 600px);
+          margin: 0 auto;
+        }
+
+        .visual-orbit {
+          display: none;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .site-header {
+          padding: 22px 6%;
+        }
+
+        .error-main {
+          padding: 35px 6% 48px;
+        }
+
+        .eyebrow {
+          margin-bottom: 20px;
+        }
+
+        .error-title {
+          font-size: clamp(3.4rem, 13vw, 5.4rem);
+        }
+
+        .error-description {
+          margin-top: 21px;
+        }
+
+        .terminal-output {
+          height: 280px;
+        }
+
+        .explore-section {
+          padding: 0 6% 35px;
+        }
+
+        .site-footer {
+          padding: 18px 6% 23px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .header-note {
+          font-size: 0.58rem;
+          gap: 7px;
+        }
+
+        .logo {
+          font-size: 1.25rem;
+        }
+
+        .error-title {
+          font-size: 3.4rem;
+        }
+
+        .error-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .terminal-body {
+          padding-inline: 14px;
+          font-size: 0.72rem;
+        }
+
+        .terminal-chips {
+          padding-inline: 14px;
+        }
+
+        .explore-links {
+          gap: 8px;
+        }
+
+        .explore-link {
+          padding: 9px 11px;
+          font-size: 0.74rem;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 7px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-delay: 0ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="/" aria-label="AR.dev home">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span>AR.dev</span>
+        </a>
+
+        <div class="header-note">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Still finding my way</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="error-main">
+      <div class="error-layout">
+        <section class="error-copy" aria-labelledby="error-title">
+          <p class="eyebrow">
+            <span class="eyebrow-line" aria-hidden="true"></span>
+            Error 404 · Lost in the interface
+          </p>
+
+          <h1 class="error-title" id="error-title">
+            <span>Well,</span>
+            <span class="title-accent">this is</span>
+            <span>awkward.</span>
+          </h1>
+
+          <p class="error-description">
+            The page you're looking for isn't here. It may have moved, changed
+            its address, or never existed in the first place.
+            <strong>Let's get you back on track.</strong>
+          </p>
+
+          <div class="error-actions">
+            <a class="button button-primary" href="/">
+              Back to homepage
+              <span class="button-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="button button-secondary" href="/page/projects.html">
+              Explore projects
+              <span class="button-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <p class="terminal-hint" id="term-hint">
+            Psst, the terminal on this page really works. Click it and type
+            <kbd>help</kbd>.
+          </p>
+        </section>
+
+        <div class="error-visual">
+          <div class="visual-orbit" aria-hidden="true"></div>
+
+          <div class="terminal" role="group" aria-label="Interactive terminal">
+            <div class="terminal-bar">
+              <span class="term-dots" aria-hidden="true"
+                ><i></i><i></i><i></i
+              ></span>
+              <span class="terminal-title" aria-hidden="true"
+                >ayush@ar.dev: ~</span
+              >
+            </div>
+
+            <div class="terminal-body" id="term-body">
+              <div
+                class="terminal-output"
+                id="term-output"
+                role="log"
+                aria-live="polite"
+                aria-label="Terminal output"
+                tabindex="0"
+              ></div>
+
+              <form class="terminal-form" id="term-form" autocomplete="off">
+                <label class="term-prompt" for="term-input"
+                  >ayush@ar.dev:~$</label
+                >
+                <input
+                  id="term-input"
+                  type="text"
+                  spellcheck="false"
+                  autocomplete="off"
+                  autocapitalize="off"
+                  autocorrect="off"
+                  maxlength="120"
+                  placeholder="type help"
+                  aria-describedby="term-hint"
+                />
+              </form>
+            </div>
+
+            <div class="terminal-chips" aria-label="Quick commands">
+              <button type="button" data-cmd="help">help</button>
+              <button type="button" data-cmd="projects">projects</button>
+              <button type="button" data-cmd="skills">skills</button>
+              <button type="button" data-cmd="contact">contact</button>
+              <button type="button" data-cmd="home">home</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <section class="explore-section" aria-labelledby="explore-heading">
+      <div class="explore-inner">
+        <h2 class="explore-heading" id="explore-heading">
+          Or take another route
+        </h2>
+
+        <nav class="explore-links" aria-label="Portfolio sections">
+          <a class="explore-link" href="/page/about.html">About</a>
+          <a class="explore-link" href="/page/skills.html">Skills</a>
+          <a class="explore-link" href="/page/projects.html">Projects</a>
+          <a class="explore-link" href="/page/milestones.html">Milestones</a>
+          <a class="explore-link" href="/page/gallery.html">Gallery</a>
+          <a class="explore-link" href="/page/contact.html">Contact</a>
+        </nav>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-copy">
+          © <span id="current-year">2026</span> AR.dev. Back to building.
+        </p>
+
+        <p class="footer-code">404 / ROUTE NOT FOUND</p>
+      </div>
+    </footer>
+
+    <script>
+      (() => {
+        "use strict";
+
+        // Keep the copyright year current without loading the shared JS.
+        document.getElementById("current-year").textContent =
+          new Date().getFullYear();
+
+        /* =========================
+           TERMINAL
+           A small fake shell. Everything typed is written to the page
+           with textContent, never as HTML, so nothing from the URL or
+           the keyboard can inject markup.
+        ========================= */
+
+        const out = document.getElementById("term-output");
+        const form = document.getElementById("term-form");
+        const input = document.getElementById("term-input");
+        const body = document.getElementById("term-body");
+
+        if (!out || !form || !input) return;
+
+        const PS1 = "ayush@ar.dev:~$";
+
+        const PAGES = {
+          about: { path: "/page/about.html", desc: "the story behind AR.dev" },
+          skills: { path: "/page/skills.html", desc: "what I work with" },
+          projects: {
+            path: "/page/projects.html",
+            desc: "things I've built, with case studies",
+          },
+          milestones: {
+            path: "/page/milestones.html",
+            desc: "the journey since May 2022",
+          },
+          gallery: {
+            path: "/page/gallery.html",
+            desc: "interfaces, mockups and videos",
+          },
+          contact: { path: "/page/contact.html", desc: "say hello" },
+        };
+
+        const PROJECTS = [
+          {
+            id: "fintrack",
+            name: "FinTrack",
+            desc: "privacy-first expense tracker (PWA)",
+          },
+          {
+            id: "varun-portfolio",
+            name: "Varun's Artist Portfolio",
+            desc: "client work, built in 7 days",
+          },
+          {
+            id: "shaurya-portfolio",
+            name: "Shaurya's Developer Portfolio",
+            desc: "responsive and UI/UX polish",
+          },
+          {
+            id: "python-utilities",
+            name: "Python Utilities",
+            desc: "command-line mini projects",
+          },
+          {
+            id: "c-projects",
+            name: "C Projects",
+            desc: "console programs, fundamentals first",
+          },
+        ];
+
+        const LINKS = {
+          github: "https://github.com/ayush-rathour",
+          linkedin: "https://www.linkedin.com/in/ayushrathourrr/",
+          email: "ayushrathour.dev@gmail.com",
+        };
+
+        const has = (object, key) =>
+          Object.prototype.hasOwnProperty.call(object, key);
+
+        /* ---------- Output helpers ---------- */
+
+        // parts: a string, or an array of strings and { text, href } links.
+        function line(parts, className = "") {
+          const element = document.createElement("div");
+
+          element.className = className
+            ? `term-line ${className}`
+            : "term-line";
+
+          (Array.isArray(parts) ? parts : [parts]).forEach((part) => {
+            if (typeof part === "string") {
+              element.appendChild(document.createTextNode(part));
+              return;
+            }
+
+            const link = document.createElement("a");
+
+            link.textContent = part.text;
+            link.href = part.href;
+
+            if (/^https?:/.test(part.href)) {
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+            }
+
+            element.appendChild(link);
+          });
+
+          out.appendChild(element);
+          out.scrollTop = out.scrollHeight;
+
+          return element;
+        }
+
+        // A typed command, shown after the prompt. "order" staggers the
+        // fade-in for the boot sequence.
+        function echo(text, order) {
+          const element = line("");
+          const prompt = document.createElement("span");
+
+          prompt.className = "term-ps1";
+          prompt.textContent = PS1;
+
+          element.appendChild(prompt);
+          element.appendChild(document.createTextNode(` ${text}`));
+
+          if (order !== undefined) element.style.setProperty("--i", order);
+        }
+
+        const blank = () => line("\u00a0");
+
+        function go(href, label) {
+          line(`Opening ${label}…`, "is-muted");
+
+          window.setTimeout(() => {
+            window.location.href = href;
+          }, 400);
+        }
+
+        // "about", "/page/about.html", "~", ".." and "" all resolve here.
+        function resolvePage(argument) {
+          const key = String(argument || "")
+            .toLowerCase()
+            .replace(/^\/+|\/+$/g, "")
+            .replace(/^page\//, "")
+            .replace(/\.html$/, "");
+
+          if (["", "~", "..", "home", "index"].includes(key)) {
+            return { path: "/", label: "the homepage" };
+          }
+
+          if (has(PAGES, key)) {
+            return { path: PAGES[key].path, label: key };
+          }
+
+          return null;
+        }
+
+        /* ---------- Commands ---------- */
+
+        const COMMANDS = Object.create(null);
+
+        COMMANDS.help = () => {
+          [
+            "help          list the commands",
+            "ls            list the pages",
+            "projects      my projects, with case studies",
+            "skills        what I work with",
+            "about         who is behind AR.dev",
+            "milestones    the journey so far",
+            "contact       ways to reach me",
+            "open <page>   go to a page, e.g. open about",
+            "home          back to the homepage",
+            "clear         clear the terminal",
+          ].forEach((text) => line(text));
+
+          line("There are a couple of hidden ones too. Try some.", "is-muted");
+        };
+
+        COMMANDS.ls = () => {
+          Object.keys(PAGES).forEach((key) => {
+            line([
+              { text: `${key}/`, href: PAGES[key].path },
+              `  ${PAGES[key].desc}`,
+            ]);
+          });
+        };
+
+        COMMANDS.projects = () => {
+          line("Click one to open its case study:", "is-muted");
+
+          PROJECTS.forEach((project, index) => {
+            line([
+              `0${index + 1}  `,
+              {
+                text: project.name,
+                href: `/page/projects.html#case-${project.id}`,
+              },
+              `  ${project.desc}`,
+            ]);
+          });
+        };
+
+        COMMANDS.skills = () => {
+          line("HTML · CSS · JavaScript · Python · C · Git & GitHub");
+          line("Learning right now: C pointers and memory.", "is-muted");
+          line([
+            "More: ",
+            { text: "/page/skills.html", href: "/page/skills.html" },
+          ]);
+        };
+
+        COMMANDS.about = () => {
+          line("Ayush Rathour. Student developer and UI designer.");
+          line("Curiosity first, code later. Started on a phone in 2022.");
+          line([
+            "Read more: ",
+            { text: "/page/about.html", href: "/page/about.html" },
+          ]);
+        };
+
+        COMMANDS.milestones = () => {
+          line("2022  started coding on a phone (HTML + CSS)");
+          line("2023  first full website");
+          line("2024  moved to a laptop, learned Python, launched FinTrack");
+          line("2025  first paid client project");
+          line("2026  Git & GitHub, first commit, started C");
+          line([
+            "Full timeline: ",
+            { text: "/page/milestones.html", href: "/page/milestones.html" },
+          ]);
+        };
+
+        COMMANDS.contact = () => {
+          line("Open to internships, open source and individual projects.");
+          line([
+            "email     ",
+            { text: LINKS.email, href: `mailto:${LINKS.email}` },
+          ]);
+          line(["github    ", { text: "ayush-rathour", href: LINKS.github }]);
+          line([
+            "linkedin  ",
+            { text: "ayushrathourrr", href: LINKS.linkedin },
+          ]);
+          line([
+            "or use the ",
+            { text: "contact page", href: "/page/contact.html" },
+          ]);
+        };
+
+        COMMANDS.github = () =>
+          line([{ text: LINKS.github, href: LINKS.github }]);
+
+        COMMANDS.email = () =>
+          line([{ text: LINKS.email, href: `mailto:${LINKS.email}` }]);
+
+        COMMANDS.whoami = () =>
+          line("ayush: student developer, builder by habit");
+
+        COMMANDS.pwd = () => line(window.location.pathname || "/");
+
+        COMMANDS.date = () => line(new Date().toLocaleString());
+
+        COMMANDS["404"] = () => {
+          line("404 means the server understood you, but there is nothing at");
+          line([window.location.pathname || "/", ""]);
+          line("Typos, moved pages and old links are the usual suspects.");
+        };
+
+        COMMANDS.echo = (args) => line(args.join(" ") || "\u00a0");
+
+        COMMANDS.clear = () => out.replaceChildren();
+
+        COMMANDS.home = COMMANDS.exit = () => go("/", "the homepage");
+
+        COMMANDS.open = COMMANDS.cd = (args) => {
+          const target = resolvePage(args[0]);
+
+          if (!args.length) {
+            line("usage: open <page>   (try: ls)", "is-muted");
+            return;
+          }
+
+          if (!target) {
+            line(
+              `bash: ${args[0]}: no such page. Type ls to see the options.`,
+              "is-error",
+            );
+            return;
+          }
+
+          go(target.path, target.label);
+        };
+
+        COMMANDS["hire-me"] = () => {
+          line("Great choice. Let's talk:");
+          line([
+            "email  ",
+            { text: LINKS.email, href: `mailto:${LINKS.email}` },
+          ]);
+          line([
+            "or  ",
+            { text: "/page/contact.html", href: "/page/contact.html" },
+          ]);
+        };
+
+        COMMANDS.sudo = (args) => {
+          if ((args[0] || "").toLowerCase() === "hire-me") {
+            line("[sudo] password for recruiter: ********", "is-muted");
+            line("Permission granted.");
+            COMMANDS["hire-me"]();
+            return;
+          }
+
+          line(
+            "ayush is not in the sudoers file. This incident will be reported.",
+            "is-error",
+          );
+        };
+
+        COMMANDS.rm = () =>
+          line(
+            "rm: permission denied. This portfolio is staying put.",
+            "is-error",
+          );
+
+        /* ---------- Running a command ---------- */
+
+        const past = [];
+        let pastIndex = 0;
+
+        function run(raw) {
+          const text = raw.trim();
+
+          if (!text) return;
+
+          echo(text);
+
+          past.push(text);
+          pastIndex = past.length;
+
+          const [name, ...args] = text.split(/\s+/);
+          const command = COMMANDS[name.toLowerCase()];
+
+          if (command) {
+            command(args);
+          } else {
+            line(
+              `${name}: command not found. Type help for a list of commands.`,
+              "is-error",
+            );
+          }
+        }
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const value = input.value;
+
+          input.value = "";
+          run(value);
+        });
+
+        input.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowUp") {
+            event.preventDefault();
+
+            if (pastIndex > 0) {
+              pastIndex -= 1;
+              input.value = past[pastIndex];
+            }
+          } else if (event.key === "ArrowDown") {
+            event.preventDefault();
+
+            if (pastIndex < past.length - 1) {
+              pastIndex += 1;
+              input.value = past[pastIndex];
+            } else {
+              pastIndex = past.length;
+              input.value = "";
+            }
+          } else if (event.key === "l" && event.ctrlKey) {
+            event.preventDefault();
+            COMMANDS.clear();
+          } else if (event.key === "Tab") {
+            event.preventDefault();
+            complete();
+          }
+        });
+
+        // Tab completion for command names and page names.
+        function complete() {
+          const parts = input.value.split(/\s+/);
+          const word = (parts[parts.length - 1] || "").toLowerCase();
+          const completingPage =
+            parts.length > 1 && ["open", "cd"].includes(parts[0].toLowerCase());
+          const pool = completingPage
+            ? Object.keys(PAGES)
+            : Object.keys(COMMANDS);
+          const matches = pool.filter((name) => name.startsWith(word));
+
+          if (!word || !matches.length) return;
+
+          if (matches.length === 1) {
+            parts[parts.length - 1] = matches[0];
+            input.value = `${parts.join(" ")} `;
+            return;
+          }
+
+          echo(input.value);
+          line(matches.join("   "), "is-muted");
+        }
+
+        // Clicking the terminal focuses the prompt, unless the person is
+        // selecting text or following a link.
+        body.addEventListener("click", (event) => {
+          const target = event.target;
+
+          if (target instanceof Element && target.closest("a")) return;
+          if (String(window.getSelection())) return;
+
+          input.focus();
+        });
+
+        document.querySelectorAll("[data-cmd]").forEach((button) => {
+          button.addEventListener("click", () => run(button.dataset.cmd));
+        });
+
+        /* ---------- "Did you mean?" ---------- */
+
+        function distance(a, b) {
+          const row = Array.from({ length: b.length + 1 }, (_, i) => i);
+
+          for (let i = 1; i <= a.length; i += 1) {
+            let previous = row[0];
+
+            row[0] = i;
+
+            for (let j = 1; j <= b.length; j += 1) {
+              const current = row[j];
+
+              row[j] = Math.min(
+                row[j] + 1,
+                row[j - 1] + 1,
+                previous + (a[i - 1] === b[j - 1] ? 0 : 1),
+              );
+
+              previous = current;
+            }
+          }
+
+          return row[b.length];
+        }
+
+        function suggestion() {
+          const segment = (
+            window.location.pathname.split("/").filter(Boolean).pop() || ""
+          )
+            .toLowerCase()
+            .replace(/\.html$/, "");
+
+          if (segment.length < 2) return null;
+
+          let best = null;
+          let bestScore = Infinity;
+
+          Object.keys(PAGES).forEach((key) => {
+            const close =
+              key.includes(segment) || segment.includes(key)
+                ? 1
+                : distance(segment, key);
+
+            if (close < bestScore) {
+              best = key;
+              bestScore = close;
+            }
+          });
+
+          return bestScore <= 3 ? best : null;
+        }
+
+        /* ---------- Boot sequence ---------- */
+
+        let step = 0;
+
+        function boot(parts, className) {
+          line(parts, className).style.setProperty("--i", step);
+          step += 1;
+        }
+
+        const path = window.location.pathname || "/";
+        const guess = suggestion();
+
+        echo(`cd ${path}`, step);
+        step += 1;
+
+        boot(`bash: cd: ${path}: No such file or directory`, "is-error");
+        boot("404: this route does not exist. Maybe it never did.", "is-error");
+
+        if (guess) {
+          boot([
+            "Did you mean ",
+            { text: PAGES[guess].path, href: PAGES[guess].path },
+            `? Type: open ${guess}`,
+          ]);
+        }
+
+        boot("Type help to see what I can do.", "is-muted");
+      })();
+    </script>
+  </body>
+</html>
