@@ -74,22 +74,22 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 
 ### Navigation
 
-- **Sticky header** with blur, scroll shadow and an active-page highlight (`aria-current="page"`).
-- **Mobile menu** with open/close icon swap, `Escape` to close, click-outside to close and `aria-expanded` state.
+- **Sticky header** with blur, scroll shadow and a glass-capsule nav. A lime pill rests on the current page (`aria-current="page"`) and glides to the link you hover or focus, then back again. Without JavaScript the current page simply gets the lime pill on its own link.
+- **Mobile menu** with open/close icon swap, a staggered link reveal, an ink row for the current page, `Escape` to close, click-outside to close and `aria-expanded` state.
 - **Skip link** to jump straight to the main content.
 
 ### Pages
 
-| Page           | Highlights                                                                                                                                |
-| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
-| **Home**       | Hero with stats, a "Now" strip (current learning plus latest GitHub commit), featured projects, skills overview and a journey preview     |
-| **About**      | Long-form story, guiding principle, working approach and life beyond the code                                                             |
-| **Skills**     | Evidence-based skill cards (no percentage bars), workflow tools, project-specific technology notes and certificates                       |
-| **Projects**   | Five projects with a full **case study overlay** each, live links and APK / ZIP downloads                                                 |
-| **Milestones** | Year-by-year timeline (2022 to 2026) with a jump-to-year bar and a self-drawing timeline line                                             |
-| **Gallery**    | Filterable grid (All, Design, Upgrade, Video) with a native-`<dialog>` lightbox for images and MP4 walkthroughs                           |
-| **Contact**    | Six contact channels, a validated form (Web3Forms), "what to include" guide and a UPI support section with QR code                        |
-| **404**        | A standalone page with a working interactive terminal (`help`, `ls`, `projects`, `open <page>`, tab completion, command history and more) |
+| Page           | Highlights                                                                                                                                                         |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Home**       | Hero with stats, a "Now" strip (current learning plus latest GitHub commit), a GitHub contribution graph, featured projects, skills overview and a journey preview |
+| **About**      | Long-form story, guiding principle, working approach and life beyond the code                                                                                      |
+| **Skills**     | Evidence-based skill cards (no percentage bars), workflow tools, project-specific technology notes and certificates                                                |
+| **Projects**   | Five projects with a full **case study overlay** each, live links and APK / ZIP downloads                                                                          |
+| **Milestones** | Year-by-year timeline (2022 to 2026) with a jump-to-year bar and a self-drawing timeline line                                                                      |
+| **Gallery**    | Filterable grid (All, Design, Upgrade, Video) with a native-`<dialog>` lightbox for images and MP4 walkthroughs                                                    |
+| **Contact**    | Six contact channels, a validated form (Web3Forms), "what to include" guide and a UPI support section with QR code                                                 |
+| **404**        | A standalone page with a working interactive terminal (`help`, `ls`, `projects`, `open <page>`, tab completion, command history and more)                          |
 
 ### Case Study Overlay
 
@@ -104,6 +104,14 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 - Static "currently learning" card, edited by hand once a month.
 - A live **latest GitHub commit** card, fetched from the public GitHub API across the repos listed in `data-github-repos`. Results are cached for 15 minutes per tab, and the card falls back to a plain GitHub link if anything fails.
 
+### GitHub Contribution Graph
+
+- Sits on the home page under the "Now" strip, in the site theme (the lime scale from the palette, five levels).
+- **Responsive by design:** only the latest weeks that fit the card are drawn, so the newest activity is always visible. That is about 15 weeks on a small phone and a full year on a wide screen. Squares stay between 10px and 16px and the graph redraws when the width changes.
+- Hover (desktop) or tap (touch) a square to read the exact count and date.
+- Grey placeholder squares show while loading. The response is cached for an hour per tab, and the card falls back to a plain GitHub link if anything fails.
+- **Data source:** GitHub's REST API has no contribution calendar, so the graph uses the open [github-contributions-api](https://github.com/grubersjoe/github-contributions-api). It only sees **public** contributions, and visitors' browsers contact that service directly.
+
 ---
 
 ## Tech Stack
@@ -117,6 +125,7 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 | Icons     | Lucide (inline SVG)        | UI icons, with no runtime library                                            |
 | Forms     | Web3Forms                  | Serverless contact submission                                                |
 | Data      | GitHub REST API            | Latest commit on the Now strip                                               |
+| Data      | github-contributions-api   | Public contribution calendar for the contribution graph                      |
 | Analytics | Google Analytics (gtag.js) | Traffic telemetry, loaded once from `main.js`                                |
 | Hosting   | Netlify                    | Static hosting and CDN                                                       |
 
@@ -129,6 +138,8 @@ portfolio/
 ├── index.html                # Home page
 ├── 404.html                  # Standalone 404 (must stay at the root for Netlify)
 ├── google*.html              # Search Console verification file
+├── sitemap.xml               # Lists every page for search engines
+├── robots.txt                # Allows crawling and points to the sitemap
 ├── README.md
 ├── LICENSE
 │
@@ -181,17 +192,19 @@ Every script is organised as independent features. Each one checks that its mark
 | **Footer year**       | Keeps the copyright year current                                                                 |
 | **Mobile navigation** | Menu toggle, `Escape`, click-outside and reset when the screen grows                             |
 | **Active nav link**   | Matches the current URL to a link, with or without `.html` (Netlify pretty URLs)                 |
+| **Nav indicator**     | Desktop lime pill that rests on the current page and glides to the hovered or focused link       |
 | **External links**    | Adds `rel="noopener noreferrer"` to every `target="_blank"` link                                 |
 | **Gallery**           | Filters, "last card spans the row" fix, `<dialog>` lightbox, swipe on touch, video-safe controls |
 
 **`js/pages.js`: loaded on every page, features run only where their markup exists**
 
-| Feature           | Responsibility                                                                      |
-| :---------------- | :---------------------------------------------------------------------------------- |
-| **Contact form**  | Validation, honeypot check, `fetch` to Web3Forms with a 15 s timeout, live status   |
-| **Scroll reveal** | Opt-in: add class `reveal` to any element and it fades in as it enters the viewport |
-| **Anchor focus**  | Moves keyboard focus to the target of in-page links                                 |
-| **Now strip**     | Fetches and caches the latest GitHub commit, with a graceful fallback               |
+| Feature           | Responsibility                                                                                |
+| :---------------- | :-------------------------------------------------------------------------------------------- |
+| **Contact form**  | Validation, honeypot check, `fetch` to Web3Forms with a 15 s timeout, live status             |
+| **Scroll reveal** | Opt-in: add class `reveal` to any element and it fades in as it enters the viewport           |
+| **Anchor focus**  | Moves keyboard focus to the target of in-page links                                           |
+| **Now strip**     | Fetches and caches the latest GitHub commit, with a graceful fallback                         |
+| **Contributions** | Draws the latest contribution weeks that fit the width, redraws on resize, caches for an hour |
 
 **`js/case-studies.js`: Projects page only**
 
@@ -220,21 +233,22 @@ Open `http://localhost:8000`. Use a local server rather than opening the files d
 
 ## Customisation
 
-| What                | Where                                      | How                                                                                                             |
-| :------------------ | :----------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| Theme colours       | `css/styles.css` → `:root`                 | Edit the colour tokens. There are two `:root` blocks and the later "System refinement" block wins               |
-| Hero text and stats | `index.html` → `#home`                     | Edit the text and the `.hero-stat` values                                                                       |
-| "Now" strip         | `index.html` → `#now`                      | Edit the learning card and the `<time>` label once a month                                                      |
-| GitHub commit repos | `index.html` → `#now-commit`               | Edit `data-github-user` and `data-github-repos` (repos must be public)                                          |
-| Skills              | `page/skills.html`                         | Edit or add `.skill-card` blocks and their status chips                                                         |
-| Projects            | `page/projects.html`                       | Add a `.project-card` and a button with `data-case="<id>"`                                                      |
-| Case studies        | `js/case-studies.js` → `CASES`             | Edit the text. The `id` must match the button's `data-case`. Use `"first part\|second part"` for muted headings |
-| Milestones          | `page/milestones.html`                     | Add a `.milestone-card`, then update the year-nav counts and the archive number                                 |
-| Gallery items       | `page/gallery.html`                        | Add a `<li data-gallery-item>` with `data-category`, `data-type`, `data-src`, then update the chip counts       |
-| Contact form        | `page/contact.html` → `#contact-form`      | Replace the Web3Forms `access_key` with your own                                                                |
-| Analytics           | `js/main.js` → `GA_ID`                     | Replace the `G-` measurement ID with your own, or remove `initAnalytics`                                        |
-| Support section     | `page/contact.html` → `.contact-support`   | Update the UPI link and `assets/upi_qr.png`, or remove the section                                              |
-| Contact details     | `index.html`, `page/contact.html`, footers | Update the email, phone, WhatsApp and social links                                                              |
+| What                | Where                                      | How                                                                                                                                                    |
+| :------------------ | :----------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Theme colours       | `css/styles.css` → `:root`                 | Edit the colour tokens in the single `:root` block                                                                                                     |
+| Hero text and stats | `index.html` → `#home`                     | Edit the text and the `.hero-stat` values                                                                                                              |
+| "Now" strip         | `index.html` → `#now`                      | Edit the learning card and the `<time>` label once a month                                                                                             |
+| GitHub commit repos | `index.html` → `#now-commit`               | Edit `data-github-user` and `data-github-repos` (repos must be public)                                                                                 |
+| Contribution graph  | `index.html` → `#contrib`                  | Edit `data-github-user`. Smallest and largest square sizes live in `js/pages.js` (`CONTRIB_*`) and `css/styles.css` (`--contrib-*`), keep them in sync |
+| Skills              | `page/skills.html`                         | Edit or add `.skill-card` blocks and their status chips                                                                                                |
+| Projects            | `page/projects.html`                       | Add a `.project-card` and a button with `data-case="<id>"`                                                                                             |
+| Case studies        | `js/case-studies.js` → `CASES`             | Edit the text. The `id` must match the button's `data-case`. Use `"first part\|second part"` for muted headings                                        |
+| Milestones          | `page/milestones.html`                     | Add a `.milestone-card`, then update the year-nav counts and the archive number                                                                        |
+| Gallery items       | `page/gallery.html`                        | Add a `<li data-gallery-item>` with `data-category`, `data-type`, `data-src`, then update the chip counts                                              |
+| Contact form        | `page/contact.html` → `#contact-form`      | Replace the Web3Forms `access_key` with your own                                                                                                       |
+| Analytics           | `js/main.js` → `GA_ID`                     | Replace the `G-` measurement ID with your own, or remove `initAnalytics`                                                                               |
+| Support section     | `page/contact.html` → `.contact-support`   | Update the UPI link and `assets/upi_qr.png`, or remove the section                                                                                     |
+| Contact details     | `index.html`, `page/contact.html`, footers | Update the email, phone, WhatsApp and social links                                                                                                     |
 
 ---
 
@@ -254,6 +268,7 @@ Any static host works (Netlify, GitHub Pages, Cloudflare Pages, Vercel).
 - Keep `404.html` in the **root**. Netlify only serves it from there.
 - Restrict your Web3Forms key to your domain in its dashboard, then send a test message.
 - Open a made-up URL such as `/page/abc` to confirm the custom 404 appears.
+- Open `/sitemap.xml` and `/robots.txt` to confirm they load, then submit the sitemap in Google Search Console.
 - Check the Google Analytics Realtime report to confirm visits are recorded.
 
 ---
@@ -266,36 +281,22 @@ Any static host works (Netlify, GitHub Pages, Cloudflare Pages, Vercel).
 - Preconnect hints for Google Fonts.
 - `loading="lazy"` on below-the-fold images, `fetchpriority="high"` on the hero image, and explicit `width` / `height` to avoid layout shift.
 - Videos use `preload="metadata"` and are only loaded when opened.
-- Passive touch listeners, a cached GitHub API call and a single shared `IntersectionObserver` for reveals.
+- Passive touch listeners, cached GitHub calls (commit card and contribution graph) and a single shared `IntersectionObserver` for reveals.
 
 **SEO**
 
 - Unique `<title>` and meta description on every page.
 - Open Graph tags, and `noindex` on the 404 page.
 - Google Search Console verification file.
+- `sitemap.xml` listing every page, and a `robots.txt` that allows crawling and points to it.
 
 **Accessibility**
 
 - Semantic landmarks, a skip link, labelled controls and `aria-current` on the active page.
 - Native `<dialog>` for the lightbox and case studies, giving focus trapping and `Escape` to close.
-- Live regions (`role="status"`, `aria-live`) for the form, gallery filter and 404 terminal.
+- Live regions (`role="status"`, `aria-live`) for the form, gallery filter and 404 terminal, and a text summary (`role="img"` with a label) for the contribution graph.
 - `:focus-visible` outlines and keyboard support (arrow keys in the gallery and case studies).
 - `prefers-reduced-motion` handling, and `hover: none` handling so touch screens never get stuck hover states.
-
----
-
-## Roadmap
-
-Planned improvements, roughly in priority order:
-
-- [ ] Add `sitemap.xml` and `robots.txt`, then submit the sitemap in Search Console
-- [ ] Add canonical links, `og:url`, `og:image` and Twitter Card tags to every page
-- [ ] Convert PNG screenshots to WebP and compress the walkthrough videos
-- [ ] Add a Netlify `_headers` file with a Content Security Policy
-- [ ] Add a resume download
-- [ ] Add a walkthrough video of the archived client sites
-- [ ] Add a written client testimonial to the artist portfolio case study
-- [ ] Add FinTrack, Python and C project updates as new case study entries
 
 ---
 
@@ -304,7 +305,7 @@ Planned improvements, roughly in priority order:
 - **Typography:** [Google Fonts](https://fonts.google.com/): Manrope, DM Sans and DM Mono (SIL Open Font License).
 - **Icons:** [Lucide](https://lucide.dev/) (ISC License).
 - **Forms:** [Web3Forms](https://web3forms.com/).
-- **Data:** [GitHub REST API](https://docs.github.com/en/rest) for the latest-commit card.
+- **Data:** [GitHub REST API](https://docs.github.com/en/rest) for the latest-commit card, and [github-contributions-api](https://github.com/grubersjoe/github-contributions-api) for the contribution graph.
 
 ---
 

@@ -1,73 +1,22 @@
 /* =========================================================
    AR.dev - Milestones page
-   Shared site components and design tokens live in styles.css.
-   ========================================================= */
+   Page-specific layout only. Cards, chips, tags, icon boxes,
+   links and the closing panel are styled in styles.css.
+========================================================= */
 
 .milestones-page {
   overflow-x: clip;
 }
 
-.milestones-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(230px, 0.62fr);
-  align-items: end;
-  gap: clamp(36px, 7vw, 100px);
-  padding-block: clamp(78px, 11vw, 142px) clamp(66px, 8vw, 104px);
-}
+/* Hero card */
 
 .milestones-hero-copy {
   max-width: 850px;
 }
 
-.milestones-hero h1 {
-  margin-top: 22px;
-  font-size: clamp(3.5rem, 8.8vw, 7.4rem);
-  line-height: 0.94;
-  letter-spacing: -0.085em;
-}
-
-.milestones-hero h1 span,
-.milestone-archive-heading h2 span,
-.milestones-cta h2 span {
-  color: var(--color-muted);
-  font-weight: 500;
-}
-
-.milestones-intro {
-  max-width: 660px;
-  margin-top: clamp(24px, 3vw, 36px);
-  color: var(--color-muted);
-  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
-  line-height: 1.8;
-}
-
-.milestones-summary {
-  display: flex;
-  min-height: 280px;
-  flex-direction: column;
-  padding: clamp(22px, 3vw, 32px);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl, 28px);
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(184, 243, 107, 0.34),
-      transparent 46%
-    ),
-    rgba(255, 255, 255, 0.62);
-  box-shadow: var(--shadow-soft, 0 18px 45px rgba(32, 34, 31, 0.06));
-}
-
-.mono-label {
-  color: var(--color-muted);
-  font-family: var(--font-mono, "DM Mono", monospace);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-}
-
 .milestones-summary-number {
   margin-top: 26px;
-  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-family: var(--font-heading);
   font-size: clamp(4.5rem, 7vw, 6.5rem);
   font-weight: 800;
   line-height: 0.9;
@@ -76,7 +25,6 @@
 
 .milestones-summary > p {
   margin-top: 10px;
-  color: var(--color-muted);
   font-size: 0.92rem;
 }
 
@@ -91,7 +39,7 @@
 
 .milestones-summary-bottom > span:not(.summary-divider) {
   color: var(--color-muted);
-  font-family: var(--font-mono, "DM Mono", monospace);
+  font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.07em;
 }
@@ -109,8 +57,10 @@
   background: var(--color-border);
 }
 
+/* Archive */
+
 .milestone-archive {
-  padding-block: clamp(68px, 9vw, 112px);
+  padding-block: var(--section-space);
 }
 
 .milestone-archive-heading {
@@ -120,20 +70,13 @@
   gap: clamp(28px, 6vw, 80px);
 }
 
-.milestone-archive-heading h2,
-.milestones-cta h2 {
+.milestone-archive-heading h2 {
   max-width: 780px;
-  margin-top: 18px;
-  font-size: clamp(2.3rem, 4.8vw, 4.2rem);
-  line-height: 1.04;
-  letter-spacing: -0.075em;
 }
 
 .milestone-archive-note {
   max-width: 370px;
-  color: var(--color-muted);
   font-size: 0.95rem;
-  line-height: 1.8;
 }
 
 .milestone-year-nav {
@@ -144,47 +87,19 @@
   margin-top: clamp(34px, 5vw, 54px);
   padding: 16px;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg, 28px);
+  border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.52);
 }
 
 .year-nav-label {
   margin-right: 8px;
   color: var(--color-muted);
-  font-family: var(--font-mono, "DM Mono", monospace);
+  font-family: var(--font-mono);
   font-size: 0.67rem;
   letter-spacing: 0.07em;
 }
 
-.milestone-year-nav a {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 13px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill, 999px);
-  color: var(--color-ink);
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    border-color var(--transition-fast, 180ms ease),
-    background-color var(--transition-fast, 180ms ease),
-    transform var(--transition-fast, 180ms ease);
-}
-
-.milestone-year-nav a span {
-  color: var(--color-muted);
-  font-family: var(--font-mono, "DM Mono", monospace);
-  font-size: 0.63rem;
-  font-weight: 400;
-}
-
-.milestone-year-nav a:hover {
-  transform: translateY(-2px);
-  border-color: var(--color-border-strong);
-  background: var(--color-surface);
-}
+/* Timeline */
 
 .milestone-timeline {
   position: relative;
@@ -218,6 +133,8 @@
   position: sticky;
   top: 110px;
   display: flex;
+  grid-column: 1;
+  grid-row: 1;
   flex-direction: column;
   align-items: flex-start;
   padding-top: 2px;
@@ -230,14 +147,13 @@
   z-index: 1;
   width: 9px;
   height: 9px;
-  border: 2px solid var(--color-bg, #f4f2ed);
+  border: 2px solid var(--color-bg);
   border-radius: 50%;
-  background: var(--color-accent, #b8f36b);
+  background: var(--color-accent);
   box-shadow: 0 0 0 1px var(--color-border-strong);
 }
 
 .milestone-year-marker h3 {
-  font-family: var(--font-heading, "Manrope", sans-serif);
   font-size: 1.5rem;
   font-weight: 800;
   line-height: 1;
@@ -252,37 +168,56 @@
   line-height: 1.5;
 }
 
+/* Jumping to a year highlights its heading */
+.milestone-year:target .milestone-year-marker h3 {
+  margin-inline: -3px;
+  padding-inline: 3px;
+  background: linear-gradient(transparent 62%, rgba(184, 243, 107, 0.75) 62%);
+}
+
+/* Every card sits in the second column, whatever the year holds */
+.milestone-year > .milestone-card {
+  grid-column: 2;
+  width: 100%;
+  min-width: 0;
+}
+
+.milestone-year > .milestone-card:first-of-type {
+  grid-row: 1;
+}
+
 .milestone-card {
-  position: relative;
   display: grid;
-  grid-template-columns: 112px minmax(0, 1fr) 42px;
+  grid-template-columns: 112px minmax(0, 1fr) 44px;
   gap: clamp(18px, 3vw, 34px);
   padding: clamp(22px, 3vw, 34px);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl, 30px);
-  background: rgba(255, 255, 255, 0.64);
-  box-shadow: var(--shadow-soft, 0 8px 28px rgba(32, 34, 31, 0.045));
-  transition:
-    transform var(--transition-base, 240ms ease),
-    border-color var(--transition-fast, 180ms ease),
-    box-shadow var(--transition-base, 240ms ease);
 }
 
 .milestone-card + .milestone-card {
   margin-top: 16px;
 }
 
-.milestone-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--color-border-strong);
-  box-shadow: var(--shadow-card, 0 16px 44px rgba(32, 34, 31, 0.065));
+.milestone-card-featured {
+  background: radial-gradient(
+      circle at 100% 0%,
+      rgba(184, 243, 107, 0.16),
+      transparent 35%
+    ),
+    rgba(255, 255, 255, 0.76);
+}
+
+.milestone-card-featured .milestone-card-symbol,
+.milestone-card-paid .milestone-card-symbol {
+  border-color: var(--color-accent-line);
+  background: rgba(184, 243, 107, 0.24);
 }
 
 .milestone-card-index {
   color: var(--color-subtle);
-  font-family: var(--font-mono, "DM Mono", monospace);
+  font-family: var(--font-mono);
   font-size: 1.2rem;
   letter-spacing: -0.04em;
+  transition: color var(--transition-fast);
 }
 
 .milestone-card-index span {
@@ -307,30 +242,13 @@
 
 .milestone-card-meta time {
   color: var(--color-muted);
-  font-family: var(--font-mono, "DM Mono", monospace);
+  font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.07em;
 }
 
-.milestone-type {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 9px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill, 999px);
-  color: var(--color-ink);
-  font-size: 0.65rem;
-  font-weight: 650;
-}
-
-.milestone-type-accent {
-  border-color: rgba(95, 130, 52, 0.22);
-  background: rgba(184, 243, 107, 0.22);
-}
-
 .milestone-card h4 {
   margin-top: 17px;
-  font-family: var(--font-heading, "Manrope", sans-serif);
   font-size: clamp(1.35rem, 2.4vw, 1.9rem);
   font-weight: 750;
   line-height: 1.15;
@@ -339,99 +257,60 @@
 
 .milestone-card-content > p {
   margin-top: 13px;
-  color: var(--color-muted);
   font-size: 0.92rem;
   line-height: 1.8;
 }
 
-.milestone-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 20px;
-  padding: 0;
-  list-style: none;
-}
-
-.milestone-tags li {
-  padding: 6px 9px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill, 999px);
-  color: var(--color-muted);
-  font-size: 0.68rem;
-  line-height: 1.2;
-}
-
-.milestone-card-symbol {
-  display: inline-flex;
-  width: 42px;
-  height: 42px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--color-border);
-  border-radius: 14px;
-  background: var(--color-surface-soft, #eeece5);
-}
-
-.milestone-card-symbol svg {
-  width: 19px;
-  height: 19px;
-  stroke-width: 1.8;
-}
-
-.milestone-card-featured {
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(184, 243, 107, 0.16),
-      transparent 35%
-    ),
-    rgba(255, 255, 255, 0.76);
-}
-
-.milestone-card-featured .milestone-card-symbol,
-.milestone-card-paid .milestone-card-symbol {
-  border-color: rgba(95, 130, 52, 0.18);
-  background: rgba(184, 243, 107, 0.24);
-}
-
 .milestone-evidence {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
   margin-top: 22px;
-  color: var(--color-ink);
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-decoration: none;
 }
 
-.milestone-evidence:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+@media (hover: hover) {
+  .milestone-card:hover .milestone-card-index {
+    color: var(--color-ink);
+  }
 }
 
-.milestone-evidence svg {
-  width: 16px;
-  height: 16px;
+/* The timeline line fills in with green as you scroll down it */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .milestone-timeline {
+      view-timeline: --milestone-line block;
+    }
+
+    .milestone-timeline::after {
+      position: absolute;
+      top: 7px;
+      bottom: 0;
+      left: 118px;
+      width: 2px;
+      margin-left: -0.5px;
+      transform-origin: top;
+      background: var(--color-accent-dark);
+      content: "";
+      pointer-events: none;
+      animation: milestone-line linear both;
+      animation-timeline: --milestone-line;
+      animation-range: entry 0% cover 75%;
+    }
+
+    @keyframes milestone-line {
+      from {
+        transform: scaleY(0);
+      }
+
+      to {
+        transform: scaleY(1);
+      }
+    }
+  }
 }
+
+/* Closing panel */
 
 .milestones-cta {
   padding-top: clamp(24px, 4vw, 48px);
   padding-bottom: clamp(84px, 11vw, 140px);
-}
-
-.milestones-cta-inner {
-  padding: clamp(30px, 6vw, 76px);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl, 30px);
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(184, 243, 107, 0.26),
-      transparent 38%
-    ),
-    var(--color-surface-soft, #eeece5);
 }
 
 .milestones-cta h2 {
@@ -439,64 +318,29 @@
   margin-top: 20px;
 }
 
-.milestones-cta-inner > p:not(.eyebrow) {
-  max-width: 650px;
-  margin-top: 20px;
-  color: var(--color-muted);
-  font-size: 1rem;
-  line-height: 1.8;
-}
-
-.milestones-cta-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 28px;
-  padding: 13px 18px;
-  border: 1px solid var(--color-ink);
-  border-radius: var(--radius-pill, 999px);
-  background: var(--color-ink);
-  color: #fff;
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    transform var(--transition-fast, 180ms ease),
-    background-color var(--transition-fast, 180ms ease);
-}
-
-.milestones-cta-link:hover {
-  transform: translateY(-2px);
-  background: var(--color-dark-soft, #2c3029);
-}
-
-.milestones-cta-link svg {
-  width: 17px;
-  height: 17px;
-}
+/* Responsive */
 
 @media (max-width: 900px) {
-  .milestones-hero {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 34px;
-  }
-
-  .milestones-summary {
-    min-height: 220px;
-  }
-
   .milestone-archive-heading {
     grid-template-columns: minmax(0, 1fr);
     gap: 18px;
   }
 
-  .milestone-timeline::before {
+  .milestone-timeline::before,
+  .milestone-timeline::after {
     left: 12px;
   }
 
   .milestone-year {
     grid-template-columns: minmax(0, 1fr);
     padding-left: 38px;
+  }
+
+  .milestone-year > .milestone-year-marker,
+  .milestone-year > .milestone-card,
+  .milestone-year > .milestone-card:first-of-type {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .milestone-year-marker {
@@ -517,19 +361,6 @@
 }
 
 @media (max-width: 600px) {
-  .milestones-hero {
-    padding-top: 64px;
-  }
-
-  .milestones-hero h1 {
-    font-size: clamp(3.1rem, 14vw, 4.9rem);
-  }
-
-  .milestone-archive-heading h2,
-  .milestones-cta h2 {
-    font-size: clamp(2.15rem, 9.5vw, 3.3rem);
-  }
-
   .milestone-year-nav {
     gap: 8px;
     padding: 12px;
@@ -540,15 +371,12 @@
     margin: 0 0 3px;
   }
 
-  .milestone-year-nav a {
-    padding: 9px 11px;
-  }
-
   .milestone-year {
     padding-left: 28px;
   }
 
-  .milestone-timeline::before {
+  .milestone-timeline::before,
+  .milestone-timeline::after {
     left: 8px;
   }
 
@@ -557,10 +385,9 @@
   }
 
   .milestone-card {
-    grid-template-columns: minmax(0, 1fr) 36px;
+    grid-template-columns: minmax(0, 1fr) 38px;
     gap: 16px;
     padding: 21px;
-    border-radius: 22px;
   }
 
   .milestone-card-index {
@@ -581,8 +408,9 @@
   .milestone-card-symbol {
     grid-column: 2;
     grid-row: 2;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
     border-radius: 12px;
   }
 
@@ -592,184 +420,6 @@
 
   .milestones-cta-inner {
     padding: 26px 22px;
-    border-radius: 22px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .milestone-card,
-  .milestone-year-nav a,
-  .milestones-cta-link {
-    transition: none;
-  }
-
-  .milestone-card:hover,
-  .milestone-year-nav a:hover,
-  .milestones-cta-link:hover {
-    transform: none;
-  }
-}
-
-/* ---------------------------------------------------------
-   Timeline layout correction
-   Each year section contains a marker followed by one or more
-   milestone cards. Explicitly place every card in column 2
-   so multi-entry years (2024, 2025 and 2026) never collapse
-   into the narrow year-label column.
-   --------------------------------------------------------- */
-
-.milestone-year > .milestone-card {
-  grid-column: 2;
-  min-width: 0;
-  width: 100%;
-}
-
-.milestone-year > .milestone-year-marker {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.milestone-year > .milestone-card:first-of-type {
-  grid-row: 1;
-}
-
-.milestone-year > .milestone-card:not(:first-of-type) {
-  grid-row: auto;
-}
-
-@media (max-width: 900px) {
-  .milestone-year {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .milestone-year > .milestone-year-marker,
-  .milestone-year > .milestone-card {
-    grid-column: 1;
-  }
-
-  .milestone-year > .milestone-year-marker {
-    grid-row: auto;
-  }
-
-  .milestone-year > .milestone-card:first-of-type,
-  .milestone-year > .milestone-card:not(:first-of-type) {
-    grid-row: auto;
-  }
-}
-
-/* =========================================================
-   Refinements
-   Small details for the Milestones page.
-   ========================================================= */
-
-/* Jumping to a year highlights its heading. */
-.milestone-year:target .milestone-year-marker h3 {
-  padding-inline: 3px;
-  margin-inline: -3px;
-  background: linear-gradient(transparent 62%, rgba(184, 243, 107, 0.75) 62%);
-}
-
-.milestone-card-symbol,
-.milestone-card-index {
-  transition:
-    transform var(--transition-base, 240ms ease),
-    background-color var(--transition-fast, 180ms ease),
-    border-color var(--transition-fast, 180ms ease),
-    color var(--transition-fast, 180ms ease);
-}
-
-.milestone-year-nav a span,
-.milestone-evidence svg,
-.milestones-cta-link svg {
-  transition:
-    color var(--transition-fast, 180ms ease),
-    transform var(--transition-fast, 180ms ease);
-}
-
-@media (hover: hover) {
-  .milestone-card:hover .milestone-card-symbol {
-    transform: rotate(-6deg);
-    border-color: rgba(95, 130, 52, 0.3);
-    background: var(--color-accent, #b8f36b);
-  }
-
-  .milestone-card:hover .milestone-card-index {
-    color: var(--color-ink);
-  }
-
-  .milestone-year-nav a:hover span {
-    color: var(--color-ink);
-  }
-
-  .milestone-evidence:hover svg,
-  .milestones-cta-link:hover svg {
-    transform: translate(2px, -2px);
-  }
-}
-
-/* Touch screens: no hover state left behind after a tap. */
-@media (hover: none) {
-  .milestone-card:hover {
-    transform: none;
-    border-color: var(--color-border);
-    box-shadow: var(--shadow-soft, 0 8px 28px rgba(32, 34, 31, 0.045));
-  }
-
-  .milestone-year-nav a:hover {
-    transform: none;
-    border-color: var(--color-border);
-    background: transparent;
-  }
-
-  .milestones-cta-link:hover {
-    transform: none;
-    background: var(--color-ink);
-  }
-}
-
-/* The timeline line fills in with green as you scroll down it. */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .milestone-timeline {
-      view-timeline: --milestone-line block;
-    }
-
-    .milestone-timeline::after {
-      position: absolute;
-      top: 7px;
-      bottom: 0;
-      left: 118px;
-      width: 2px;
-      margin-left: -0.5px;
-      transform-origin: top;
-      background: var(--color-accent-dark, #719f36);
-      content: "";
-      pointer-events: none;
-      animation: milestone-line linear both;
-      animation-timeline: --milestone-line;
-      animation-range: entry 0% cover 75%;
-    }
-
-    @keyframes milestone-line {
-      from {
-        transform: scaleY(0);
-      }
-
-      to {
-        transform: scaleY(1);
-      }
-    }
-
-    @media (max-width: 900px) {
-      .milestone-timeline::after {
-        left: 12px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .milestone-timeline::after {
-        left: 8px;
-      }
-    }
+    border-radius: var(--radius-lg);
   }
 }

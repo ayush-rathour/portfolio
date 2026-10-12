@@ -200,6 +200,100 @@
   }
 
   /* =========================
+     4b. NAVIGATION INDICATOR
+     Desktop only. A lime pill rests on the current page and glides to
+     the link that is hovered or focused, then back again. It is placed
+     with two CSS variables (--nav-x, --nav-w) that match the link's
+     position inside the nav. On mobile the indicator is hidden and the
+     menu uses plain row styles instead.
+  ========================= */
+
+  function initNavIndicator() {
+    const nav = $("#main-nav");
+
+    if (!nav) return;
+
+    const links = $$(".nav-link", nav);
+
+    if (!links.length) return;
+
+    const mobile = window.matchMedia(MOBILE_QUERY);
+
+    const indicator = document.createElement("span");
+
+    indicator.className = "nav-indicator";
+    indicator.setAttribute("aria-hidden", "true");
+
+    nav.appendChild(indicator);
+    nav.classList.add("has-indicator");
+
+    const current = () =>
+      links.find((link) => link.getAttribute("aria-current") === "page") ||
+      null;
+
+    function place(link, hover) {
+      if (!link || mobile.matches) {
+        indicator.classList.remove("is-visible", "is-hover");
+        return;
+      }
+
+      indicator.style.setProperty("--nav-x", `${link.offsetLeft}px`);
+      indicator.style.setProperty("--nav-w", `${link.offsetWidth}px`);
+
+      indicator.classList.toggle("is-hover", hover);
+      indicator.classList.add("is-visible");
+    }
+
+    const rest = () => place(current(), false);
+
+    // Jump to the right place without gliding there (first paint,
+    // resize, fonts loading), then switch the glide back on.
+    function snap() {
+      indicator.classList.remove("is-ready");
+      rest();
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => indicator.classList.add("is-ready"));
+      });
+    }
+
+    function follow(event) {
+      const target = event.target;
+
+      if (!(target instanceof Element)) return;
+
+      const link = target.closest(".nav-link");
+
+      if (link) place(link, link !== current());
+    }
+
+    nav.addEventListener("mouseover", follow);
+    nav.addEventListener("focusin", follow);
+
+    // Back to the current page when the pointer leaves, unless the
+    // keyboard is still inside the nav.
+    nav.addEventListener("mouseleave", () => {
+      if (!nav.matches(":focus-within")) rest();
+    });
+
+    nav.addEventListener("focusout", (event) => {
+      const next = event.relatedTarget;
+
+      if (!(next instanceof Node) || !nav.contains(next)) rest();
+    });
+
+    window.addEventListener("resize", snap, { passive: true });
+    mobile.addEventListener("change", snap);
+
+    snap();
+
+    // Link widths change once the web fonts have loaded.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(snap).catch(() => {});
+    }
+  }
+
+  /* =========================
      5. EXTERNAL LINK SAFETY
   ========================= */
 
@@ -318,8 +412,44 @@
     const closeBtn = $("#lightbox-close");
     const prevBtn = $("#lightbox-prev");
     const nextBtn = $("#lightbox-next");
+    const eyebrowEl = $("#lightbox-eyebrow");
+    const statusEl = $("#lightbox-status");
+    const metaEl = $("#lightbox-meta");
+    const linkEl = $("#lightbox-link");
+    const scroller = $("#lightbox-scroll");
+    const progressEl = $("#lightbox-progress-bar");
+    const nextCardBtn = $("#lightbox-next-card");
+    const nextLabelEl = $("#lightbox-next-label");
 
-    if (!stage || !titleEl || !captionEl || !countEl) return;
+    if (!stage || !titleEl || !captionEl || !countEl || !scroller) return;
+
+    const ICON_ARROW =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></svg>';
+
+    const CATEGORY_LABELS = {
+      design: "Design & mockups",
+      upgrade: "Upgrade",
+      video: "Video",
+    };
+
+    function setMeta(rows) {
+      if (!metaEl) return;
+
+      metaEl.replaceChildren();
+
+      rows.forEach(([label, value]) => {
+        if (!value) return;
+
+        const row = document.createElement("div");
+        const dt = document.createElement("dt");
+        const dd = document.createElement("dd");
+
+        dt.textContent = label;
+        dd.textContent = value;
+        row.append(dt, dd);
+        metaEl.appendChild(row);
+      });
+    }
 
     function clearStage() {
       const video = $("video", stage);
@@ -351,7 +481,19 @@
 
       clearStage();
 
-      const { type, src, poster, title, caption, alt } = item.dataset;
+      const {
+        type,
+        src,
+        poster,
+        title,
+        caption,
+        alt,
+        project,
+        link,
+        linkLabel,
+      } = item.dataset;
+      const tag = $(".gallery-tag", item);
+      const category = (item.dataset.category || "").split(/\s+/)[0];
       let media;
 
       if (type === "video") {
@@ -373,14 +515,61 @@
 
       stage.appendChild(media);
 
+      const total = visible.length;
+      const tagText = tag ? tag.textContent.trim() : "";
+
       titleEl.textContent = title || "";
       captionEl.textContent = caption || "";
-      countEl.textContent = `${pad(index + 1)} / ${pad(visible.length)}`;
+      countEl.textContent = `FRAME · ${pad(index + 1)} / ${pad(total)}`;
 
-      const single = visible.length < 2;
+      if (eyebrowEl) {
+        eyebrowEl.textContent = `${pad(index + 1)} / ${tagText || "Frame"}`;
+      }
+
+      if (statusEl) {
+        statusEl.textContent = CATEGORY_LABELS[category] || "Gallery";
+      }
+
+      setMeta([
+        ["Type", type === "video" ? "Video walkthrough" : "Image"],
+        ["Category", CATEGORY_LABELS[category] || ""],
+        ["Project", project],
+        ["Frame", `${pad(index + 1)} of ${pad(total)}`],
+      ]);
+
+      if (linkEl) {
+        linkEl.hidden = !link;
+
+        if (link) {
+          linkEl.href = link;
+          linkEl.replaceChildren(
+            document.createTextNode(`${linkLabel || "Related page"} `),
+          );
+          linkEl.insertAdjacentHTML("beforeend", ICON_ARROW);
+        }
+      }
+
+      const single = total < 2;
 
       if (prevBtn) prevBtn.disabled = single;
       if (nextBtn) nextBtn.disabled = single;
+
+      if (nextCardBtn) {
+        nextCardBtn.hidden = single;
+
+        if (nextLabelEl && !single) {
+          const next = visible[(index + 1) % total];
+
+          nextLabelEl.textContent = `Next: ${next.dataset.title || "next frame"}`;
+        }
+      }
+
+      // The progress line shows where this frame sits in the gallery.
+      if (progressEl) {
+        progressEl.style.transform = `scaleX(${(index + 1) / total})`;
+      }
+
+      scroller.scrollTop = 0;
 
       preloadNeighbours();
     }
@@ -394,6 +583,7 @@
 
       dialog.showModal();
       document.body.classList.add("lightbox-open");
+      scroller.focus({ preventScroll: true });
     }
 
     function step(direction) {
@@ -413,11 +603,12 @@
 
     if (prevBtn) prevBtn.addEventListener("click", () => step(-1));
     if (nextBtn) nextBtn.addEventListener("click", () => step(1));
+    if (nextCardBtn) nextCardBtn.addEventListener("click", () => step(1));
     if (closeBtn) closeBtn.addEventListener("click", () => dialog.close());
 
     // A click on the dark backdrop or empty stage space closes the viewer.
     dialog.addEventListener("click", (event) => {
-      if (event.target === dialog || event.target === stage) {
+      if (event.target === dialog) {
         dialog.close();
       }
     });
@@ -482,6 +673,7 @@
     initCurrentYear,
     initNavigation,
     initActiveNavigation,
+    initNavIndicator,
     initExternalLinks,
     initGallery,
   ];
