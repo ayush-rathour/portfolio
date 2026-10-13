@@ -137,9 +137,6 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 portfolio/
 ├── index.html                # Home page
 ├── 404.html                  # Standalone 404 (must stay at the root for Netlify)
-├── google*.html              # Search Console verification file
-├── sitemap.xml               # Lists every page for search engines
-├── robots.txt                # Allows crawling and points to the sitemap
 ├── README.md
 ├── LICENSE
 │
