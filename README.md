@@ -120,7 +120,7 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 | :-------- | :------------------------- | :--------------------------------------------------------------------------- |
 | Markup    | HTML5                      | Semantic structure, ARIA, native `<dialog>`                                  |
 | Styling   | CSS3                       | Custom properties, Grid, Flexbox, scroll-driven animation, `backdrop-filter` |
-| Scripting | JavaScript (ES6+)          | `<dialog>` API, `fetch`, `IntersectionObserver`, `sessionStorage`            |
+| Scripting | JavaScript (ES6+)          | `<dialog>` API, `fetch`, `ResizeObserver`, `sessionStorage`            |
 | Fonts     | Google Fonts               | Manrope, DM Sans, DM Mono                                                    |
 | Icons     | Lucide (inline SVG)        | UI icons, with no runtime library                                            |
 | Forms     | Web3Forms                  | Serverless contact submission                                                |
@@ -164,6 +164,7 @@ portfolio/
 │
 └── assets/
     ├── favicon.png
+    ├── og-card.png           # 1200×630 social share image
     ├── profile_photo.png
     ├── upi_qr.png
     ├── Project_Images/       # Project card screenshots
@@ -198,8 +199,7 @@ Every script is organised as independent features. Each one checks that its mark
 | Feature           | Responsibility                                                                                |
 | :---------------- | :-------------------------------------------------------------------------------------------- |
 | **Contact form**  | Validation, honeypot check, `fetch` to Web3Forms with a 15 s timeout, live status             |
-| **Scroll reveal** | Opt-in: add class `reveal` to any element and it fades in as it enters the viewport           |
-| **Anchor focus**  | Moves keyboard focus to the target of in-page links                                           |
+| **Anchor focus**  | Moves keyboard focus to the target of in-page links, on load and on change                                          |
 | **Now strip**     | Fetches and caches the latest GitHub commit, with a graceful fallback                         |
 | **Contributions** | Draws the latest contribution weeks that fit the width, redraws on resize, caches for an hour |
 
@@ -244,6 +244,7 @@ Open `http://localhost:8000`. Use a local server rather than opening the files d
 | Gallery items       | `page/gallery.html`                        | Add a `<li data-gallery-item>` with `data-category`, `data-type`, `data-src`, then update the chip counts                                              |
 | Contact form        | `page/contact.html` → `#contact-form`      | Replace the Web3Forms `access_key` with your own                                                                                                       |
 | Analytics           | `js/main.js` → `GA_ID`                     | Replace the `G-` measurement ID with your own, or remove `initAnalytics`                                                                               |
+| Share image and SEO | `assets/og-card.png`, each page `<head>`   | Replace the 1200×630 image, then update the canonical, `og:url` and JSON-LD URLs if the domain changes                                                |
 | Support section     | `page/contact.html` → `.contact-support`   | Update the UPI link and `assets/upi_qr.png`, or remove the section                                                                                     |
 | Contact details     | `index.html`, `page/contact.html`, footers | Update the email, phone, WhatsApp and social links                                                                                                     |
 
@@ -278,12 +279,14 @@ Any static host works (Netlify, GitHub Pages, Cloudflare Pages, Vercel).
 - Preconnect hints for Google Fonts.
 - `loading="lazy"` on below-the-fold images, `fetchpriority="high"` on the hero image, and explicit `width` / `height` to avoid layout shift.
 - Videos use `preload="metadata"` and are only loaded when opened.
-- Passive touch listeners, cached GitHub calls (commit card and contribution graph) and a single shared `IntersectionObserver` for reveals.
+- Passive touch listeners and cached GitHub calls (commit card and contribution graph).
 
 **SEO**
 
-- Unique `<title>` and meta description on every page.
-- Open Graph tags, and `noindex` on the 404 page.
+- Unique `<title>`, meta description and canonical URL on every page.
+- Open Graph and Twitter Card tags with a 1200×630 share image (`assets/og-card.png`), plus `noindex` on the 404 page.
+- `Person` and `WebSite` JSON-LD on the home page.
+- The logo and every "Home" link point to `/`, so there is one address for the home page.
 - Google Search Console verification file.
 - `sitemap.xml` listing every page, and a `robots.txt` that allows crawling and points to it.
 

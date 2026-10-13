@@ -2960,22 +2960,6 @@ body:not(.contact-page) .contact-cta h2 span {
    20. MOTION, PRINT & REDUCED MOTION
 ========================================================= */
 
-/* Scroll reveal (opt in with class="reveal", see js/pages.js) */
-.reveal,
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(22px);
-  transition:
-    opacity 650ms var(--ease-out),
-    transform 650ms var(--ease-out);
-}
-
-.reveal.is-visible,
-.reveal-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 @keyframes availability-ping {
   0% {
     transform: scale(1);
@@ -3050,12 +3034,6 @@ body:not(.contact-page) .contact-cta h2 span {
     scroll-behavior: auto !important;
     transition-delay: 0ms !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .reveal,
-  .reveal-on-scroll {
-    opacity: 1;
-    transform: none;
   }
 
   .project-card:hover,

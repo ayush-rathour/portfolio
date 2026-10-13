@@ -3,10 +3,9 @@
  * Page-level enhancements, loaded after main.js.
  *
  *   1. Contact form (Web3Forms)
- *   2. Scroll reveal
- *   3. In-page anchor focus
- *   4. "Now" strip: latest GitHub commit (home page)
- *   5. GitHub contribution graph (home page)
+ *   2. In-page anchor focus
+ *   3. "Now" strip: latest GitHub commit (home page)
+ *   4. GitHub contribution graph (home page)
  *
  * Site-wide behaviour (navigation, icons, gallery) lives in main.js.
  * Each feature does nothing when its markup is not on the page, and
@@ -17,12 +16,6 @@
   "use strict";
 
   const $ = (selector, root = document) => root.querySelector(selector);
-
-  const $$ = (selector, root = document) =>
-    Array.from(root.querySelectorAll(selector));
-
-  const prefersReducedMotion = () =>
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* =========================
      1. CONTACT FORM
@@ -120,56 +113,7 @@
   }
 
   /* =========================
-     2. SCROLL REVEAL
-     Opt in by adding class="reveal" (or "reveal-on-scroll") to any
-     element. styles.css hides it until it enters the viewport.
-  ========================= */
-
-  const REVEAL_SELECTOR = ".reveal, .reveal-on-scroll";
-
-  function initReveal() {
-    const elements = $$(REVEAL_SELECTOR);
-
-    if (!elements.length) return;
-
-    // Without motion or observer support, show everything straight away.
-    if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
-      elements.forEach((element) => element.classList.add("is-visible"));
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries, current) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-
-          entry.target.classList.add("is-visible");
-          current.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -30px 0px" },
-    );
-
-    elements.forEach((element) => {
-      // Stagger siblings that reveal together (0, 60, 120, 180, 240ms).
-      if (!element.style.getPropertyValue("--reveal-delay")) {
-        const siblings = element.parentElement
-          ? Array.from(element.parentElement.children).filter((child) =>
-              child.matches(REVEAL_SELECTOR),
-            )
-          : [element];
-
-        const position = Math.min(siblings.indexOf(element), 4);
-
-        element.style.setProperty("--reveal-delay", `${position * 60}ms`);
-      }
-
-      observer.observe(element);
-    });
-  }
-
-  /* =========================
-     3. IN-PAGE ANCHOR FOCUS
+     2. IN-PAGE ANCHOR FOCUS
      Scrolling is left to the browser: html has scroll-behavior and
      scroll-padding-top in styles.css, and the native jump keeps the
      :target highlight on the Milestones year links working.
@@ -194,17 +138,22 @@
   }
 
   function initAnchorFocus() {
-    window.addEventListener("hashchange", () => {
+    const focusSafely = () => {
       try {
         focusHashTarget();
       } catch {
         // A malformed hash is ignored.
       }
-    });
+    };
+
+    window.addEventListener("hashchange", focusSafely);
+
+    // A page opened straight at a #hash (for example milestones.html#year-2026).
+    focusSafely();
   }
 
   /* =========================
-     4. NOW STRIP: LATEST GITHUB COMMIT
+     3. NOW STRIP: LATEST GITHUB COMMIT
      Looks at the newest commit of each repo listed in
      data-github-repos on #now-commit and shows the most recent one.
      The result is cached for 15 minutes per tab, because the public
@@ -382,7 +331,7 @@
   }
 
   /* =========================
-     5. GITHUB CONTRIBUTION GRAPH
+     4. GITHUB CONTRIBUTION GRAPH
      Draws the public contribution calendar for the GitHub user in
      data-github-user on #contrib. GitHub's own REST API has no
      contribution calendar, so the data comes from the open
@@ -737,7 +686,6 @@
 
   const features = [
     initContactForm,
-    initReveal,
     initAnchorFocus,
     initNowStrip,
     initContributions,
