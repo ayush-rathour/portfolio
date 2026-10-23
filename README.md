@@ -6,13 +6,13 @@
 
 A multi-page, framework-free portfolio built with semantic HTML5, custom-property-driven CSS3 and vanilla ES6+ JavaScript. No build step, no dependencies.
 
-[![Live](https://img.shields.io/badge/Live-ayushrathour.netlify.app-b8f36b?logo=netlify&logoColor=20221f)](https://ayushrathour.netlify.app)
+[![Live](https://img.shields.io/badge/Live-ayushrathour.netlify.app-b8f36b?logo=netlify&logoColor=20221f)](https://ayushrathour.pages.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black)
 
-[Live Site](https://ayushrathour.netlify.app) · [Report an Issue](https://github.com/ayush-rathour/portfolio/issues) · [Contact](#contact)
+[Live Site](https://ayushrathour.pages.dev) · [Report an Issue](https://github.com/ayush-rathour/portfolio/issues) · [Contact](#contact)
 
 </div>
 

@@ -42,7 +42,7 @@
       links: [
         {
           label: "Open live app",
-          href: "https://fintrack-ar.netlify.app/",
+          href: "https://fintrack-ar.pages.dev/",
         },
         {
           label: "Source on GitHub",
