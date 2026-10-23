@@ -24,7 +24,7 @@
      doesn't pollute the stats.
   ========================= */
 
-  const GA_ID = "G-14JH9PNNWP";
+  const GA_ID = "G-8RCQ5DT2B3";
 
   function initAnalytics() {
     const local = ["localhost", "127.0.0.1", ""].includes(
