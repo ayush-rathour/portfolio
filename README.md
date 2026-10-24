@@ -6,7 +6,7 @@
 
 A multi-page, framework-free portfolio built with semantic HTML5, custom-property-driven CSS3 and vanilla ES6+ JavaScript. No build step, no dependencies.
 
-[![Live](https://img.shields.io/badge/Live-ayushrathour.netlify.app-b8f36b?logo=netlify&logoColor=20221f)](https://ayushrathour.pages.dev)
+[![Live](https://img.shields.io/badge/Live-ayushrathour.pages.dev-b8f36b?logo=cloudflarepages&logoColor=20221f)](https://ayushrathour.pages.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
@@ -43,7 +43,7 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 | **Type**    | Multi-page static portfolio (no build step, no package manager)                      |
 | **Pages**   | Home, About, Skills, Projects, Milestones, Gallery, Contact, plus a custom 404       |
 | **Scripts** | `main.js` (site-wide), `pages.js` (page features), `case-studies.js` (Projects only) |
-| **Hosting** | Netlify (static, edge CDN)                                                           |
+| **Hosting** | Cloudflare Pages (static, edge CDN)                                                  |
 | **Design**  | "Hybrid Glass Editorial": warm paper background, ink text, lime accent               |
 | **Fonts**   | `Manrope` (headings), `DM Sans` (body), `DM Mono` (labels and code)                  |
 | **Icons**   | Inline SVG (Lucide), no icon library to load                                         |
@@ -120,14 +120,14 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 | :-------- | :------------------------- | :--------------------------------------------------------------------------- |
 | Markup    | HTML5                      | Semantic structure, ARIA, native `<dialog>`                                  |
 | Styling   | CSS3                       | Custom properties, Grid, Flexbox, scroll-driven animation, `backdrop-filter` |
-| Scripting | JavaScript (ES6+)          | `<dialog>` API, `fetch`, `ResizeObserver`, `sessionStorage`            |
+| Scripting | JavaScript (ES6+)          | `<dialog>` API, `fetch`, `ResizeObserver`, `sessionStorage`                  |
 | Fonts     | Google Fonts               | Manrope, DM Sans, DM Mono                                                    |
 | Icons     | Lucide (inline SVG)        | UI icons, with no runtime library                                            |
 | Forms     | Web3Forms                  | Serverless contact submission                                                |
 | Data      | GitHub REST API            | Latest commit on the Now strip                                               |
 | Data      | github-contributions-api   | Public contribution calendar for the contribution graph                      |
 | Analytics | Google Analytics (gtag.js) | Traffic telemetry, loaded once from `main.js`                                |
-| Hosting   | Netlify                    | Static hosting and CDN                                                       |
+| Hosting   | Cloudflare Pages           | Static hosting and CDN                                                       |
 
 ---
 
@@ -136,7 +136,7 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 ```text
 portfolio/
 ├── index.html                # Home page
-├── 404.html                  # Standalone 404 (must stay at the root for Netlify)
+├── 404.html                  # Standalone 404 (must stay at the root for Cloudflare Pages)
 ├── README.md
 ├── LICENSE
 │
@@ -174,7 +174,7 @@ portfolio/
     └── files/                # Downloads: FinTrack APK, Python and C project ZIPs
 ```
 
-> **Heads-up:** Netlify serves from a case-sensitive file system. Folder and file names in the HTML and JS must match the repository exactly (for example `Gallery_Images/` vs `gallery_images/`).
+> **Heads-up:** Cloudflare Pages serves from a case-sensitive file system. Folder and file names in the HTML and JS must match the repository exactly (for example `Gallery_Images/` vs `gallery_images/`).
 
 ---
 
@@ -189,7 +189,7 @@ Every script is organised as independent features. Each one checks that its mark
 | **Analytics**         | Loads Google Analytics once for all pages; skipped on `localhost`                                |
 | **Footer year**       | Keeps the copyright year current                                                                 |
 | **Mobile navigation** | Menu toggle, `Escape`, click-outside and reset when the screen grows                             |
-| **Active nav link**   | Matches the current URL to a link, with or without `.html` (Netlify pretty URLs)                 |
+| **Active nav link**   | Matches the current URL to a link, with or without `.html` (Cloudflare Pages pretty URLs)        |
 | **Nav indicator**     | Desktop lime pill that rests on the current page and glides to the hovered or focused link       |
 | **External links**    | Adds `rel="noopener noreferrer"` to every `target="_blank"` link                                 |
 | **Gallery**           | Filters, "last card spans the row" fix, `<dialog>` lightbox, swipe on touch, video-safe controls |
@@ -199,7 +199,7 @@ Every script is organised as independent features. Each one checks that its mark
 | Feature           | Responsibility                                                                                |
 | :---------------- | :-------------------------------------------------------------------------------------------- |
 | **Contact form**  | Validation, honeypot check, `fetch` to Web3Forms with a 15 s timeout, live status             |
-| **Anchor focus**  | Moves keyboard focus to the target of in-page links, on load and on change                                          |
+| **Anchor focus**  | Moves keyboard focus to the target of in-page links, on load and on change                    |
 | **Now strip**     | Fetches and caches the latest GitHub commit, with a graceful fallback                         |
 | **Contributions** | Draws the latest contribution weeks that fit the width, redraws on resize, caches for an hour |
 
@@ -224,7 +224,7 @@ npx http-server -p 8000
 
 Open `http://localhost:8000`. Use a local server rather than opening the files directly, so fonts, videos and downloads behave like production.
 
-> The custom `404.html` only appears on a real host such as Netlify. Local servers show their own error page for unknown URLs.
+> The custom `404.html` only appears on a real host such as Cloudflare Pages. Local servers show their own error page for unknown URLs.
 
 ---
 
@@ -244,7 +244,7 @@ Open `http://localhost:8000`. Use a local server rather than opening the files d
 | Gallery items       | `page/gallery.html`                        | Add a `<li data-gallery-item>` with `data-category`, `data-type`, `data-src`, then update the chip counts                                              |
 | Contact form        | `page/contact.html` → `#contact-form`      | Replace the Web3Forms `access_key` with your own                                                                                                       |
 | Analytics           | `js/main.js` → `GA_ID`                     | Replace the `G-` measurement ID with your own, or remove `initAnalytics`                                                                               |
-| Share image and SEO | `assets/og-card.png`, each page `<head>`   | Replace the 1200×630 image, then update the canonical, `og:url` and JSON-LD URLs if the domain changes                                                |
+| Share image and SEO | `assets/og-card.png`, each page `<head>`   | Replace the 1200×630 image, then update the canonical, `og:url` and JSON-LD URLs if the domain changes                                                 |
 | Support section     | `page/contact.html` → `.contact-support`   | Update the UPI link and `assets/upi_qr.png`, or remove the section                                                                                     |
 | Contact details     | `index.html`, `page/contact.html`, footers | Update the email, phone, WhatsApp and social links                                                                                                     |
 
@@ -252,18 +252,20 @@ Open `http://localhost:8000`. Use a local server rather than opening the files d
 
 ## Deployment
 
-Any static host works (Netlify, GitHub Pages, Cloudflare Pages, Vercel).
+Any static host works (Cloudflare Pages, Netlify, GitHub Pages, Vercel).
 
-**Netlify**
+**Cloudflare Pages**
 
-1. Connect the GitHub repository at [app.netlify.com](https://app.netlify.com/).
+1. In the [Cloudflare dashboard](https://dash.cloudflare.com/), go to **Workers & Pages** → **Create** → **Pages** and connect the GitHub repository.
 2. Leave the build command empty.
-3. Set the publish directory to `.`
-4. Deploy.
+3. Set the build output directory to `.`
+4. Save and deploy.
+
+> Cloudflare Pages rejects any single file over 25 MiB, so keep videos and downloads under that limit.
 
 **After deploying**
 
-- Keep `404.html` in the **root**. Netlify only serves it from there.
+- Keep `404.html` in the **root**. Cloudflare Pages only serves it from there.
 - Restrict your Web3Forms key to your domain in its dashboard, then send a test message.
 - Open a made-up URL such as `/page/abc` to confirm the custom 404 appears.
 - Open `/sitemap.xml` and `/robots.txt` to confirm they load, then submit the sitemap in Google Search Console.

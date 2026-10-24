@@ -157,7 +157,7 @@
   ========================= */
 
   // "/page/about.html", "/page/about" and "/page/about/" are the same page.
-  // Hosts such as Netlify serve pages without the ".html", so both
+  // Hosts such as Cloudflare Pages serve pages without the ".html", so both
   // sides of the comparison are normalised before they are matched.
   function normalisePath(path) {
     return (

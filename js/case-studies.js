@@ -132,7 +132,7 @@
           "Service Worker",
           "localStorage",
           "Web App Manifest",
-          "Netlify",
+          "Cloudflare Pages",
           "Git & GitHub",
         ],
       },
