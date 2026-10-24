@@ -7,7 +7,7 @@
  *   3. "Now" strip: latest GitHub commit (home page)
  *   4. GitHub contribution graph (home page)
  *
- * Site-wide behaviour (navigation, icons, gallery) lives in main.js.
+ * Site-wide behavior (navigation, icons, gallery) lives in main.js.
  * Each feature does nothing when its markup is not on the page, and
  * one failing feature never stops the others.
  */
@@ -209,7 +209,7 @@
         JSON.stringify({ savedAt: Date.now(), commit }),
       );
     } catch {
-      // Ignored: caching is only an optimisation.
+      // Ignored: caching is only an optimization.
     }
   }
 
@@ -395,7 +395,7 @@
         JSON.stringify({ savedAt: Date.now(), user, days }),
       );
     } catch {
-      // Ignored: caching is only an optimisation.
+      // Ignored: caching is only an optimization.
     }
   }
 
@@ -486,7 +486,8 @@
     let drawn = 0;
     let selected = null;
 
-    const pluralise = (n) => `${n.toLocaleString("en")} contribution${n === 1 ? "" : "s"}`;
+    const pluralize = (n) =>
+      `${n.toLocaleString("en")} contribution${n === 1 ? "" : "s"}`;
 
     function cell(level, row, column, text) {
       const element = document.createElement("span");
@@ -528,7 +529,10 @@
 
         previousMonth = month;
 
-        const entry = { column: index, text: monthFormat.format(new Date(`${first.date}T00:00:00Z`)) };
+        const entry = {
+          column: index,
+          text: monthFormat.format(new Date(`${first.date}T00:00:00Z`)),
+        };
         const last = labels[labels.length - 1];
 
         if (last && entry.column - last.column < 3) labels.pop();
@@ -574,7 +578,7 @@
 
           if (day.date) {
             total += day.count;
-            text = `${day.count ? pluralise(day.count) : "No contributions"} on ${dayFormat.format(new Date(`${day.date}T00:00:00Z`))}`;
+            text = `${day.count ? pluralize(day.count) : "No contributions"} on ${dayFormat.format(new Date(`${day.date}T00:00:00Z`))}`;
           }
 
           fragment.appendChild(cell(day.level, weekday + 2, index + 2, text));
@@ -588,13 +592,19 @@
       if (readout) readout.textContent = CONTRIB_DEFAULT_READOUT;
 
       if (all) {
-        const span = weeks.length >= 52 ? "the last year" : `the last ${weeks.length} weeks`;
-        const message = `${pluralise(total)} in ${span}`;
+        const span =
+          weeks.length >= 52
+            ? "the last year"
+            : `the last ${weeks.length} weeks`;
+        const message = `${pluralize(total)} in ${span}`;
 
         if (summary) summary.textContent = message;
 
         graph.setAttribute("role", "img");
-        graph.setAttribute("aria-label", `GitHub contribution graph: ${message}.`);
+        graph.setAttribute(
+          "aria-label",
+          `GitHub contribution graph: ${message}.`,
+        );
       }
     }
 

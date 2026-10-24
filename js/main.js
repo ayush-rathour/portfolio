@@ -1,6 +1,6 @@
 /**
  * AR.dev — main.js
- * Site-wide behaviour, loaded on every page.
+ * Site-wide behavior, loaded on every page.
  *
  * Each feature is a self-contained function that quietly does nothing
  * when its markup is not on the page. One failing feature never stops
@@ -158,8 +158,8 @@
 
   // "/page/about.html", "/page/about" and "/page/about/" are the same page.
   // Hosts such as Cloudflare Pages serve pages without the ".html", so both
-  // sides of the comparison are normalised before they are matched.
-  function normalisePath(path) {
+  // sides of the comparison are normalized before they are matched.
+  function normalizePath(path) {
     return (
       path
         .replace(/\/index\.html$/, "/")
@@ -169,7 +169,7 @@
   }
 
   function initActiveNavigation() {
-    const currentPath = normalisePath(window.location.pathname);
+    const currentPath = normalizePath(window.location.pathname);
 
     $$(".main-nav a[href]").forEach((link) => {
       const href = link.getAttribute("href");
@@ -187,7 +187,7 @@
       // Skips mailto:, tel: and links to other sites.
       if (url.origin !== window.location.origin) return;
 
-      const isActive = normalisePath(url.pathname) === currentPath;
+      const isActive = normalizePath(url.pathname) === currentPath;
 
       link.classList.toggle("active", isActive);
 

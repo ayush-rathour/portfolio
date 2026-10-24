@@ -101,7 +101,7 @@
       built: {
         title: "Built by hand,|without a framework.",
         body: [
-          "I launched FinTrack in October 2024, five months after moving from a phone to a laptop. It is written in plain HTML, CSS and JavaScript with no framework and no build step, so every piece of behaviour is code I wrote myself and can explain.",
+          "I launched FinTrack in October 2024, five months after moving from a phone to a laptop. It is written in plain HTML, CSS and JavaScript with no framework and no build step, so every piece of behavior is code I wrote myself and can explain.",
           "It has grown through many versions. Version 16 refined the card hierarchy and spacing. Version 17 was a complete redesign, with the four-tab app shell, light and dark themes, PIN security with auto-lock, the insights engine, the weekly comparison chart and CSV/JSON import. It is now at v17.7.",
         ],
         decisions: [
@@ -325,15 +325,15 @@
         decisions: [
           {
             title: "Polish over rebuild",
-            text: "Improving what already worked kept the portfolio recognisably Shaurya's while making it feel more finished.",
+            text: "Improving what already worked kept the portfolio recognizably Shaurya's while making it feel more finished.",
           },
           {
             title: "Use libraries where they help",
-            text: "For the scroll-triggered transitions I used established libraries instead of reinventing them, which saved time and kept the behaviour reliable.",
+            text: "For the scroll-triggered transitions I used established libraries instead of reinventing them, which saved time and kept the behavior reliable.",
           },
           {
             title: "Responsive as a core requirement",
-            text: "Responsive behaviour was treated as a main goal of the project, not a final check.",
+            text: "Responsive behavior was treated as a main goal of the project, not a final check.",
           },
         ],
         stackLabel: "Focus areas",
@@ -393,7 +393,7 @@
         },
       ],
       why: {
-        title: "Learn on problems|you can recognise.",
+        title: "Learn on problems|you can recognize.",
         body: [
           "I started learning Python in June 2024 and wanted practice with problems I could understand straight away. Tip calculators, converters, ATMs and booking systems are all things people use, which makes it easy to tell whether a program does the right thing.",
           "Small console programs are a good way to learn. They use functions, loops, conditionals and user input, and they make you think about the person at the keyboard.",
@@ -551,7 +551,7 @@
         decisions: [
           {
             title: "Real-world scenarios",
-            text: "Airline, ATM and movie booking systems turn abstract exercises into programs with clear expected behaviour.",
+            text: "Airline, ATM and movie booking systems turn abstract exercises into programs with clear expected behavior.",
           },
           {
             title: "Standard C only",

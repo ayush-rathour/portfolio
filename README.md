@@ -26,7 +26,7 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 4. [Project Structure](#project-structure)
 5. [How It Works](#how-it-works)
 6. [Getting Started](#getting-started)
-7. [Customisation](#customisation)
+7. [Customization](#customization)
 8. [Deployment](#deployment)
 9. [Performance, SEO & Accessibility](#performance-seo--accessibility)
 10. [Roadmap](#roadmap)
@@ -76,20 +76,21 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 
 - **Sticky header** with blur, scroll shadow and a glass-capsule nav. A lime pill rests on the current page (`aria-current="page"`) and glides to the link you hover or focus, then back again. Without JavaScript the current page simply gets the lime pill on its own link.
 - **Mobile menu** with open/close icon swap, a staggered link reveal, an ink row for the current page, `Escape` to close, click-outside to close and `aria-expanded` state.
-- **Skip link** to jump straight to the main content.
+- **Skip link** to jump straight to the main content (also on the 404 page).
+- **One shared footer** on every page: brand line, Explore and Connect columns, and the same copyright line.
 
 ### Pages
 
-| Page           | Highlights                                                                                                                                                         |
-| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Home**       | Hero with stats, a "Now" strip (current learning plus latest GitHub commit), a GitHub contribution graph, featured projects, skills overview and a journey preview |
-| **About**      | Long-form story, guiding principle, working approach and life beyond the code                                                                                      |
-| **Skills**     | Evidence-based skill cards (no percentage bars), workflow tools, project-specific technology notes and certificates                                                |
-| **Projects**   | Five projects with a full **case study overlay** each, live links and APK / ZIP downloads                                                                          |
-| **Milestones** | Year-by-year timeline (2022 to 2026) with a jump-to-year bar and a self-drawing timeline line                                                                      |
-| **Gallery**    | Filterable grid (All, Design, Upgrade, Video) with a native-`<dialog>` lightbox for images and MP4 walkthroughs                                                    |
-| **Contact**    | Six contact channels, a validated form (Web3Forms), "what to include" guide and a UPI support section with QR code                                                 |
-| **404**        | A standalone page with a working interactive terminal (`help`, `ls`, `projects`, `open <page>`, tab completion, command history and more)                          |
+| Page           | Highlights                                                                                                                                                                             |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Home**       | Hero with stats, a "Now" strip (current learning plus latest GitHub commit), a GitHub contribution graph, featured projects, skills overview and a journey preview                     |
+| **About**      | Long-form story, guiding principle, working approach and life beyond the code                                                                                                          |
+| **Skills**     | Evidence-based skill cards (no percentage bars), workflow tools, project-specific technology notes and certificates                                                                    |
+| **Projects**   | Five projects with a full **case study overlay** each, live links and APK / ZIP downloads                                                                                              |
+| **Milestones** | Year-by-year timeline (2022 to 2026, 13 entries) with a jump-to-year bar and a self-drawing timeline line                                                                              |
+| **Gallery**    | Filterable grid (All, Design, Upgrade, Video) with a native-`<dialog>` lightbox for images and MP4 walkthroughs                                                                        |
+| **Contact**    | Six contact channels, a validated form (Web3Forms) beside quick facts and an availability badge, a "what to include" guide, a five-question FAQ and a UPI support section with QR code |
+| **404**        | A standalone page with a working interactive terminal (`help`, `ls`, `projects`, `open <page>`, tab completion, command history and more)                                              |
 
 ### Case Study Overlay
 
@@ -158,7 +159,7 @@ portfolio/
 │   └── contact.css
 │
 ├── js/
-│   ├── main.js               # Site-wide behaviour
+│   ├── main.js               # Site-wide behavior
 │   ├── pages.js              # Page-level features
 │   └── case-studies.js       # Case study content and overlay (Projects page only)
 │
@@ -180,7 +181,7 @@ portfolio/
 
 ## How It Works
 
-Every script is organised as independent features. Each one checks that its markup exists before running, and one failing feature never stops the others.
+Every script is organized as independent features. Each one checks that its markup exists before running, and one failing feature never stops the others.
 
 **`js/main.js`: loaded on every page**
 
@@ -228,7 +229,7 @@ Open `http://localhost:8000`. Use a local server rather than opening the files d
 
 ---
 
-## Customisation
+## Customization
 
 | What                | Where                                      | How                                                                                                                                                    |
 | :------------------ | :----------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -287,7 +288,8 @@ Any static host works (Cloudflare Pages, Netlify, GitHub Pages, Vercel).
 
 - Unique `<title>`, meta description and canonical URL on every page.
 - Open Graph and Twitter Card tags with a 1200×630 share image (`assets/og-card.png`), plus `noindex` on the 404 page.
-- `Person` and `WebSite` JSON-LD on the home page.
+- `Person` and `WebSite` JSON-LD on the home page, plus page-level JSON-LD and breadcrumbs on every subpage, and an `ItemList` of all five projects on the Projects page.
+- One title pattern (`Page | AR.dev`) and a 135-160 character description on every page.
 - The logo and every "Home" link point to `/`, so there is one address for the home page.
 - Google Search Console verification file.
 - `sitemap.xml` listing every page, and a `robots.txt` that allows crawling and points to it.

@@ -371,6 +371,7 @@ select:disabled {
 .contact-section-heading h2,
 .contact-form-intro h2,
 .contact-message h2,
+.contact-faq-intro h2,
 .contact-support h2,
 .contact-page .contact-cta h2,
 .projects-contact h2 {
@@ -416,6 +417,7 @@ main :is(h1, h2) > span {
 .contact-section-heading > p:not(.eyebrow),
 .contact-form-intro > p:not(.eyebrow),
 .contact-message-intro > p:not(.eyebrow),
+.contact-faq-intro > p:not(.eyebrow),
 .contact-support-copy > p:not(.eyebrow),
 .contact-cta-inner > p:not(.eyebrow),
 .skills-cta-inner > p:not(.eyebrow),
