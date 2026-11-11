@@ -157,7 +157,136 @@
       ],
     },
 
-    /* ---------- 02 · Varun's Artist Portfolio ---------- */
+    /* ---------- 02 · NOVIQ ---------- */
+    {
+      id: "noviq",
+      type: "Product",
+      title: "NOVIQ",
+      tagline: "A digital resource store, made in India",
+      status: "Live · Storefront",
+      lead: "A store for learners and builders: visual guides, cheat sheets, workbooks, Notion templates and starter kits, with a free library, a blog of explainers and an assistant that answers questions from the catalogue itself.",
+      meta: [
+        ["Role", "Designer & developer"],
+        ["Timeline", "Nov 2026 - present"],
+        ["Catalogue", "14 resources, 5 categories"],
+        ["Built with", "HTML, CSS, JavaScript"],
+      ],
+      image: {
+        src: "../assets/Project_Images/noviq_img.png",
+        alt: "NOVIQ home page with the headline Learn. Build. Create. and floating resource cards",
+      },
+      links: [
+        {
+          label: "Open the site",
+          href: "https://noviq-ar.pages.dev/",
+        },
+        {
+          label: "Source on GitHub",
+          href: "https://github.com/ayush-rathour/noviq",
+        },
+      ],
+      why: {
+        title: "Good resources exist.|Clear ones are rarer.",
+        body: [
+          "After learning HTML, CSS, Git, Python and C in the open, I wanted to turn what I had learned into resources other beginners could use. Too many study materials hide the basics: who the material is for, what level it assumes and what you actually get.",
+          "NOVIQ puts those answers first. Every resource states its audience, level, formats, contents and prerequisites before anything else, and the whole store is built around one rule: if a resource does not help you do something, it does not ship.",
+        ],
+        points: [
+          "Audience, level, formats and contents stated up front",
+          "A free library to try before you buy anything",
+          "Bundles that combine guides, workbooks and templates",
+          "Honest, human ordering, with no payment taken on the site",
+        ],
+      },
+      how: {
+        title: "Browse, ask,|then enquire.",
+        intro:
+          "NOVIQ is a multi-page storefront. A visitor can explore, try something free, get an answer from the assistant and place an order without making an account.",
+        steps: [
+          {
+            title: "Explore",
+            text: "Browse 14 resources across Build, Learn, Organize and Practice, plus Bundles. Search by title, topic or level and sort by featured or price.",
+          },
+          {
+            title: "Check the details",
+            text: "Each product page lists who it is for, the level, the file formats, what is included and what you need to know first.",
+          },
+          {
+            title: "Try something free",
+            text: "Three free PDFs (HTML & CSS, JavaScript Essentials and Git & GitHub) sit in the free library, so a visitor can judge the quality first.",
+          },
+          {
+            title: "Ask the assistant",
+            text: "The built-in NOVIQ assistant searches the catalogue and the blog notes, and answers common questions from the site's own FAQ.",
+          },
+          {
+            title: "Send an enquiry",
+            text: "Resources are collected in an enquiry list and sent through the contact form. The reply includes payment details and an order reference, and files are delivered by email once payment is confirmed.",
+          },
+          {
+            title: "Keep learning",
+            text: "Blog Notes holds eight short explainers, from how the internet works to APIs, databases, deployment and cybersecurity basics.",
+          },
+        ],
+      },
+      built: {
+        title: "Content as data,|not copy and paste.",
+        body: [
+          "I made the first commit on 4 November 2026. By 11 November the project had grown from a first layout into a full storefront with a catalogue, free library, blog, refund policy and assistant. It is plain HTML, CSS and JavaScript with no framework and no build step.",
+          "Products, categories and blog notes live in three JSON files, and the pages render from them. Adding a resource means adding one entry, and the catalogue, search, filters, bundles and assistant all pick it up.",
+        ],
+        decisions: [
+          {
+            title: "One catalogue, many pages",
+            text: "A single products.json feeds the explore page, product pages, bundles, free library and assistant, so the data is written once and cannot drift out of sync.",
+          },
+          {
+            title: "Enquiry instead of checkout",
+            text: "No payment is taken on the site. Orders start as an email enquiry that I answer by hand, and the enquiry list is saved in the visitor's own browser, with no accounts and no payment data to protect.",
+          },
+          {
+            title: "An assistant with no backend",
+            text: "The assistant runs entirely in the browser, with no external service, API key or tracking. It reads the same JSON files as the rest of the site.",
+          },
+          {
+            title: "Clear terms from day one",
+            text: "A refund policy states plainly when a full refund applies, covering faulty or missing files and duplicate payments, because digital files cannot be handed back.",
+          },
+        ],
+        stackLabel: "Built with",
+        stack: [
+          "HTML5",
+          "CSS3",
+          "Vanilla JavaScript",
+          "JSON data files",
+          "Inline SVG art",
+          "Web3Forms",
+          "Web App Manifest",
+          "Git & GitHub",
+          "Cloudflare Pages",
+        ],
+      },
+      hard: {
+        title: "Teaching a search box to understand questions.",
+        text: "The assistant had to make sense of plain questions such as a cheap Python workbook for beginners without any AI service behind it. It needed a ranked index that weights a title above a description, drops filler words, copes with plurals and synonyms such as js for JavaScript, and recognises filters like free, beginner and category. Getting it to answer sensibly, and to say so honestly when nothing matches, took the most iteration.",
+      },
+      outcome: {
+        body: "NOVIQ went from first commit to a complete storefront in a week. It is a young project, so the numbers below describe what exists today rather than traction. It is also the first product I have designed, written and shipped end to end as a store, not just as an app.",
+        stats: [
+          { value: "14", label: "Resources" },
+          { value: "8", label: "Blog notes" },
+          { value: "3", label: "Free PDFs" },
+          { value: "7 days", label: "First commit to assistant" },
+        ],
+      },
+      next: [
+        "Publish sample pages from each paid resource",
+        "Deliver files automatically once a payment is confirmed",
+        "Grow the library with new guides, workbooks and templates",
+      ],
+    },
+
+    /* ---------- 03 · Varun's Artist Portfolio ---------- */
     {
       id: "varun-portfolio",
       type: "Client work",
@@ -261,7 +390,7 @@
       ],
     },
 
-    /* ---------- 03 · Shaurya's Developer Portfolio ---------- */
+    /* ---------- 04 · Shaurya's Developer Portfolio ---------- */
     {
       id: "shaurya-portfolio",
       type: "Collaboration",
@@ -363,7 +492,7 @@
       ],
     },
 
-    /* ---------- 04 · Python Utilities ---------- */
+    /* ---------- 05 · Python Utilities ---------- */
     {
       id: "python-utilities",
       type: "Python",
@@ -473,7 +602,7 @@
       ],
     },
 
-    /* ---------- 05 · C Projects ---------- */
+    /* ---------- 06 · C Projects ---------- */
     {
       id: "c-projects",
       type: "C programming",

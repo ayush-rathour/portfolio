@@ -2358,10 +2358,35 @@ textarea.form-control {
     linear-gradient(145deg, #e5e0f0, #d1c9e4);
 }
 
+.project-visual-noviq {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(184, 243, 107, 0.38), transparent 36%),
+    linear-gradient(145deg, #171c4a, #0d1230);
+  color: #ffffff;
+}
+
+.project-visual-noviq .project-visual-icon {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  color: #b8f36b;
+}
+
+.project-visual.project-visual-noviq > span {
+  color: #ffffff;
+}
+
+.project-visual.project-visual-noviq code {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #b8f36b;
+}
+
 .project-visual-fintrack::after,
 .project-visual-artist::after,
 .project-visual-developer::after,
 .project-visual-python::after,
+.project-visual-noviq::after,
 .project-visual-c::after {
   position: absolute;
   z-index: -1;

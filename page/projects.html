@@ -7,7 +7,7 @@
     <title>Projects | AR.dev</title>
     <meta
       name="description"
-      content="Case studies by Ayush Rathour: the FinTrack finance PWA, a paid artist portfolio, a developer portfolio refresh, plus Python and C programming projects."
+      content="Case studies by Ayush Rathour: the FinTrack finance PWA, the NOVIQ resource store, a paid artist portfolio, a portfolio refresh, plus Python and C projects."
     />
     <meta name="author" content="Ayush Rathour" />
     <meta name="theme-color" content="#f4f2ed" />
@@ -27,7 +27,7 @@
     <meta property="og:title" content="Projects | AR.dev" />
     <meta
       property="og:description"
-      content="Case studies by Ayush Rathour: the FinTrack finance PWA, a paid artist portfolio, a developer portfolio refresh, plus Python and C programming projects."
+      content="Case studies by Ayush Rathour: the FinTrack finance PWA, the NOVIQ resource store, a paid artist portfolio, a portfolio refresh, plus Python and C projects."
     />
     <meta
       property="og:image"
@@ -45,7 +45,7 @@
     <meta name="twitter:title" content="Projects | AR.dev" />
     <meta
       name="twitter:description"
-      content="Case studies by Ayush Rathour: the FinTrack finance PWA, a paid artist portfolio, a developer portfolio refresh, plus Python and C programming projects."
+      content="Case studies by Ayush Rathour: the FinTrack finance PWA, the NOVIQ resource store, a paid artist portfolio, a portfolio refresh, plus Python and C projects."
     />
     <meta
       name="twitter:image"
@@ -81,7 +81,7 @@
             "@id": "https://ayushrathour.pages.dev/page/projects.html#webpage",
             "url": "https://ayushrathour.pages.dev/page/projects.html",
             "name": "Projects | AR.dev",
-            "description": "Case studies by Ayush Rathour: the FinTrack finance PWA, a paid artist portfolio, a developer portfolio refresh, plus Python and C programming projects.",
+            "description": "Case studies by Ayush Rathour: the FinTrack finance PWA, the NOVIQ resource store, a paid artist portfolio, a portfolio refresh, plus Python and C projects.",
             "inLanguage": "en",
             "isPartOf": {
               "@id": "https://ayushrathour.pages.dev/#website"
@@ -115,7 +115,7 @@
             "@type": "ItemList",
             "@id": "https://ayushrathour.pages.dev/page/projects.html#projects",
             "name": "Projects by Ayush Rathour",
-            "numberOfItems": 5,
+            "numberOfItems": 6,
             "itemListElement": [
               {
                 "@type": "ListItem",
@@ -136,6 +136,20 @@
                 "@type": "ListItem",
                 "position": 2,
                 "item": {
+                  "@type": "WebSite",
+                  "name": "NOVIQ",
+                  "url": "https://noviq-ar.pages.dev/",
+                  "description": "A digital resource store for learners and builders, with visual guides, cheat sheets, Notion templates and starter kits.",
+                  "inLanguage": "en",
+                  "author": {
+                    "@id": "https://ayushrathour.pages.dev/#person"
+                  }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
                   "@type": "CreativeWork",
                   "name": "Varun's Artist Portfolio",
                   "description": "A paid artist portfolio built in collaboration, with UI/UX direction, responsive layout and subtle animations.",
@@ -146,7 +160,7 @@
               },
               {
                 "@type": "ListItem",
-                "position": 3,
+                "position": 4,
                 "item": {
                   "@type": "CreativeWork",
                   "name": "Shaurya's Developer Portfolio",
@@ -158,7 +172,7 @@
               },
               {
                 "@type": "ListItem",
-                "position": 4,
+                "position": 5,
                 "item": {
                   "@type": "SoftwareSourceCode",
                   "name": "Python Utilities",
@@ -172,7 +186,7 @@
               },
               {
                 "@type": "ListItem",
-                "position": 5,
+                "position": 6,
                 "item": {
                   "@type": "SoftwareSourceCode",
                   "name": "C Projects",
@@ -289,13 +303,13 @@
             <p class="eyebrow">THE PROJECT ARCHIVE</p>
             <h2 id="projects-heading">Built, tested, <span>learned.</span></h2>
             <p class="section-description">
-              From a personal finance app to smaller programming utilities,
+              From a personal finance app and a digital resource store to smaller programming utilities,
               every card opens a full case study covering why it exists, how it
               works and how it was built.
             </p>
           </div>
           <span class="projects-count"
-            ><span aria-hidden="true">05</span> FEATURED PROJECTS</span
+            ><span aria-hidden="true">06</span> FEATURED PROJECTS</span
           >
         </div>
 
@@ -420,10 +434,131 @@
             </div>
           </article>
 
-          <!-- 02 / Varun's Artist Portfolio -->
+          <!-- 02 / NOVIQ -->
+          <article class="project-card project-card-featured">
+            <div class="project-card-top">
+              <span class="project-index">02 / PRODUCT</span>
+              <span class="project-status">LIVE · STOREFRONT</span>
+            </div>
+
+            <a
+              class="project-image-link"
+              href="https://noviq-ar.pages.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the NOVIQ website"
+            >
+              <img
+                class="project-image project-image-noviq"
+                src="../assets/Project_Images/noviq_img.png"
+                alt="NOVIQ home page: Learn. Build. Create. with floating resource cards"
+                loading="lazy"
+                width="1200"
+                height="800"
+              />
+            </a>
+
+            <div class="project-card-content">
+              <p class="project-category">Digital products · Made in India</p>
+              <h3>NOVIQ</h3>
+              <p>
+                A digital resource store for learners and builders: visual
+                guides, cheat sheets, workbooks, Notion templates and starter
+                kits, with a free library, a blog and a built-in assistant that
+                answers questions from the catalogue itself. Built from first
+                commit to full storefront in a week.
+              </p>
+              <ul class="project-tags" aria-label="Technologies and features">
+                <li>Vanilla JS</li>
+                <li>JSON catalogue</li>
+                <li>Search &amp; filters</li>
+                <li>Built-in assistant</li>
+                <li>14 resources</li>
+              </ul>
+              <div class="project-links">
+                <button
+                  class="case-open"
+                  type="button"
+                  data-case="noviq"
+                  aria-haspopup="dialog"
+                  aria-label="Read case study: NOVIQ"
+                >
+                  Read case study
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="lucide lucide-book-open"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 7v14" />
+                    <path
+                      d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"
+                    />
+                  </svg>
+                </button>
+                <a
+                  class="text-link"
+                  href="https://noviq-ar.pages.dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live site
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="lucide lucide-arrow-up-right"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                  </svg>
+                </a>
+                <a
+                  class="text-link"
+                  href="https://github.com/ayush-rathour/noviq"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View on GitHub
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="lucide lucide-arrow-up-right"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 / Varun's Artist Portfolio -->
           <article class="project-card">
             <div class="project-card-top">
-              <span class="project-index">02 / CLIENT WORK</span>
+              <span class="project-index">03 / CLIENT WORK</span>
               <span class="project-status">PAID · ARCHIVED</span>
             </div>
             <div class="project-image-wrap">
@@ -482,10 +617,10 @@
             </div>
           </article>
 
-          <!-- 03 / Shaurya's Developer Portfolio -->
+          <!-- 04 / Shaurya's Developer Portfolio -->
           <article class="project-card">
             <div class="project-card-top">
-              <span class="project-index">03 / COLLABORATION</span>
+              <span class="project-index">04 / COLLABORATION</span>
               <span class="project-status">ARCHIVED</span>
             </div>
             <div class="project-image-wrap">
@@ -544,10 +679,10 @@
             </div>
           </article>
 
-          <!-- 04 / Python Utilities collection -->
+          <!-- 05 / Python Utilities collection -->
           <article class="project-card">
             <div class="project-card-top">
-              <span class="project-index">04 / PYTHON</span>
+              <span class="project-index">05 / PYTHON</span>
               <span class="project-status">CLI TOOLS</span>
             </div>
             <div class="project-image-wrap">
@@ -653,10 +788,10 @@
             </div>
           </article>
 
-          <!-- 05 / C Projects collection -->
+          <!-- 06 / C Projects collection -->
           <article class="project-card">
             <div class="project-card-top">
-              <span class="project-index">05 / C PROGRAMMING</span>
+              <span class="project-index">06 / C PROGRAMMING</span>
               <span class="project-status">FOUNDATIONS</span>
             </div>
             <div class="project-image-wrap">

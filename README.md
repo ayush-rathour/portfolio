@@ -86,8 +86,8 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 | **Home**       | Hero with stats, a "Now" strip (current learning plus latest GitHub commit), a GitHub contribution graph, featured projects, skills overview and a journey preview                     |
 | **About**      | Long-form story, guiding principle, working approach and life beyond the code                                                                                                          |
 | **Skills**     | Evidence-based skill cards (no percentage bars), workflow tools, project-specific technology notes and certificates                                                                    |
-| **Projects**   | Five projects with a full **case study overlay** each, live links and APK / ZIP downloads                                                                                              |
-| **Milestones** | Year-by-year timeline (2022 to 2026, 13 entries) with a jump-to-year bar and a self-drawing timeline line                                                                              |
+| **Projects**   | Six projects with a full **case study overlay** each, live links and APK / ZIP downloads                                                                                              |
+| **Milestones** | Year-by-year timeline (2022 to 2026, 14 entries) with a jump-to-year bar and a self-drawing timeline line                                                                              |
 | **Gallery**    | Filterable grid (All, Design, Upgrade, Video) with a native-`<dialog>` lightbox for images and MP4 walkthroughs                                                                        |
 | **Contact**    | Six contact channels, a validated form (Web3Forms) beside quick facts and an availability badge, a "what to include" guide, a five-question FAQ and a UPI support section with QR code |
 | **404**        | A standalone page with a working interactive terminal (`help`, `ls`, `projects`, `open <page>`, tab completion, command history and more)                                              |
@@ -288,7 +288,7 @@ Any static host works (Cloudflare Pages, Netlify, GitHub Pages, Vercel).
 
 - Unique `<title>`, meta description and canonical URL on every page.
 - Open Graph and Twitter Card tags with a 1200×630 share image (`assets/og-card.png`), plus `noindex` on the 404 page.
-- `Person` and `WebSite` JSON-LD on the home page, plus page-level JSON-LD and breadcrumbs on every subpage, and an `ItemList` of all five projects on the Projects page.
+- `Person` and `WebSite` JSON-LD on the home page, plus page-level JSON-LD and breadcrumbs on every subpage, and an `ItemList` of all six projects on the Projects page.
 - One title pattern (`Page | AR.dev`) and a 135-160 character description on every page.
 - The logo and every "Home" link point to `/`, so there is one address for the home page.
 - Google Search Console verification file.
