@@ -18,21 +18,43 @@
     Array.from(root.querySelectorAll(selector));
 
   /* =========================
-     0. ANALYTICS
-     Google Analytics lives here once, so every page that loads
-     main.js is tracked. Skipped on localhost so local testing
-     doesn't pollute the stats.
+     0. ANALYTICS + CONSENT
+     Google Analytics sets cookies, so it only loads after the
+     visitor accepts. The choice is remembered on this device and
+     can be changed any time from "Cookie settings" in the footer.
+     Skipped on localhost so local testing doesn't pollute the
+     stats (the banner still shows there, so it can be tested).
   ========================= */
 
   const GA_ID = "G-8RCQ5DT2B3";
+  const CONSENT_KEY = "ardev:analytics-consent"; // "granted" | "denied"
 
-  function initAnalytics() {
+  function readConsent() {
+    try {
+      const value = localStorage.getItem(CONSENT_KEY);
+
+      return value === "granted" || value === "denied" ? value : null;
+    } catch {
+      return null; // Storage blocked: ask again next visit.
+    }
+  }
+
+  function saveConsent(value) {
+    try {
+      localStorage.setItem(CONSENT_KEY, value);
+    } catch {
+      // Storage blocked: the choice still applies to this page view.
+    }
+  }
+
+  function loadAnalytics() {
     const local = ["localhost", "127.0.0.1", ""].includes(
       window.location.hostname,
     );
 
     if (local || window.gtag) return;
 
+    window[`ga-disable-${GA_ID}`] = false;
     window.dataLayer = window.dataLayer || [];
 
     window.gtag = function () {
@@ -48,6 +70,139 @@
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
 
     document.head.appendChild(script);
+  }
+
+  // Stops further tracking on this page and removes the _ga cookies.
+  function stopAnalytics() {
+    window[`ga-disable-${GA_ID}`] = true;
+
+    const host = window.location.hostname;
+    const parts = host.split(".");
+    const domains = ["", host];
+
+    for (let i = 1; i < parts.length - 1; i += 1) {
+      domains.push(`.${parts.slice(i).join(".")}`);
+    }
+
+    document.cookie.split(";").forEach((cookie) => {
+      const name = cookie.split("=")[0].trim();
+
+      if (!/^_ga(_|$)/.test(name)) return;
+
+      domains.forEach((domain) => {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${
+          domain ? `; domain=${domain}` : ""
+        }`;
+      });
+    });
+  }
+
+  function buildConsentBanner() {
+    const banner = document.createElement("section");
+
+    banner.className = "cookie-banner";
+    banner.id = "cookie-banner";
+    banner.hidden = true;
+    banner.setAttribute("aria-labelledby", "cookie-banner-title");
+
+    banner.innerHTML = `
+      <h2 class="cookie-banner-title" id="cookie-banner-title">A quick note on cookies</h2>
+      <p class="cookie-banner-text">
+        I'd like to use Google Analytics to see which pages people read.
+        It sets cookies, and only runs if you say yes.
+      </p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="button button-primary" data-consent="granted">Sounds fine</button>
+        <button type="button" class="button button-secondary" data-consent="denied">No thanks</button>
+      </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    return banner;
+  }
+
+  function initConsent() {
+    let banner = null;
+    let opener = null;
+
+    function hide() {
+      if (!banner) return;
+
+      banner.hidden = true;
+
+      if (opener && document.contains(opener)) opener.focus();
+
+      opener = null;
+    }
+
+    function show(fromUser) {
+      if (!banner) {
+        banner = buildConsentBanner();
+
+        banner.addEventListener("click", (event) => {
+          const choice = event.target.closest("[data-consent]");
+
+          if (!choice) return;
+
+          const value = choice.dataset.consent;
+
+          saveConsent(value);
+
+          if (value === "granted") loadAnalytics();
+          else stopAnalytics();
+
+          hide();
+        });
+      }
+
+      banner.hidden = false;
+
+      if (fromUser) {
+        opener = document.activeElement;
+        $("[data-consent]", banner).focus();
+      }
+    }
+
+    // "Cookie settings" buttons in the footer reopen the banner.
+    $$("[data-cookie-settings]").forEach((button) => {
+      button.addEventListener("click", () => show(true));
+    });
+
+    const saved = readConsent();
+
+    if (saved === "granted") {
+      loadAnalytics();
+      return;
+    }
+
+    if (saved === "denied") return;
+
+    // First visit: wait until the page loader has lifted so the
+    // banner is never hidden behind it or made inert by it.
+    const loader = document.getElementById("page-loader");
+
+    if (!loader) {
+      show(false);
+      return;
+    }
+
+    let shown = false;
+
+    const showOnce = () => {
+      if (shown) return;
+
+      shown = true;
+      observer.disconnect();
+      show(false);
+    };
+
+    const observer = new MutationObserver(() => {
+      if (!document.getElementById("page-loader")) showOnce();
+    });
+
+    observer.observe(document.body, { childList: true });
+    window.setTimeout(showOnce, 25000);
   }
 
   /* =========================
@@ -669,7 +824,7 @@
   ========================= */
 
   const features = [
-    initAnalytics,
+    initConsent,
     initCurrentYear,
     initNavigation,
     initActiveNavigation,

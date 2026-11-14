@@ -128,7 +128,7 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 | Forms     | Web3Forms                  | Serverless contact submission                                                |
 | Data      | GitHub REST API            | Latest commit on the Now strip                                               |
 | Data      | github-contributions-api   | Public contribution calendar for the contribution graph                      |
-| Analytics | Google Analytics (gtag.js) | Traffic telemetry, loaded once from `main.js`                                |
+| Analytics | Google Analytics (gtag.js) | Traffic telemetry, loaded from `main.js` only after consent                   |
 | Hosting   | Cloudflare Pages           | Static hosting and CDN                                                       |
 
 ---
@@ -189,7 +189,7 @@ Every script is organized as independent features. Each one checks that its mark
 
 | Feature               | Responsibility                                                                                   |
 | :-------------------- | :----------------------------------------------------------------------------------------------- |
-| **Analytics**         | Loads Google Analytics once for all pages; skipped on `localhost`                                |
+| **Analytics**         | Cookie notice; Google Analytics loads only after consent, skipped on `localhost`                |
 | **Footer year**       | Keeps the copyright year current                                                                 |
 | **Mobile navigation** | Menu toggle, `Escape`, click-outside and reset when the screen grows                             |
 | **Active nav link**   | Matches the current URL to a link, with or without `.html` (Cloudflare Pages pretty URLs)        |
@@ -247,7 +247,7 @@ Open `http://localhost:8000`. Use a local server rather than opening the files d
 | Gallery items       | `page/gallery.html`                        | Add a `<li data-gallery-item>` with `data-category`, `data-type`, `data-src`, then update the chip counts                                              |
 | Contact form        | `page/contact.html` → `#contact-form`      | Replace the Web3Forms `access_key` with your own                                                                                                       |
 | Page loader         | `js/loader.js` (top), `<div id="page-loader">` in each page | `MIN_MS` is the minimum time, `MAX_MS` the safety limit, `SHOW_ONCE_PER_SESSION` shows it only on the first page of a visit. Each `<li data-task>` row is a task (`fonts`, `images`, `data`, `page`); `{n}` in `data-label` becomes the real item count |
-| Analytics           | `js/main.js` → `GA_ID`                     | Replace the `G-` measurement ID with your own, or remove `initAnalytics`                                                                               |
+| Analytics           | `js/main.js` → `GA_ID`                     | Replace the `G-` measurement ID with your own, or remove `loadAnalytics` and the cookie notice (`initConsent`)                                                                               |
 | Share image and SEO | `assets/og-card.png`, each page `<head>`   | Replace the 1200×630 image, then update the canonical, `og:url` and JSON-LD URLs if the domain changes                                                 |
 | Support section     | `page/contact.html` → `.contact-support`   | Update the UPI link and `assets/upi_qr.png`, or remove the section                                                                                     |
 | Contact details     | `index.html`, `page/contact.html`, footers | Update the email, phone, WhatsApp and social links                                                                                                     |

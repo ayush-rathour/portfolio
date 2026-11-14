@@ -18,10 +18,7 @@
     <meta property="og:site_name" content="AR.dev" />
     <meta property="og:locale" content="en_IN" />
     <meta property="og:url" content="https://ayushrathour.pages.dev/" />
-    <meta
-      property="og:title"
-      content="Ayush Rathour | Student"
-    />
+    <meta property="og:title" content="Ayush Rathour | Student" />
     <meta
       property="og:description"
       content="I'm Ayush Rathour, a student developer from Saharanpur, India, building practical digital experiences with HTML, CSS, JavaScript, and Python."
@@ -39,10 +36,7 @@
 
     <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Ayush Rathour | Student"
-    />
+    <meta name="twitter:title" content="Ayush Rathour | Student" />
     <meta
       name="twitter:description"
       content="I'm Ayush Rathour, a student developer from Saharanpur, India, building practical digital experiences with HTML, CSS, JavaScript, and Python."
@@ -127,25 +121,23 @@
     <!-- ==================== PAGE LOADER ====================
          Real progress and a 3 second minimum: see js/loader.js.
          Each row is a task that finishes when its assets have loaded. -->
-    <div
-      class="page-loader"
-      id="page-loader"
-      data-page="Home"
-    >
+    <div class="page-loader" id="page-loader" data-page="Home">
       <div class="page-loader-card">
         <div class="page-loader-mark" aria-hidden="true"><span>AR</span></div>
         <p class="page-loader-title">AR.dev</p>
-        <p class="page-loader-lede">Intro, selected projects, a skills overview, my journey and live GitHub activity.</p>
+        <p class="page-loader-lede">
+          Projects, skills, my journey and live GitHub activity.
+        </p>
 
         <ul class="page-loader-list">
           <li data-task="fonts" data-state="active">
             <span class="pl-dot" aria-hidden="true"></span>
-            <span class="pl-name">Typefaces</span>
+            <span class="pl-name">Fonts</span>
             <span class="pl-state">Loading</span>
           </li>
           <li data-task="images" data-state="active">
             <span class="pl-dot" aria-hidden="true"></span>
-            <span class="pl-name">Profile photo</span>
+            <span class="pl-name">Images</span>
             <span class="pl-state">Loading</span>
           </li>
           <li data-task="data" data-state="active">
@@ -155,7 +147,7 @@
           </li>
           <li data-task="page" data-state="active">
             <span class="pl-dot" aria-hidden="true"></span>
-            <span class="pl-name">Intro, projects &amp; journey</span>
+            <span class="pl-name">Page &amp; styles</span>
             <span class="pl-state">Loading</span>
           </li>
         </ul>
@@ -173,10 +165,21 @@
           </div>
           <span class="pl-percent" aria-hidden="true">0%</span>
         </div>
-        <p class="page-loader-live" id="page-loader-live" aria-live="polite"></p>
+        <p
+          class="page-loader-live"
+          id="page-loader-live"
+          role="status"
+          aria-live="polite"
+        ></p>
       </div>
     </div>
-    <noscript><style>.page-loader{display:none}</style></noscript>
+    <noscript
+      ><style>
+        .page-loader {
+          display: none;
+        }
+      </style></noscript
+    >
 
     <a class="skip-link" href="#main-content">Skip to content</a>
 
@@ -713,10 +716,7 @@
               <span class="project-status">LIVE · STOREFRONT</span>
             </div>
 
-            <div
-              class="project-visual project-visual-noviq"
-              aria-hidden="true"
-            >
+            <div class="project-visual project-visual-noviq" aria-hidden="true">
               <div class="project-visual-icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1494,9 +1494,8 @@
               <h3>Deepening my foundations</h3>
               <p>
                 Upgraded FinTrack, started learning Git and GitHub, made my
-                first GitHub commit in July 2026, began exploring C
-                programming, and launched NOVIQ, a digital resource store, in
-                November.
+                first GitHub commit in July 2026, began exploring C programming,
+                and launched NOVIQ, a digital resource store, in November.
               </p>
             </div>
           </article>
@@ -1644,7 +1643,12 @@
 
       <div class="footer-bottom">
         <p>© <span id="current-year">2026</span> AR.dev · Ayush Rathour</p>
-        <p>Built with curiosity.</p>
+        <p>
+          Built with curiosity. <span aria-hidden="true">·</span>
+          <button type="button" class="footer-cookie-link" data-cookie-settings>
+            Cookie settings
+          </button>
+        </p>
       </div>
     </footer>
   </body>
