@@ -27,9 +27,9 @@
      SETTINGS
   ========================= */
 
-  const MIN_MS = 1000; // the loader always stays at least this long
+  const MIN_MS = 3000; // the loader always stays at least this long
   const MAX_MS = 20000; // and never blocks the page longer than this
-  const DATA_MAX_MS = 6000; // slow third-party data keeps loading after this
+const DATA_MAX_MS = 6000; // slow third-party data keeps loading after this
   const HOLD_MS = 300; // pause on "Ready" before the overlay lifts
   const EXIT_MS = 750; // keep in sync with .page-loader.is-leaving
 
@@ -120,7 +120,7 @@
 
     inerted.forEach((element) => element.setAttribute("inert", ""));
 
-    if (live) live.textContent = `Loading ${page}`;
+    if (live) live.textContent = `Loading the ${page} page`;
 
     /* ---------- Tasks ---------- */
 
@@ -165,12 +165,12 @@
         } else if (!task.failed) {
           text = "Ready";
         } else if (task.key === "data") {
-          text = "Unavailable";
+          text = "Skipped";
         } else {
           text = `Ready · ${task.failed} missing`;
         }
       } else {
-        text = task.total > 1 ? `${task.done} of ${task.total}` : "Loading";
+        text = task.total > 1 ? `${task.done} of ${task.total}` : "Fetching";
       }
 
       task.row.dataset.state = state;
@@ -190,7 +190,7 @@
     const settled = () => tasks.every((task) => task.done >= task.total);
 
     // How much has really loaded, 0 to 1. Images count one each, so a
-    // gallery of nine frames outweighs the single fonts or page task.
+    // gallery of many frames outweighs the single fonts or page task.
     function realProgress() {
       let done = 0;
       let total = 0;
@@ -266,7 +266,7 @@
       // Third-party data shouldn't hold the whole page: after
       // DATA_MAX_MS the page opens and the data fills in when it arrives.
       window.setTimeout(
-        () => advance(data, true, "Loading in background"),
+        () => advance(data, true, "Finishing in background"),
         DATA_MAX_MS,
       );
     }
@@ -374,7 +374,7 @@
       // Reached by the safety limit: show everything as done.
       paint(1);
 
-      if (live) live.textContent = `${page} is ready`;
+      if (live) live.textContent = `The ${page} page is ready`;
 
       window.setTimeout(leave, HOLD_MS);
     }
