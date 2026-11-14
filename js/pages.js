@@ -148,6 +148,10 @@
 
     window.addEventListener("hashchange", focusSafely);
 
+    // The page is inert while the loader shows, so focus moves once
+    // the loader has lifted.
+    document.addEventListener("ardev:loader-done", focusSafely);
+
     // A page opened straight at a #hash (for example milestones.html#year-2026).
     focusSafely();
   }
@@ -499,8 +503,16 @@
 
     const cached = readContribCache(user);
 
+    // Tells the page loader (loader.js) that this data has finished,
+    // whether it loaded or failed, so the loader never waits forever.
+    const announce = (ok) =>
+      document.dispatchEvent(
+        new CustomEvent("ardev:contrib-settled", { detail: { ok } }),
+      );
+
     if (cached) {
       showDays(cached);
+      announce(true);
       return;
     }
 
@@ -508,8 +520,12 @@
       .then((data) => {
         writeContribCache(user, data);
         showDays(data);
+        announce(true);
       })
-      .catch(showError);
+      .catch(() => {
+        showError();
+        announce(false);
+      });
   }
 
   /* =========================

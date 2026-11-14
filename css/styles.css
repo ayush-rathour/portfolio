@@ -29,6 +29,7 @@
    18 Home: journey
    19 Home: closing call to action
    20 Motion, print & reduced motion
+   21 Page loader
 ========================================================= */
 
 /* =========================================================
@@ -2985,5 +2986,269 @@ body:not(.contact-page) .contact-cta h2 span {
     content: " (" attr(href) ")";
     font-size: 0.75em;
     word-break: break-all;
+  }
+}
+
+/* =========================================================
+   21. PAGE LOADER
+   One overlay per page (markup at the top of <body>, behavior in
+   js/loader.js). It is the logo mark, enlarged, filling with lime
+   as the page's real assets finish loading, next to a short list
+   of what this page contains. Without JavaScript it is hidden, and
+   a CSS failsafe removes it even if the script never runs.
+========================================================= */
+
+html.is-loading {
+  overflow: hidden;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  overflow-y: auto;
+  /* A lime glow centred above the card. It fades out before it reaches
+     any edge, so nothing shows at the scrollbar gutter. */
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(184, 243, 107, 0.3),
+      transparent 55%
+    ),
+    var(--color-bg);
+  color: var(--color-ink);
+  animation: page-loader-failsafe 0s linear 25s forwards;
+}
+
+@keyframes page-loader-failsafe {
+  to {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.page-loader-card {
+  width: min(100%, 420px);
+  padding: clamp(24px, 5vw, 34px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+/* The logo mark, large. --p (0 to 1) is set by loader.js. */
+.page-loader-mark {
+  position: relative;
+  display: grid;
+  width: 76px;
+  height: 76px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: 4px 4px 0 rgba(32, 34, 31, 0.08);
+  --p: 0;
+}
+
+.page-loader-mark::before {
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  content: "";
+  transform: scaleY(var(--p));
+  transform-origin: bottom;
+}
+
+.page-loader-mark span {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.07em;
+}
+
+.page-loader-title {
+  margin: 26px 0 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 6vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--color-ink);
+}
+
+.page-loader-lede {
+  max-width: 36ch;
+  margin: 10px 0 24px;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.page-loader-list {
+  margin: 0 0 22px;
+  padding: 0;
+  border-top: 1px solid var(--color-border);
+  list-style: none;
+}
+
+.page-loader-list li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.pl-dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: 50%;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.pl-dot::after {
+  position: absolute;
+  top: 1.5px;
+  left: 4px;
+  width: 3px;
+  height: 6px;
+  border: solid var(--color-ink);
+  border-width: 0 1.5px 1.5px 0;
+  content: "";
+  opacity: 0;
+  transform: rotate(45deg);
+}
+
+.pl-state {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.page-loader-list li[data-state="active"] .pl-dot {
+  border-color: var(--color-accent-dark);
+}
+
+.page-loader-list li[data-state="done"] .pl-dot {
+  border-color: var(--color-accent-dark);
+  background: var(--color-accent);
+}
+
+.page-loader-list li[data-state="done"] .pl-dot::after {
+  opacity: 1;
+}
+
+.page-loader-list li[data-state="done"] .pl-state {
+  color: var(--color-accent-deep);
+}
+
+.page-loader-list li[data-state="warn"] .pl-dot {
+  border-color: var(--color-danger);
+}
+
+.page-loader-list li[data-state="warn"] .pl-state {
+  color: var(--color-danger-ink);
+}
+
+.page-loader-foot {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pl-track {
+  flex: 1;
+  height: 6px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-soft);
+  --p: 0;
+}
+
+.pl-bar {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-accent-dark);
+  transform: scaleX(var(--p));
+  transform-origin: left;
+}
+
+.pl-percent {
+  min-width: 4ch;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.page-loader-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* The one orchestrated moment: the card settles, then the whole
+   overlay lifts away to reveal the page. */
+.page-loader.is-leaving {
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  box-shadow: 0 28px 60px rgba(32, 34, 31, 0.14);
+  pointer-events: none;
+  transform: translateY(-101%);
+  transition:
+    transform 700ms cubic-bezier(0.7, 0, 0.2, 1),
+    box-shadow 700ms ease;
+}
+
+.page-loader.is-leaving .page-loader-card {
+  opacity: 0;
+  transform: translateY(-14px);
+  transition:
+    opacity 280ms ease,
+    transform 280ms ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-loader-list li[data-state="active"] .pl-dot {
+    animation: page-loader-pulse 1.2s ease-in-out infinite;
+  }
+
+  @keyframes page-loader-pulse {
+    50% {
+      background: var(--color-accent);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader.is-leaving {
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 0;
+    transform: none;
+    transition: opacity 200ms ease;
+  }
+}
+
+@media print {
+  .page-loader {
+    display: none !important;
   }
 }

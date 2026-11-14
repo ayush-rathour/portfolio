@@ -67,6 +67,7 @@
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/projects.css" />
 
+    <script src="../js/loader.js" defer></script>
     <script src="../js/main.js" defer></script>
     <script src="../js/pages.js" defer></script>
     <script src="../js/case-studies.js" defer></script>
@@ -206,6 +207,55 @@
   </head>
 
   <body>
+    <!-- ==================== PAGE LOADER ====================
+         Real progress and a 3 second minimum: see js/loader.js.
+         Each row is a task that finishes when its assets have loaded. -->
+    <div
+      class="page-loader"
+      id="page-loader"
+      data-page="Projects"
+    >
+      <div class="page-loader-card">
+        <div class="page-loader-mark" aria-hidden="true"><span>AR</span></div>
+        <p class="page-loader-title">Projects</p>
+        <p class="page-loader-lede">Tools, collaborative websites and programming projects, each with a case study.</p>
+
+        <ul class="page-loader-list">
+          <li data-task="fonts" data-state="active">
+            <span class="pl-dot" aria-hidden="true"></span>
+            <span class="pl-name">Typefaces</span>
+            <span class="pl-state">Loading</span>
+          </li>
+          <li data-task="images" data-state="active" data-label="{n} project previews">
+            <span class="pl-dot" aria-hidden="true"></span>
+            <span class="pl-name">{n} project previews</span>
+            <span class="pl-state">Loading</span>
+          </li>
+          <li data-task="page" data-state="active">
+            <span class="pl-dot" aria-hidden="true"></span>
+            <span class="pl-name">Case studies</span>
+            <span class="pl-state">Loading</span>
+          </li>
+        </ul>
+
+        <div class="page-loader-foot">
+          <div
+            class="pl-track"
+            role="progressbar"
+            aria-label="Loading Projects"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <span class="pl-bar"></span>
+          </div>
+          <span class="pl-percent" aria-hidden="true">0%</span>
+        </div>
+        <p class="page-loader-live" id="page-loader-live" aria-live="polite"></p>
+      </div>
+    </div>
+    <noscript><style>.page-loader{display:none}</style></noscript>
+
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="site-header">
