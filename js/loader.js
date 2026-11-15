@@ -27,9 +27,9 @@
      SETTINGS
   ========================= */
 
-  const MIN_MS = 3000; // the loader always stays at least this long
+  const MIN_MS = 1000; // the loader always stays at least this long
   const MAX_MS = 20000; // and never blocks the page longer than this
-const DATA_MAX_MS = 6000; // slow third-party data keeps loading after this
+  const DATA_MAX_MS = 6000; // slow third-party data keeps loading after this
   const HOLD_MS = 300; // pause on "Ready" before the overlay lifts
   const EXIT_MS = 750; // keep in sync with .page-loader.is-leaving
 
