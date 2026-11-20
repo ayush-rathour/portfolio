@@ -42,7 +42,7 @@
       links: [
         {
           label: "Open live app",
-          href: "https://fintrack-ar.pages.dev/",
+          href: "https://fintrack.ayushrathour.site/",
         },
         {
           label: "Source on GitHub",
@@ -178,7 +178,7 @@
       links: [
         {
           label: "Open the site",
-          href: "https://noviq-ar.pages.dev/",
+          href: "https://noviq.ayushrathour.site/",
         },
         {
           label: "Source on GitHub",
