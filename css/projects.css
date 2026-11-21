@@ -63,21 +63,127 @@
   }
 }
 
+/* =========================================================
+   Project cards (v2)
+   6-column grid: the two lead projects run full width with the
+   image on alternating sides, then cards sit three to a row and
+   the last two share a row. Card shell, hover and chips still
+   come from styles.css.
+========================================================= */
+
 .projects-grid {
-  row-gap: 24px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 22px;
 }
 
+.projects-grid .project-card {
+  grid-column: span 2;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+}
+
+/* The last two cards split the final row */
+.projects-grid .project-card:nth-last-child(-n + 2) {
+  grid-column: span 3;
+}
+
+/* Lead projects */
+
 .projects-grid .project-card-featured {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  grid-template-rows: auto 1fr;
   align-items: stretch;
+  column-gap: clamp(22px, 4vw, 56px);
+  padding: 14px 14px clamp(14px, 2vw, 22px);
+}
+
+.projects-grid .project-card-featured .project-card-top {
+  margin: 0;
+  padding: 4px 8px 16px;
+}
+
+.projects-grid .project-card-featured .project-image-link {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.projects-grid .project-card-featured .project-card-content {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 6px clamp(4px, 1vw, 12px) 6px 0;
+}
+
+/* NOVIQ mirrors FinTrack: image right, copy left */
+.projects-grid .project-card-reverse {
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+}
+
+.projects-grid .project-card-reverse .project-image-link {
+  grid-column: 2;
+}
+
+.projects-grid .project-card-reverse .project-card-content {
+  grid-column: 1;
+  padding: 6px 0 6px clamp(4px, 1vw, 12px);
+}
+
+.projects-grid .project-card-featured .project-card-content h3 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  letter-spacing: -0.06em;
+}
+
+.projects-grid
+  .project-card-featured
+  .project-card-content
+  > p:not(.project-category) {
+  font-size: 0.95rem;
+}
+
+/* Header chips: overlaid on the image for the smaller cards */
+
+.projects-grid .project-card:not(.project-card-featured) .project-card-top {
+  position: absolute;
+  z-index: 3;
+  top: 26px;
+  right: 26px;
+  left: 26px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.projects-grid .project-index,
+.projects-grid .project-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-ink);
+  font-size: 0.62rem;
+  line-height: 1;
+  white-space: nowrap;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.projects-grid .project-card-featured .project-index {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-muted);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .projects-grid .project-status {
   letter-spacing: 0.06em;
 }
 
-/* The live FinTrack card gets a status dot; archived work stays plain */
-.projects-grid .project-card-featured .project-status::before {
+/* Live projects get a status dot; archived work stays plain */
+.projects-grid .project-card-featured .project-status::before,
+.projects-grid .project-card:has(.project-image-link) .project-status::before {
   width: 6px;
   height: 6px;
   flex: 0 0 6px;
@@ -96,49 +202,98 @@
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: calc(var(--radius-lg) - 10px);
   background: var(--color-surface-soft);
 }
 
 .project-image {
   display: block;
   width: 100%;
-  aspect-ratio: 1.55 / 1;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: top center;
   transition: transform var(--transition-slow);
 }
 
-.projects-grid .project-card-content {
-  min-width: 0;
-}
-
-.projects-grid .project-links {
-  margin-top: auto;
-  padding-top: 24px;
-}
-
-.projects-grid .project-card-featured .project-image-link {
-  align-self: stretch;
-}
-
 .projects-grid .project-card-featured .project-image {
   height: 100%;
-  min-height: 300px;
+  min-height: 340px;
   aspect-ratio: auto;
+}
+
+/* A soft fade at the foot keeps the image and the card in one piece */
+.project-image-link::before,
+.project-image-wrap::before {
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 0;
+  height: 38%;
+  background: linear-gradient(to top, rgba(32, 34, 31, 0.16), transparent);
+  content: "";
+  pointer-events: none;
+}
+
+/* Card copy */
+
+.projects-grid .project-card-content {
+  min-width: 0;
+  padding: 20px 12px 10px;
+}
+
+.projects-grid .project-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.projects-grid .project-category::before {
+  width: 18px;
+  height: 1px;
+  background: var(--color-accent-dark);
+  content: "";
+}
+
+.projects-grid .project-card-content h3 {
+  margin-top: 12px;
+  font-size: clamp(1.3rem, 1.8vw, 1.55rem);
+  letter-spacing: -0.05em;
+}
+
+.projects-grid .project-card-content > p:not(.project-category) {
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+.projects-grid .project-tags {
+  margin-top: 18px;
+  margin-bottom: 4px;
+}
+
+/* Links sit on a divider at the foot of every card */
+.projects-grid .project-links {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border);
+  gap: 12px 22px;
+}
+
+.projects-grid .project-card-content > .project-tags {
+  margin-bottom: 22px;
 }
 
 /* The linked screenshot says what it does */
 .project-image-link::after {
   position: absolute;
+  z-index: 2;
   bottom: 14px;
   left: 14px;
   padding: 8px 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   color: var(--color-ink);
-  content: "Open live app \2197";
+  content: attr(data-cta);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.04em;
@@ -163,7 +318,7 @@
 
   .project-image-link:hover .project-image,
   .project-image-wrap:hover .project-image {
-    transform: scale(1.025);
+    transform: scale(1.03);
   }
 }
 
@@ -704,13 +859,43 @@ body.case-open {
 /* Responsive */
 
 @media (max-width: 900px) {
-  .projects-grid .project-card-featured {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .projects-grid .project-card,
+  .projects-grid .project-card:nth-last-child(-n + 2) {
+    grid-column: auto;
+  }
+
+  /* An odd card out takes the full row */
+  .projects-grid .project-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .projects-grid .project-card-featured,
+  .projects-grid .project-card-reverse {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-column: 1 / -1;
+  }
+
+  .projects-grid .project-card-featured .project-image-link,
+  .projects-grid .project-card-reverse .project-image-link,
+  .projects-grid .project-card-featured .project-card-content,
+  .projects-grid .project-card-reverse .project-card-content {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .projects-grid .project-card-featured .project-card-content,
+  .projects-grid .project-card-reverse .project-card-content {
+    padding: 22px 8px 6px;
   }
 
   .projects-grid .project-card-featured .project-image {
     min-height: 0;
-    aspect-ratio: 1.55 / 1;
+    aspect-ratio: 16 / 10;
   }
 
   .projects-contact {
@@ -737,12 +922,27 @@ body.case-open {
     padding-bottom: 0;
   }
 
+  .projects-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .projects-grid .project-card,
+  .projects-grid .project-card:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .projects-grid .project-card:not(.project-card-featured) .project-card-top {
+    top: 22px;
+    right: 22px;
+    left: 22px;
+  }
+
   .projects-grid .project-image {
     aspect-ratio: 1.35 / 1;
   }
 
   .projects-grid .project-links {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
     gap: 14px;
   }

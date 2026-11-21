@@ -286,7 +286,120 @@
       ],
     },
 
-    /* ---------- 03 · Varun's Artist Portfolio ---------- */
+    /* ---------- 03 · Link Space ---------- */
+    {
+      id: "link-space",
+      type: "Personal web",
+      title: "Link Space",
+      tagline: "One link for everything I make",
+      status: "Live · Link hub",
+      lead: "A single page that gathers my portfolio, projects and social profiles in one place, so anyone who asks where to find my work gets one short link instead of a list.",
+      meta: [
+        ["Role", "Designer & developer"],
+        ["Type", "Personal link hub"],
+        ["Built with", "HTML, CSS, JavaScript"],
+        ["Address", "links.ayushrathour.site"],
+      ],
+      image: {
+        src: "../assets/Project_Images/link_space_img.png",
+        alt: "Link Space personal link hub preview",
+      },
+      links: [
+        {
+          label: "Visit Link Space",
+          href: "https://links.ayushrathour.site",
+        },
+      ],
+      why: {
+        title: "My work lives in many places.|Sharing it should not.",
+        body: [
+          "Over time my work spread across a portfolio, a finance app, a resource store, GitHub and a few social profiles. Every time someone asked where to find it, I ended up pasting a handful of separate links.",
+          "Link Space replaces that list with one address. It is a small, fast page whose only job is to point people to the right place, whether they are a recruiter, a collaborator or a friend.",
+        ],
+        points: [
+          "One short link to share anywhere",
+          "Portfolio, projects and profiles gathered together",
+          "Loads fast and reads clearly on a phone",
+          "Matches the look of the rest of my work",
+        ],
+      },
+      how: {
+        title: "One page,|a few clear doors.",
+        intro:
+          "Link Space is deliberately simple. A visitor lands on the page, sees who I am and picks where to go next, with no menu to learn and nothing to sign up for.",
+        steps: [
+          {
+            title: "Land",
+            text: "The page opens with a short introduction, so a visitor knows whose space it is within a second.",
+          },
+          {
+            title: "Choose",
+            text: "Links are grouped by purpose, such as my portfolio, projects and social profiles, so the right one is easy to spot.",
+          },
+          {
+            title: "Go",
+            text: "Each link opens the real destination in a new tab, so Link Space stays open as a home base to come back to.",
+          },
+          {
+            title: "Share",
+            text: "The address is short enough to put in a bio, a message or on a card, and it never needs to change when the pages behind it do.",
+          },
+        ],
+      },
+      built: {
+        title: "Small on purpose,|easy to keep current.",
+        body: [
+          "Link Space is plain HTML, CSS and JavaScript with no framework and no build step, in the same spirit as the rest of my projects. A page this small does not need more, and fewer moving parts means fewer things that can break.",
+          "It lives on its own subdomain next to my portfolio, so the whole set of sites feels like one family while each can change on its own.",
+        ],
+        decisions: [
+          {
+            title: "A subdomain of its own",
+            text: "Keeping it at links.ayushrathour.site makes the address easy to remember and keeps it separate from the portfolio, so either can change freely.",
+          },
+          {
+            title: "No framework",
+            text: "A single page with a handful of links is best served by plain code. It loads instantly and is simple to edit when a new link is needed.",
+          },
+          {
+            title: "Links open in new tabs",
+            text: "Visitors can follow a link and still have Link Space waiting when they return, which suits a page whose purpose is to send people elsewhere.",
+          },
+          {
+            title: "Mobile first",
+            text: "Most people will open this link from a bio or a message on their phone, so the layout is designed for a small screen first.",
+          },
+        ],
+        stackLabel: "Built with",
+        stack: [
+          "HTML5",
+          "CSS3",
+          "Vanilla JavaScript",
+          "Responsive layout",
+          "Cloudflare Pages",
+          "Git & GitHub",
+        ],
+      },
+      hard: {
+        title: "Deciding what to leave out.",
+        text: "With a page this small, the difficult part was restraint. It is tempting to add every profile, project and achievement, but a link hub that tries to show everything stops being a shortcut. Choosing the few links that matter most, grouping them clearly and keeping the page quick to scan took more thought than building it.",
+      },
+      outcome: {
+        body: "Link Space is a small project with a clear job: one address that opens the rest of my work. It also made me practise a skill that matters in bigger projects, which is deciding what a page is for and then saying no to everything else.",
+        stats: [
+          { value: "1", label: "Link to share" },
+          { value: "Live", label: "Status" },
+          { value: "0", label: "Frameworks" },
+        ],
+      },
+      next: [
+        "Keep the link list current as new projects ship",
+        "Add a short line describing each destination",
+        "Refresh the look to match the latest portfolio design",
+      ],
+    },
+
+    /* ---------- 04 · Varun's Artist Portfolio ---------- */
     {
       id: "varun-portfolio",
       type: "Client work",
@@ -390,7 +503,7 @@
       ],
     },
 
-    /* ---------- 04 · Shaurya's Developer Portfolio ---------- */
+    /* ---------- 05 · Shaurya's Developer Portfolio ---------- */
     {
       id: "shaurya-portfolio",
       type: "Collaboration",
@@ -492,7 +605,7 @@
       ],
     },
 
-    /* ---------- 05 · Python Utilities ---------- */
+    /* ---------- 06 · Python Utilities ---------- */
     {
       id: "python-utilities",
       type: "Python",
@@ -602,7 +715,7 @@
       ],
     },
 
-    /* ---------- 06 · C Projects ---------- */
+    /* ---------- 07 · C Projects ---------- */
     {
       id: "c-projects",
       type: "C programming",
