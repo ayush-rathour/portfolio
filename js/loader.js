@@ -1,23 +1,33 @@
 /**
  * AR.dev — loader.js
- * Page loader, loaded first on every page (before main.js).
+ * Page loader and page transitions. Loaded first on every page.
  *
- * The overlay's markup lives at the top of each page's <body>. This
- * script makes it real:
+ * Three behaviours, one script:
  *
- *   - Every row in the loader list is a task that finishes only when
- *     the real thing has loaded: web fonts, each <img> on the page
- *     (lazy images are forced to load), the GitHub data on the home
- *     page, and the page itself (styles, scripts, layout).
- *   - The progress shown is the smaller of "how much has really
- *     loaded" and "how much of the minimum time has passed", so the
- *     loader lasts at least MIN_MS even when everything is ready in
- *     one second, and the bar never claims more than is loaded.
- *   - It never traps a visitor: MAX_MS lifts it regardless, any error
- *     removes it, and without JavaScript it is hidden by CSS.
+ *   1. FIRST VISIT of a session: the full loader card. Every row in
+ *      it is a task that finishes only when the real thing has loaded
+ *      (web fonts, the images you can see on arrival, the GitHub data
+ *      on the home page, and the page itself).
+ *
+ *   2. LATER PAGES: no card. A slim progress bar runs along the top
+ *      edge and the page is revealed as soon as the type is ready.
+ *      The decision is made before first paint by a tiny inline script
+ *      in each page's <head>, which adds `loader-slim` to <html>, so
+ *      the card never flashes.
+ *
+ *   3. PAGE TRANSITIONS: clicking an internal link wipes a lime
+ *      curtain up over the page, then navigates. The next page opens
+ *      under the same curtain (`pt-enter`, set in <head>) and lifts it.
+ *
+ * Progress is honest but never choppy: it is the smaller of "how much
+ * has really loaded" (weighted per task) and an ease-out time curve,
+ * smoothed with frame-rate independent easing. MAX_MS lifts the
+ * overlay regardless, any error removes it, and without JavaScript it
+ * is hidden by CSS.
  *
  * Page data that loads later (see initContributions in pages.js)
- * reports back with a "ardev:contrib-settled" event on document.
+ * reports back with an "ardev:contrib-settled" event on document.
+ * When the page is ready, "ardev:loader-done" is dispatched.
  */
 
 (() => {
@@ -27,15 +37,17 @@
      SETTINGS
   ========================= */
 
-  const MIN_MS = 1000; // the loader always stays at least this long
-  const MAX_MS = 20000; // and never blocks the page longer than this
-  const DATA_MAX_MS = 6000; // slow third-party data keeps loading after this
-  const HOLD_MS = 300; // pause on "Ready" before the overlay lifts
-  const EXIT_MS = 750; // keep in sync with .page-loader.is-leaving
+  const MIN_MS = 900; // the full loader stays at least this long
+  const MAX_MS = 15000; // and never blocks the page longer than this
+  const DATA_MAX_MS = 2500; // slow third-party data keeps loading after this
+  const HOLD_MS = 260; // pause on "Ready" before the overlay lifts
+  const EXIT_MS = 800; // keep in sync with .page-loader.is-leaving
+  const CURTAIN_MS = 520; // keep in sync with .page-curtain
+  const REVEAL_MS = 700; // keep in sync with html.pt-reveal
+  const SLIM_FONT_WAIT_MS = 700; // slim mode never waits longer than this
 
-  // Set to true to show the loader only on the first page of a visit.
-  const SHOW_ONCE_PER_SESSION = false;
-  const SESSION_KEY = "ardev:loader-seen";
+  const SEEN_KEY = "ardev:loader-seen"; // full loader already shown
+  const PT_KEY = "ardev:transition"; // set by a link click; read in <head>
 
   // Faces the design uses, so "Typefaces" really waits for them.
   const FONT_FACES = [
@@ -46,64 +58,256 @@
     '400 1em "DM Mono"',
   ];
 
-  const root = document.getElementById("page-loader");
-
-  if (!root) return;
+  // How much each task counts toward the bar.
+  const WEIGHTS = { fonts: 1.5, images: 2.5, data: 1, page: 2 };
 
   const html = document.documentElement;
-  const t0 = performance.now();
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const store = {
+    get(key) {
+      try {
+        return sessionStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    },
+    set(key, value) {
+      try {
+        sessionStorage.setItem(key, value);
+      } catch {
+        // Storage unavailable: loader just behaves like a first visit.
+      }
+    },
+  };
+
+  // Deferred scripts all run before DOMContentLoaded, so anything that
+  // announces itself to the other scripts waits for it.
+  function afterScripts(callback) {
+    if (document.readyState === "complete") callback();
+    else document.addEventListener("DOMContentLoaded", callback, { once: true });
+  }
 
   /* =========================
-     CLEAN-UP HELPERS
+     PAGE TRANSITIONS
   ========================= */
 
-  let inerted = [];
+  let curtain = null;
+  let leavingPage = false;
 
-  function unlock() {
-    html.classList.remove("is-loading");
+  function leaveTo(href) {
+    if (leavingPage) return;
+    leavingPage = true;
 
-    inerted.forEach((element) => element.removeAttribute("inert"));
-    inerted = [];
+    store.set(PT_KEY, String(Date.now()));
+
+    curtain = document.createElement("div");
+    curtain.className = "page-curtain";
+    curtain.setAttribute("aria-hidden", "true");
+    document.body.appendChild(curtain);
+
+    // Force a layout so the slide-in actually animates.
+    void curtain.offsetWidth;
+    curtain.classList.add("is-in");
+
+    window.setTimeout(() => window.location.assign(href), CURTAIN_MS);
   }
 
-  function removeLoader() {
-    unlock();
-    root.remove();
+  function shouldTransition(event, link) {
+    if (event.defaultPrevented || event.button !== 0) return false;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return false;
+    }
+    if (reduceMotion.matches) return false;
+    if (link.target && link.target !== "_self") return false;
+    if (link.hasAttribute("download")) return false;
+
+    let url;
 
     try {
-      if (SHOW_ONCE_PER_SESSION) sessionStorage.setItem(SESSION_KEY, "1");
+      url = new URL(link.href, window.location.href);
     } catch {
-      // Storage unavailable: the loader just shows again next time.
+      return false;
     }
+
+    if (!["http:", "https:", "file:"].includes(url.protocol)) return false;
+    if (url.origin !== window.location.origin) return false;
+
+    // Same page (in-page #anchors, or a link back to where you are).
+    if (
+      url.pathname === window.location.pathname &&
+      url.search === window.location.search
+    ) {
+      return false;
+    }
+
+    // Files, not pages.
+    if (/\.(zip|apk|pdf|png|jpe?g|webp|gif|svg|mp4|txt|xml)$/i.test(url.pathname)) {
+      return false;
+    }
+
+    return true;
   }
 
-  // Restored from the back/forward cache: the page is already loaded.
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted) removeLoader();
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest && event.target.closest("a[href]");
+
+    if (!link || !shouldTransition(event, link)) return;
+
+    event.preventDefault();
+    leaveTo(link.href);
   });
 
-  try {
-    if (SHOW_ONCE_PER_SESSION && sessionStorage.getItem(SESSION_KEY)) {
-      removeLoader();
-      return;
-    }
-  } catch {
-    // Storage unavailable: show the loader.
+  // Coming back with the browser's back button can restore this page
+  // from memory with the curtain still up. Put everything back.
+  window.addEventListener("pageshow", (event) => {
+    if (!event.persisted) return;
+
+    leavingPage = false;
+    if (curtain) curtain.remove();
+    curtain = null;
+    html.classList.remove("pt-enter", "pt-reveal");
+  });
+
+  // Lift the curtain the previous page dropped (see <head> script).
+  function liftEntrance() {
+    if (!html.classList.contains("pt-enter")) return;
+
+    window.requestAnimationFrame(() => {
+      html.classList.add("pt-reveal");
+
+      window.setTimeout(
+        () => html.classList.remove("pt-enter", "pt-reveal"),
+        REVEAL_MS + 60,
+      );
+    });
+  }
+
+  /* =========================
+     MODE
+  ========================= */
+
+  const root = document.getElementById("page-loader");
+  const seen = Boolean(store.get(SEEN_KEY));
+
+  if (html.classList.contains("loader-slim") || seen) {
+    startSlim();
+    return;
+  }
+
+  if (!root) {
+    afterScripts(liftEntrance);
+    return;
   }
 
   try {
-    start();
+    startFull();
   } catch (error) {
     console.error("[AR.dev] loader failed", error);
-    removeLoader();
+    html.classList.remove("is-loading");
+    root.remove();
+    liftEntrance();
   }
 
-  function start() {
+  /* =========================
+     SLIM MODE (every page after the first)
+  ========================= */
+
+  function startSlim() {
+    html.classList.add("loader-slim");
+    if (root) root.remove();
+
+    const bar = document.createElement("div");
+    const fill = document.createElement("span");
+
+    bar.className = "page-progress";
+    bar.setAttribute("aria-hidden", "true");
+    bar.appendChild(fill);
+    document.body.appendChild(bar);
+
+    const t0 = performance.now();
+    let frameId = 0;
+    let done = false;
+
+    const setBar = (value) => bar.style.setProperty("--p", value.toFixed(3));
+
+    function tick(now) {
+      if (done) return;
+
+      // Eases toward 90% and waits there for the real load event.
+      setBar(Math.max(0.08, 0.9 * (1 - Math.exp(-(now - t0) / 600))));
+      frameId = window.requestAnimationFrame(tick);
+    }
+
+    function complete() {
+      if (done) return;
+
+      done = true;
+      window.cancelAnimationFrame(frameId);
+      setBar(1);
+
+      window.setTimeout(() => {
+        bar.classList.add("is-done");
+        window.setTimeout(() => bar.remove(), 350);
+      }, 160);
+    }
+
+    setBar(0.08);
+    frameId = window.requestAnimationFrame(tick);
+
+    if (document.readyState === "complete") complete();
+    else window.addEventListener("load", complete, { once: true });
+
+    window.setTimeout(complete, MAX_MS);
+
+    // Reveal as soon as the type is ready (or shortly after), not
+    // after every image: the page fills in under the bar.
+    afterScripts(() => {
+      const fontsReady =
+        document.fonts && document.fonts.ready
+          ? document.fonts.ready.catch(() => {})
+          : Promise.resolve();
+
+      Promise.race([
+        fontsReady,
+        new Promise((resolve) => window.setTimeout(resolve, SLIM_FONT_WAIT_MS)),
+      ]).then(() => {
+        liftEntrance();
+        document.dispatchEvent(new Event("ardev:loader-done"));
+      });
+    });
+  }
+
+  /* =========================
+     FULL MODE (first page of a visit)
+  ========================= */
+
+  function startFull() {
+    const t0 = performance.now();
     const page = root.dataset.page || document.title;
     const live = document.getElementById("page-loader-live");
     const mark = root.querySelector(".page-loader-mark");
     const track = root.querySelector(".pl-track");
     const percent = root.querySelector(".pl-percent");
+
+    let inerted = [];
+
+    function unlock() {
+      html.classList.remove("is-loading");
+
+      inerted.forEach((element) => element.removeAttribute("inert"));
+      inerted = [];
+    }
+
+    function removeLoader() {
+      unlock();
+      root.remove();
+    }
+
+    // Restored from the back/forward cache: already loaded.
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted) removeLoader();
+    });
 
     /* ---------- Lock the page while loading ---------- */
 
@@ -189,15 +393,18 @@
 
     const settled = () => tasks.every((task) => task.done >= task.total);
 
-    // How much has really loaded, 0 to 1. Images count one each, so a
-    // gallery of many frames outweighs the single fonts or page task.
+    // How much has really loaded, 0 to 1. Each task has a weight and
+    // contributes its own fraction, so the bar moves per image rather
+    // than jumping when a whole group finishes.
     function realProgress() {
       let done = 0;
       let total = 0;
 
       tasks.forEach((task) => {
-        done += task.done;
-        total += task.total;
+        const weight = WEIGHTS[task.key] || 1;
+
+        done += weight * Math.min(1, task.done / task.total);
+        total += weight;
       });
 
       return total ? done / total : 1;
@@ -217,10 +424,20 @@
       advance(fonts);
     }
 
-    // 2. Images. Lazy images are made eager so they truly load now.
-    const images = Array.from(document.images).filter(
-      (img) => !root.contains(img),
-    );
+    // 2. Images you see on arrival. Only those within roughly the first
+    //    screen and a half hold the loader; anything further down keeps
+    //    loading lazily afterwards, so the reveal is quick.
+    const viewport = window.innerHeight || 800;
+
+    const images = Array.from(document.images).filter((img) => {
+      if (root.contains(img)) return false;
+
+      const box = img.getBoundingClientRect();
+
+      if (!box.width && !box.height) return false; // hidden (dialogs, tabs)
+
+      return box.top < viewport * 1.5 && box.bottom > -viewport * 0.5;
+    });
 
     if (images.length) {
       const imageTask = makeTask("images", images.length);
@@ -232,11 +449,8 @@
           // Decode now, so the reveal doesn't stutter on large images.
           const finish = () => advance(imageTask, true);
 
-          if (img.decode) {
-            img.decode().then(finish, finish);
-          } else {
-            finish();
-          }
+          if (img.decode) img.decode().then(finish, finish);
+          else finish();
         };
 
         if (img.complete) {
@@ -288,6 +502,7 @@
     /* ---------- Progress ---------- */
 
     let shown = 0;
+    let last = t0;
     let lastWhole = -1;
     let frameId = 0;
     let finished = false;
@@ -296,6 +511,7 @@
       const whole = Math.round(value * 100);
 
       if (mark) mark.style.setProperty("--p", value.toFixed(4));
+
       if (track) {
         track.style.setProperty("--p", value.toFixed(4));
 
@@ -308,13 +524,20 @@
     }
 
     function frame(now) {
+      const dt = Math.min(64, now - last);
       const elapsed = now - t0;
-      const byTime = Math.min(1, elapsed / MIN_MS);
+      const t = Math.min(1, elapsed / MIN_MS);
+
+      last = now;
+
+      // Ease-out: a quick start, a soft landing.
+      const byTime = 1 - Math.pow(1 - t, 3);
       const target = Math.min(realProgress(), byTime);
 
-      shown += (target - shown) * 0.14;
+      // Frame-rate independent smoothing.
+      shown += (target - shown) * (1 - Math.exp(-dt / 110));
 
-      if (target - shown < 0.002) shown = target;
+      if (target - shown < 0.0015) shown = target;
 
       paint(shown);
 
@@ -353,6 +576,9 @@
     }
 
     function leave() {
+      // Later pages get the slim bar instead of this card.
+      store.set(SEEN_KEY, "1");
+
       unlock();
       scrollToHash();
 
@@ -373,6 +599,7 @@
 
       // Reached by the safety limit: show everything as done.
       paint(1);
+      root.classList.add("is-complete");
 
       if (live) live.textContent = `The ${page} page is ready`;
 

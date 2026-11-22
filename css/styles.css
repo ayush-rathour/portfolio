@@ -29,7 +29,7 @@
    18 Home: journey
    19 Home: closing call to action
    20 Motion, print & reduced motion
-   21 Page loader
+   21 Page loader & transitions
 ========================================================= */
 
 /* =========================================================
@@ -2992,16 +2992,29 @@ body:not(.contact-page) .contact-cta h2 span {
 }
 
 /* =========================================================
-   21. PAGE LOADER
-   One overlay per page (markup at the top of <body>, behavior in
-   js/loader.js). It is the logo mark, enlarged, filling with lime
-   as the page's real assets finish loading, next to a short list
-   of what this page contains. Without JavaScript it is hidden, and
-   a CSS failsafe removes it even if the script never runs.
+   21. PAGE LOADER & TRANSITIONS
+   Behavior lives in js/loader.js.
+
+   - First visit of a session: a card (markup at the top of <body>)
+     with the logo mark filling lime as the page's real assets load,
+     next to a short list of what the page contains.
+   - Later pages: the card is skipped (html.loader-slim, set before
+     first paint by a tiny script in <head>) and a slim bar runs
+     along the top edge.
+   - Between pages: a lime curtain wipes up over the old page
+     (.page-curtain) and lifts off the new one (html.pt-enter).
+
+   Without JavaScript the card is hidden, and CSS failsafes remove
+   every overlay even if the script never runs.
 ========================================================= */
 
 html.is-loading {
   overflow: hidden;
+}
+
+/* Later pages never show the card, not even for a frame. */
+html.loader-slim .page-loader {
+  display: none;
 }
 
 .page-loader {
@@ -3022,7 +3035,7 @@ html.is-loading {
     ),
     var(--color-bg);
   color: var(--color-ink);
-  animation: page-loader-failsafe 0s linear 25s forwards;
+  animation: page-loader-failsafe 0s linear 20s forwards;
 }
 
 @keyframes page-loader-failsafe {
@@ -3059,14 +3072,37 @@ html.is-loading {
 .page-loader-mark::before {
   position: absolute;
   inset: 0;
-  background: var(--color-accent);
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-hover),
+    var(--color-accent)
+  );
   content: "";
   transform: scaleY(var(--p));
   transform-origin: bottom;
 }
 
+/* A soft highlight riding the top edge of the fill. */
+.page-loader-mark::after {
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--p) * 100% - 3px);
+  left: 0;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.7);
+  content: "";
+  filter: blur(2px);
+  opacity: clamp(0, calc((var(--p) - 0.03) * 40), 1);
+  transition: opacity 200ms ease;
+}
+
+.page-loader.is-complete .page-loader-mark::after {
+  opacity: 0;
+}
+
 .page-loader-mark span {
   position: relative;
+  z-index: 1;
   font-family: var(--font-heading);
   font-size: 1.7rem;
   font-weight: 800;
@@ -3109,6 +3145,10 @@ html.is-loading {
   line-height: 1.4;
 }
 
+.pl-name {
+  transition: color var(--transition-base);
+}
+
 .pl-dot {
   position: relative;
   width: 14px;
@@ -3117,7 +3157,8 @@ html.is-loading {
   border-radius: 50%;
   transition:
     background-color var(--transition-base),
-    border-color var(--transition-base);
+    border-color var(--transition-base),
+    transform 360ms cubic-bezier(0.3, 1.6, 0.5, 1);
 }
 
 .pl-dot::after {
@@ -3130,7 +3171,10 @@ html.is-loading {
   border-width: 0 1.5px 1.5px 0;
   content: "";
   opacity: 0;
-  transform: rotate(45deg);
+  transform: rotate(45deg) scale(0.4);
+  transition:
+    opacity 200ms ease,
+    transform 360ms cubic-bezier(0.3, 1.6, 0.5, 1);
 }
 
 .pl-state {
@@ -3139,6 +3183,7 @@ html.is-loading {
   font-size: var(--text-xs);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+  transition: color var(--transition-base);
 }
 
 .page-loader-list li[data-state="active"] .pl-dot {
@@ -3148,10 +3193,12 @@ html.is-loading {
 .page-loader-list li[data-state="done"] .pl-dot {
   border-color: var(--color-accent-dark);
   background: var(--color-accent);
+  transform: scale(1.12);
 }
 
 .page-loader-list li[data-state="done"] .pl-dot::after {
   opacity: 1;
+  transform: rotate(45deg) scale(1);
 }
 
 .page-loader-list li[data-state="done"] .pl-state {
@@ -3178,6 +3225,7 @@ html.is-loading {
   overflow: hidden;
   border-radius: var(--radius-pill);
   background: var(--color-surface-soft);
+  box-shadow: inset 0 1px 2px rgba(32, 34, 31, 0.08);
   --p: 0;
 }
 
@@ -3185,7 +3233,13 @@ html.is-loading {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: var(--color-accent-dark);
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-dark),
+    #8fc24a 50%,
+    var(--color-accent-dark)
+  );
+  background-size: 200% 100%;
   transform: scaleX(var(--p));
   transform-origin: left;
 }
@@ -3221,13 +3275,100 @@ html.is-loading {
 
 .page-loader.is-leaving .page-loader-card {
   opacity: 0;
-  transform: translateY(-14px);
+  transform: translateY(-14px) scale(0.985);
   transition:
     opacity 280ms ease,
     transform 280ms ease;
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  /* Arrival: the card rises in, then its rows follow one by one. */
+  .page-loader-card {
+    animation: pl-card-in 560ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  @keyframes pl-card-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.985);
+    }
+  }
+
+  .page-loader-title,
+  .page-loader-lede {
+    animation: pl-row-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .page-loader-title {
+    animation-delay: 120ms;
+  }
+
+  .page-loader-lede {
+    animation-delay: 180ms;
+  }
+
+  .page-loader-list li {
+    animation: pl-row-in 480ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .page-loader-list li:nth-child(1) {
+    animation-delay: 240ms;
+  }
+
+  .page-loader-list li:nth-child(2) {
+    animation-delay: 310ms;
+  }
+
+  .page-loader-list li:nth-child(3) {
+    animation-delay: 380ms;
+  }
+
+  .page-loader-list li:nth-child(4) {
+    animation-delay: 450ms;
+  }
+
+  .page-loader-list li:nth-child(5) {
+    animation-delay: 520ms;
+  }
+
+  @keyframes pl-row-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  /* While loading: a ring breathes out of the mark. */
+  .page-loader:not(.is-complete) .page-loader-mark {
+    animation: pl-ring 1.6s ease-out infinite;
+  }
+
+  @keyframes pl-ring {
+    0% {
+      box-shadow:
+        4px 4px 0 rgba(32, 34, 31, 0.08),
+        0 0 0 0 rgba(113, 159, 54, 0.32);
+    }
+
+    70%,
+    100% {
+      box-shadow:
+        4px 4px 0 rgba(32, 34, 31, 0.08),
+        0 0 0 16px rgba(113, 159, 54, 0);
+    }
+  }
+
+  /* When everything is in: the mark pops. */
+  .page-loader.is-complete .page-loader-mark {
+    animation: pl-pop 480ms cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+
+  @keyframes pl-pop {
+    40% {
+      transform: scale(1.1) rotate(-3deg);
+    }
+  }
+
   .page-loader-list li[data-state="active"] .pl-dot {
     animation: page-loader-pulse 1.2s ease-in-out infinite;
   }
@@ -3235,6 +3376,16 @@ html.is-loading {
   @keyframes page-loader-pulse {
     50% {
       background: var(--color-accent);
+    }
+  }
+
+  .pl-bar {
+    animation: pl-shimmer 1.4s linear infinite;
+  }
+
+  @keyframes pl-shimmer {
+    to {
+      background-position: -200% 0;
     }
   }
 }
@@ -3249,8 +3400,136 @@ html.is-loading {
   }
 }
 
+/* ---------- Slim progress bar (every page after the first) ---------- */
+
+.page-progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10003;
+  height: 3px;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+  --p: 0;
+}
+
+.page-progress span {
+  display: block;
+  height: 100%;
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-dark),
+    var(--color-accent)
+  );
+  box-shadow: 0 0 10px rgba(184, 243, 107, 0.9);
+  transform: scaleX(var(--p));
+  transform-origin: left;
+  transition: transform 220ms ease-out;
+}
+
+.page-progress.is-done {
+  opacity: 0;
+}
+
+/* ---------- Page transitions ---------- */
+
+/* Leaving: the curtain wipes up over the page. */
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 10002;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: var(--color-accent);
+  box-shadow: 0 -28px 60px rgba(32, 34, 31, 0.14);
+  transform: translateY(101%);
+  transition:
+    transform 520ms cubic-bezier(0.7, 0, 0.2, 1),
+    border-radius 520ms ease;
+}
+
+.page-curtain.is-in {
+  border-radius: 0;
+  transform: translateY(0);
+}
+
+.page-curtain::after,
+html.pt-enter::after {
+  color: var(--color-ink);
+  content: "AR";
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+}
+
+.page-curtain::after {
+  opacity: 0;
+  transition: opacity 260ms ease 180ms;
+}
+
+.page-curtain.is-in::after {
+  opacity: 1;
+}
+
+/* Arriving: the new page opens under the same curtain (<head> script
+   adds html.pt-enter), then loader.js adds pt-reveal to lift it. */
+html.pt-enter::before,
+html.pt-enter::after {
+  position: fixed;
+  z-index: 10002;
+  pointer-events: none;
+  animation: pt-failsafe 0s linear 5s forwards;
+}
+
+html.pt-enter::before {
+  inset: 0;
+  background: var(--color-accent);
+  content: "";
+  transition:
+    transform 640ms cubic-bezier(0.7, 0, 0.2, 1),
+    border-radius 640ms ease;
+}
+
+html.pt-enter::after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 220ms ease;
+}
+
+html.pt-enter.pt-reveal::before {
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  transform: translateY(-101%);
+}
+
+html.pt-enter.pt-reveal::after {
+  opacity: 0;
+}
+
+@keyframes pt-failsafe {
+  to {
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.pt-enter::before,
+  html.pt-enter::after,
+  .page-curtain {
+    display: none;
+  }
+}
+
 @media print {
-  .page-loader {
+  .page-loader,
+  .page-progress,
+  .page-curtain,
+  html.pt-enter::before,
+  html.pt-enter::after {
     display: none !important;
   }
 }

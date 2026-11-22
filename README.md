@@ -69,7 +69,7 @@ A multi-page, framework-free portfolio built with semantic HTML5, custom-propert
 
 - **Glass editorial design.** Soft translucent cards, lime accent highlights and a mono-label system used consistently across every page.
 - **Progressive motion.** Scroll-driven header shadow and reading-progress line, a timeline line that fills as you scroll, and cross-page view transitions. Browsers without support simply skip them.
-- **Page loader.** Every page opens behind a loader that lists what the page contains (typefaces, images, data) and ticks each item off only when it has really loaded. It always stays for at least 3 seconds and never longer than 20. Settings are at the top of `js/loader.js`.
+- **Page loader & transitions.** The first page of a visit opens behind a loader card that lists what the page contains (typefaces, images, data) and ticks each item off only when it has really loaded (at least 0.9 seconds, never longer than 15). Every later page skips the card and shows a slim progress bar along the top edge. Clicking an internal link wipes a lime curtain over the page, and the next page lifts it. Settings are at the top of `js/loader.js`.
 - **Reduced-motion support.** A full `prefers-reduced-motion` ruleset turns animation off on request, and hover effects are disabled on touch screens.
 - **Print stylesheet.** Navigation is hidden and link URLs are printed after each link.
 
@@ -160,7 +160,7 @@ portfolio/
 │   └── contact.css
 │
 ├── js/
-│   ├── loader.js             # Page loader: real progress, 3 second minimum
+│   ├── loader.js             # Page loader: card on first visit, slim bar after, page transitions
 │   ├── main.js               # Site-wide behavior
 │   ├── pages.js              # Page-level features
 │   └── case-studies.js       # Case study content and overlay (Projects page only)
@@ -246,7 +246,7 @@ Open `http://localhost:8000`. Use a local server rather than opening the files d
 | Milestones          | `page/milestones.html`                     | Add a `.milestone-card`, then update the year-nav counts and the archive number                                                                        |
 | Gallery items       | `page/gallery.html`                        | Add a `<li data-gallery-item>` with `data-category`, `data-type`, `data-src`, then update the chip counts                                              |
 | Contact form        | `page/contact.html` → `#contact-form`      | Replace the Web3Forms `access_key` with your own                                                                                                       |
-| Page loader         | `js/loader.js` (top), `<div id="page-loader">` in each page | `MIN_MS` is the minimum time, `MAX_MS` the safety limit, `SHOW_ONCE_PER_SESSION` shows it only on the first page of a visit. Each `<li data-task>` row is a task (`fonts`, `images`, `data`, `page`); `{n}` in `data-label` becomes the real item count |
+| Page loader         | `js/loader.js` (top), `<div id="page-loader">` in each page | `MIN_MS` is the minimum time, `MAX_MS` the safety limit, `DATA_MAX_MS` how long slow GitHub data may hold the card. The card shows once per session (`ardev:loader-seen`); a tiny inline script in each `<head>` switches later pages to the slim bar before first paint. Link-click transitions are the `.page-curtain` / `html.pt-enter` rules in `styles.css` section 21. Each `<li data-task>` row is a task (`fonts`, `images`, `data`, `page`); `{n}` in `data-label` becomes the real item count |
 | Analytics           | `js/main.js` → `GA_ID`                     | Replace the `G-` measurement ID with your own, or remove `initAnalytics`                                                                               |
 | Share image and SEO | `assets/og-card.png`, each page `<head>`   | Replace the 1200×630 image, then update the canonical, `og:url` and JSON-LD URLs if the domain changes                                                 |
 | Support section     | `page/contact.html` → `.contact-support`   | Update the UPI link and `assets/upi_qr.png`, or remove the section                                                                                     |
