@@ -403,14 +403,19 @@ body.case-open {
 }
 
 .case-count {
+  min-width: 0;
+  overflow: hidden;
   color: var(--color-muted);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .case-bar-actions {
   display: flex;
+  flex: 0 0 auto;
   gap: 8px;
 }
 

@@ -168,7 +168,7 @@ portfolio/
 └── assets/
     ├── favicon.png
     ├── og-card.png           # 1200×630 social share image
-    ├── profile_photo.png
+    ├── profile_photo.webp
     ├── upi_qr.png
     ├── Project_Images/       # Project card screenshots
     ├── Gallery_Images/       # Gallery mockups and design shots

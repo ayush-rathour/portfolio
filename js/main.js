@@ -520,7 +520,7 @@
 
       titleEl.textContent = title || "";
       captionEl.textContent = caption || "";
-      countEl.textContent = `FRAME · ${pad(index + 1)} / ${pad(total)}`;
+      countEl.textContent = `FRAME · ${pad(index + 1)} / ${pad(total)}${project ? ` · ${project}` : ""}`;
 
       if (eyebrowEl) {
         eyebrowEl.textContent = `${pad(index + 1)} / ${tagText || "Frame"}`;

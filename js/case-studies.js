@@ -36,7 +36,7 @@
         ["Platforms", "Web, PWA, Android APK"],
       ],
       image: {
-        src: "../assets/Project_Images/fintrack_img.png",
+        src: "../assets/Project_Images/fintrack_img.webp",
         alt: "FinTrack dashboard preview",
       },
       links: [
@@ -172,7 +172,7 @@
         ["Built with", "HTML, CSS, JavaScript"],
       ],
       image: {
-        src: "../assets/Project_Images/noviq_img.png",
+        src: "../assets/Project_Images/noviq_img.webp",
         alt: "NOVIQ home page with the headline Learn. Build. Create. and floating resource cards",
       },
       links: [
@@ -301,7 +301,7 @@
         ["Address", "links.ayushrathour.site"],
       ],
       image: {
-        src: "../assets/Project_Images/link_space_img.png",
+        src: "../assets/Project_Images/link_space_img.webp",
         alt: "Link Space personal link hub preview",
       },
       links: [
@@ -414,7 +414,7 @@
         ["Team", "With Shaurya"],
       ],
       image: {
-        src: "../assets/Project_Images/varun_ptf.png",
+        src: "../assets/Project_Images/varun_ptf.webp",
         alt: "Preview of Varun's artist portfolio",
       },
       links: [],
@@ -518,7 +518,7 @@
         ["Team", "With Shaurya"],
       ],
       image: {
-        src: "../assets/Project_Images/shaurya_ptf.png",
+        src: "../assets/Project_Images/shaurya_ptf.webp",
         alt: "Preview of Shaurya's developer portfolio",
       },
       links: [],
@@ -620,18 +620,13 @@
         ["Language", "Python 3"],
       ],
       image: {
-        src: "../assets/Project_Images/python_img.png",
+        src: "../assets/Project_Images/python_img.webp",
         alt: "Python Utilities collection preview",
       },
       links: [
         {
           label: "View on GitHub",
           href: "https://github.com/ayush-rathour/python-projects",
-        },
-        {
-          label: "Download ZIP",
-          href: "../assets/files/python_projects.zip",
-          download: true,
         },
       ],
       why: {
@@ -673,7 +668,7 @@
         title: "From small tools|to small systems.",
         body: [
           "The collection began with simple tools such as a calculator, converters and a tip calculator. It grew into larger console systems: ATM simulation, car rental, cinema and flight ticket booking, food delivery, restaurant services and mall billing.",
-          "Each program is self-contained, uses only Python's standard library, and handles invalid input instead of crashing. The full set is on GitHub and also available as a ZIP download.",
+          "Each program is self-contained, uses only Python's standard library, and handles invalid input instead of crashing. The full set is available on GitHub.",
         ],
         decisions: [
           {
@@ -730,18 +725,13 @@
         ["Tools", "VS Code, MinGW"],
       ],
       image: {
-        src: "../assets/Project_Images/c_programming_img.png",
+        src: "../assets/Project_Images/c_programming_img.webp",
         alt: "C Projects collection preview",
       },
       links: [
         {
           label: "View on GitHub",
           href: "https://github.com/ayush-rathour/c-projects",
-        },
-        {
-          label: "Download ZIP",
-          href: "../assets/files/c_projects.zip",
-          download: true,
         },
       ],
       why: {
@@ -1051,7 +1041,7 @@
     current = index;
     article.innerHTML = renderCase(index);
 
-    countEl.textContent = `CASE STUDY · ${pad(index + 1)} / ${pad(total)}`;
+    countEl.textContent = `CASE STUDY · ${pad(index + 1)} / ${pad(total)} · ${CASES[index].title}`;
 
     prevBtn.setAttribute(
       "aria-label",

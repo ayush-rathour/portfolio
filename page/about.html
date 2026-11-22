@@ -11,10 +11,7 @@
     />
     <meta name="author" content="Ayush Rathour" />
     <meta name="theme-color" content="#f4f2ed" />
-    <link
-      rel="canonical"
-      href="https://ayushrathour.site/page/about.html"
-    />
+    <link rel="canonical" href="https://ayushrathour.site/page/about.html" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -70,6 +67,7 @@
     <script src="../js/loader.js" defer></script>
     <script src="../js/main.js" defer></script>
     <script src="../js/pages.js" defer></script>
+    <script src="../js/certificates.js" defer></script>
 
     <!-- Structured data: this page and its breadcrumb -->
     <script type="application/ld+json">
@@ -120,15 +118,13 @@
     <!-- ==================== PAGE LOADER ====================
          Real progress and a 3 second minimum: see js/loader.js.
          Each row is a task that finishes when its assets have loaded. -->
-    <div
-      class="page-loader"
-      id="page-loader"
-      data-page="About"
-    >
+    <div class="page-loader" id="page-loader" data-page="About">
       <div class="page-loader-card">
         <div class="page-loader-mark" aria-hidden="true"><span>AR</span></div>
         <p class="page-loader-title">About</p>
-        <p class="page-loader-lede">How one question about technology became a habit of building things.</p>
+        <p class="page-loader-lede">
+          How one question about technology became a habit of building things.
+        </p>
 
         <ul class="page-loader-list">
           <li data-task="fonts" data-state="active">
@@ -156,10 +152,20 @@
           </div>
           <span class="pl-percent" aria-hidden="true">0%</span>
         </div>
-        <p class="page-loader-live" id="page-loader-live" aria-live="polite"></p>
+        <p
+          class="page-loader-live"
+          id="page-loader-live"
+          aria-live="polite"
+        ></p>
       </div>
     </div>
-    <noscript><style>.page-loader{display:none}</style></noscript>
+    <noscript
+      ><style>
+        .page-loader {
+          display: none;
+        }
+      </style></noscript
+    >
 
     <a class="skip-link" href="#main-content">Skip to content</a>
 
@@ -434,12 +440,415 @@
         </div>
       </section>
 
-      <div class="about-rule section" aria-hidden="true"></div>
+      <!-- Certificates carousel -->
+      <section
+        class="about-certs section"
+        aria-labelledby="about-certs-title"
+        id="certificates"
+      >
+        <div class="about-certs-heading">
+          <div>
+            <span class="eyebrow">04 / CERTIFICATES</span>
+            <h2 id="about-certs-title">My <span>Certifications.</span></h2>
+          </div>
+          <p>
+            Courses, assessments and workshops I've completed. Tap any
+            certificate to view it in full.
+          </p>
+        </div>
+
+        <div
+          class="cert-carousel"
+          data-cert-carousel
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Certificates"
+        >
+          <div class="cert-track" data-cert-track tabindex="0">
+            <!-- 1 · Digital Edge 101 -->
+            <article
+              class="cert-slide"
+              aria-roledescription="slide"
+              aria-label="1 of 5"
+            >
+              <div class="cert-media">
+                <button
+                  type="button"
+                  class="cert-zoom"
+                  data-cert-zoom
+                  aria-label="View Digital Edge 101 certificate in full"
+                >
+                  <img
+                    src="../assets/Certificates/digital-edge-gold.webp"
+                    alt="Digital Edge 101 Gold assessment certificate"
+                    width="1600"
+                    height="1132"
+                    loading="lazy"
+                    decoding="async"
+                    data-cert-main
+                  />
+                </button>
+                <div
+                  class="cert-views"
+                  role="group"
+                  aria-label="Digital Edge 101 assessment documents"
+                >
+                  <button
+                    type="button"
+                    class="is-active"
+                    aria-pressed="true"
+                    data-src="../assets/Certificates/digital-edge-gold.webp"
+                    data-alt="Digital Edge 101 Gold assessment certificate"
+                  >
+                    Gold assessment
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed="false"
+                    data-src="../assets/Certificates/digital-edge-scorecard.webp"
+                    data-alt="Digital Edge 101 assessment scorecard, 100 out of 100"
+                  >
+                    Scorecard
+                  </button>
+                </div>
+              </div>
+              <div class="cert-info">
+                <span class="cert-index">01 · GOVT. OF INDIA × NASSCOM</span>
+                <h3>Digital Edge 101: Assessment</h3>
+                <p>
+                  Assessment cleared in the Gold category with a perfect 100/100
+                  across all three modules. Issued through FutureSkills Prime, a
+                  MeitY and Nasscom initiative.
+                </p>
+                <ul class="cert-tags">
+                  <li>Gold · 100%</li>
+                  <li>Sep 2026</li>
+                  <li>FutureSkills Prime</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- 2 · Digital Edge 101 completion -->
+            <article
+              class="cert-slide"
+              aria-roledescription="slide"
+              aria-label="2 of 5"
+            >
+              <div class="cert-media">
+                <button
+                  type="button"
+                  class="cert-zoom"
+                  data-cert-zoom
+                  aria-label="View Digital Edge 101 completion certificate in full"
+                >
+                  <img
+                    src="../assets/Certificates/digital-edge-completion.webp"
+                    alt="Digital Edge 101 certificate of completion"
+                    width="1600"
+                    height="1132"
+                    loading="lazy"
+                    decoding="async"
+                    data-cert-main
+                  />
+                </button>
+              </div>
+              <div class="cert-info">
+                <span class="cert-index">02 · GOVT. OF INDIA × NASSCOM</span>
+                <h3>Digital Edge 101: Completion</h3>
+                <p>
+                  Certificate of completion for the Digital Edge 101 course,
+                  aligned to competency standards developed by the IT-ITeS
+                  Sector Skills Council Nasscom.
+                </p>
+                <ul class="cert-tags">
+                  <li>Course completion</li>
+                  <li>Sep 2026</li>
+                  <li>FutureSkills Prime</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- 3 · AWS Academy -->
+            <article
+              class="cert-slide"
+              aria-roledescription="slide"
+              aria-label="3 of 5"
+            >
+              <div class="cert-media">
+                <button
+                  type="button"
+                  class="cert-zoom"
+                  data-cert-zoom
+                  aria-label="View AWS Academy certificate in full"
+                >
+                  <img
+                    src="../assets/Certificates/aws-cloud-security-certificate.webp"
+                    alt="AWS Academy Cloud Security Foundations certificate of completion"
+                    width="1400"
+                    height="1082"
+                    loading="lazy"
+                    decoding="async"
+                    data-cert-main
+                  />
+                </button>
+                <div
+                  class="cert-views"
+                  role="group"
+                  aria-label="AWS Academy documents"
+                >
+                  <button
+                    type="button"
+                    class="is-active"
+                    aria-pressed="true"
+                    data-src="../assets/Certificates/aws-cloud-security-certificate.webp"
+                    data-alt="AWS Academy Cloud Security Foundations certificate of completion"
+                  >
+                    Certificate
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed="false"
+                    data-src="../assets/Certificates/aws-cloud-security-badge.webp"
+                    data-alt="AWS Academy Cloud Security Foundations Trained badge"
+                  >
+                    Badge
+                  </button>
+                </div>
+              </div>
+              <div class="cert-info">
+                <span class="cert-index">03 · AWS ACADEMY</span>
+                <h3>Cloud Security Foundations</h3>
+                <p>
+                  A 20-hour training on securing cloud environments, completed
+                  with a certificate and a verifiable digital badge.
+                </p>
+                <ul class="cert-tags">
+                  <li>20 hours</li>
+                  <li>Sep 2026</li>
+                  <li>Cloud Security</li>
+                </ul>
+                <a
+                  class="cert-verify"
+                  href="https://www.credly.com/go/SW7icLkH"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Verify on Credly
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- 4 · be10x -->
+            <article
+              class="cert-slide"
+              aria-roledescription="slide"
+              aria-label="4 of 5"
+            >
+              <div class="cert-media">
+                <button
+                  type="button"
+                  class="cert-zoom"
+                  data-cert-zoom
+                  aria-label="View be10x certificate in full"
+                >
+                  <img
+                    src="../assets/Certificates/be10x-ai-tools-workshop.webp"
+                    alt="be10x AI Tools and Claude Workshop certificate of completion"
+                    width="1600"
+                    height="1131"
+                    loading="lazy"
+                    decoding="async"
+                    data-cert-main
+                  />
+                </button>
+              </div>
+              <div class="cert-info">
+                <span class="cert-index">04 · BE10X</span>
+                <h3>AI Tools &amp; Claude Workshop</h3>
+                <p>
+                  A hands-on workshop on building presentations, analysing data
+                  and coding and debugging with AI tools.
+                </p>
+                <ul class="cert-tags">
+                  <li>Oct 2026</li>
+                  <li>AI Tools</li>
+                  <li>Workshop</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- 5 · smarted -->
+            <article
+              class="cert-slide"
+              aria-roledescription="slide"
+              aria-label="5 of 5"
+            >
+              <div class="cert-media">
+                <button
+                  type="button"
+                  class="cert-zoom"
+                  data-cert-zoom
+                  aria-label="View smarted certificate in full"
+                >
+                  <img
+                    src="../assets/Certificates/smarted-participation.webp"
+                    alt="smarted certificate of participation"
+                    width="1491"
+                    height="1055"
+                    loading="lazy"
+                    decoding="async"
+                    data-cert-main
+                  />
+                </button>
+              </div>
+              <div class="cert-info">
+                <span class="cert-index">05 · SMARTED</span>
+                <h3>Certificate of Participation</h3>
+                <p>
+                  Recognition for taking part in a smarted programme, an
+                  STEM.org accredited educational experience.
+                </p>
+                <ul class="cert-tags">
+                  <li>Participation</li>
+                  <li>STEM.org accredited</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <div class="cert-progress" data-cert-progress aria-hidden="true">
+            <span></span>
+          </div>
+
+          <div class="cert-controls">
+            <div
+              class="cert-dots"
+              data-cert-dots
+              role="tablist"
+              aria-label="Choose a certificate"
+            ></div>
+            <span class="cert-count" data-cert-count>01 / 05</span>
+            <div class="cert-arrows">
+              <button
+                type="button"
+                class="cert-toggle"
+                data-cert-toggle
+                aria-pressed="false"
+                aria-label="Pause automatic slideshow"
+              >
+                <svg
+                  class="icon-pause"
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <rect x="6" y="5" width="4" height="14" rx="1" />
+                  <rect x="14" y="5" width="4" height="14" rx="1" />
+                </svg>
+                <svg
+                  class="icon-play"
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                data-cert-prev
+                aria-label="Previous certificate"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                data-cert-next
+                aria-label="Next certificate"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <dialog
+          class="cert-dialog"
+          data-cert-dialog
+          aria-label="Certificate preview"
+        >
+          <button
+            type="button"
+            class="cert-dialog-close"
+            data-cert-close
+            aria-label="Close preview"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+          <img src="" alt="" data-cert-dialog-img />
+        </dialog>
+      </section>
 
       <!-- Future direction, without a timeline or skill list -->
       <section class="about-outlook section" aria-labelledby="about-outlook">
         <div class="about-outlook-heading">
-          <span class="eyebrow">04 / WHAT COMES NEXT</span>
+          <span class="eyebrow">05 / WHAT COMES NEXT</span>
           <h2 id="about-outlook">
             Beyond what I know.<br />Beyond what I've <span>built.</span>
           </h2>

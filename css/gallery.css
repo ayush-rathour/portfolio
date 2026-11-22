@@ -212,9 +212,10 @@
 }
 
 /* Lightbox
-   Native <dialog>: focus trap, Esc to close and top-layer stacking
-   come from the browser. Built to match the case study window on the
-   Projects page: same shell, top bar, hero, meta grid and footer. */
+   Same window as before (soft light card, top bar, blurred backdrop),
+   but the content is only the image or video, scaled to fit.
+   Native <dialog>: focus trap, Esc and top-layer stacking are built in.
+   A click on the backdrop closes it (js/main.js). */
 
 body.lightbox-open {
   overflow: hidden;
@@ -251,6 +252,22 @@ body.lightbox-open {
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
 }
 
+/* Visually hidden text for screen readers (title, caption, count) */
+
+.lightbox-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+/* Top bar: buttons only */
+
 .lightbox-bar {
   position: relative;
   z-index: 4;
@@ -267,14 +284,19 @@ body.lightbox-open {
 }
 
 .lightbox-count {
+  min-width: 0;
+  overflow: hidden;
   color: var(--color-muted);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .lightbox-bar-actions {
   display: flex;
+  flex: 0 0 auto;
   gap: 8px;
 }
 
@@ -330,116 +352,58 @@ body.lightbox-open {
   transition: transform var(--transition-base);
 }
 
+/* Stage: the image fills the card and is fitted, never cropped */
+
 .lightbox-scroll {
+  display: flex;
   min-height: 0;
   flex: 1;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-border-strong) transparent;
-}
-
-.lightbox-article {
-  padding: clamp(28px, 5vw, 60px) clamp(20px, 5vw, 64px) clamp(32px, 5vw, 60px);
-}
-
-/* Hero */
-
-.lightbox-hero h2 {
-  max-width: 18ch;
-  margin-top: 18px;
-  font-size: clamp(2.2rem, 5.2vw, 4.2rem);
-  line-height: 1;
-  letter-spacing: -0.075em;
-}
-
-.lightbox-lead {
-  max-width: 60ch;
-  margin-top: 24px;
-  color: var(--color-ink);
-  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
-  line-height: 1.8;
-}
-
-.lightbox-status {
-  margin-top: 22px;
-  color: var(--color-muted);
-}
-
-.lightbox-meta {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 1px;
-  margin: 34px 0 0;
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-border);
 }
 
-.lightbox-meta > div {
-  padding: 16px 18px;
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.lightbox-meta dt {
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.lightbox-meta dd {
-  margin: 6px 0 0;
-  font-size: 0.9rem;
-  font-weight: 650;
-  line-height: 1.4;
+.lightbox-article,
+.lightbox-hero {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
 }
 
 .lightbox-cover {
-  margin: 26px 0 0;
-  overflow: hidden;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: clamp(14px, 2.4vw, 32px);
+}
+
+.lightbox-cover img,
+.lightbox-cover video {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface-soft);
   box-shadow: var(--shadow-soft);
-}
-
-.lightbox-cover img {
-  width: 100%;
-  height: auto;
-}
-
-.lightbox-cover video {
-  width: 100%;
-  max-height: 72dvh;
-  aspect-ratio: 16 / 9;
-  background: #000000;
   object-fit: contain;
 }
 
-/* Footer */
-
-.lightbox-foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px 24px;
-  margin-top: clamp(36px, 5vw, 56px);
-  padding-top: 26px;
-  border-top: 1px solid var(--color-border);
-}
-
-.lightbox-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
+.lightbox-cover video {
+  background: #000000;
 }
 
 .lightbox :focus-visible {
   outline-color: var(--color-focus);
+}
+
+#lightbox-scroll:focus {
+  outline: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -518,16 +482,12 @@ body.lightbox-open {
     padding-left: 18px;
   }
 
-  .lightbox-hero h2 {
-    font-size: clamp(2.1rem, 11vw, 3.2rem);
+  .lightbox-cover {
+    padding: 12px;
   }
 
-  .lightbox-foot {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .lightbox-next {
-    justify-content: space-between;
+  .lightbox-cover img,
+  .lightbox-cover video {
+    border-radius: var(--radius-md);
   }
 }
