@@ -6,6 +6,7 @@
  *   2. In-page anchor focus
  *   3. "Now" strip: latest GitHub commit (home page)
  *   4. GitHub contribution graph (home page)
+ *   5. Support panel: amount picker and copy UPI ID (contact page)
  *
  * Site-wide behavior (navigation, icons, gallery) lives in main.js.
  * Each feature does nothing when its markup is not on the page, and
@@ -532,10 +533,102 @@
      INITIALIZATION
   ========================= */
 
+  /* =========================
+     5. SUPPORT PANEL
+     Amount chips rewrite the UPI link, and the copy button
+     gives desktop visitors a way to pay without a phone.
+     Without JS the plain "Pay via UPI" link still works.
+  ========================= */
+
+  function initSupport() {
+    const root = $("[data-support]");
+
+    if (!root) return;
+
+    const pay = $("[data-support-pay]", root);
+    const payLabel = $("[data-support-pay-label]", root);
+    const copyButton = $("[data-support-copy]", root);
+    const copyLabel = $("[data-support-copy-label]", root);
+    const status = $("[data-support-status]", root);
+
+    if (pay) {
+      const base = pay.dataset.upiBase || pay.getAttribute("href");
+
+      root.addEventListener("change", (event) => {
+        const input = event.target;
+
+        if (!input.matches || !input.matches('input[name="support-amount"]')) {
+          return;
+        }
+
+        const amount = Number(input.value);
+        const hasAmount = Number.isFinite(amount) && amount > 0;
+
+        pay.setAttribute("href", hasAmount ? `${base}&am=${amount}` : base);
+
+        if (payLabel) {
+          payLabel.textContent = hasAmount
+            ? `Pay \u20B9${amount} via UPI`
+            : "Pay via UPI";
+        }
+      });
+    }
+
+    if (!copyButton) return;
+
+    let resetTimer = 0;
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const field = document.createElement("textarea");
+
+      field.value = text;
+      field.setAttribute("readonly", "");
+      field.style.cssText = "position:fixed;top:0;left:0;opacity:0;";
+      document.body.appendChild(field);
+      field.select();
+
+      const ok = document.execCommand("copy");
+
+      field.remove();
+
+      if (!ok) throw new Error("copy failed");
+    }
+
+    copyButton.addEventListener("click", async () => {
+      const id = copyButton.dataset.upiId;
+
+      window.clearTimeout(resetTimer);
+
+      try {
+        await copyText(id);
+
+        copyButton.setAttribute("data-copied", "");
+        if (copyLabel) copyLabel.textContent = "Copied";
+        if (status) status.textContent = "UPI ID copied to clipboard.";
+      } catch (error) {
+        if (status) {
+          status.textContent = `Could not copy. The UPI ID is ${id}.`;
+        }
+      }
+
+      resetTimer = window.setTimeout(() => {
+        copyButton.removeAttribute("data-copied");
+        if (copyLabel) copyLabel.textContent = "Copy";
+        if (status) status.textContent = "";
+      }, 2400);
+    });
+  }
+
   const features = [
     initContactForm,
     initAnchorFocus,
     initContributions,
+    initSupport,
   ];
 
   function init() {

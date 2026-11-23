@@ -10,8 +10,10 @@
           var d = document.documentElement,
             s = sessionStorage,
             t = +s.getItem("ardev:transition");
-          if (t && Date.now() - t < 8000) d.classList.add("loader-slim", "pt-enter");
-          else if (s.getItem("ardev:loader-seen")) d.classList.add("loader-slim");
+          if (t && Date.now() - t < 8000)
+            d.classList.add("loader-slim", "pt-enter");
+          else if (s.getItem("ardev:loader-seen"))
+            d.classList.add("loader-slim");
           s.removeItem("ardev:transition");
         } catch (e) {}
       })();
@@ -993,11 +995,12 @@
             <p class="eyebrow">CERTIFICATIONS</p>
             <h3>Certificates and courses</h3>
             <p>
-              I've completed several certificates alongside my projects. You can
-              find them on my LinkedIn profile.
+              I've earned several certifications alongside working on personal
+              projects. You can explore them on my LinkedIn profile or visit the
+              About page to learn more.
             </p>
             <a
-              class="skill-evidence"
+              class="skill-eviwdence"
               href="https://www.linkedin.com/in/ayushrathourrr/"
               target="_blank"
               rel="noopener noreferrer"

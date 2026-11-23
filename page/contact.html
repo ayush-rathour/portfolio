@@ -10,8 +10,10 @@
           var d = document.documentElement,
             s = sessionStorage,
             t = +s.getItem("ardev:transition");
-          if (t && Date.now() - t < 8000) d.classList.add("loader-slim", "pt-enter");
-          else if (s.getItem("ardev:loader-seen")) d.classList.add("loader-slim");
+          if (t && Date.now() - t < 8000)
+            d.classList.add("loader-slim", "pt-enter");
+          else if (s.getItem("ardev:loader-seen"))
+            d.classList.add("loader-slim");
           s.removeItem("ardev:transition");
         } catch (e) {}
       })();
@@ -644,23 +646,26 @@
 
           <dl class="contact-facts">
             <div>
-              <dt class="mono-label">REPLY TIME</dt>
+              <dt class="mono-label">RESPONSE TIME</dt>
               <dd>Usually within a day</dd>
             </div>
+
             <div>
-              <dt class="mono-label">BASED IN</dt>
+              <dt class="mono-label">LOCATION</dt>
               <dd>Saharanpur, India · IST (UTC+5:30)</dd>
             </div>
+
             <div>
-              <dt class="mono-label">BEST FOR</dt>
-              <dd>Internships, open-source work, small web projects</dd>
+              <dt class="mono-label">OPEN TO</dt>
+              <dd>Open-source or collaborative projects</dd>
             </div>
+
             <div>
-              <dt class="mono-label">PREFER EMAIL?</dt>
+              <dt class="mono-label">EMAIL</dt>
               <dd>
-                <a href="mailto:ayushrathour.dev@gmail.com"
-                  >ayushrathour.dev@gmail.com</a
-                >
+                <a href="mailto:ayushrathour.dev@gmail.com">
+                  ayushrathour.dev@gmail.com
+                </a>
               </dd>
             </div>
           </dl>
@@ -679,6 +684,7 @@
             value="8395aab8-aade-4a90-b78f-f7988ec23adf"
           />
           <input type="hidden" name="from_name" value="AR.dev contact form" />
+
           <input
             type="checkbox"
             name="botcheck"
@@ -695,10 +701,12 @@
                 id="contact-name"
                 name="name"
                 type="text"
+                placeholder="Enter your full name"
                 autocomplete="name"
                 required
               />
             </div>
+
             <div class="form-group">
               <label for="contact-email">Email</label>
               <input
@@ -706,6 +714,7 @@
                 id="contact-email"
                 name="email"
                 type="email"
+                placeholder="Enter your email address"
                 autocomplete="email"
                 required
               />
@@ -719,6 +728,7 @@
               id="contact-subject"
               name="subject"
               type="text"
+              placeholder="What is this regarding?"
               required
             />
           </div>
@@ -730,6 +740,7 @@
               id="contact-message"
               name="message"
               rows="6"
+              placeholder="Write your message here..."
               required
             ></textarea>
           </div>
@@ -756,6 +767,7 @@
                 <path d="m21.854 2.147-10.94 10.939" />
               </svg>
             </button>
+
             <p
               class="form-status"
               id="form-status"
@@ -809,120 +821,173 @@
         </div>
       </section>
 
-      <section class="contact-faq section" aria-labelledby="contact-faq-title">
-        <div class="contact-faq-intro">
-          <p class="eyebrow">QUICK ANSWERS</p>
-          <h2 id="contact-faq-title">Before you <span>write in.</span></h2>
-          <p>
-            A few things people usually ask first. If yours isn't here, just
-            send the message.
-          </p>
-        </div>
+      <section
+        class="contact-support section"
+        aria-labelledby="contact-support-title"
+      >
+        <div class="contact-support-inner" data-support>
+          <div class="contact-support-copy">
+            <p class="eyebrow">SUPPORT MY WORK</p>
+            <h2 id="contact-support-title">Fuel the <span>build.</span></h2>
+            <p>
+              If my work helped you, a small tip keeps the projects coming. Pick
+              an amount or send whatever feels right. Any UPI app works, and
+              every bit is appreciated.
+            </p>
 
-        <div class="contact-faq-list">
-          <details class="contact-faq-item">
-            <summary>What kind of work are you open to?</summary>
-            <p>
-              Internships, open-source contributions and individual dev
-              projects: portfolio sites, landing pages, small web apps and
-              interface polish. I enjoy work where design and code meet.
+            <fieldset class="support-amounts">
+              <legend class="eyebrow">Choose an amount</legend>
+              <div class="support-amount-list">
+                <label class="support-amount">
+                  <input type="radio" name="support-amount" value="" checked />
+                  <span class="support-amount-box">
+                    <strong>Any amount</strong>
+                    <small>Your call</small>
+                  </span>
+                </label>
+                <label class="support-amount">
+                  <input type="radio" name="support-amount" value="50" />
+                  <span class="support-amount-box">
+                    <strong>&#8377;50</strong>
+                    <small>A chai</small>
+                  </span>
+                </label>
+                <label class="support-amount">
+                  <input type="radio" name="support-amount" value="100" />
+                  <span class="support-amount-box">
+                    <strong>&#8377;100</strong>
+                    <small>A coffee</small>
+                  </span>
+                </label>
+                <label class="support-amount">
+                  <input type="radio" name="support-amount" value="250" />
+                  <span class="support-amount-box">
+                    <strong>&#8377;250</strong>
+                    <small>A good lunch</small>
+                  </span>
+                </label>
+                <label class="support-amount">
+                  <input type="radio" name="support-amount" value="500" />
+                  <span class="support-amount-box">
+                    <strong>&#8377;500</strong>
+                    <small>A big boost</small>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="support-actions">
+              <a
+                class="contact-primary-link"
+                data-support-pay
+                data-upi-base="upi://pay?pa=ayushrathour20@nyes&amp;pn=Ayush%20Rathour&amp;tn=Supporting%20AR.dev&amp;cu=INR"
+                href="upi://pay?pa=ayushrathour20@nyes&amp;pn=Ayush%20Rathour&amp;tn=Supporting%20AR.dev&amp;cu=INR"
+              >
+                <span data-support-pay-label>Pay via UPI</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="lucide lucide-arrow-up-right"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+
+              <button
+                type="button"
+                class="support-copy"
+                data-support-copy
+                data-upi-id="ayushrathour20@nyes"
+                aria-label="Copy UPI ID ayushrathour20@nyes"
+              >
+                <code>ayushrathour20@nyes</code>
+                <span class="support-copy-state">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="support-copy-icon"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                    <path
+                      d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="support-check-icon"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  <span data-support-copy-label>Copy</span>
+                </span>
+              </button>
+            </div>
+
+            <p class="support-note">
+              On a phone the button opens your UPI app. On a computer, scan the
+              QR code or copy the UPI ID.
             </p>
-          </details>
-          <details class="contact-faq-item">
-            <summary>Have you worked with clients before?</summary>
-            <p>
-              Yes. In 2025 I delivered a paid artist portfolio, leading the
-              UI/UX direction, responsive layout and animations. You can read
-              how it went in the
-              <a href="projects.html#case-varun-portfolio">case study</a>.
-            </p>
-          </details>
-          <details class="contact-faq-item">
-            <summary>How fast will I hear back?</summary>
-            <p>
-              Usually within a day. If it's been longer, nudge me with a short
-              follow-up email; messages sometimes slip past.
-            </p>
-          </details>
-          <details class="contact-faq-item">
-            <summary>
-              I'm hiring. Where can I see your work and background?
-            </summary>
-            <p>
-              Start with <a href="projects.html">Projects</a> for case studies,
-              <a href="milestones.html">Milestones</a> for the timeline, and my
+
+            <p class="support-aside">
+              Can&rsquo;t chip in? No worries. Sharing the site or starring a
+              repo on
               <a
                 href="https://github.com/ayush-rathour"
                 target="_blank"
                 rel="noopener noreferrer"
                 >GitHub</a
               >
-              and
-              <a
-                href="https://www.linkedin.com/in/ayushrathourrr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >LinkedIn</a
-              >
-              for the rest.
+              helps just as much.
             </p>
-          </details>
-          <details class="contact-faq-item">
-            <summary>Can we talk on a call?</summary>
-            <p>
-              Absolutely. Send a short note first with what you'd like to
-              discuss and a couple of times that suit you, and we'll take it
-              from there.
-            </p>
-          </details>
-        </div>
-      </section>
 
-      <section
-        class="contact-support section"
-        aria-labelledby="contact-support-title"
-      >
-        <div class="contact-support-inner">
-          <div class="contact-support-copy">
-            <p class="eyebrow">SUPPORT MY WORK</p>
-            <h2 id="contact-support-title">Fuel the <span>build.</span></h2>
-            <p>
-              If my work helped you, a coffee goes a long way. You can pay with
-              any UPI app.
-            </p>
-            <a
-              class="contact-primary-link"
-              href="upi://pay?pa=9548069160@sbi&amp;pn=Ayush%20Rathour&amp;tn=Supporting%20AR.dev&amp;cu=INR"
-            >
-              <span>Pay via UPI</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="lucide lucide-arrow-up-right"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M7 7h10v10" />
-                <path d="M7 17 17 7" />
-              </svg>
-            </a>
+            <p
+              class="support-status"
+              role="status"
+              aria-live="polite"
+              data-support-status
+            ></p>
           </div>
 
           <figure class="contact-support-qr">
-            <img
-              src="../assets/upi_qr.png"
-              alt="UPI QR code. Scan it with any UPI app to support AR.dev."
-              width="220"
-              height="220"
-              loading="lazy"
-            />
-            <figcaption>Or scan with any UPI app</figcaption>
+            <div class="support-qr-frame">
+              <img
+                src="../assets/upi_qr.png"
+                alt="UPI QR code. Scan it with any UPI app to support AR.dev."
+                width="220"
+                height="220"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>
+              <strong>Scan to pay</strong>
+              <span>GPay &middot; PhonePe &middot; Paytm &middot; BHIM</span>
+            </figcaption>
           </figure>
         </div>
       </section>
