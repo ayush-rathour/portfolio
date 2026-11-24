@@ -551,6 +551,182 @@
     const copyLabel = $("[data-support-copy-label]", root);
     const status = $("[data-support-status]", root);
 
+    /* Celebration: the bigger the tip, the bigger the moment.
+       Particles are plain DOM nodes animated with WAAPI, so there is no
+       library and nothing to clean up: each one removes itself.
+       Reduced motion keeps the thank-you line and skips the confetti. */
+    const TIERS = {
+      50: {
+        count: 10,
+        spread: 90,
+        rain: 0,
+        pop: 0.04,
+        text: "A chai! Thank you.",
+      },
+      100: {
+        count: 18,
+        spread: 130,
+        rain: 0,
+        pop: 0.06,
+        text: "A coffee. That's kind, thank you!",
+      },
+      250: {
+        count: 34,
+        spread: 190,
+        rain: 16,
+        pop: 0.09,
+        text: "A good lunch! You're the best.",
+      },
+      500: {
+        count: 64,
+        spread: 290,
+        rain: 48,
+        pop: 0.13,
+        text: "A big boost! Thank you so much!",
+      },
+    };
+    const COLORS = ["#b8f36b", "#719f36", "#20221f", "#c7ff84", "#4b6d2d"];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const thanks = $("[data-support-thanks]", root);
+    let layer = null;
+
+    function getLayer() {
+      if (layer && layer.isConnected) return layer;
+
+      layer = document.createElement("div");
+      layer.setAttribute("aria-hidden", "true");
+      layer.style.cssText =
+        "position:fixed;inset:0;z-index:90;pointer-events:none;overflow:hidden;";
+      document.body.appendChild(layer);
+
+      return layer;
+    }
+
+    function piece(x, y, size) {
+      const el = document.createElement("span");
+      const round = Math.random() < 0.4;
+
+      el.style.cssText =
+        `position:absolute;left:${x}px;top:${y}px;width:${size}px;` +
+        `height:${round ? size : size * 0.45}px;` +
+        `border-radius:${round ? "50%" : "2px"};` +
+        `background:${COLORS[Math.floor(Math.random() * COLORS.length)]};` +
+        "will-change:transform,opacity;";
+
+      getLayer().appendChild(el);
+
+      return el;
+    }
+
+    function burst(x, y, count, spread) {
+      for (let i = 0; i < count; i += 1) {
+        const el = piece(x, y, 5 + Math.random() * (count > 30 ? 7 : 5));
+        const angle = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.3;
+        const dist = spread * (0.45 + Math.random() * 0.55);
+        const dx = Math.cos(angle) * dist;
+        const dy = Math.sin(angle) * dist;
+        const fall = 70 + Math.random() * 100;
+        const turn = (Math.random() - 0.5) * 720;
+
+        el.animate(
+          [
+            {
+              transform: "translate(0,0) rotate(0deg)",
+              opacity: 1,
+              easing: "cubic-bezier(.15,.8,.3,1)",
+            },
+            {
+              transform: `translate(${dx}px,${dy}px) rotate(${turn / 2}deg)`,
+              opacity: 1,
+              offset: 0.45,
+              easing: "ease-in",
+            },
+            {
+              transform: `translate(${dx * 1.08}px,${dy + fall}px) rotate(${turn}deg)`,
+              opacity: 0,
+            },
+          ],
+          { duration: 850 + Math.random() * 500, fill: "forwards" },
+        ).onfinish = () => el.remove();
+      }
+    }
+
+    function rain(count) {
+      const box = root.getBoundingClientRect();
+
+      for (let i = 0; i < count; i += 1) {
+        const x = box.left + Math.random() * box.width;
+        const el = piece(x, box.top - 12, 5 + Math.random() * 6);
+        const sway = (Math.random() - 0.5) * 90;
+
+        el.animate(
+          [
+            { transform: "translate(0,0) rotate(0deg)", opacity: 1 },
+            {
+              transform: `translate(${sway}px,${box.height + 90}px) rotate(${(Math.random() - 0.5) * 900}deg)`,
+              opacity: 0,
+            },
+          ],
+          {
+            duration: 1200 + Math.random() * 700,
+            delay: Math.random() * 450,
+            easing: "ease-in",
+            fill: "both",
+          },
+        ).onfinish = () => el.remove();
+      }
+    }
+
+    function celebrate(amount, input) {
+      const tier = TIERS[amount];
+
+      if (thanks) {
+        thanks.textContent = tier ? tier.text : "";
+
+        if (tier && !reduceMotion.matches) {
+          thanks.animate(
+            [
+              { opacity: 0, transform: "translateY(4px)" },
+              { opacity: 1, transform: "translateY(0)" },
+            ],
+            { duration: 320, easing: "ease-out" },
+          );
+        }
+      }
+
+      if (!tier || reduceMotion.matches) return;
+
+      const box = input.nextElementSibling || input;
+      const rect = box.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+
+      box.animate(
+        [
+          { transform: "scale(1)" },
+          { transform: `scale(${1 + tier.pop})` },
+          { transform: "scale(1)" },
+        ],
+        { duration: 380, easing: "ease-out" },
+      );
+
+      burst(x, y, tier.count, tier.spread);
+
+      if (tier.rain) rain(tier.rain);
+
+      // The top tier gets a second wave
+      if (amount >= 500) {
+        window.setTimeout(() => burst(x, y, 34, tier.spread * 0.7), 180);
+      }
+    }
+
+    // Show the thank-you for the amount that is selected on load (no confetti)
+    const preset = root.querySelector('input[name="support-amount"]:checked');
+
+    if (thanks && preset && TIERS[Number(preset.value)]) {
+      thanks.textContent = TIERS[Number(preset.value)].text;
+    }
+
     if (pay) {
       const base = pay.dataset.upiBase || pay.getAttribute("href");
 
@@ -563,6 +739,8 @@
 
         const amount = Number(input.value);
         const hasAmount = Number.isFinite(amount) && amount > 0;
+
+        celebrate(hasAmount ? amount : 0, input);
 
         pay.setAttribute("href", hasAmount ? `${base}&am=${amount}` : base);
 

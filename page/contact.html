@@ -45,13 +45,13 @@
     />
     <meta
       property="og:image"
-      content="https://ayushrathour.site/assets/og-card.png"
+      content="https://ayushrathour.site/assets/og-contact.png"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="AR.dev: Ayush Rathour, student developer and UI designer"
+      content="AR.dev: Contact Ayush Rathour for internships, open source and web projects"
     />
 
     <!-- Twitter / X card -->
@@ -63,14 +63,22 @@
     />
     <meta
       name="twitter:image"
-      content="https://ayushrathour.site/assets/og-card.png"
+      content="https://ayushrathour.site/assets/og-contact.png"
     />
     <meta
       name="twitter:image:alt"
-      content="AR.dev: Ayush Rathour, student developer and UI designer"
+      content="AR.dev: Contact Ayush Rathour for internships, open source and web projects"
     />
 
     <link rel="icon" href="../assets/favicon.png" type="image/png" />
+    <link
+      rel="icon"
+      href="../assets/favicon-32.png"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+    <link rel="manifest" href="../manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -830,63 +838,60 @@
             <p class="eyebrow">SUPPORT MY WORK</p>
             <h2 id="contact-support-title">Fuel the <span>build.</span></h2>
             <p>
-              If my work helped you, a small tip keeps the projects coming. Pick
-              an amount or send whatever feels right. Any UPI app works, and
-              every bit is appreciated.
+              My work is free to explore. If it helped you, an optional tip
+              keeps the next project coming. Pick an amount and pay with any UPI
+              app.
             </p>
 
             <fieldset class="support-amounts">
-              <legend class="eyebrow">Choose an amount</legend>
+              <legend>Choose an amount</legend>
               <div class="support-amount-list">
                 <label class="support-amount">
-                  <input type="radio" name="support-amount" value="" checked />
-                  <span class="support-amount-box">
-                    <strong>Any amount</strong>
-                    <small>Your call</small>
-                  </span>
-                </label>
-                <label class="support-amount">
-                  <input type="radio" name="support-amount" value="50" />
-                  <span class="support-amount-box">
-                    <strong>&#8377;50</strong>
-                    <small>A chai</small>
-                  </span>
+                  <input
+                    type="radio"
+                    name="support-amount"
+                    value="50"
+                    checked
+                  />
+                  <span class="support-amount-box"
+                    ><strong>&#8377;50</strong><small>Chai</small></span
+                  >
                 </label>
                 <label class="support-amount">
                   <input type="radio" name="support-amount" value="100" />
-                  <span class="support-amount-box">
-                    <strong>&#8377;100</strong>
-                    <small>A coffee</small>
-                  </span>
+                  <span class="support-amount-box"
+                    ><strong>&#8377;100</strong><small>Coffee</small></span
+                  >
                 </label>
                 <label class="support-amount">
                   <input type="radio" name="support-amount" value="250" />
-                  <span class="support-amount-box">
-                    <strong>&#8377;250</strong>
-                    <small>A good lunch</small>
-                  </span>
+                  <span class="support-amount-box"
+                    ><strong>&#8377;250</strong><small>Lunch</small></span
+                  >
                 </label>
                 <label class="support-amount">
                   <input type="radio" name="support-amount" value="500" />
-                  <span class="support-amount-box">
-                    <strong>&#8377;500</strong>
-                    <small>A big boost</small>
-                  </span>
+                  <span class="support-amount-box"
+                    ><strong>&#8377;500</strong><small>Boost</small></span
+                  >
                 </label>
               </div>
             </fieldset>
+
+            <p class="support-thanks" data-support-thanks aria-live="polite">
+              A chai! Thank you.
+            </p>
 
             <div class="support-actions">
               <a
                 class="contact-primary-link"
                 data-support-pay
                 data-upi-base="upi://pay?pa=ayushrathour20@nyes&amp;pn=Ayush%20Rathour&amp;tn=Supporting%20AR.dev&amp;cu=INR"
-                href="upi://pay?pa=ayushrathour20@nyes&amp;pn=Ayush%20Rathour&amp;tn=Supporting%20AR.dev&amp;cu=INR"
+                href="upi://pay?pa=ayushrathour20@nyes&amp;pn=Ayush%20Rathour&amp;tn=Supporting%20AR.dev&amp;cu=INR&amp;am=50"
               >
-                <span data-support-pay-label>Pay via UPI</span>
+                <span data-support-pay-label>Pay &#8377;50 via UPI</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="lucide lucide-arrow-up-right"
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
@@ -910,61 +915,11 @@
                 aria-label="Copy UPI ID ayushrathour20@nyes"
               >
                 <code>ayushrathour20@nyes</code>
-                <span class="support-copy-state">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="support-copy-icon"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                    <path
-                      d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
-                    />
-                  </svg>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="support-check-icon"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                  <span data-support-copy-label>Copy</span>
-                </span>
+                <span class="support-copy-state" data-support-copy-label
+                  >Copy</span
+                >
               </button>
             </div>
-
-            <p class="support-note">
-              On a phone the button opens your UPI app. On a computer, scan the
-              QR code or copy the UPI ID.
-            </p>
-
-            <p class="support-aside">
-              Can&rsquo;t chip in? No worries. Sharing the site or starring a
-              repo on
-              <a
-                href="https://github.com/ayush-rathour"
-                target="_blank"
-                rel="noopener noreferrer"
-                >GitHub</a
-              >
-              helps just as much.
-            </p>
 
             <p
               class="support-status"
@@ -974,20 +929,15 @@
             ></p>
           </div>
 
-          <figure class="contact-support-qr">
-            <div class="support-qr-frame">
-              <img
-                src="../assets/upi_qr.png"
-                alt="UPI QR code. Scan it with any UPI app to support AR.dev."
-                width="220"
-                height="220"
-                loading="lazy"
-              />
-            </div>
-            <figcaption>
-              <strong>Scan to pay</strong>
-              <span>GPay &middot; PhonePe &middot; Paytm &middot; BHIM</span>
-            </figcaption>
+          <figure class="support-qr">
+            <img
+              src="../assets/upi_qr.png"
+              alt="UPI QR code. Scan it with any UPI app to support AR.dev."
+              width="200"
+              height="200"
+              loading="lazy"
+            />
+            <figcaption>Scan with any UPI app</figcaption>
           </figure>
         </div>
       </section>
