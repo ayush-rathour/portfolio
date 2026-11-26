@@ -1,0 +1,69 @@
+/* =========================================================
+   AR.dev - Home page refinements
+   File: css/home.css (loaded after styles.css, index.html only)
+   Everything is scoped to .home-page so other pages are untouched.
+========================================================= */
+
+/* ---------- Introduction ---------- */
+.home-page .intro-grid {
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: start;
+}
+.home-page .intro-copy p:first-child {
+  color: var(--color-ink);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+}
+.home-page .intro-note {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.home-page .intro-note > .mono-label { margin-bottom: 14px; }
+.home-page .approach-item { display: block; }
+
+/* ---------- Skills: grouped by how well I know them ---------- */
+.home-page .skill-group {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+  gap: 24px clamp(24px, 4vw, 56px);
+  padding-block: 32px;
+  border-top: 1px solid var(--color-border);
+}
+.home-page .skill-group:last-child { margin-bottom: 0; }
+.skill-group-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+.skill-group-note { margin-top: 6px; font-size: 0.85rem; }
+.home-page .skill-group .skill-grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+.home-page .skill-group .skill-card {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 16px;
+  align-items: start;
+  min-height: 0;
+  padding: 18px;
+}
+.home-page .skill-group .skill-icon { grid-row: 1 / 3; }
+.home-page .skill-group .skill-card h3 { margin-top: 0; font-size: 1.05rem; }
+.home-page .skill-group .skill-card > p { margin: 6px 0 0; font-size: 0.84rem; line-height: 1.6; }
+
+/* ---------- Closing call to action ---------- */
+.home-page .contact-cta { min-height: 0; }
+
+@media (max-width: 900px) {
+  .home-page .intro-grid,
+  .home-page .skill-group { grid-template-columns: 1fr; }
+}
