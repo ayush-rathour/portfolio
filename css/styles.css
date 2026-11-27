@@ -1587,7 +1587,7 @@ button.case-open:active {
   }
 
   .footer-bottom {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
     gap: 10px;
     padding-block: 18px;

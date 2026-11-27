@@ -10,8 +10,10 @@
           var d = document.documentElement,
             s = sessionStorage,
             t = +s.getItem("ardev:transition");
-          if (t && Date.now() - t < 8000) d.classList.add("loader-slim", "pt-enter");
-          else if (s.getItem("ardev:loader-seen")) d.classList.add("loader-slim");
+          if (t && Date.now() - t < 8000)
+            d.classList.add("loader-slim", "pt-enter");
+          else if (s.getItem("ardev:loader-seen"))
+            d.classList.add("loader-slim");
           s.removeItem("ardev:transition");
         } catch (e) {}
       })();
@@ -69,7 +71,12 @@
     />
 
     <link rel="icon" href="../assets/favicon.png" type="image/png" />
-    <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link
+      rel="icon"
+      href="../assets/favicon-32.png"
+      sizes="32x32"
+      type="image/png"
+    />
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
     <link rel="manifest" href="../manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -487,7 +494,7 @@
             <article
               class="cert-slide"
               aria-roledescription="slide"
-              aria-label="1 of 5"
+              aria-label="1 of 6"
             >
               <div class="cert-media">
                 <button
@@ -497,7 +504,7 @@
                   aria-label="View Digital Edge 101 certificate in full"
                 >
                   <img
-                    src="../assets/Certificates/digital-edge-gold.webp"
+                    src="../assets/certificates/digital-edge-gold.webp"
                     alt="Digital Edge 101 Gold assessment certificate"
                     width="1600"
                     height="1132"
@@ -515,7 +522,7 @@
                     type="button"
                     class="is-active"
                     aria-pressed="true"
-                    data-src="../assets/Certificates/digital-edge-gold.webp"
+                    data-src="../assets/certificates/digital-edge-gold.webp"
                     data-alt="Digital Edge 101 Gold assessment certificate"
                   >
                     Gold assessment
@@ -523,7 +530,7 @@
                   <button
                     type="button"
                     aria-pressed="false"
-                    data-src="../assets/Certificates/digital-edge-scorecard.webp"
+                    data-src="../assets/certificates/digital-edge-scorecard.webp"
                     data-alt="Digital Edge 101 assessment scorecard, 100 out of 100"
                   >
                     Scorecard
@@ -550,7 +557,7 @@
             <article
               class="cert-slide"
               aria-roledescription="slide"
-              aria-label="2 of 5"
+              aria-label="2 of 6"
             >
               <div class="cert-media">
                 <button
@@ -560,7 +567,7 @@
                   aria-label="View Digital Edge 101 completion certificate in full"
                 >
                   <img
-                    src="../assets/Certificates/digital-edge-completion.webp"
+                    src="../assets/certificates/digital-edge-completion.webp"
                     alt="Digital Edge 101 certificate of completion"
                     width="1600"
                     height="1132"
@@ -590,7 +597,7 @@
             <article
               class="cert-slide"
               aria-roledescription="slide"
-              aria-label="3 of 5"
+              aria-label="3 of 6"
             >
               <div class="cert-media">
                 <button
@@ -600,7 +607,7 @@
                   aria-label="View AWS Academy certificate in full"
                 >
                   <img
-                    src="../assets/Certificates/aws-cloud-security-certificate.webp"
+                    src="../assets/certificates/aws-cloud-security-certificate.webp"
                     alt="AWS Academy Cloud Security Foundations certificate of completion"
                     width="1400"
                     height="1082"
@@ -618,7 +625,7 @@
                     type="button"
                     class="is-active"
                     aria-pressed="true"
-                    data-src="../assets/Certificates/aws-cloud-security-certificate.webp"
+                    data-src="../assets/certificates/aws-cloud-security-certificate.webp"
                     data-alt="AWS Academy Cloud Security Foundations certificate of completion"
                   >
                     Certificate
@@ -626,7 +633,7 @@
                   <button
                     type="button"
                     aria-pressed="false"
-                    data-src="../assets/Certificates/aws-cloud-security-badge.webp"
+                    data-src="../assets/certificates/aws-cloud-security-badge.webp"
                     data-alt="AWS Academy Cloud Security Foundations Trained badge"
                   >
                     Badge
@@ -674,7 +681,7 @@
             <article
               class="cert-slide"
               aria-roledescription="slide"
-              aria-label="4 of 5"
+              aria-label="4 of 6"
             >
               <div class="cert-media">
                 <button
@@ -684,7 +691,7 @@
                   aria-label="View be10x certificate in full"
                 >
                   <img
-                    src="../assets/Certificates/be10x-ai-tools-workshop.webp"
+                    src="../assets/certificates/be10x-ai-tools-workshop.webp"
                     alt="be10x AI Tools and Claude Workshop certificate of completion"
                     width="1600"
                     height="1131"
@@ -713,7 +720,7 @@
             <article
               class="cert-slide"
               aria-roledescription="slide"
-              aria-label="5 of 5"
+              aria-label="5 of 6"
             >
               <div class="cert-media">
                 <button
@@ -723,7 +730,7 @@
                   aria-label="View smarted certificate in full"
                 >
                   <img
-                    src="../assets/Certificates/smarted-participation.webp"
+                    src="../assets/certificates/smarted-participation.webp"
                     alt="smarted certificate of participation"
                     width="1491"
                     height="1055"
@@ -746,6 +753,46 @@
                 </ul>
               </div>
             </article>
+
+            <!-- 6 · Google Cloud -->
+            <article
+              class="cert-slide"
+              aria-roledescription="slide"
+              aria-label="6 of 6"
+            >
+              <div class="cert-media">
+                <button
+                  type="button"
+                  class="cert-zoom"
+                  data-cert-zoom
+                  aria-label="View Google Cloud Introduction to Generative AI badge in full"
+                >
+                  <img
+                    src="../assets/certificates/google-intro-genai-badge.webp"
+                    alt="Google Cloud Introduction to Generative AI completion badge"
+                    width="1000"
+                    height="909"
+                    loading="lazy"
+                    decoding="async"
+                    data-cert-main
+                  />
+                </button>
+              </div>
+              <div class="cert-info">
+                <span class="cert-index">06 · GOOGLE CLOUD</span>
+                <h3>Introduction to Generative AI</h3>
+                <p>
+                  A Google Cloud learning path covering what generative AI is,
+                  how it works and where it is used, completed with a completion
+                  badge.
+                </p>
+                <ul class="cert-tags">
+                  <li>Completion badge</li>
+                  <li>Generative AI</li>
+                  <li>Google Cloud</li>
+                </ul>
+              </div>
+            </article>
           </div>
 
           <div class="cert-progress" data-cert-progress aria-hidden="true">
@@ -759,7 +806,7 @@
               role="tablist"
               aria-label="Choose a certificate"
             ></div>
-            <span class="cert-count" data-cert-count>01 / 05</span>
+            <span class="cert-count" data-cert-count>01 / 06</span>
             <div class="cert-arrows">
               <button
                 type="button"
@@ -980,7 +1027,9 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="current-year">2026</span> AR.dev · Ayush Rathour</p>
+        <p>
+          © 2024 - <span id="current-year">2026</span> AR.dev · Ayush Rathour
+        </p>
         <p>Built with curiosity.</p>
       </div>
     </footer>

@@ -10,8 +10,10 @@
           var d = document.documentElement,
             s = sessionStorage,
             t = +s.getItem("ardev:transition");
-          if (t && Date.now() - t < 8000) d.classList.add("loader-slim", "pt-enter");
-          else if (s.getItem("ardev:loader-seen")) d.classList.add("loader-slim");
+          if (t && Date.now() - t < 8000)
+            d.classList.add("loader-slim", "pt-enter");
+          else if (s.getItem("ardev:loader-seen"))
+            d.classList.add("loader-slim");
           s.removeItem("ardev:transition");
         } catch (e) {}
       })();
@@ -72,7 +74,12 @@
     />
 
     <link rel="icon" href="../assets/favicon.png" type="image/png" />
-    <link rel="icon" href="../assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link
+      rel="icon"
+      href="../assets/favicon-32.png"
+      sizes="32x32"
+      type="image/png"
+    />
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
     <link rel="manifest" href="../manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -138,15 +145,14 @@
     <!-- ==================== PAGE LOADER ====================
          Full card on the first page of a visit, a slim bar after that: see js/loader.js.
          Each row is a task that finishes when its assets have loaded. -->
-    <div
-      class="page-loader"
-      id="page-loader"
-      data-page="Milestones"
-    >
+    <div class="page-loader" id="page-loader" data-page="Milestones">
       <div class="page-loader-card">
         <div class="page-loader-mark" aria-hidden="true"><span>AR</span></div>
         <p class="page-loader-title">Milestones</p>
-        <p class="page-loader-lede">Every step since May 2022: first lines of code, shipped projects and client work.</p>
+        <p class="page-loader-lede">
+          Every step since May 2022: first lines of code, shipped projects and
+          client work.
+        </p>
 
         <ul class="page-loader-list">
           <li data-task="fonts" data-state="active">
@@ -174,10 +180,20 @@
           </div>
           <span class="pl-percent" aria-hidden="true">0%</span>
         </div>
-        <p class="page-loader-live" id="page-loader-live" aria-live="polite"></p>
+        <p
+          class="page-loader-live"
+          id="page-loader-live"
+          aria-live="polite"
+        ></p>
       </div>
     </div>
-    <noscript><style>.page-loader{display:none}</style></noscript>
+    <noscript
+      ><style>
+        .page-loader {
+          display: none;
+        }
+      </style></noscript
+    >
 
     <a class="skip-link" href="#main-content">Skip to content</a>
 
@@ -1142,7 +1158,9 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="current-year">2026</span> AR.dev · Ayush Rathour</p>
+        <p>
+          © 2024 - <span id="current-year">2026</span> AR.dev · Ayush Rathour
+        </p>
         <p>Built with curiosity.</p>
       </div>
     </footer>

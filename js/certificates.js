@@ -3,7 +3,8 @@
  * Certificates carousel on the About page: autoplay (pauses on hover,
  * focus, touch, preview and hidden tabs; off for reduced motion),
  * previous / next, dots, keyboard arrows, document switcher for grouped
- * certificates, and a full-size preview dialog. Content works without JavaScript (the track
+ * certificates (which also auto-rotate between their documents as the
+ * progress bar passes 1/2 or 1/3, 2/3), and a full-size preview dialog. Content works without JavaScript (the track
  * simply scrolls); this script only adds the controls.
  */
 
@@ -113,6 +114,32 @@
 
   window.addEventListener("resize", () => goTo(index));
 
+  /* ---------- Document views (certificate + badge, multi-page...) ---------- */
+
+  const groups = slides.map((slide) => {
+    const main = slide.querySelector("[data-cert-main]");
+    const buttons = Array.from(slide.querySelectorAll(".cert-views button"));
+
+    return { main, buttons, current: 0 };
+  });
+
+  function setView(group, view) {
+    const button = group.buttons[view];
+
+    if (!button) return;
+
+    group.current = view;
+    group.main.src = button.dataset.src;
+    group.main.alt = button.dataset.alt;
+
+    group.buttons.forEach((other) => {
+      const active = other === button;
+
+      other.classList.toggle("is-active", active);
+      other.setAttribute("aria-pressed", String(active));
+    });
+  }
+
   /* ---------- Autoplay ---------- */
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -120,11 +147,15 @@
   let paused = false; // temporary pauses (hover, focus, hidden...)
   let inView = false;
   let timer = 0;
+  let viewTimers = [];
+  let cycleSlide = 0; // slide the current progress cycle belongs to
 
   root.style.setProperty("--cert-interval", `${INTERVAL}ms`);
 
   function stopTimer() {
     window.clearTimeout(timer);
+    viewTimers.forEach((id) => window.clearTimeout(id));
+    viewTimers = [];
 
     if (progress) progress.classList.remove("is-running");
   }
@@ -132,12 +163,32 @@
   function restart() {
     stopTimer();
 
+    // A new slide always starts on its first document.
+    if (cycleSlide !== index) {
+      setView(groups[cycleSlide], 0);
+      cycleSlide = index;
+    }
+
     if (!userWantsPlay || paused || !inView) return;
 
     if (progress) {
       // Restart the CSS animation from zero.
       void progress.offsetWidth;
       progress.classList.add("is-running");
+    }
+
+    // Rotate documents at 1/N, 2/N ... of the progress (1/2 for two
+    // documents, 1/3 and 2/3 for three).
+    const group = groups[index];
+    const total = group.buttons.length;
+
+    for (let view = group.current + 1; view < total; view += 1) {
+      viewTimers.push(
+        window.setTimeout(
+          () => setView(group, view),
+          (INTERVAL * view) / total,
+        ),
+      );
     }
 
     timer = window.setTimeout(() => {
@@ -195,24 +246,13 @@
 
   paintToggle();
 
-  /* ---------- Document switcher (grouped certificates) ---------- */
+  /* ---------- Document switcher (manual) ---------- */
 
-  slides.forEach((slide) => {
-    const main = slide.querySelector("[data-cert-main]");
-    const buttons = Array.from(slide.querySelectorAll(".cert-views button"));
-
-    buttons.forEach((button) => {
+  groups.forEach((group) => {
+    group.buttons.forEach((button, view) => {
       button.addEventListener("click", () => {
+        setView(group, view);
         restart();
-        main.src = button.dataset.src;
-        main.alt = button.dataset.alt;
-
-        buttons.forEach((other) => {
-          const active = other === button;
-
-          other.classList.toggle("is-active", active);
-          other.setAttribute("aria-pressed", String(active));
-        });
       });
     });
   });
