@@ -50,7 +50,7 @@
         },
         {
           label: "Download APK",
-          href: "../assets/files/fintrack_v17.apk",
+          href: "../assets/files/fintrack_latest.apk",
           download: true,
         },
       ],
