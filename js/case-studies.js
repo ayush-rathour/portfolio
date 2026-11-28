@@ -32,7 +32,7 @@
       meta: [
         ["Role", "Designer & developer"],
         ["Timeline", "Oct 2024 - present"],
-        ["Version", "v17.7"],
+        ["Version", "v18.0"],
         ["Platforms", "Web, PWA, Android APK"],
       ],
       image: {
@@ -102,7 +102,7 @@
         title: "Built by hand,|without a framework.",
         body: [
           "I launched FinTrack in October 2024, five months after moving from a phone to a laptop. It is written in plain HTML, CSS and JavaScript with no framework and no build step, so every piece of behavior is code I wrote myself and can explain.",
-          "It has grown through many versions. Version 16 refined the card hierarchy and spacing. Version 17 was a complete redesign, with the four-tab app shell, light and dark themes, PIN security with auto-lock, the insights engine, the weekly comparison chart and CSV/JSON import. It is now at v17.7.",
+          "It has grown through many versions. Version 16 refined the card hierarchy and spacing. Version 17 was a complete redesign, with the four-tab app shell, light and dark themes, PIN security with auto-lock, the insights engine, the weekly comparison chart and CSV/JSON import. It is now at v18.",
         ],
         decisions: [
           {
@@ -143,7 +143,7 @@
       outcome: {
         body: "FinTrack is the project I am proudest of: a complete app, from design to security to offline support, built without a framework.",
         stats: [
-          { value: "v17.7", label: "Current version" },
+          { value: "v18.0", label: "Current version" },
           { value: "6", label: "Insight cards" },
           { value: "3", label: "Chart types" },
           { value: "SHA-256", label: "PIN hashing" },
