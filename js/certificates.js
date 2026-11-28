@@ -391,48 +391,6 @@
       goTo(index, "auto");
     });
 
-    // Preload every certificate image (slides + alternate views) so
-    // off-screen slides in the horizontal track never stay blank.
-    const preload = () => {
-      const urls = new Set();
-
-      slides.forEach((slide) => {
-        slide.querySelectorAll("img").forEach((img) => {
-          if (img.loading === "lazy") img.loading = "eager";
-          if (img.getAttribute("src")) urls.add(img.getAttribute("src"));
-        });
-
-        slide.querySelectorAll("[data-src]").forEach((button) => {
-          urls.add(button.dataset.src);
-        });
-      });
-
-      urls.forEach((url) => {
-        const image = new Image();
-        image.decoding = "async";
-        image.src = url;
-      });
-
-      // Retry once if an image failed (e.g. a flaky network on first load).
-      slides.forEach((slide) => {
-        slide.querySelectorAll("img").forEach((img) => {
-          img.addEventListener(
-            "error",
-            () => {
-              if (img.dataset.retried) return;
-              img.dataset.retried = "1";
-              const src = img.getAttribute("src");
-              img.removeAttribute("src");
-              window.setTimeout(() => img.setAttribute("src", src), 400);
-            },
-            { once: true },
-          );
-        });
-      });
-    };
-
-    preload();
-
     // Initialize carousel
     root.style.setProperty("--cert-interval", `${INTERVAL}ms`);
 
