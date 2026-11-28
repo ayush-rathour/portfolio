@@ -1,287 +1,409 @@
 /**
  * AR.dev — certificates.js
- * Certificates carousel on the About page: autoplay (pauses on hover,
- * focus, touch, preview and hidden tabs; off for reduced motion),
- * previous / next, dots, keyboard arrows, document switcher for grouped
- * certificates (which also auto-rotate between their documents as the
- * progress bar passes 1/2 or 1/3, 2/3), and a full-size preview dialog. Content works without JavaScript (the track
- * simply scrolls); this script only adds the controls.
+ * Resilient certificate carousel.
+ *
+ * - Keeps every certificate in the document.
+ * - Supports touch/trackpad scrolling, arrows, dots and keyboard navigation.
+ * - Autoplay pauses for hover, focus, touch, hidden tabs and reduced motion.
+ * - Supports grouped document views and full-size preview dialog.
  */
 
 (() => {
   "use strict";
 
-  const root = document.querySelector("[data-cert-carousel]");
+  const init = () => {
+    const root = document.querySelector("[data-cert-carousel]");
+    if (!root) return;
 
-  if (!root) return;
+    const track = root.querySelector("[data-cert-track]");
+    if (!track) return;
 
-  const track = root.querySelector("[data-cert-track]");
-  const slides = Array.from(track.querySelectorAll(".cert-slide"));
-  const dotsWrap = root.querySelector("[data-cert-dots]");
-  const count = root.querySelector("[data-cert-count]");
-  const prev = root.querySelector("[data-cert-prev]");
-  const next = root.querySelector("[data-cert-next]");
-  const dialog = document.querySelector("[data-cert-dialog]");
-  const dialogImg = dialog && dialog.querySelector("[data-cert-dialog-img]");
-  const toggle = root.querySelector("[data-cert-toggle]");
-  const progress = root.querySelector("[data-cert-progress]");
-  const INTERVAL = 5000;
-  const pad = (n) => String(n).padStart(2, "0");
+    const slides = Array.from(track.querySelectorAll(".cert-slide"));
 
-  let index = 0;
+    if (!slides.length) return;
 
-  /* ---------- Dots ---------- */
+    const dotsWrap = root.querySelector("[data-cert-dots]");
+    const count = root.querySelector("[data-cert-count]");
+    const prev = root.querySelector("[data-cert-prev]");
+    const next = root.querySelector("[data-cert-next]");
+    const toggle = root.querySelector("[data-cert-toggle]");
+    const progress = root.querySelector("[data-cert-progress]");
 
-  const dots = slides.map((slide, i) => {
-    const dot = document.createElement("button");
+    const dialog =
+      root.querySelector("[data-cert-dialog]") ||
+      document.querySelector("[data-cert-dialog]");
 
-    dot.type = "button";
-    dot.setAttribute("role", "tab");
-    dot.setAttribute("aria-label", `Certificate ${i + 1} of ${slides.length}`);
-    dot.addEventListener("click", () => {
-      goTo(i);
-      restart();
-    });
-    dotsWrap.appendChild(dot);
+    const dialogImg = dialog?.querySelector("[data-cert-dialog-img]");
 
-    return dot;
-  });
+    const closeDialog = dialog?.querySelector("[data-cert-close]");
 
-  /* ---------- Navigation ---------- */
+    const INTERVAL = 5000;
 
-  function render() {
-    dots.forEach((dot, i) =>
-      dot.setAttribute("aria-selected", String(i === index)),
-    );
+    const pad = (number) => String(number).padStart(2, "0");
 
-    if (count) count.textContent = `${pad(index + 1)} / ${pad(slides.length)}`;
+    let index = 0;
+    let timer = 0;
+    let animationFrame = 0;
+    let paused = false;
+    let inView = false;
 
-    prev.disabled = index === 0;
-    next.disabled = index === slides.length - 1;
-  }
+    let userWantsPlay = !window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches;
 
-  function goTo(i) {
-    index = Math.max(0, Math.min(slides.length - 1, i));
-    track.scrollTo({ left: slides[index].offsetLeft - track.offsetLeft });
-    render();
-  }
+    let viewTimers = [];
+    let cycleSlide = 0;
 
-  let frame = 0;
+    // Certificate document groups
+    const groups = slides.map((slide) => ({
+      main: slide.querySelector("[data-cert-main]"),
+      buttons: Array.from(slide.querySelectorAll(".cert-views button")),
+      current: 0,
+    }));
 
-  track.addEventListener(
-    "scroll",
-    () => {
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(() => {
-        const nearest = slides.reduce(
-          (best, slide, i) =>
-            Math.abs(slide.offsetLeft - track.offsetLeft - track.scrollLeft) <
-            Math.abs(
-              slides[best].offsetLeft - track.offsetLeft - track.scrollLeft,
-            )
-              ? i
-              : best,
-          0,
+    // Build navigation dots
+    const dots = dotsWrap
+      ? slides.map((slide, i) => {
+          const dot = document.createElement("button");
+
+          dot.type = "button";
+          dot.setAttribute("role", "tab");
+          dot.setAttribute(
+            "aria-label",
+            `Certificate ${i + 1} of ${slides.length}`,
+          );
+
+          dot.addEventListener("click", () => {
+            goTo(i);
+            restart();
+          });
+
+          dotsWrap.appendChild(dot);
+
+          return dot;
+        })
+      : [];
+
+    // Update controls
+    const render = () => {
+      dots.forEach((dot, i) => {
+        dot.setAttribute("aria-selected", String(i === index));
+
+        dot.setAttribute("aria-current", i === index ? "true" : "false");
+      });
+
+      if (count) {
+        count.textContent = `${pad(index + 1)} / ${pad(slides.length)}`;
+      }
+
+      if (prev) {
+        prev.disabled = index === 0;
+      }
+
+      if (next) {
+        next.disabled = index === slides.length - 1;
+      }
+    };
+
+    // Navigate to a certificate
+    const goTo = (requestedIndex, behavior = "smooth") => {
+      index = Math.max(0, Math.min(slides.length - 1, requestedIndex));
+
+      const left = slides[index].offsetLeft - slides[0].offsetLeft;
+
+      track.scrollTo({
+        left,
+        behavior,
+      });
+
+      render();
+    };
+
+    // Detect the currently visible certificate
+    const findNearestSlide = () => {
+      const scrollPosition = track.scrollLeft;
+
+      return slides.reduce((best, slide, i) => {
+        const distance = Math.abs(
+          slide.offsetLeft - slides[0].offsetLeft - scrollPosition,
         );
 
-        if (nearest !== index) {
-          index = nearest;
-          render();
-        }
-      });
-    },
-    { passive: true },
-  );
+        const bestDistance = Math.abs(
+          slides[best].offsetLeft - slides[0].offsetLeft - scrollPosition,
+        );
 
-  prev.addEventListener("click", () => {
-    goTo(index - 1);
-    restart();
-  });
-  next.addEventListener("click", () => {
-    goTo(index + 1);
-    restart();
-  });
+        return distance < bestDistance ? i : best;
+      }, 0);
+    };
 
-  track.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      goTo(index + 1);
-    } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      goTo(index - 1);
-    }
-  });
+    // Track manual scrolling
+    track.addEventListener(
+      "scroll",
+      () => {
+        window.cancelAnimationFrame(animationFrame);
 
-  window.addEventListener("resize", () => goTo(index));
+        animationFrame = window.requestAnimationFrame(() => {
+          const nearest = findNearestSlide();
 
-  /* ---------- Document views (certificate + badge, multi-page...) ---------- */
-
-  const groups = slides.map((slide) => {
-    const main = slide.querySelector("[data-cert-main]");
-    const buttons = Array.from(slide.querySelectorAll(".cert-views button"));
-
-    return { main, buttons, current: 0 };
-  });
-
-  function setView(group, view) {
-    const button = group.buttons[view];
-
-    if (!button) return;
-
-    group.current = view;
-    group.main.src = button.dataset.src;
-    group.main.alt = button.dataset.alt;
-
-    group.buttons.forEach((other) => {
-      const active = other === button;
-
-      other.classList.toggle("is-active", active);
-      other.setAttribute("aria-pressed", String(active));
-    });
-  }
-
-  /* ---------- Autoplay ---------- */
-
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let userWantsPlay = !reduceMotion.matches; // the pause button's state
-  let paused = false; // temporary pauses (hover, focus, hidden...)
-  let inView = false;
-  let timer = 0;
-  let viewTimers = [];
-  let cycleSlide = 0; // slide the current progress cycle belongs to
-
-  root.style.setProperty("--cert-interval", `${INTERVAL}ms`);
-
-  function stopTimer() {
-    window.clearTimeout(timer);
-    viewTimers.forEach((id) => window.clearTimeout(id));
-    viewTimers = [];
-
-    if (progress) progress.classList.remove("is-running");
-  }
-
-  function restart() {
-    stopTimer();
-
-    // A new slide always starts on its first document.
-    if (cycleSlide !== index) {
-      setView(groups[cycleSlide], 0);
-      cycleSlide = index;
-    }
-
-    if (!userWantsPlay || paused || !inView) return;
-
-    if (progress) {
-      // Restart the CSS animation from zero.
-      void progress.offsetWidth;
-      progress.classList.add("is-running");
-    }
-
-    // Rotate documents at 1/N, 2/N ... of the progress (1/2 for two
-    // documents, 1/3 and 2/3 for three).
-    const group = groups[index];
-    const total = group.buttons.length;
-
-    for (let view = group.current + 1; view < total; view += 1) {
-      viewTimers.push(
-        window.setTimeout(
-          () => setView(group, view),
-          (INTERVAL * view) / total,
-        ),
-      );
-    }
-
-    timer = window.setTimeout(() => {
-      goTo(index === slides.length - 1 ? 0 : index + 1);
-      restart();
-    }, INTERVAL);
-  }
-
-  function setPaused(value) {
-    if (paused === value) return;
-
-    paused = value;
-    restart();
-  }
-
-  function paintToggle() {
-    toggle.setAttribute("aria-pressed", String(!userWantsPlay));
-    toggle.setAttribute(
-      "aria-label",
-      userWantsPlay ? "Pause automatic slideshow" : "Play automatic slideshow",
-    );
-  }
-
-  toggle.addEventListener("click", () => {
-    userWantsPlay = !userWantsPlay;
-    paintToggle();
-    restart();
-  });
-
-  root.addEventListener("mouseenter", () => setPaused(true));
-  root.addEventListener("mouseleave", () => setPaused(false));
-  root.addEventListener("focusin", () => setPaused(true));
-  root.addEventListener("focusout", () => setPaused(false));
-  root.addEventListener("touchstart", () => setPaused(true), { passive: true });
-  root.addEventListener("touchend", () => {
-    // Give a swipe time to settle before the slideshow resumes.
-    window.setTimeout(() => setPaused(false), 2500);
-  });
-
-  document.addEventListener("visibilitychange", () =>
-    setPaused(document.hidden),
-  );
-
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(
-      (entries) => {
-        inView = entries[0].isIntersecting;
-        restart();
+          if (nearest !== index) {
+            index = nearest;
+            render();
+            restart();
+          }
+        });
       },
-      { threshold: 0.35 },
-    ).observe(root);
-  } else {
-    inView = true;
-  }
+      { passive: true },
+    );
 
-  paintToggle();
+    // Previous button
+    prev?.addEventListener("click", () => {
+      goTo(index - 1);
+      restart();
+    });
 
-  /* ---------- Document switcher (manual) ---------- */
+    // Next button
+    next?.addEventListener("click", () => {
+      goTo(index + 1);
+      restart();
+    });
 
-  groups.forEach((group) => {
-    group.buttons.forEach((button, view) => {
-      button.addEventListener("click", () => {
-        setView(group, view);
+    // Keyboard navigation
+    track.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        goTo(index + 1);
         restart();
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        goTo(index - 1);
+        restart();
+      }
+    });
+
+    // Switch between certificate and badge documents
+    const setView = (group, view) => {
+      const button = group.buttons[view];
+
+      if (!button || !group.main) return;
+
+      group.current = view;
+
+      group.main.src = button.dataset.src;
+      group.main.alt = button.dataset.alt || group.main.alt;
+
+      group.buttons.forEach((other) => {
+        const active = other === button;
+
+        other.classList.toggle("is-active", active);
+
+        other.setAttribute("aria-pressed", String(active));
+      });
+    };
+
+    // Manual document switching
+    groups.forEach((group) => {
+      group.buttons.forEach((button, view) => {
+        button.addEventListener("click", () => {
+          setView(group, view);
+          restart();
+        });
       });
     });
-  });
 
-  /* ---------- Full-size preview ---------- */
+    // Stop autoplay timers
+    const stopTimer = () => {
+      window.clearTimeout(timer);
 
-  if (dialog && dialogImg && typeof dialog.showModal === "function") {
+      viewTimers.forEach((id) => {
+        window.clearTimeout(id);
+      });
+
+      viewTimers = [];
+
+      if (progress) {
+        progress.classList.remove("is-running");
+      }
+    };
+
+    // Restart autoplay
+    const restart = () => {
+      stopTimer();
+
+      if (cycleSlide !== index) {
+        setView(groups[cycleSlide], 0);
+        cycleSlide = index;
+      }
+
+      if (!userWantsPlay || paused || !inView || slides.length < 2) {
+        return;
+      }
+
+      if (progress) {
+        void progress.offsetWidth;
+        progress.classList.add("is-running");
+      }
+
+      const group = groups[index];
+      const total = group.buttons.length;
+
+      // Automatically switch grouped documents
+      for (let view = group.current + 1; view < total; view++) {
+        viewTimers.push(
+          window.setTimeout(
+            () => setView(group, view),
+            (INTERVAL * view) / total,
+          ),
+        );
+      }
+
+      // Move to the next certificate
+      timer = window.setTimeout(() => {
+        goTo(index === slides.length - 1 ? 0 : index + 1);
+
+        restart();
+      }, INTERVAL);
+    };
+
+    // Temporary autoplay pause
+    const setPaused = (value) => {
+      if (paused === value) return;
+
+      paused = value;
+      restart();
+    };
+
+    // Play/pause button
+    const paintToggle = () => {
+      if (!toggle) return;
+
+      toggle.setAttribute("aria-pressed", String(!userWantsPlay));
+
+      toggle.setAttribute(
+        "aria-label",
+        userWantsPlay
+          ? "Pause automatic slideshow"
+          : "Play automatic slideshow",
+      );
+    };
+
+    toggle?.addEventListener("click", () => {
+      userWantsPlay = !userWantsPlay;
+
+      paintToggle();
+      restart();
+    });
+
+    // Pause on hover and focus
+    root.addEventListener("mouseenter", () => {
+      setPaused(true);
+    });
+
+    root.addEventListener("mouseleave", () => {
+      setPaused(false);
+    });
+
+    root.addEventListener("focusin", () => {
+      setPaused(true);
+    });
+
+    root.addEventListener("focusout", (event) => {
+      if (!root.contains(event.relatedTarget)) {
+        setPaused(false);
+      }
+    });
+
+    // Pause while interacting with touch
+    root.addEventListener("touchstart", () => setPaused(true), {
+      passive: true,
+    });
+
+    root.addEventListener(
+      "touchend",
+      () => {
+        window.setTimeout(() => {
+          setPaused(false);
+        }, 2500);
+      },
+      { passive: true },
+    );
+
+    // Pause when browser tab is hidden
+    document.addEventListener("visibilitychange", () => {
+      setPaused(document.hidden);
+    });
+
+    // Start autoplay when carousel enters viewport
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          inView = Boolean(entries[0]?.isIntersecting);
+
+          restart();
+        },
+        { threshold: 0.15 },
+      );
+
+      observer.observe(root);
+    } else {
+      inView = true;
+    }
+
+    // Full-size certificate preview
     root.querySelectorAll("[data-cert-zoom]").forEach((button) => {
       button.addEventListener("click", () => {
         const img = button.querySelector("img");
 
-        dialogImg.src = img.currentSrc || img.src;
-        dialogImg.alt = img.alt;
-        dialog.showModal();
-        setPaused(true);
+        if (!img) return;
+
+        if (dialog && dialogImg && typeof dialog.showModal === "function") {
+          dialogImg.src = img.currentSrc || img.src;
+
+          dialogImg.alt = img.alt;
+
+          dialog.showModal();
+          setPaused(true);
+        } else {
+          window.open(img.currentSrc || img.src, "_blank", "noopener");
+        }
       });
     });
 
-    dialog.addEventListener("close", () => setPaused(false));
+    // Close preview dialog
+    if (dialog && closeDialog) {
+      dialog.addEventListener("close", () => {
+        setPaused(false);
+      });
 
-    dialog
-      .querySelector("[data-cert-close]")
-      .addEventListener("click", () => dialog.close());
+      closeDialog.addEventListener("click", () => {
+        dialog.close();
+      });
 
-    // Clicking the dark backdrop closes it too.
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) dialog.close();
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) {
+          dialog.close();
+        }
+      });
+    }
+
+    // Recalculate position on resize
+    window.addEventListener("resize", () => {
+      goTo(index, "auto");
     });
-  }
 
-  render();
+    // Initialize carousel
+    root.style.setProperty("--cert-interval", `${INTERVAL}ms`);
+
+    render();
+    paintToggle();
+    goTo(0, "auto");
+    restart();
+  };
+
+  // Safely initialize after the DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
 })();
